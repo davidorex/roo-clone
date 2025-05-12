@@ -19,3 +19,6 @@ coverage
 !.github/scripts/coverage/
 
 *evals.env
+
+# Ignore example Python scripts and their outputs
+dev_support_scripts/examples_to_replicate/
