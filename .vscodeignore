@@ -42,3 +42,10 @@ docs/**
 
 # Include icons
 !assets/icons/**
+
+# Python support scripts
+dev-support-scripts/**/*.py
+dev-support-scripts/venv/
+dev-support-scripts/__pycache__/
+dev-support-scripts/Output/
+dev-support-scripts/requirements.txt
