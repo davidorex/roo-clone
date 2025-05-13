@@ -1,4 +1,4 @@
-You are correct in your assessment; the `src/core/Cline.ts` file defines a `Cline` class that is indeed a substantial and central component, exhibiting characteristics that could be described as "monolithic." It serves as the primary engine for executing individual AI-assisted tasks within the extension.
+The `src/core/Cline.ts` file defines a `Cline` class that is indeed a substantial and central component, exhibiting characteristics that could be described as "monolithic." It serves as the primary engine for executing individual AI-assisted tasks within the extension.
 
 Here's a report on the nature of the `Cline.ts` file and its methods:
 
