@@ -1,0 +1,58 @@
+{
+  "module": null,
+  "classes": {
+    "VectorField": {
+      "docstring": "Field for storing vector embeddings in PostgreSQL using the pgvector extension.\n    \n    This field stores high-dimensional vectors and supports vector similarity\n    operations like cosine distance, L2 distance, and inner product.\n    \n    Example:\n        class Document(models.Model):\n            content = models.TextField()\n            embedding = VectorField(dimensions=1536)",
+      "methods": {
+        "__init__": {
+          "docstring": "Initialize the vector field with specified dimensions.\n        \n        Args:\n            dimensions: The number of dimensions for the vector\n            clip_vectors: Whether to clip vectors to match dimensions (default: True)",
+          "args": [
+            "dimensions",
+            "clip_vectors"
+          ]
+        },
+        "deconstruct": {
+          "docstring": "Return a deconstruction of the field for migrations.",
+          "args": []
+        },
+        "db_type": {
+          "docstring": "Return the database type for this field.",
+          "args": [
+            "connection"
+          ]
+        },
+        "_get_system_dimensions": {
+          "docstring": "Retrieve system-level vector dimensions with proper fallback mechanism.\n        \n        ARCHITECTURAL NOTE:\n        -------------------\n        This method addresses a circular dependency issue between pgvector and app models.\n        \n        Current architecture issues:\n        1. VectorField (provider) depends on viewer.models (consumer) for dimension information\n        2. This creates a circular dependency and violates package independence\n        3. The semantic subsystems should be reusable without app-specific dependencies\n        \n        Interim solution:\n        - Try to use the current app-specific implementation (backward compatibility)\n        - Fall back to Django settings if import fails\n        - Use the field's own dimensions as a last resort\n        \n        Future architecture plan:\n        - Properly invert the dependency when pgvector becomes a standalone module\n        - Use dependency injection or service locator pattern for dimension information\n        - The VectorField should not depend on consumer code (proper separation of concerns)\n        \n        Returns:\n            int: The number of dimensions to use for vector fields",
+          "args": []
+        },
+        "_is_pgvector_installed": {
+          "docstring": "Check if the pgvector extension is installed in the database.",
+          "args": [
+            "connection"
+          ]
+        },
+        "get_prep_value": {
+          "docstring": "Convert Python value to database format.",
+          "args": [
+            "value"
+          ]
+        },
+        "from_db_value": {
+          "docstring": "Convert database value to Python object.",
+          "args": [
+            "value",
+            "expression",
+            "connection"
+          ]
+        },
+        "to_python": {
+          "docstring": "Convert value to correct Python type.",
+          "args": [
+            "value"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

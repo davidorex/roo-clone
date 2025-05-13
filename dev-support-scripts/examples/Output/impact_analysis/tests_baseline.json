@@ -1,0 +1,581 @@
+{
+  "tests/conftest.py": {
+    "functions": [],
+    "targets": {},
+    "imports": {
+      "os": "os",
+      "sys": "sys",
+      "pytest": "pytest",
+      "django": "django",
+      "settings": "django.conf.settings",
+      "Dict": "typing.Dict",
+      "Any": "typing.Any",
+      "List": "typing.List",
+      "Optional": "typing.Optional",
+      "importlib": "importlib",
+      "VectorDatabaseRegistry": "viewer.semantic.vector.registry.VectorDatabaseRegistry",
+      "MemoryVectorDatabase": "viewer.semantic.vector.backends.memory.MemoryVectorDatabase",
+      "VectorBackendType": "viewer.semantic.vector.interfaces.VectorBackendType",
+      "AdvancedRegistry": "viewer.semantic.registry.AdvancedRegistry",
+      "BaseContext": "viewer.semantic.context.BaseContext"
+    }
+  },
+  "tests/unit/semantic/linguistic/test_registry.py": {
+    "functions": [
+      "test_processor_registration",
+      "test_adapter_registration",
+      "test_processor_creation",
+      "test_processor_capabilities"
+    ],
+    "targets": {},
+    "imports": {
+      "pytest": "pytest",
+      "Dict": "typing.Dict",
+      "Any": "typing.Any",
+      "List": "typing.List"
+    }
+  },
+  "tests/unit/semantic/vector/test_utils.py": {
+    "functions": [
+      "test_normalize_vector_format",
+      "test_ensure_dimensions",
+      "test_vector_to_db_string",
+      "test_vector_to_db_string_invisible_commas_fix",
+      "test_calculate_cosine_similarity",
+      "test_calculate_euclidean_distance",
+      "test_calculate_dot_product",
+      "test_similarity_to_score",
+      "test_get_original_metadata",
+      "test_get_metadata_source_type",
+      "test_preserve_metadata",
+      "test_matches_filter",
+      "test_get_vector_dimensions_app_config",
+      "test_get_vector_dimensions_settings",
+      "test_get_vector_dimensions_default"
+    ],
+    "targets": {},
+    "imports": {
+      "np": "numpy",
+      "pytest": "pytest",
+      "patch": "unittest.mock.patch",
+      "MagicMock": "unittest.mock.MagicMock",
+      "math": "math",
+      "get_vector_dimensions": "viewer.semantic.vector.utils.get_vector_dimensions",
+      "normalize_vector_format": "viewer.semantic.vector.utils.normalize_vector_format",
+      "ensure_dimensions": "viewer.semantic.vector.utils.ensure_dimensions",
+      "vector_to_db_string": "viewer.semantic.vector.utils.vector_to_db_string",
+      "calculate_cosine_similarity": "viewer.semantic.vector.utils.calculate_cosine_similarity",
+      "calculate_euclidean_distance": "viewer.semantic.vector.utils.calculate_euclidean_distance",
+      "calculate_dot_product": "viewer.semantic.vector.utils.calculate_dot_product",
+      "similarity_to_score": "viewer.semantic.vector.utils.similarity_to_score",
+      "matches_filter": "viewer.semantic.vector.utils.matches_filter",
+      "get_original_metadata": "viewer.semantic.vector.utils.get_original_metadata",
+      "get_metadata_source_type": "viewer.semantic.vector.utils.get_metadata_source_type",
+      "preserve_metadata": "viewer.semantic.vector.utils.preserve_metadata"
+    }
+  },
+  "tests/unit/semantic/vector/test_error_recovery.py": {
+    "functions": [
+      "test_connection_failure_recovery",
+      "test_invalid_backend_type_handling",
+      "test_empty_vector_handling",
+      "test_dimension_mismatch_handling",
+      "test_invalid_metric_handling",
+      "test_concurrent_collection_creation",
+      "test_service_error_isolation",
+      "test_duplicate_id_handling"
+    ],
+    "targets": {
+      "test_service_error_isolation": [
+        "errors"
+      ]
+    },
+    "imports": {
+      "pytest": "pytest",
+      "patch": "unittest.mock.patch",
+      "MagicMock": "unittest.mock.MagicMock",
+      "unittest.mock": "unittest.mock",
+      "np": "numpy",
+      "Dict": "typing.Dict",
+      "Any": "typing.Any",
+      "VectorBackendType": "viewer.semantic.vector.interfaces.VectorBackendType",
+      "get_vector_database": "viewer.semantic.vector.get_vector_database",
+      "ensure_dimensions": "viewer.semantic.vector.utils.ensure_dimensions",
+      "uuid": "uuid",
+      "VectorService": "viewer.semantic.vector.service.VectorService"
+    }
+  },
+  "tests/unit/semantic/vector/test_contract.py": {
+    "functions": [
+      "test_vector_database_contract",
+      "test_backend_type_enum_consistency",
+      "test_similarity_metric_enum_consistency",
+      "test_method_signature_consistency",
+      "test_capability_declaration_structure",
+      "test_model_result_consistency"
+    ],
+    "targets": {
+      "test_vector_database_contract": [
+        "all"
+      ],
+      "test_backend_type_enum_consistency": [
+        "all"
+      ],
+      "test_similarity_metric_enum_consistency": [
+        "SimilarityMetric"
+      ],
+      "test_method_signature_consistency": [
+        "all"
+      ],
+      "test_capability_declaration_structure": [
+        "capability"
+      ],
+      "test_model_result_consistency": [
+        "search"
+      ]
+    },
+    "imports": {
+      "pytest": "pytest",
+      "np": "numpy",
+      "inspect": "inspect",
+      "List": "typing.List",
+      "Dict": "typing.Dict",
+      "Any": "typing.Any",
+      "VectorDatabase": "viewer.semantic.vector.interfaces.VectorDatabase",
+      "VectorBackendType": "viewer.semantic.vector.interfaces.VectorBackendType",
+      "SimilarityMetric": "viewer.semantic.vector.interfaces.SimilarityMetric",
+      "get_vector_database": "viewer.semantic.vector.get_vector_database",
+      "VectorDatabaseRegistry": "viewer.semantic.vector.registry.VectorDatabaseRegistry",
+      "MemoryVectorDatabase": "viewer.semantic.vector.backends.memory.MemoryVectorDatabase"
+    }
+  },
+  "tests/unit/semantic/vector/test_vector_independence.py": {
+    "functions": [
+      "test_vector_dimensions_fallback",
+      "test_module_import_independence",
+      "test_connection_config_independence",
+      "test_backend_creation_independence",
+      "test_service_initialization_independence",
+      "test_field_independence",
+      "test_cross_subsystem_independence",
+      "test_utils_module_independence"
+    ],
+    "targets": {
+      "test_connection_config_independence": [
+        "connection"
+      ],
+      "test_backend_creation_independence": [
+        "backends"
+      ],
+      "test_service_initialization_independence": [
+        "the"
+      ],
+      "test_field_independence": [
+        "vector"
+      ],
+      "test_cross_subsystem_independence": [
+        "vector"
+      ],
+      "test_utils_module_independence": [
+        "the"
+      ]
+    },
+    "imports": {
+      "pytest": "pytest",
+      "patch": "unittest.mock.patch",
+      "MagicMock": "unittest.mock.MagicMock",
+      "PropertyMock": "unittest.mock.PropertyMock",
+      "sys": "sys",
+      "importlib": "importlib",
+      "np": "numpy",
+      "Dict": "typing.Dict",
+      "Any": "typing.Any",
+      "get_vector_dimensions": "viewer.semantic.vector.utils.get_vector_dimensions",
+      "normalize_vector_format": "viewer.semantic.vector.utils.normalize_vector_format",
+      "ensure_dimensions": "viewer.semantic.vector.utils.ensure_dimensions",
+      "vector_to_db_string": "viewer.semantic.vector.utils.vector_to_db_string",
+      "viewer.semantic.vector": "viewer.semantic.vector",
+      "viewer.semantic.vector.interfaces": "viewer.semantic.vector.interfaces",
+      "viewer.semantic.vector.models": "viewer.semantic.vector.models",
+      "viewer.semantic.vector.service": "viewer.semantic.vector.service",
+      "VectorBackendType": "viewer.semantic.vector.interfaces.VectorBackendType",
+      "ConnectionConfigRegistry": "viewer.semantic.vector.registry.ConnectionConfigRegistry",
+      "get_vector_database": "viewer.semantic.vector.get_vector_database",
+      "service": "viewer.semantic.vector.service",
+      "VectorField": "viewer.semantic.vector.fields.VectorField",
+      "vector_utils": "viewer.semantic.vector.utils"
+    }
+  },
+  "tests/unit/semantic/vector/test_vector_capability_negotiation.py": {
+    "functions": [
+      "test_exact_capability_match",
+      "test_intersection_capability_match",
+      "test_fallback_for_empty_intersection",
+      "test_return_type_handling",
+      "test_nested_capability_handling",
+      "test_cross_backend_consistency",
+      "test_capability_provider_selection"
+    ],
+    "targets": {
+      "test_cross_backend_consistency": [
+        "capability"
+      ]
+    },
+    "imports": {
+      "pytest": "pytest",
+      "np": "numpy",
+      "Dict": "typing.Dict",
+      "Any": "typing.Any",
+      "patch": "unittest.mock.patch",
+      "VectorBackendType": "viewer.semantic.vector.interfaces.VectorBackendType",
+      "SimilarityMetric": "viewer.semantic.vector.interfaces.SimilarityMetric",
+      "get_vector_database": "viewer.semantic.vector.get_vector_database",
+      "VectorDatabaseRegistry": "viewer.semantic.vector.registry.VectorDatabaseRegistry"
+    }
+  },
+  "tests/integration/test_vector_fields.py": {
+    "functions": [
+      "test_vectorfield_dimension_handling",
+      "test_field_from_db_value",
+      "test_field_dynamic_dimensions",
+      "test_field_deconstruct",
+      "test_field_uses_utils_module",
+      "test_external_field_prep_value",
+      "test_accessor_methods",
+      "test_external_field_uses_utils_module"
+    ],
+    "targets": {
+      "test_field_uses_utils_module": [
+        "VectorField"
+      ],
+      "test_accessor_methods": [
+        "accessor"
+      ],
+      "test_external_field_uses_utils_module": [
+        "ExternalVectorField"
+      ]
+    },
+    "imports": {
+      "pytest": "pytest",
+      "np": "numpy",
+      "List": "typing.List",
+      "Dict": "typing.Dict",
+      "Any": "typing.Any",
+      "patch": "unittest.mock.patch",
+      "MagicMock": "unittest.mock.MagicMock",
+      "models": "django.db.models",
+      "TestCase": "django.test.TestCase",
+      "QuerySet": "django.db.models.query.QuerySet",
+      "VectorField": "viewer.semantic.vector.fields.VectorField",
+      "ExternalVectorField": "viewer.semantic.vector.fields.ExternalVectorField",
+      "VectorBackendType": "viewer.semantic.vector.interfaces.VectorBackendType",
+      "SimilarityMetric": "viewer.semantic.vector.interfaces.SimilarityMetric",
+      "get_vector_database": "viewer.semantic.vector.get_vector_database",
+      "get_vector_dimensions": "viewer.semantic.vector.utils.get_vector_dimensions",
+      "normalize_vector_format": "viewer.semantic.vector.utils.normalize_vector_format",
+      "ensure_dimensions": "viewer.semantic.vector.utils.ensure_dimensions",
+      "vector_to_db_string": "viewer.semantic.vector.utils.vector_to_db_string",
+      "inspect": "inspect",
+      "VectorSearchResult": "viewer.semantic.vector.models.VectorSearchResult"
+    }
+  },
+  "tests/integration/test_initialization.py": {
+    "functions": [
+      "test_initialization_order_independence",
+      "test_import_sequence_stability",
+      "test_adapter_registration_completeness",
+      "test_adapter_bidirectional_availability",
+      "test_error_recovery_during_initialization",
+      "test_lazy_loading_patterns",
+      "test_registry_state_isolation",
+      "test_embedding_system_initialization"
+    ],
+    "targets": {
+      "test_initialization_order_independence": [
+        "initialization"
+      ],
+      "test_import_sequence_stability": [
+        "import"
+      ],
+      "test_adapter_registration_completeness": [
+        "all"
+      ],
+      "test_adapter_bidirectional_availability": [
+        "adapters"
+      ],
+      "test_lazy_loading_patterns": [
+        "lazy"
+      ],
+      "test_registry_state_isolation": [
+        "registry"
+      ]
+    },
+    "imports": {
+      "pytest": "pytest",
+      "importlib": "importlib",
+      "sys": "sys",
+      "List": "typing.List",
+      "Dict": "typing.Dict",
+      "Any": "typing.Any",
+      "initialize_cross_system_adapters": "viewer.semantic.adapters.initialize_cross_system_adapters",
+      "LinguisticUnit": "viewer.semantic.linguistic.models.LinguisticUnit",
+      "ChunkingBoundary": "viewer.semantic.chunking.base.ChunkingBoundary",
+      "TagCandidate": "viewer.semantic.tagging.base.TagCandidate",
+      "LinguisticProcessorRegistry": "viewer.semantic.linguistic.registry.LinguisticProcessorRegistry",
+      "ChunkingStrategyRegistry": "viewer.semantic.chunking.registry.ChunkingStrategyRegistry",
+      "TagExtractionRegistry": "viewer.semantic.tagging.registry.TagExtractionRegistry"
+    }
+  },
+  "tests/integration/test_metadata.py": {
+    "functions": [
+      "test_metadata_preservation_in_roundtrip",
+      "test_nested_metadata_handling",
+      "test_empty_metadata_handling",
+      "test_metadata_source_type_tracking",
+      "test_cross_system_metadata_consistency"
+    ],
+    "targets": {
+      "test_metadata_preservation_in_roundtrip": [
+        "metadata"
+      ],
+      "test_nested_metadata_handling": [
+        "deeply"
+      ],
+      "test_metadata_source_type_tracking": [
+        "source"
+      ]
+    },
+    "imports": {
+      "pytest": "pytest",
+      "Dict": "typing.Dict",
+      "Any": "typing.Any",
+      "List": "typing.List"
+    }
+  },
+  "tests/integration/test_context_flow.py": {
+    "functions": [
+      "test_context_parameters_flow_to_search",
+      "test_context_propagation",
+      "test_context_metric_normalization",
+      "test_context_with_updates",
+      "test_registry_context_awareness",
+      "test_cross_subsystem_context_creation",
+      "test_backend_with_context",
+      "test_service_context_defaults",
+      "test_field_operations_with_utils"
+    ],
+    "targets": {
+      "test_context_parameters_flow_to_search": [
+        "context"
+      ],
+      "test_context_propagation": [
+        "context"
+      ],
+      "test_context_with_updates": [
+        "context"
+      ],
+      "test_registry_context_awareness": [
+        "registry"
+      ],
+      "test_service_context_defaults": [
+        "service"
+      ],
+      "test_field_operations_with_utils": [
+        "vector"
+      ]
+    },
+    "imports": {
+      "pytest": "pytest",
+      "patch": "unittest.mock.patch",
+      "MagicMock": "unittest.mock.MagicMock",
+      "np": "numpy",
+      "Dict": "typing.Dict",
+      "Any": "typing.Any",
+      "VectorContext": "viewer.semantic.vector.models.VectorContext",
+      "VectorBackendType": "viewer.semantic.vector.interfaces.VectorBackendType",
+      "SimilarityMetric": "viewer.semantic.vector.interfaces.SimilarityMetric",
+      "VectorService": "viewer.semantic.vector.service.VectorService",
+      "get_vector_database": "viewer.semantic.vector.get_vector_database",
+      "normalize_vector_format": "viewer.semantic.vector.utils.normalize_vector_format",
+      "VectorDatabaseRegistry": "viewer.semantic.vector.registry.VectorDatabaseRegistry",
+      "BaseContext": "viewer.semantic.context.BaseContext",
+      "VectorField": "viewer.semantic.vector.fields.VectorField"
+    }
+  },
+  "tests/integration/test_contexts.py": {
+    "functions": [
+      "test_context_creation_and_inheritance",
+      "test_context_conversion_between_subsystems",
+      "test_language_preference_propagation",
+      "test_content_type_propagation",
+      "test_linguistic_to_tagging_context_propagation",
+      "test_backward_compatibility",
+      "test_context_to_options_conversion",
+      "test_chunking_with_embedding_context"
+    ],
+    "targets": {
+      "test_language_preference_propagation": [
+        "language"
+      ],
+      "test_content_type_propagation": [
+        "content"
+      ],
+      "test_linguistic_to_tagging_context_propagation": [
+        "extract_linguistic_units"
+      ],
+      "test_backward_compatibility": [
+        "services"
+      ]
+    },
+    "imports": {
+      "pytest": "pytest",
+      "Dict": "typing.Dict",
+      "Any": "typing.Any",
+      "Optional": "typing.Optional",
+      "unittest.mock": "unittest.mock",
+      "BaseContext": "viewer.semantic.context.BaseContext"
+    }
+  },
+  "tests/integration/test_cross_backend_consistency.py": {
+    "functions": [
+      "test_vectors",
+      "test_cross_backend_consistency",
+      "test_similarity_metric_consistency",
+      "test_vector_format_consistency",
+      "test_empty_collection_handling",
+      "test_dimension_handling"
+    ],
+    "targets": {
+      "test_cross_backend_consistency": [
+        "operations"
+      ]
+    },
+    "imports": {
+      "pytest": "pytest",
+      "np": "numpy",
+      "List": "typing.List",
+      "Dict": "typing.Dict",
+      "Any": "typing.Any",
+      "Tuple": "typing.Tuple",
+      "VectorBackendType": "viewer.semantic.vector.interfaces.VectorBackendType",
+      "SimilarityMetric": "viewer.semantic.vector.interfaces.SimilarityMetric",
+      "get_vector_database": "viewer.semantic.vector.get_vector_database",
+      "normalize_vector_format": "viewer.semantic.vector.utils.normalize_vector_format",
+      "ensure_dimensions": "viewer.semantic.vector.utils.ensure_dimensions",
+      "vector_to_db_string": "viewer.semantic.vector.utils.vector_to_db_string"
+    }
+  },
+  "tests/integration/test_capability_negotiation.py": {
+    "functions": [
+      "test_compatible_capability_negotiation",
+      "test_partial_capability_match",
+      "test_empty_capability_set_handling",
+      "test_capability_validation",
+      "test_linguistic_capability_negotiation",
+      "test_boundary_provider_negotiation",
+      "test_fallback_capabilities",
+      "test_capability_error_messages"
+    ],
+    "targets": {
+      "test_fallback_capabilities": [
+        "fallback"
+      ],
+      "test_capability_error_messages": [
+        "capability"
+      ]
+    },
+    "imports": {
+      "pytest": "pytest",
+      "Dict": "typing.Dict",
+      "Any": "typing.Any",
+      "List": "typing.List",
+      "Optional": "typing.Optional",
+      "unittest.mock": "unittest.mock",
+      "logging": "logging",
+      "IntegrationInterface": "viewer.semantic.registry.IntegrationInterface",
+      "Registry": "viewer.semantic.registry.Registry"
+    }
+  },
+  "tests/integration/test_embedding_integration.py": {
+    "functions": [
+      "test_embedding_with_linguistic_preprocessing",
+      "test_embedding_with_chunking",
+      "test_content_type_based_embedding",
+      "test_embedding_context_propagation",
+      "test_embedding_service_api",
+      "test_embedding_similarity_calculation",
+      "test_embedding_vector_normalization"
+    ],
+    "targets": {
+      "test_embedding_context_propagation": [
+        "context"
+      ],
+      "test_embedding_service_api": [
+        "high"
+      ]
+    },
+    "imports": {
+      "pytest": "pytest",
+      "np": "numpy",
+      "List": "typing.List",
+      "Dict": "typing.Dict",
+      "Any": "typing.Any",
+      "Optional": "typing.Optional",
+      "unittest.mock": "unittest.mock"
+    }
+  },
+  "tests/package/test_independence.py": {
+    "functions": [
+      "test_subsystem_imports_without_app_dependencies",
+      "test_registry_initialization_without_app",
+      "test_standalone_linguistic_processing",
+      "test_standalone_chunking",
+      "test_standalone_tagging",
+      "test_standalone_embedding",
+      "test_cross_system_integration_without_app"
+    ],
+    "targets": {
+      "test_subsystem_imports_without_app_dependencies": [
+        "subsystems"
+      ],
+      "test_registry_initialization_without_app": [
+        "registries"
+      ]
+    },
+    "imports": {
+      "pytest": "pytest",
+      "importlib": "importlib",
+      "Dict": "typing.Dict",
+      "Any": "typing.Any",
+      "List": "typing.List",
+      "Optional": "typing.Optional",
+      "os": "os",
+      "sys": "sys",
+      "viewer.semantic.registry": "viewer.semantic.registry",
+      "viewer.semantic.linguistic": "viewer.semantic.linguistic",
+      "viewer.semantic.chunking": "viewer.semantic.chunking",
+      "viewer.semantic.tagging": "viewer.semantic.tagging",
+      "viewer.semantic.vector": "viewer.semantic.vector"
+    }
+  },
+  "viewer/pgvector/tests/__init__.py": {
+    "functions": [],
+    "targets": {},
+    "imports": {}
+  },
+  "viewer/pgvector/tests/test_fields.py": {
+    "functions": [
+      "test_vector_storage_and_retrieval",
+      "test_dimension_clipping",
+      "test_cosine_distance_lookup",
+      "test_l2_distance_lookup"
+    ],
+    "targets": {},
+    "imports": {
+      "TestCase": "django.test.TestCase",
+      "models": "django.db.models",
+      "connection": "django.db.connection",
+      "VectorField": "viewer.pgvector.fields.VectorField"
+    }
+  }
+}

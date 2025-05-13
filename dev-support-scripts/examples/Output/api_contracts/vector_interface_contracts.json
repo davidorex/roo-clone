@@ -1,0 +1,2898 @@
+{
+  "viewer.semantic.vector....viewer.semantic.vector.interfaces": {
+    "module_name": "viewer.semantic.vector....viewer.semantic.vector.interfaces",
+    "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/interfaces.py",
+    "classes": {
+      "VectorBackendType": {
+        "methods": {},
+        "bases": [
+          "Enum"
+        ],
+        "docstring": "Type-safe enumeration of vector database backends.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/interfaces.py",
+        "decorators": []
+      },
+      "VectorDatabase": {
+        "methods": {
+          "default_capabilities": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              }
+            ],
+            "docstring": "Get default capabilities that apply to all instances of this vector database.\n        Use for class-level capability declarations.\n        \n        Returns:\n            Dictionary of default capabilities with their supported values",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "Dict[...]"
+          },
+          "capabilities": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              }
+            ],
+            "docstring": "Get instance-specific capabilities for this vector database.\n        By default uses class default_capabilities, but can be overridden\n        for instance-specific variations.\n        \n        Returns:\n            Dictionary of capabilities with their supported values",
+            "decorators": [],
+            "return_type": "Dict[...]"
+          },
+          "negotiate_capabilities": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "requested_capabilities",
+                "required": false,
+                "type": "Dict[...]"
+              }
+            ],
+            "docstring": "Negotiate capabilities between consumer and provider.\n        \n        Args:\n            requested_capabilities: Capabilities requested by consumer\n            \n        Returns:\n            Dictionary of supported capabilities that will be provided\n            \n        Type Policy:\n            - Set-based capabilities: Always returned as lists\n              because they represent multiple concurrent capabilities\n            - Mode selection capabilities: Returned as scalars when only\n              one value is requested and matched, to simplify usage for consumers",
+            "decorators": [],
+            "return_type": "Dict[...]"
+          },
+          "store_vectors": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "vectors",
+                "required": false,
+                "type": "List[...]"
+              },
+              {
+                "name": "metadata",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "ids",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "collection",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Store vectors in the database.\n        \n        Args:\n            vectors: List of vectors to store\n            metadata: Optional metadata for each vector (same length as vectors)\n            ids: Optional custom IDs for vectors (generated if not provided)\n            collection: Optional collection/namespace name\n            \n        Returns:\n            Dictionary with operation results",
+            "decorators": [
+              "abstractmethod"
+            ],
+            "return_type": "Dict[...]"
+          },
+          "search_vectors": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "query_vector",
+                "required": false,
+                "type": "VectorData"
+              },
+              {
+                "name": "top_k",
+                "required": true,
+                "type": "int",
+                "default": 10
+              },
+              {
+                "name": "filter_expr",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "collection",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "metric",
+                "required": true,
+                "type": "SimilarityMetric",
+                "default": "<Attribute>"
+              },
+              {
+                "name": "include_metadata",
+                "required": true,
+                "type": "bool",
+                "default": true
+              },
+              {
+                "name": "include_vectors",
+                "required": true,
+                "type": "bool",
+                "default": false
+              }
+            ],
+            "docstring": "Search for similar vectors.\n        \n        Args:\n            query_vector: Vector to search for\n            top_k: Number of results to return\n            filter_expr: Optional filter expression for metadata\n            collection: Optional collection/namespace name\n            metric: Similarity metric to use\n            include_metadata: Whether to include metadata in results\n            include_vectors: Whether to include vector data in results\n            \n        Returns:\n            List of vector search results",
+            "decorators": [
+              "abstractmethod"
+            ],
+            "return_type": "List[...]"
+          },
+          "delete_vectors": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "ids",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "filter_expr",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "collection",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Delete vectors by ID or filter expression.\n        \n        Args:\n            ids: Optional list of vector IDs to delete\n            filter_expr: Optional filter expression to match vectors to delete\n            collection: Optional collection/namespace name\n            \n        Returns:\n            Dictionary with operation results",
+            "decorators": [
+              "abstractmethod"
+            ],
+            "return_type": "Dict[...]"
+          },
+          "create_collection": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "name",
+                "required": false,
+                "type": "str"
+              },
+              {
+                "name": "dimensions",
+                "required": false,
+                "type": "int"
+              },
+              {
+                "name": "metric",
+                "required": true,
+                "type": "SimilarityMetric",
+                "default": "<Attribute>"
+              },
+              {
+                "name": "metadata_schema",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Create a new vector collection/index.\n        \n        Args:\n            name: Collection name\n            dimensions: Vector dimensions\n            metric: Similarity metric\n            metadata_schema: Optional schema for metadata fields\n            \n        Returns:\n            Dictionary with operation results",
+            "decorators": [
+              "abstractmethod"
+            ],
+            "return_type": "Dict[...]"
+          }
+        },
+        "bases": [
+          "ABC",
+          "Generic[...]"
+        ],
+        "docstring": "Abstract base class for vector database operations.\n    Defines the contract that all vector database implementations must implement.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/interfaces.py",
+        "decorators": []
+      },
+      "ConnectionConfiguration": {
+        "methods": {
+          "get_connection_params": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              }
+            ],
+            "docstring": "Get parameters required for establishing a connection.\n        \n        Returns:\n            Dictionary of connection parameters",
+            "decorators": [
+              "abstractmethod"
+            ],
+            "return_type": "Dict[...]"
+          },
+          "get_options": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              }
+            ],
+            "docstring": "Get additional options for configuring the database.\n        \n        Returns:\n            Dictionary of additional options",
+            "decorators": [
+              "abstractmethod"
+            ],
+            "return_type": "Dict[...]"
+          },
+          "from_settings": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              },
+              {
+                "name": "settings_dict",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Create configuration from Django settings.\n        \n        Args:\n            settings_dict: Optional settings dictionary (uses Django settings if not provided)\n            \n        Returns:\n            ConnectionConfiguration instance",
+            "decorators": [
+              "classmethod",
+              "abstractmethod"
+            ],
+            "return_type": "<ast.Constant object at 0x104a37a90>"
+          },
+          "from_env": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              }
+            ],
+            "docstring": "Create configuration from environment variables.\n        \n        Returns:\n            ConnectionConfiguration instance",
+            "decorators": [
+              "classmethod",
+              "abstractmethod"
+            ],
+            "return_type": "<ast.Constant object at 0x104a3c150>"
+          }
+        },
+        "bases": [
+          "ABC"
+        ],
+        "docstring": "Abstract base class for vector database connection configuration.\n    Provides standardized access to connection parameters across backends.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/interfaces.py",
+        "decorators": []
+      },
+      "VectorAdapter": {
+        "methods": {
+          "default_capabilities": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              }
+            ],
+            "docstring": "Get default capabilities that apply to all instances of this adapter.\n        \n        Returns:\n            Dictionary of default capabilities with their supported values",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "Dict[...]"
+          },
+          "capabilities": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              }
+            ],
+            "docstring": "Get instance-specific capabilities for this adapter.\n        By default uses class default_capabilities, but can be overridden\n        for instance-specific variations.\n        \n        Returns:\n            Dictionary of capabilities with their supported values",
+            "decorators": [],
+            "return_type": "Dict[...]"
+          },
+          "adapt_vector": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "vector",
+                "required": false,
+                "type": "Any"
+              },
+              {
+                "name": "target_format",
+                "required": false,
+                "type": "str"
+              },
+              {
+                "name": "target_dimensions",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Adapt a vector to the target format and dimensions.\n        \n        Args:\n            vector: Input vector in any supported format\n            target_format: Desired output format\n            target_dimensions: Optional target dimensions (if resizing needed)\n            \n        Returns:\n            Adapted vector in the target format and dimensions",
+            "decorators": [
+              "abstractmethod"
+            ],
+            "return_type": "VectorData"
+          }
+        },
+        "bases": [
+          "IntegrationInterface"
+        ],
+        "docstring": "Integration interface for adapting vectors between subsystems.\n    Establishes formal boundary between vector subsystem and other subsystems.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/interfaces.py",
+        "decorators": []
+      }
+    },
+    "functions": {},
+    "imports": {
+      "abc.ABC": {
+        "alias": null,
+        "from_import": true
+      },
+      "abc.abstractmethod": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.List": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Dict": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Any": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Optional": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Iterable": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Tuple": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Set": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Type": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Union": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Generic": {
+        "alias": null,
+        "from_import": true
+      },
+      "enum.Enum": {
+        "alias": null,
+        "from_import": true
+      },
+      "uuid": {
+        "alias": null
+      },
+      "logging": {
+        "alias": null
+      },
+      "models.VectorData": {
+        "alias": null,
+        "from_import": true
+      },
+      "models.VectorContext": {
+        "alias": null,
+        "from_import": true
+      },
+      "models.VectorSearchResult": {
+        "alias": null,
+        "from_import": true
+      },
+      "models.SimilarityMetric": {
+        "alias": null,
+        "from_import": true
+      },
+      "viewer.semantic.registry.IntegrationInterface": {
+        "alias": null,
+        "from_import": true
+      }
+    }
+  },
+  "viewer.semantic.vector....viewer.semantic.vector.service": {
+    "module_name": "viewer.semantic.vector....viewer.semantic.vector.service",
+    "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/service.py",
+    "classes": {
+      "VectorService": {
+        "methods": {
+          "initialize": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              }
+            ],
+            "docstring": "Initialize service configurations.",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": null
+          },
+          "get_default_backend_type": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              }
+            ],
+            "docstring": "Get the default backend type from settings.",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "VectorBackendType"
+          },
+          "store_vectors": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              },
+              {
+                "name": "vectors",
+                "required": false,
+                "type": "List[...]"
+              },
+              {
+                "name": "metadata",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "ids",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "collection",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "backend_type",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Store vectors using the configured backend.\n        \n        Args:\n            vectors: List of vectors to store\n            metadata: Optional metadata for each vector\n            ids: Optional custom IDs for vectors\n            collection: Optional collection/namespace name\n            backend_type: Optional backend type override\n            **options: Additional backend-specific options\n            \n        Returns:\n            Dictionary with operation results",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "Dict[...]"
+          },
+          "search_vectors": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              },
+              {
+                "name": "query_vector",
+                "required": false,
+                "type": "Union[...]"
+              },
+              {
+                "name": "top_k",
+                "required": true,
+                "type": "int",
+                "default": 10
+              },
+              {
+                "name": "filter_expr",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "collection",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "metric",
+                "required": true,
+                "type": "Union[...]",
+                "default": "<Attribute>"
+              },
+              {
+                "name": "include_metadata",
+                "required": true,
+                "type": "bool",
+                "default": true
+              },
+              {
+                "name": "include_vectors",
+                "required": true,
+                "type": "bool",
+                "default": false
+              },
+              {
+                "name": "backend_type",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Search for similar vectors using the configured backend.\n        \n        Args:\n            query_vector: Vector to search for\n            top_k: Number of results to return\n            filter_expr: Optional filter expression for metadata\n            collection: Optional collection/namespace name\n            metric: Similarity metric to use\n            include_metadata: Whether to include metadata in results\n            include_vectors: Whether to include vector data in results\n            backend_type: Optional backend type override\n            **options: Additional backend-specific options\n            \n        Returns:\n            List of vector search results",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "List[...]"
+          },
+          "search_with_context": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              },
+              {
+                "name": "context",
+                "required": false,
+                "type": "VectorContext"
+              },
+              {
+                "name": "query_vector",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "backend_type",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Search vectors using a context object.\n        \n        Args:\n            context: Vector context with search parameters\n            query_vector: Optional query vector (overrides any in context)\n            backend_type: Optional backend type override\n            \n        Returns:\n            List of vector search results",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "List[...]"
+          },
+          "delete_vectors": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              },
+              {
+                "name": "ids",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "filter_expr",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "collection",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "backend_type",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Delete vectors using the configured backend.\n        \n        Args:\n            ids: Optional list of vector IDs to delete\n            filter_expr: Optional filter expression to match vectors to delete\n            collection: Optional collection/namespace name\n            backend_type: Optional backend type override\n            **options: Additional backend-specific options\n            \n        Returns:\n            Dictionary with operation results",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "Dict[...]"
+          },
+          "create_collection": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              },
+              {
+                "name": "name",
+                "required": false,
+                "type": "str"
+              },
+              {
+                "name": "dimensions",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "metric",
+                "required": true,
+                "type": "Union[...]",
+                "default": "<Attribute>"
+              },
+              {
+                "name": "metadata_schema",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "backend_type",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Create a new vector collection.\n        \n        Args:\n            name: Collection name\n            dimensions: Vector dimensions (uses get_vector_dimensions() if not provided)\n            metric: Similarity metric to use\n            metadata_schema: Optional schema for metadata fields\n            backend_type: Optional backend type override\n            **options: Additional backend-specific options\n            \n        Returns:\n            Dictionary with operation results",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "Dict[...]"
+          },
+          "find_vectors_by_metadata": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              },
+              {
+                "name": "filter_expr",
+                "required": false,
+                "type": "Dict[...]"
+              },
+              {
+                "name": "collection",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "include_vectors",
+                "required": true,
+                "type": "bool",
+                "default": false
+              },
+              {
+                "name": "backend_type",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Find vectors by metadata filter (convenience method).\n        \n        Args:\n            filter_expr: Filter expression to match vectors\n            collection: Optional collection/namespace name\n            include_vectors: Whether to include vector data in results\n            backend_type: Optional backend type override\n            **options: Additional backend-specific options\n            \n        Returns:\n            List of matching vectors with metadata",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "List[...]"
+          },
+          "get_backends_by_capabilities": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              },
+              {
+                "name": "required_capabilities",
+                "required": false,
+                "type": "Dict[...]"
+              }
+            ],
+            "docstring": "Get list of available backends that match required capabilities.\n        \n        Args:\n            required_capabilities: Dictionary of required capabilities\n            \n        Returns:\n            List of backend information dictionaries",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "List[...]"
+          },
+          "_get_backend": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              },
+              {
+                "name": "backend_type",
+                "required": false
+              }
+            ],
+            "docstring": "Get a backend instance for the specified type.\n        \n        Args:\n            backend_type: Backend type\n            **options: Backend-specific options\n            \n        Returns:\n            Configured backend instance",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": null
+          }
+        },
+        "bases": [],
+        "docstring": "Service layer for vector database operations.\n    Provides high-level operations with automatic backend configuration.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/service.py",
+        "decorators": []
+      }
+    },
+    "functions": {},
+    "imports": {
+      "typing.List": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Dict": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Any": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Optional": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Union": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.TypeVar": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Generic": {
+        "alias": null,
+        "from_import": true
+      },
+      "uuid": {
+        "alias": null
+      },
+      "numpy": {
+        "alias": "np"
+      },
+      "logging": {
+        "alias": null
+      },
+      "django.conf.settings": {
+        "alias": null,
+        "from_import": true
+      },
+      "interfaces.VectorBackendType": {
+        "alias": null,
+        "from_import": true
+      },
+      "interfaces.SimilarityMetric": {
+        "alias": null,
+        "from_import": true
+      },
+      "models.VectorContext": {
+        "alias": null,
+        "from_import": true
+      },
+      "models.VectorSearchResult": {
+        "alias": null,
+        "from_import": true
+      },
+      "registry.VectorDatabaseRegistry": {
+        "alias": null,
+        "from_import": true
+      },
+      "registry.ConnectionConfigRegistry": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.get_vector_dimensions": {
+        "alias": null,
+        "from_import": true
+      }
+    }
+  },
+  "viewer.semantic.vector....viewer.semantic.vector.models": {
+    "module_name": "viewer.semantic.vector....viewer.semantic.vector.models",
+    "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/models.py",
+    "classes": {
+      "VectorContext": {
+        "methods": {
+          "with_updates": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              }
+            ],
+            "docstring": "Create a new context with updated values.",
+            "decorators": [],
+            "return_type": "<ast.Constant object at 0x104a0a350>"
+          }
+        },
+        "bases": [],
+        "docstring": "Context object that flows through vector operations.\n    Contains parameters, metadata, and execution context for vector operations.\n    \n    Also serves as execution context for context-aware registry methods.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/models.py",
+        "decorators": [
+          "dataclass"
+        ]
+      },
+      "VectorSearchResult": {
+        "methods": {
+          "similarity": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              }
+            ],
+            "docstring": "Get similarity score (alias for score).",
+            "decorators": [
+              "property"
+            ],
+            "return_type": "float"
+          }
+        },
+        "bases": [],
+        "docstring": "Standardized result format for vector searches.\n    Ensures consistency across different backends.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/models.py",
+        "decorators": [
+          "dataclass"
+        ]
+      },
+      "SimilarityMetric": {
+        "methods": {
+          "from_string": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              },
+              {
+                "name": "value",
+                "required": false,
+                "type": "str"
+              }
+            ],
+            "docstring": "Convert string to enum value with fallback to COSINE.",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "<ast.Constant object at 0x104a3d710>"
+          }
+        },
+        "bases": [
+          "Enum"
+        ],
+        "docstring": "Standard similarity metrics supported across backends.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/models.py",
+        "decorators": []
+      }
+    },
+    "functions": {},
+    "imports": {
+      "dataclasses.dataclass": {
+        "alias": null,
+        "from_import": true
+      },
+      "dataclasses.field": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.List": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Dict": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Any": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Optional": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Union": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.TypeVar": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Generic": {
+        "alias": null,
+        "from_import": true
+      },
+      "enum.Enum": {
+        "alias": null,
+        "from_import": true
+      },
+      "numpy": {
+        "alias": "np"
+      }
+    }
+  },
+  "viewer.semantic.vector....viewer.semantic.vector.fields": {
+    "module_name": "viewer.semantic.vector....viewer.semantic.vector.fields",
+    "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/fields.py",
+    "classes": {
+      "VectorField": {
+        "methods": {
+          "__init__": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "dimensions",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "backend",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "metric",
+                "required": true,
+                "type": "SimilarityMetric",
+                "default": "<Attribute>"
+              },
+              {
+                "name": "index_type",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": null,
+            "decorators": [],
+            "return_type": null
+          },
+          "deconstruct": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              }
+            ],
+            "docstring": null,
+            "decorators": [],
+            "return_type": null
+          },
+          "db_type": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "connection",
+                "required": false
+              }
+            ],
+            "docstring": "Return database column type based on backend.",
+            "decorators": [],
+            "return_type": null
+          },
+          "_get_backend": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              }
+            ],
+            "docstring": "Get the vector backend for this field.",
+            "decorators": [],
+            "return_type": null
+          },
+          "get_prep_value": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "value",
+                "required": false
+              }
+            ],
+            "docstring": "Prepare value for database storage.",
+            "decorators": [],
+            "return_type": null
+          },
+          "to_python": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "value",
+                "required": false
+              }
+            ],
+            "docstring": "Convert database value to Python object.",
+            "decorators": [],
+            "return_type": null
+          },
+          "formfield": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              }
+            ],
+            "docstring": "No form field for vector data.",
+            "decorators": [],
+            "return_type": null
+          }
+        },
+        "bases": [
+          "models.Field"
+        ],
+        "docstring": "Field for storing vector embeddings.\n    \n    Can store vectors directly in the database or in an external vector store,\n    depending on the configured backend.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/fields.py",
+        "decorators": []
+      },
+      "ExternalVectorField": {
+        "methods": {
+          "__init__": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "dimensions",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "backend",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "collection",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": null,
+            "decorators": [],
+            "return_type": null
+          },
+          "_get_backend": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              }
+            ],
+            "docstring": "Get the vector backend for this field.",
+            "decorators": [],
+            "return_type": null
+          },
+          "from_db_value": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "value",
+                "required": false
+              },
+              {
+                "name": "expression",
+                "required": false
+              },
+              {
+                "name": "connection",
+                "required": false
+              }
+            ],
+            "docstring": "Convert from database value.",
+            "decorators": [],
+            "return_type": null
+          },
+          "to_python": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "value",
+                "required": false
+              }
+            ],
+            "docstring": "Convert to Python value.",
+            "decorators": [],
+            "return_type": null
+          },
+          "get_prep_value": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "value",
+                "required": false
+              }
+            ],
+            "docstring": "Prepare for database.",
+            "decorators": [],
+            "return_type": null
+          },
+          "contribute_to_class": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "cls",
+                "required": false
+              },
+              {
+                "name": "name",
+                "required": false
+              }
+            ],
+            "docstring": "Add accessor methods to the model class.",
+            "decorators": [],
+            "return_type": null
+          }
+        },
+        "bases": [
+          "models.CharField"
+        ],
+        "docstring": "Field for storing references to vectors in external vector stores.\n    \n    This field stores only the ID of the vector in the external store,\n    with metadata indicating the model and field it belongs to.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/fields.py",
+        "decorators": []
+      }
+    },
+    "functions": {},
+    "imports": {
+      "django.db.models": {
+        "alias": null,
+        "from_import": true
+      },
+      "django.conf.settings": {
+        "alias": null,
+        "from_import": true
+      },
+      "uuid": {
+        "alias": null
+      },
+      "numpy": {
+        "alias": "np"
+      },
+      "typing.Dict": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Any": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Optional": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.List": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Tuple": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Union": {
+        "alias": null,
+        "from_import": true
+      },
+      "logging": {
+        "alias": null
+      },
+      "utils.get_vector_dimensions": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.normalize_vector_format": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.ensure_dimensions": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.vector_to_db_string": {
+        "alias": null,
+        "from_import": true
+      },
+      "models.VectorContext": {
+        "alias": null,
+        "from_import": true
+      },
+      "interfaces.VectorBackendType": {
+        "alias": null,
+        "from_import": true
+      },
+      "interfaces.SimilarityMetric": {
+        "alias": null,
+        "from_import": true
+      },
+      "registry.VectorDatabaseRegistry": {
+        "alias": null,
+        "from_import": true
+      },
+      "service.VectorService": {
+        "alias": null,
+        "from_import": true
+      }
+    }
+  },
+  "viewer.semantic.vector....viewer.semantic.vector.registry": {
+    "module_name": "viewer.semantic.vector....viewer.semantic.vector.registry",
+    "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/registry.py",
+    "classes": {
+      "VectorDatabaseRegistry": {
+        "methods": {
+          "get_database_by_capabilities": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              },
+              {
+                "name": "required_capabilities",
+                "required": false,
+                "type": "Dict[...]"
+              },
+              {
+                "name": "preferred_backend",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Get appropriate database implementation based on required capabilities.\n        \n        Args:\n            required_capabilities: Capabilities the database must support\n            preferred_backend: Optional preferred backend type\n            **kwargs: Additional parameters for database creation\n            \n        Returns:\n            Vector database instance matching requirements",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "VectorDatabase"
+          },
+          "_check_capabilities": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              },
+              {
+                "name": "backend",
+                "required": false,
+                "type": "VectorDatabase"
+              },
+              {
+                "name": "required_capabilities",
+                "required": false,
+                "type": "Dict[...]"
+              }
+            ],
+            "docstring": "Check if a backend supports required capabilities using negotiate_capabilities.\n        \n        Args:\n            backend: Vector database instance\n            required_capabilities: Required capabilities\n            \n        Returns:\n            True if backend supports all required capabilities",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "bool"
+          }
+        },
+        "bases": [
+          "AdvancedRegistry[...]"
+        ],
+        "docstring": "Registry for vector database implementations, extending the AdvancedRegistry.\n    Provides specialized methods for vector database operations.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/registry.py",
+        "decorators": []
+      },
+      "ConnectionConfigRegistry": {
+        "methods": {
+          "get_from_settings": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              },
+              {
+                "name": "backend_type",
+                "required": false,
+                "type": "Union[...]"
+              }
+            ],
+            "docstring": "Get connection configuration from Django settings.\n        \n        Args:\n            backend_type: Type of backend to get configuration for\n            **kwargs: Additional parameters to override settings\n            \n        Returns:\n            ConnectionConfiguration instance",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "ConnectionConfiguration"
+          },
+          "get_from_env": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              },
+              {
+                "name": "backend_type",
+                "required": false,
+                "type": "Union[...]"
+              }
+            ],
+            "docstring": "Get connection configuration from environment variables.\n        \n        Args:\n            backend_type: Type of backend to get configuration for\n            **kwargs: Additional parameters to override environment variables\n            \n        Returns:\n            ConnectionConfiguration instance",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "ConnectionConfiguration"
+          }
+        },
+        "bases": [
+          "AdvancedRegistry[...]"
+        ],
+        "docstring": "Registry for connection configurations, extending the AdvancedRegistry.\n    Provides methods for loading and managing connection configurations.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/registry.py",
+        "decorators": []
+      },
+      "VectorAdapterRegistry": {
+        "methods": {
+          "adapt_to_format": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              },
+              {
+                "name": "vector",
+                "required": false,
+                "type": "Any"
+              },
+              {
+                "name": "target_format",
+                "required": false,
+                "type": "str"
+              },
+              {
+                "name": "dimensions",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "adapter_name",
+                "required": true,
+                "type": "str",
+                "default": "default_adapter"
+              }
+            ],
+            "docstring": "Adapt a vector to the target format and dimensions.\n        \n        Args:\n            vector: Input vector\n            target_format: Target format\n            dimensions: Optional target dimensions\n            adapter_name: Name of adapter to use\n            \n        Returns:\n            Adapted vector",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "VectorData"
+          }
+        },
+        "bases": [
+          "AdvancedRegistry[...]"
+        ],
+        "docstring": "Registry for vector adapters, extending the AdvancedRegistry.\n    Provides methods for vector format adaptation across subsystems.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/registry.py",
+        "decorators": []
+      }
+    },
+    "functions": {},
+    "imports": {
+      "typing.Dict": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Type": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.List": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Any": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Optional": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Union": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Generic": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.TypeVar": {
+        "alias": null,
+        "from_import": true
+      },
+      "enum.Enum": {
+        "alias": null,
+        "from_import": true
+      },
+      "uuid": {
+        "alias": null
+      },
+      "numpy": {
+        "alias": "np"
+      },
+      "viewer.semantic.registry.AdvancedRegistry": {
+        "alias": null,
+        "from_import": true
+      },
+      "interfaces.VectorDatabase": {
+        "alias": null,
+        "from_import": true
+      },
+      "interfaces.ConnectionConfiguration": {
+        "alias": null,
+        "from_import": true
+      },
+      "interfaces.VectorAdapter": {
+        "alias": null,
+        "from_import": true
+      },
+      "interfaces.VectorBackendType": {
+        "alias": null,
+        "from_import": true
+      },
+      "interfaces.SimilarityMetric": {
+        "alias": null,
+        "from_import": true
+      },
+      "models.VectorData": {
+        "alias": null,
+        "from_import": true
+      },
+      "models.VectorContext": {
+        "alias": null,
+        "from_import": true
+      },
+      "models.VectorSearchResult": {
+        "alias": null,
+        "from_import": true
+      }
+    }
+  },
+  "viewer.semantic.vector....viewer.semantic.vector.__init__": {
+    "module_name": "viewer.semantic.vector....viewer.semantic.vector.__init__",
+    "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/__init__.py",
+    "classes": {},
+    "functions": {
+      "store_vectors": {
+        "docstring": "Store vectors with optional metadata.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/__init__.py",
+        "decorators": [],
+        "parameters": [
+          {
+            "name": "vectors",
+            "required": false
+          },
+          {
+            "name": "metadata",
+            "required": true,
+            "default": null
+          },
+          {
+            "name": "ids",
+            "required": true,
+            "default": null
+          },
+          {
+            "name": "collection",
+            "required": true,
+            "default": null
+          }
+        ],
+        "return_type": null
+      },
+      "search_vectors": {
+        "docstring": "Search for similar vectors.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/__init__.py",
+        "decorators": [],
+        "parameters": [
+          {
+            "name": "query_vector",
+            "required": false
+          },
+          {
+            "name": "top_k",
+            "required": true,
+            "default": 10
+          },
+          {
+            "name": "filter_expr",
+            "required": true,
+            "default": null
+          },
+          {
+            "name": "metric",
+            "required": true,
+            "default": "cosine"
+          }
+        ],
+        "return_type": null
+      },
+      "delete_vectors": {
+        "docstring": "Delete vectors by ID or filter expression.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/__init__.py",
+        "decorators": [],
+        "parameters": [
+          {
+            "name": "ids",
+            "required": true,
+            "default": null
+          },
+          {
+            "name": "filter_expr",
+            "required": true,
+            "default": null
+          },
+          {
+            "name": "collection",
+            "required": true,
+            "default": null
+          }
+        ],
+        "return_type": null
+      },
+      "create_collection": {
+        "docstring": "Create a new vector collection.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/__init__.py",
+        "decorators": [],
+        "parameters": [
+          {
+            "name": "name",
+            "required": false
+          },
+          {
+            "name": "dimensions",
+            "required": true,
+            "default": null
+          },
+          {
+            "name": "metric",
+            "required": true,
+            "default": "cosine"
+          }
+        ],
+        "return_type": null
+      },
+      "find_by_metadata": {
+        "docstring": "Find vectors by metadata filter.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/__init__.py",
+        "decorators": [],
+        "parameters": [
+          {
+            "name": "filter_expr",
+            "required": false
+          },
+          {
+            "name": "collection",
+            "required": true,
+            "default": null
+          }
+        ],
+        "return_type": null
+      },
+      "get_vector_database": {
+        "docstring": "Get a vector database by type.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/__init__.py",
+        "decorators": [],
+        "parameters": [
+          {
+            "name": "backend_type",
+            "required": false
+          }
+        ],
+        "return_type": null
+      },
+      "get_cached_database": {
+        "docstring": "Get a cached vector database by type.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/__init__.py",
+        "decorators": [],
+        "parameters": [
+          {
+            "name": "backend_type",
+            "required": false
+          },
+          {
+            "name": "cache_id",
+            "required": true,
+            "default": "default"
+          }
+        ],
+        "return_type": null
+      },
+      "get_database_by_capabilities": {
+        "docstring": "Get a vector database by capabilities.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/__init__.py",
+        "decorators": [],
+        "parameters": [
+          {
+            "name": "required_capabilities",
+            "required": false
+          },
+          {
+            "name": "preferred_backend",
+            "required": true,
+            "default": null
+          }
+        ],
+        "return_type": null
+      },
+      "get_connection_config": {
+        "docstring": "Get connection configuration for a backend type.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/__init__.py",
+        "decorators": [],
+        "parameters": [
+          {
+            "name": "backend_type",
+            "required": false
+          },
+          {
+            "name": "from_env",
+            "required": true,
+            "default": false
+          }
+        ],
+        "return_type": null
+      }
+    },
+    "imports": {
+      "models.VectorContext": {
+        "alias": null,
+        "from_import": true
+      },
+      "models.VectorSearchResult": {
+        "alias": null,
+        "from_import": true
+      },
+      "models.SimilarityMetric": {
+        "alias": null,
+        "from_import": true
+      },
+      "interfaces.VectorDatabase": {
+        "alias": null,
+        "from_import": true
+      },
+      "interfaces.ConnectionConfiguration": {
+        "alias": null,
+        "from_import": true
+      },
+      "interfaces.VectorAdapter": {
+        "alias": null,
+        "from_import": true
+      },
+      "interfaces.VectorBackendType": {
+        "alias": null,
+        "from_import": true
+      },
+      "registry.VectorDatabaseRegistry": {
+        "alias": null,
+        "from_import": true
+      },
+      "registry.ConnectionConfigRegistry": {
+        "alias": null,
+        "from_import": true
+      },
+      "registry.VectorAdapterRegistry": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.get_vector_dimensions": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.normalize_vector_format": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.ensure_dimensions": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.vector_to_db_string": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.calculate_cosine_similarity": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.calculate_euclidean_distance": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.calculate_dot_product": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.similarity_to_score": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.get_original_metadata": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.get_metadata_source_type": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.preserve_metadata": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.matches_filter": {
+        "alias": null,
+        "from_import": true
+      },
+      "service.VectorService": {
+        "alias": null,
+        "from_import": true
+      },
+      "fields.VectorField": {
+        "alias": null,
+        "from_import": true
+      },
+      "fields.ExternalVectorField": {
+        "alias": null,
+        "from_import": true
+      }
+    }
+  },
+  "viewer.semantic.vector....viewer.semantic.vector.utils": {
+    "module_name": "viewer.semantic.vector....viewer.semantic.vector.utils",
+    "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/utils.py",
+    "classes": {},
+    "functions": {
+      "get_vector_dimensions": {
+        "docstring": "Get vector dimensions with multiple fallback mechanisms.\n    Ensures package independence by gracefully handling missing dependencies.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/utils.py",
+        "decorators": [],
+        "parameters": [],
+        "return_type": "int"
+      },
+      "normalize_vector_format": {
+        "docstring": "Normalize a vector to the target format.\n    \n    Args:\n        vector: Input vector in any supported format\n        target_format: Target format ('numpy', 'list')\n        \n    Returns:\n        Normalized vector in target format",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/utils.py",
+        "decorators": [],
+        "parameters": [
+          {
+            "name": "vector",
+            "required": false,
+            "type": "Any"
+          },
+          {
+            "name": "target_format",
+            "required": true,
+            "type": "str",
+            "default": "numpy"
+          }
+        ],
+        "return_type": "Union[...]"
+      },
+      "ensure_dimensions": {
+        "docstring": "Ensure vector has the specified dimensions by padding or trimming.\n    \n    Args:\n        vector: Input vector\n        dimensions: Target dimensions\n        pad_with: Value to pad with if vector is too short\n        trim: Whether to trim vector if it's too long\n        \n    Returns:\n        Vector with specified dimensions",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/utils.py",
+        "decorators": [],
+        "parameters": [
+          {
+            "name": "vector",
+            "required": false,
+            "type": "Union[...]"
+          },
+          {
+            "name": "dimensions",
+            "required": false,
+            "type": "int"
+          },
+          {
+            "name": "pad_with",
+            "required": true,
+            "type": "float",
+            "default": 0.0
+          },
+          {
+            "name": "trim",
+            "required": true,
+            "type": "bool",
+            "default": true
+          }
+        ],
+        "return_type": "Union[...]"
+      },
+      "vector_to_db_string": {
+        "docstring": "Convert vector to database string format.\n    \n    This standardized utility function handles all vector formatting consistently\n    to prevent the \"invisible commas\" issue and other formatting problems.\n    \n    Args:\n        vector: Input vector\n        \n    Returns:\n        Formatted string for database storage",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/utils.py",
+        "decorators": [],
+        "parameters": [
+          {
+            "name": "vector",
+            "required": false,
+            "type": "Union[...]"
+          }
+        ],
+        "return_type": "str"
+      },
+      "calculate_cosine_similarity": {
+        "docstring": "Calculate cosine similarity between two vectors.\n    \n    Args:\n        vec1: First vector\n        vec2: Second vector\n        \n    Returns:\n        Cosine similarity (higher is more similar)",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/utils.py",
+        "decorators": [],
+        "parameters": [
+          {
+            "name": "vec1",
+            "required": false,
+            "type": "np.ndarray"
+          },
+          {
+            "name": "vec2",
+            "required": false,
+            "type": "np.ndarray"
+          }
+        ],
+        "return_type": "float"
+      },
+      "calculate_euclidean_distance": {
+        "docstring": "Calculate Euclidean distance between two vectors.\n    \n    Args:\n        vec1: First vector\n        vec2: Second vector\n        \n    Returns:\n        Euclidean distance (lower is more similar)",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/utils.py",
+        "decorators": [],
+        "parameters": [
+          {
+            "name": "vec1",
+            "required": false,
+            "type": "np.ndarray"
+          },
+          {
+            "name": "vec2",
+            "required": false,
+            "type": "np.ndarray"
+          }
+        ],
+        "return_type": "float"
+      },
+      "calculate_dot_product": {
+        "docstring": "Calculate dot product between two vectors.\n    \n    Args:\n        vec1: First vector\n        vec2: Second vector\n        \n    Returns:\n        Dot product (higher is more similar)",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/utils.py",
+        "decorators": [],
+        "parameters": [
+          {
+            "name": "vec1",
+            "required": false,
+            "type": "np.ndarray"
+          },
+          {
+            "name": "vec2",
+            "required": false,
+            "type": "np.ndarray"
+          }
+        ],
+        "return_type": "float"
+      },
+      "similarity_to_score": {
+        "docstring": "Convert similarity/distance to normalized score (0-1).\n    \n    Args:\n        value: Raw similarity/distance value\n        metric_type: Type of metric ('cosine', 'euclidean', 'dot_product')\n        normalize: Whether to normalize to [0,1] range\n        \n    Returns:\n        Normalized score where higher means more similar",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/utils.py",
+        "decorators": [],
+        "parameters": [
+          {
+            "name": "value",
+            "required": false,
+            "type": "float"
+          },
+          {
+            "name": "metric_type",
+            "required": false,
+            "type": "str"
+          },
+          {
+            "name": "normalize",
+            "required": true,
+            "type": "bool",
+            "default": true
+          }
+        ],
+        "return_type": "float"
+      },
+      "get_original_metadata": {
+        "docstring": "Extract original metadata from a standardized wrapper structure.\n    \n    Args:\n        wrapped_metadata: Metadata that may be in standardized wrapper format\n        \n    Returns:\n        Original metadata dictionary, or empty dict if none exists",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/utils.py",
+        "decorators": [],
+        "parameters": [
+          {
+            "name": "wrapped_metadata",
+            "required": false,
+            "type": "Dict[...]"
+          }
+        ],
+        "return_type": "Dict[...]"
+      },
+      "get_metadata_source_type": {
+        "docstring": "Get the source type of wrapped metadata.\n    \n    Args:\n        wrapped_metadata: Metadata that may be in standardized wrapper format\n        \n    Returns:\n        Source type string or None if not found",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/utils.py",
+        "decorators": [],
+        "parameters": [
+          {
+            "name": "wrapped_metadata",
+            "required": false,
+            "type": "Dict[...]"
+          }
+        ],
+        "return_type": "Optional[...]"
+      },
+      "preserve_metadata": {
+        "docstring": "Standardize metadata handling across conversions.\n    \n    If original_metadata contains a '_source_metadata' key, it's a nested structure\n    that should be unpacked. Otherwise, wrap it in our standardized format.\n    \n    Args:\n        original_metadata: Original metadata dictionary\n        source_type: Source type identifier (linguistic, chunking, tagging, etc.)\n        \n    Returns:\n        Standardized metadata dictionary",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/utils.py",
+        "decorators": [],
+        "parameters": [
+          {
+            "name": "original_metadata",
+            "required": false,
+            "type": "Dict[...]"
+          },
+          {
+            "name": "source_type",
+            "required": true,
+            "type": "Optional[...]",
+            "default": null
+          }
+        ],
+        "return_type": "Dict[...]"
+      },
+      "matches_filter": {
+        "docstring": "Check if metadata matches filter expression.\n    \n    Args:\n        metadata: Item metadata\n        filter_expr: Filter expression with operators\n        \n    Returns:\n        True if metadata matches filter, False otherwise",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/utils.py",
+        "decorators": [],
+        "parameters": [
+          {
+            "name": "metadata",
+            "required": false,
+            "type": "Dict[...]"
+          },
+          {
+            "name": "filter_expr",
+            "required": false,
+            "type": "Dict[...]"
+          }
+        ],
+        "return_type": "bool"
+      }
+    },
+    "imports": {
+      "numpy": {
+        "alias": "np"
+      },
+      "typing.List": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Dict": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Any": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Optional": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Union": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.TypeVar": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Tuple": {
+        "alias": null,
+        "from_import": true
+      },
+      "enum.Enum": {
+        "alias": null,
+        "from_import": true
+      },
+      "logging": {
+        "alias": null
+      }
+    }
+  },
+  "viewer.semantic.vector....viewer.semantic.vector.backends.postgresql": {
+    "module_name": "viewer.semantic.vector....viewer.semantic.vector.backends.postgresql",
+    "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/backends/postgresql.py",
+    "classes": {
+      "PostgreSQLConnectionConfig": {
+        "methods": {
+          "__init__": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "host",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "port",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "database",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "user",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "password",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "schema",
+                "required": true,
+                "type": "str",
+                "default": "public"
+              },
+              {
+                "name": "sslmode",
+                "required": true,
+                "type": "str",
+                "default": "prefer"
+              }
+            ],
+            "docstring": "Initialize PostgreSQL connection configuration.",
+            "decorators": [],
+            "return_type": null
+          },
+          "get_connection_params": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              }
+            ],
+            "docstring": "Get connection parameters for PostgreSQL.",
+            "decorators": [],
+            "return_type": "Dict[...]"
+          },
+          "get_options": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              }
+            ],
+            "docstring": "Get additional options for PostgreSQL.",
+            "decorators": [],
+            "return_type": "Dict[...]"
+          },
+          "from_settings": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              },
+              {
+                "name": "settings_dict",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Create from Django settings.",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "<ast.Constant object at 0x104a74f50>"
+          },
+          "from_env": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              }
+            ],
+            "docstring": "Create from environment variables.",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "<ast.Constant object at 0x104a2ca50>"
+          }
+        },
+        "bases": [
+          "ConnectionConfiguration"
+        ],
+        "docstring": "PostgreSQL connection configuration.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/backends/postgresql.py",
+        "decorators": [
+          "ConnectionConfigRegistry.register(...)"
+        ]
+      },
+      "PostgreSQLVectorDatabase": {
+        "methods": {
+          "__init__": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "connection_params",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Initialize PostgreSQL vector database.\n        \n        Args:\n            connection_params: Connection parameters for PostgreSQL\n            **options: Additional options",
+            "decorators": [],
+            "return_type": null
+          },
+          "conn": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              }
+            ],
+            "docstring": "Get database connection (lazy loading).",
+            "decorators": [
+              "property"
+            ],
+            "return_type": null
+          },
+          "default_capabilities": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              }
+            ],
+            "docstring": "Get default PostgreSQL vector database capabilities.",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "Dict[...]"
+          },
+          "capabilities": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              }
+            ],
+            "docstring": "Get instance-specific capabilities.",
+            "decorators": [],
+            "return_type": "Dict[...]"
+          },
+          "store_vectors": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "vectors",
+                "required": false,
+                "type": "List[...]"
+              },
+              {
+                "name": "metadata",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "ids",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "collection",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Store vectors in PostgreSQL.",
+            "decorators": [],
+            "return_type": "Dict[...]"
+          },
+          "search_vectors": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "query_vector",
+                "required": false,
+                "type": "np.ndarray"
+              },
+              {
+                "name": "top_k",
+                "required": true,
+                "type": "int",
+                "default": 10
+              },
+              {
+                "name": "filter_expr",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "collection",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "metric",
+                "required": true,
+                "type": "SimilarityMetric",
+                "default": "<Attribute>"
+              },
+              {
+                "name": "include_metadata",
+                "required": true,
+                "type": "bool",
+                "default": true
+              },
+              {
+                "name": "include_vectors",
+                "required": true,
+                "type": "bool",
+                "default": false
+              }
+            ],
+            "docstring": "Search vectors in PostgreSQL.",
+            "decorators": [],
+            "return_type": "List[...]"
+          },
+          "delete_vectors": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "ids",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "filter_expr",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "collection",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Delete vectors from PostgreSQL.",
+            "decorators": [],
+            "return_type": "Dict[...]"
+          },
+          "create_collection": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "name",
+                "required": false,
+                "type": "str"
+              },
+              {
+                "name": "dimensions",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "metric",
+                "required": true,
+                "type": "SimilarityMetric",
+                "default": "<Attribute>"
+              },
+              {
+                "name": "metadata_schema",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Create a new vector collection in PostgreSQL.",
+            "decorators": [],
+            "return_type": "Dict[...]"
+          }
+        },
+        "bases": [
+          "VectorDatabase"
+        ],
+        "docstring": "Vector database implementation using PostgreSQL with pgvector.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/backends/postgresql.py",
+        "decorators": [
+          "VectorDatabaseRegistry.register(...)"
+        ]
+      }
+    },
+    "functions": {},
+    "imports": {
+      "uuid": {
+        "alias": null
+      },
+      "json": {
+        "alias": null
+      },
+      "numpy": {
+        "alias": "np"
+      },
+      "typing.List": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Dict": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Any": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Optional": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Union": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Tuple": {
+        "alias": null,
+        "from_import": true
+      },
+      "dataclasses.asdict": {
+        "alias": null,
+        "from_import": true
+      },
+      "django.db.connection": {
+        "alias": null,
+        "from_import": true
+      },
+      "django.conf.settings": {
+        "alias": null,
+        "from_import": true
+      },
+      "interfaces.VectorDatabase": {
+        "alias": null,
+        "from_import": true
+      },
+      "interfaces.VectorBackendType": {
+        "alias": null,
+        "from_import": true
+      },
+      "interfaces.ConnectionConfiguration": {
+        "alias": null,
+        "from_import": true
+      },
+      "interfaces.SimilarityMetric": {
+        "alias": null,
+        "from_import": true
+      },
+      "models.VectorSearchResult": {
+        "alias": null,
+        "from_import": true
+      },
+      "models.VectorContext": {
+        "alias": null,
+        "from_import": true
+      },
+      "registry.VectorDatabaseRegistry": {
+        "alias": null,
+        "from_import": true
+      },
+      "registry.ConnectionConfigRegistry": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.get_vector_dimensions": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.normalize_vector_format": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.ensure_dimensions": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.vector_to_db_string": {
+        "alias": null,
+        "from_import": true
+      }
+    }
+  },
+  "viewer.semantic.vector....viewer.semantic.vector.backends.memory": {
+    "module_name": "viewer.semantic.vector....viewer.semantic.vector.backends.memory",
+    "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/backends/memory.py",
+    "classes": {
+      "MemoryConnectionConfig": {
+        "methods": {
+          "__init__": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              }
+            ],
+            "docstring": "Initialize in-memory connection configuration.",
+            "decorators": [],
+            "return_type": null
+          },
+          "get_connection_params": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              }
+            ],
+            "docstring": "Get connection parameters (none needed for in-memory).",
+            "decorators": [],
+            "return_type": "Dict[...]"
+          },
+          "get_options": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              }
+            ],
+            "docstring": "Get additional options.",
+            "decorators": [],
+            "return_type": "Dict[...]"
+          },
+          "from_settings": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              },
+              {
+                "name": "settings_dict",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Create from Django settings.",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "<ast.Constant object at 0x104a15e90>"
+          },
+          "from_env": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              }
+            ],
+            "docstring": "Create from environment variables (none used).",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "<ast.Constant object at 0x104a17a10>"
+          }
+        },
+        "bases": [
+          "ConnectionConfiguration"
+        ],
+        "docstring": "In-memory connection configuration (for testing).",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/backends/memory.py",
+        "decorators": [
+          "ConnectionConfigRegistry.register(...)"
+        ]
+      },
+      "MemoryVectorDatabase": {
+        "methods": {
+          "__init__": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              }
+            ],
+            "docstring": "Initialize in-memory vector database.\n        \n        Args:\n            **options: Additional options",
+            "decorators": [],
+            "return_type": null
+          },
+          "default_capabilities": {
+            "parameters": [
+              {
+                "name": "cls",
+                "required": false
+              }
+            ],
+            "docstring": "Get default in-memory vector database capabilities.",
+            "decorators": [
+              "classmethod"
+            ],
+            "return_type": "Dict[...]"
+          },
+          "store_vectors": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "vectors",
+                "required": false,
+                "type": "List[...]"
+              },
+              {
+                "name": "metadata",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "ids",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "collection",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Store vectors in memory.",
+            "decorators": [],
+            "return_type": "Dict[...]"
+          },
+          "search_vectors": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "query_vector",
+                "required": false,
+                "type": "np.ndarray"
+              },
+              {
+                "name": "top_k",
+                "required": true,
+                "type": "int",
+                "default": 10
+              },
+              {
+                "name": "filter_expr",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "collection",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "metric",
+                "required": true,
+                "type": "SimilarityMetric",
+                "default": "<Attribute>"
+              },
+              {
+                "name": "include_metadata",
+                "required": true,
+                "type": "bool",
+                "default": true
+              },
+              {
+                "name": "include_vectors",
+                "required": true,
+                "type": "bool",
+                "default": false
+              }
+            ],
+            "docstring": "Search vectors in memory.",
+            "decorators": [],
+            "return_type": "List[...]"
+          },
+          "delete_vectors": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "ids",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "filter_expr",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "collection",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Delete vectors from memory.",
+            "decorators": [],
+            "return_type": "Dict[...]"
+          },
+          "create_collection": {
+            "parameters": [
+              {
+                "name": "self",
+                "required": false
+              },
+              {
+                "name": "name",
+                "required": false,
+                "type": "str"
+              },
+              {
+                "name": "dimensions",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              },
+              {
+                "name": "metric",
+                "required": true,
+                "type": "SimilarityMetric",
+                "default": "<Attribute>"
+              },
+              {
+                "name": "metadata_schema",
+                "required": true,
+                "type": "Optional[...]",
+                "default": null
+              }
+            ],
+            "docstring": "Create a new vector collection in memory.",
+            "decorators": [],
+            "return_type": "Dict[...]"
+          }
+        },
+        "bases": [
+          "VectorDatabase"
+        ],
+        "docstring": "In-memory vector database implementation for testing.\n    Stores vectors in memory without requiring a database.",
+        "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/backends/memory.py",
+        "decorators": [
+          "VectorDatabaseRegistry.register(...)"
+        ]
+      }
+    },
+    "functions": {},
+    "imports": {
+      "uuid": {
+        "alias": null
+      },
+      "copy": {
+        "alias": null
+      },
+      "numpy": {
+        "alias": "np"
+      },
+      "typing.List": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Dict": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Any": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Optional": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Union": {
+        "alias": null,
+        "from_import": true
+      },
+      "typing.Tuple": {
+        "alias": null,
+        "from_import": true
+      },
+      "dataclasses.asdict": {
+        "alias": null,
+        "from_import": true
+      },
+      "logging": {
+        "alias": null
+      },
+      "interfaces.VectorDatabase": {
+        "alias": null,
+        "from_import": true
+      },
+      "interfaces.VectorBackendType": {
+        "alias": null,
+        "from_import": true
+      },
+      "interfaces.ConnectionConfiguration": {
+        "alias": null,
+        "from_import": true
+      },
+      "interfaces.SimilarityMetric": {
+        "alias": null,
+        "from_import": true
+      },
+      "models.VectorSearchResult": {
+        "alias": null,
+        "from_import": true
+      },
+      "models.VectorContext": {
+        "alias": null,
+        "from_import": true
+      },
+      "registry.VectorDatabaseRegistry": {
+        "alias": null,
+        "from_import": true
+      },
+      "registry.ConnectionConfigRegistry": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.get_vector_dimensions": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.normalize_vector_format": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.calculate_cosine_similarity": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.calculate_euclidean_distance": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.calculate_dot_product": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.similarity_to_score": {
+        "alias": null,
+        "from_import": true
+      },
+      "utils.matches_filter": {
+        "alias": null,
+        "from_import": true
+      }
+    }
+  },
+  "viewer.semantic.vector....viewer.semantic.vector.backends.__init__": {
+    "module_name": "viewer.semantic.vector....viewer.semantic.vector.backends.__init__",
+    "file_path": "/Users/david/Projects/git-commit-viewer/viewer/semantic/vector/backends/__init__.py",
+    "classes": {},
+    "functions": {},
+    "imports": {
+      "postgresql.PostgreSQLVectorDatabase": {
+        "alias": null,
+        "from_import": true
+      },
+      "postgresql.PostgreSQLConnectionConfig": {
+        "alias": null,
+        "from_import": true
+      },
+      "memory.MemoryVectorDatabase": {
+        "alias": null,
+        "from_import": true
+      },
+      "memory.MemoryConnectionConfig": {
+        "alias": null,
+        "from_import": true
+      }
+    }
+  }
+}

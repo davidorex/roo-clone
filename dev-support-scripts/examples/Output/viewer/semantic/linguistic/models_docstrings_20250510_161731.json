@@ -1,0 +1,48 @@
+{
+  "module": null,
+  "classes": {
+    "LinguisticUnit": {
+      "docstring": "Universal data structure for linguistic units extracted from text.\n    Ensures consistency across different backends and processing strategies.",
+      "methods": {
+        "length": {
+          "docstring": "Get the length of this unit in characters.",
+          "args": []
+        }
+      }
+    },
+    "LinguisticContext": {
+      "docstring": "Context object that flows through linguistic processing chains.\n    Contains the original text, extracted units, and processing metadata.\n    \n    Also serves as execution context for context-aware registry methods.\n    Inherits common properties from BaseContext for cross-subsystem standardization.",
+      "methods": {
+        "__init__": {
+          "docstring": null,
+          "args": []
+        },
+        "add_unit": {
+          "docstring": "Add a linguistic unit to the context.",
+          "args": [
+            "unit"
+          ]
+        },
+        "get_units_by_type": {
+          "docstring": "Get all units of a specific type.",
+          "args": [
+            "unit_type"
+          ]
+        },
+        "mark_processed": {
+          "docstring": "Mark that this context has been processed by a specific processor.",
+          "args": [
+            "processor_name"
+          ]
+        },
+        "has_been_processed_by": {
+          "docstring": "Check if this context has been processed by a specific processor.",
+          "args": [
+            "processor_name"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

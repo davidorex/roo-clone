@@ -1,0 +1,198 @@
+Vector Interface Contract Summary
+========================================
+
+Total classes: 17
+Total methods: 69
+Total functions: 21
+
+Modules analyzed: 10
+- viewer.semantic.vector....viewer.semantic.vector.__init__
+- viewer.semantic.vector....viewer.semantic.vector.backends.__init__
+- viewer.semantic.vector....viewer.semantic.vector.backends.memory
+- viewer.semantic.vector....viewer.semantic.vector.backends.postgresql
+- viewer.semantic.vector....viewer.semantic.vector.fields
+- viewer.semantic.vector....viewer.semantic.vector.interfaces
+- viewer.semantic.vector....viewer.semantic.vector.models
+- viewer.semantic.vector....viewer.semantic.vector.registry
+- viewer.semantic.vector....viewer.semantic.vector.service
+- viewer.semantic.vector....viewer.semantic.vector.utils
+
+Key Interfaces
+-------------
+
+viewer.semantic.vector....viewer.semantic.vector.interfaces.VectorDatabase
+  Bases: ABC, Generic[...]
+  Doc: Abstract base class for vector database operations
+  Methods:
+    default_capabilities()
+    capabilities()
+    negotiate_capabilities(requested_capabilities)
+    store_vectors(vectors, metadata, ids, collection)
+    search_vectors(query_vector, top_k, filter_expr, collection, metric, include_metadata, include_vectors)
+    delete_vectors(ids, filter_expr, collection)
+    create_collection(name, dimensions, metric, metadata_schema)
+
+viewer.semantic.vector....viewer.semantic.vector.interfaces.ConnectionConfiguration
+  Bases: ABC
+  Doc: Abstract base class for vector database connection configuration
+  Methods:
+    get_connection_params()
+    get_options()
+    from_settings(settings_dict)
+    from_env()
+
+viewer.semantic.vector....viewer.semantic.vector.service.VectorService
+  Doc: Service layer for vector database operations
+  Methods:
+    initialize()
+    get_default_backend_type()
+    store_vectors(vectors, metadata, ids, collection, backend_type)
+    search_vectors(query_vector, top_k, filter_expr, collection, metric, include_metadata, include_vectors, backend_type)
+    search_with_context(context, query_vector, backend_type)
+    delete_vectors(ids, filter_expr, collection, backend_type)
+    create_collection(name, dimensions, metric, metadata_schema, backend_type)
+    find_vectors_by_metadata(filter_expr, collection, include_vectors, backend_type)
+    get_backends_by_capabilities(required_capabilities)
+
+viewer.semantic.vector....viewer.semantic.vector.backends.postgresql.PostgreSQLVectorDatabase
+  Bases: VectorDatabase
+  Doc: Vector database implementation using PostgreSQL with pgvector
+  Methods:
+    __init__(connection_params)
+      - connection_params: type: Optional[...], default: None
+    conn()
+    default_capabilities()
+    capabilities()
+    store_vectors(vectors, metadata, ids, collection)
+    search_vectors(query_vector, top_k, filter_expr, collection, metric, include_metadata, include_vectors)
+    delete_vectors(ids, filter_expr, collection)
+    create_collection(name, dimensions, metric, metadata_schema)
+
+viewer.semantic.vector....viewer.semantic.vector.fields.VectorField
+  Bases: models.Field
+  Doc: Field for storing vector embeddings
+  Methods:
+    __init__(dimensions, backend, metric, index_type)
+      - dimensions: type: Optional[...], default: None
+      - backend: type: Optional[...], default: None
+      - metric: type: SimilarityMetric, default: <Attribute>
+      - index_type: type: Optional[...], default: None
+    deconstruct()
+    db_type(connection)
+    get_prep_value(value)
+    to_python(value)
+    formfield()
+
+viewer.semantic.vector....viewer.semantic.vector.fields.ExternalVectorField
+  Bases: models.CharField
+  Doc: Field for storing references to vectors in external vector stores
+  Methods:
+    __init__(dimensions, backend, collection)
+      - dimensions: type: Optional[...], default: None
+      - backend: type: Optional[...], default: None
+      - collection: type: Optional[...], default: None
+    from_db_value(value, expression, connection)
+    to_python(value)
+    get_prep_value(value)
+    contribute_to_class(cls, name)
+
+viewer.semantic.vector....viewer.semantic.vector.backends.memory.MemoryVectorDatabase
+  Bases: VectorDatabase
+  Doc: In-memory vector database implementation for testing
+  Methods:
+    __init__()
+    default_capabilities()
+    store_vectors(vectors, metadata, ids, collection)
+    search_vectors(query_vector, top_k, filter_expr, collection, metric, include_metadata, include_vectors)
+    delete_vectors(ids, filter_expr, collection)
+    create_collection(name, dimensions, metric, metadata_schema)
+
+viewer.semantic.vector....viewer.semantic.vector.backends.postgresql.PostgreSQLConnectionConfig
+  Bases: ConnectionConfiguration
+  Doc: PostgreSQL connection configuration
+  Methods:
+    __init__(host, port, database, user, password, schema, sslmode)
+      - host: type: Optional[...], default: None
+      - port: type: Optional[...], default: None
+      - database: type: Optional[...], default: None
+      - user: type: Optional[...], default: None
+      - password: type: Optional[...], default: None
+      - schema: type: str, default: public
+      - sslmode: type: str, default: prefer
+    get_connection_params()
+    get_options()
+    from_settings(settings_dict)
+    from_env()
+
+viewer.semantic.vector....viewer.semantic.vector.backends.memory.MemoryConnectionConfig
+  Bases: ConnectionConfiguration
+  Doc: In-memory connection configuration (for testing)
+  Methods:
+    __init__()
+    get_connection_params()
+    get_options()
+    from_settings(settings_dict)
+    from_env()
+
+viewer.semantic.vector....viewer.semantic.vector.interfaces.VectorAdapter
+  Bases: IntegrationInterface
+  Doc: Integration interface for adapting vectors between subsystems
+  Methods:
+    default_capabilities()
+    capabilities()
+    adapt_vector(vector, target_format, target_dimensions)
+
+Key Utility Functions
+-------------------
+
+viewer.semantic.vector....viewer.semantic.vector.__init__.store_vectors(vectors, metadata, ids, collection)
+  Doc: Store vectors with optional metadata
+  - metadata: default: None
+  - ids: default: None
+  - collection: default: None
+
+viewer.semantic.vector....viewer.semantic.vector.__init__.search_vectors(query_vector, top_k, filter_expr, metric)
+  Doc: Search for similar vectors
+  - top_k: default: 10
+  - filter_expr: default: None
+  - metric: default: cosine
+
+viewer.semantic.vector....viewer.semantic.vector.utils.ensure_dimensions(vector, dimensions, pad_with, trim)
+  Doc: Ensure vector has the specified dimensions by padding or trimming
+  - vector: type: Union[...]
+  - dimensions: type: int
+  - pad_with: type: float, default: 0.0
+  - trim: type: bool, default: True
+
+viewer.semantic.vector....viewer.semantic.vector.__init__.delete_vectors(ids, filter_expr, collection)
+  Doc: Delete vectors by ID or filter expression
+  - ids: default: None
+  - filter_expr: default: None
+  - collection: default: None
+
+viewer.semantic.vector....viewer.semantic.vector.__init__.create_collection(name, dimensions, metric)
+  Doc: Create a new vector collection
+  - dimensions: default: None
+  - metric: default: cosine
+
+viewer.semantic.vector....viewer.semantic.vector.utils.similarity_to_score(value, metric_type, normalize)
+  Doc: Convert similarity/distance to normalized score (0-1)
+  - value: type: float
+  - metric_type: type: str
+  - normalize: type: bool, default: True
+
+viewer.semantic.vector....viewer.semantic.vector.__init__.find_by_metadata(filter_expr, collection)
+  Doc: Find vectors by metadata filter
+  - collection: default: None
+
+viewer.semantic.vector....viewer.semantic.vector.__init__.get_cached_database(backend_type, cache_id)
+  Doc: Get a cached vector database by type
+  - cache_id: default: default
+
+viewer.semantic.vector....viewer.semantic.vector.__init__.get_database_by_capabilities(required_capabilities, preferred_backend)
+  Doc: Get a vector database by capabilities
+  - preferred_backend: default: None
+
+viewer.semantic.vector....viewer.semantic.vector.__init__.get_connection_config(backend_type, from_env)
+  Doc: Get connection configuration for a backend type
+  - from_env: default: False

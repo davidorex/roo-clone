@@ -1,0 +1,74 @@
+{
+  "module": "Vector operations capabilities for semantic features.\nThis module provides vector storage, retrieval, and similarity search\nas a foundation for semantic search and recommendations.",
+  "classes": {},
+  "functions": {
+    "store_vectors": {
+      "docstring": "Store vectors with optional metadata.",
+      "args": [
+        "vectors",
+        "metadata",
+        "ids",
+        "collection"
+      ]
+    },
+    "search_vectors": {
+      "docstring": "Search for similar vectors.",
+      "args": [
+        "query_vector",
+        "top_k",
+        "filter_expr",
+        "metric"
+      ]
+    },
+    "delete_vectors": {
+      "docstring": "Delete vectors by ID or filter expression.",
+      "args": [
+        "ids",
+        "filter_expr",
+        "collection"
+      ]
+    },
+    "create_collection": {
+      "docstring": "Create a new vector collection.",
+      "args": [
+        "name",
+        "dimensions",
+        "metric"
+      ]
+    },
+    "find_by_metadata": {
+      "docstring": "Find vectors by metadata filter.",
+      "args": [
+        "filter_expr",
+        "collection"
+      ]
+    },
+    "get_vector_database": {
+      "docstring": "Get a vector database by type.",
+      "args": [
+        "backend_type"
+      ]
+    },
+    "get_cached_database": {
+      "docstring": "Get a cached vector database by type.",
+      "args": [
+        "backend_type",
+        "cache_id"
+      ]
+    },
+    "get_database_by_capabilities": {
+      "docstring": "Get a vector database by capabilities.",
+      "args": [
+        "required_capabilities",
+        "preferred_backend"
+      ]
+    },
+    "get_connection_config": {
+      "docstring": "Get connection configuration for a backend type.",
+      "args": [
+        "backend_type",
+        "from_env"
+      ]
+    }
+  }
+}

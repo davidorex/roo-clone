@@ -1,0 +1,36 @@
+{
+  "module": "Linguistic-aware chunking strategy.\n\nThis module provides a chunking strategy that uses linguistic analysis\nto identify natural boundaries in text.",
+  "classes": {
+    "LinguisticChunkingStrategy": {
+      "docstring": "Strategy that chunks text based on linguistic analysis.\n    \n    This strategy uses a boundary provider to identify natural\n    boundaries in text and respects these boundaries when creating chunks.",
+      "methods": {
+        "__init__": {
+          "docstring": "Initialize the linguistic chunking strategy.\n        \n        Args:\n            provider_name: Name of the boundary provider to use\n            boundary_types: Types of boundaries to detect\n            max_tokens: Maximum tokens per chunk\n            **kwargs: Additional configuration options",
+          "args": [
+            "provider_name",
+            "boundary_types",
+            "max_tokens"
+          ]
+        },
+        "provider": {
+          "docstring": "Lazy-load the boundary provider.",
+          "args": []
+        },
+        "chunk_text": {
+          "docstring": "Divide text into chunks that respect linguistic boundaries.\n        \n        Args:\n            text: Input text to chunk\n            max_tokens: Maximum tokens per chunk (overrides instance setting)\n            \n        Returns:\n            List of chunk dictionaries",
+          "args": [
+            "text",
+            "max_tokens"
+          ]
+        },
+        "capabilities": {
+          "docstring": "Get capabilities of this strategy.",
+          "args": [
+            "cls"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

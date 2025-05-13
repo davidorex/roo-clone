@@ -1,0 +1,60 @@
+{
+  "module": null,
+  "classes": {
+    "Command": {
+      "docstring": null,
+      "methods": {
+        "__init__": {
+          "docstring": null,
+          "args": []
+        },
+        "add_arguments": {
+          "docstring": null,
+          "args": [
+            "parser"
+          ]
+        },
+        "process_commit_legacy": {
+          "docstring": "Process a commit to generate tags using linguistic processing.",
+          "args": [
+            "commit",
+            "min_confidence",
+            "processor_type"
+          ]
+        },
+        "process_commit_with_registry": {
+          "docstring": "Process a commit using the new Unified Registry tagging system.",
+          "args": [
+            "commit",
+            "options"
+          ]
+        },
+        "_detect_commit_type": {
+          "docstring": "Detect commit type from message.",
+          "args": [
+            "message"
+          ]
+        },
+        "_show_progress_indicator": {
+          "docstring": "Show a progress indicator in the console.",
+          "args": [
+            "stop_event",
+            "message"
+          ]
+        },
+        "handle": {
+          "docstring": null,
+          "args": []
+        },
+        "timeout_handler": {
+          "docstring": null,
+          "args": [
+            "signum",
+            "frame"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

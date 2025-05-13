@@ -1,0 +1,155 @@
+{
+  "module": "Embedding services for generating vector representations of text.\n\nThis module provides a configurable, provider-agnostic embedding service\nfor generating vector representations of text content. It supports:\n\n1. A common interface (BaseEmbedder) for all embedding implementations\n2. Configuration-based instantiation through the from_config() method\n3. Multiple provider implementations:\n   - OpenAI API embeddings (text-embedding-3-small/large)\n   - Local HuggingFace models (sentence-transformers)\n   - Ollama local embeddings (mxbai-embed-large)\n4. Dynamic provider selection through the EmbeddingConfiguration system\n5. Robust fallback mechanisms when configurations are incomplete\n6. Dynamic dimension handling for different embedding models\n7. Automatic dimension detection and configuration synchronization\n\nThe get_default_embedder() function provides a single entry point for\nobtaining an appropriately configured embedder based on active system\nconfiguration.",
+  "classes": {
+    "BaseEmbedder": {
+      "docstring": "Abstract base class for embedding services.\n    \n    This class defines the interface that all embedder implementations\n    must follow. Embedders convert text to vector representations\n    for semantic search.",
+      "methods": {
+        "__init__": {
+          "docstring": "Initialize base embedder with default dimensions",
+          "args": []
+        },
+        "embed": {
+          "docstring": "Generate embedding for the given text.\n        \n        Args:\n            text: The text to embed\n            \n        Returns:\n            List[float]: Vector representation of the text",
+          "args": [
+            "text"
+          ]
+        },
+        "get_token_limit": {
+          "docstring": "Return the token limit for this embedder.\n        \n        Returns:\n            int: Maximum number of tokens the model can process",
+          "args": []
+        },
+        "get_dimensions": {
+          "docstring": "Return the number of dimensions this embedder produces.\n        \n        If dimensions are not explicitly set, this will generate a test\n        embedding to determine the actual dimensions.\n        \n        Returns:\n            int: Number of dimensions in embedding vectors",
+          "args": []
+        },
+        "batch_embed": {
+          "docstring": "Generate embeddings for multiple texts.\n        \n        The default implementation processes texts one by one.\n        Subclasses can override for more efficient batch processing.\n        \n        Args:\n            texts: List of texts to embed\n            \n        Returns:\n            List[List[float]]: List of vector representations",
+          "args": [
+            "texts"
+          ]
+        },
+        "from_config": {
+          "docstring": "Create an embedder instance from configuration.\n        \n        Args:\n            config: EmbeddingConfiguration instance\n            \n        Returns:\n            BaseEmbedder: Configured embedder instance",
+          "args": [
+            "cls",
+            "config"
+          ]
+        }
+      }
+    },
+    "OpenAIEmbedder": {
+      "docstring": "Embedding service using OpenAI's API.\n    \n    This embedder uses OpenAI's text embedding models to generate\n    vector representations of text.",
+      "methods": {
+        "from_config": {
+          "docstring": "Create an OpenAI embedder from configuration.\n        \n        Args:\n            config: EmbeddingConfiguration instance\n            \n        Returns:\n            OpenAIEmbedder: Configured embedder instance",
+          "args": [
+            "cls",
+            "config"
+          ]
+        },
+        "__init__": {
+          "docstring": "Initialize the OpenAI embedder.\n        \n        Args:\n            model: The OpenAI embedding model to use (default: text-embedding-3-large)\n            api_key: OpenAI API key (defaults to settings.OPENAI_API_KEY)",
+          "args": [
+            "model",
+            "api_key"
+          ]
+        },
+        "embed": {
+          "docstring": "Generate embedding using OpenAI's API.\n        \n        Args:\n            text: The text to embed\n            \n        Returns:\n            List[float]: Vector representation of the text\n            \n        Raises:\n            RuntimeError: If OpenAI package is not installed or API key is missing\n            Exception: If the OpenAI API returns an error",
+          "args": [
+            "text"
+          ]
+        },
+        "batch_embed": {
+          "docstring": "Generate embeddings for multiple texts in one API call.\n        \n        Args:\n            texts: List of texts to embed\n            \n        Returns:\n            List[List[float]]: List of vector representations\n            \n        Raises:\n            RuntimeError: If OpenAI package is not installed or API key is missing\n            Exception: If the OpenAI API returns an error",
+          "args": [
+            "texts"
+          ]
+        },
+        "get_token_limit": {
+          "docstring": "Return the token limit for OpenAI's embedding model.\n        \n        Returns:\n            int: Maximum token limit (8191 for text-embedding-3-small/large models)",
+          "args": []
+        }
+      }
+    },
+    "HuggingFaceEmbedder": {
+      "docstring": "Embedding service using HuggingFace models.\n    \n    This embedder uses local transformer models from HuggingFace\n    to generate vector representations of text.",
+      "methods": {
+        "from_config": {
+          "docstring": "Create a HuggingFace embedder from configuration.\n        \n        Args:\n            config: EmbeddingConfiguration instance\n            \n        Returns:\n            HuggingFaceEmbedder: Configured embedder instance",
+          "args": [
+            "cls",
+            "config"
+          ]
+        },
+        "__init__": {
+          "docstring": "Initialize the HuggingFace embedder.\n        \n        Args:\n            model_name: The HuggingFace model to use",
+          "args": [
+            "model_name"
+          ]
+        },
+        "embed": {
+          "docstring": "Generate embedding using HuggingFace model.\n        \n        Args:\n            text: The text to embed\n            \n        Returns:\n            List[float]: Vector representation of the text\n            \n        Raises:\n            RuntimeError: If transformers or torch packages are not installed\n            Exception: If embedding generation fails",
+          "args": [
+            "text"
+          ]
+        },
+        "batch_embed": {
+          "docstring": "Generate embeddings for multiple texts efficiently.\n        \n        Args:\n            texts: List of texts to embed\n            \n        Returns:\n            List[List[float]]: List of vector representations\n            \n        Raises:\n            RuntimeError: If transformers or torch packages are not installed\n            Exception: If embedding generation fails",
+          "args": [
+            "texts"
+          ]
+        },
+        "get_token_limit": {
+          "docstring": "Return the token limit for the HuggingFace model.\n        \n        Returns:\n            int: Maximum token limit (usually 512 for most transformer models)",
+          "args": []
+        }
+      }
+    },
+    "OllamaEmbedder": {
+      "docstring": "Embedding service using Ollama's local API.\n    \n    This embedder interacts with a locally running Ollama instance\n    to generate vector representations of text.",
+      "methods": {
+        "from_config": {
+          "docstring": "Create an Ollama embedder from configuration.\n        \n        Args:\n            config: EmbeddingConfiguration instance\n            \n        Returns:\n            OllamaEmbedder: Configured embedder instance",
+          "args": [
+            "cls",
+            "config"
+          ]
+        },
+        "__init__": {
+          "docstring": "Initialize the Ollama embedder.\n        \n        Args:\n            model_name: The Ollama model to use\n            endpoint: The Ollama API endpoint URL",
+          "args": [
+            "model_name",
+            "endpoint"
+          ]
+        },
+        "_check_availability": {
+          "docstring": "Check if Ollama API is available",
+          "args": []
+        },
+        "embed": {
+          "docstring": "Generate embedding using Ollama API.\n        \n        Args:\n            text: The text to embed\n            \n        Returns:\n            List[float]: Vector representation of the text\n            \n        Raises:\n            RuntimeError: If Ollama API is not available\n            Exception: If embedding generation fails",
+          "args": [
+            "text"
+          ]
+        },
+        "batch_embed": {
+          "docstring": "Generate embeddings for multiple texts.\n        \n        Note: The Ollama API doesn't support batch embeddings natively,\n        so this implementation processes texts one at a time.\n        \n        Args:\n            texts: List of texts to embed\n            \n        Returns:\n            List[List[float]]: List of vector representations",
+          "args": [
+            "texts"
+          ]
+        },
+        "get_token_limit": {
+          "docstring": "Return the token limit for Ollama models.\n        \n        Returns:\n            int: Maximum token limit (8192 is a reasonable default)",
+          "args": []
+        }
+      }
+    }
+  },
+  "functions": {
+    "get_default_embedder": {
+      "docstring": "Get the default embedder based on the active configuration.\n    \n    This function uses the active EmbeddingConfiguration and the EmbedderRegistry\n    to create and return the appropriate embedder instance.\n    \n    Returns:\n        BaseEmbedder: The configured embedder instance\n        \n    Raises:\n        RuntimeError: If no embedding service can be initialized",
+      "args": []
+    }
+  }
+}

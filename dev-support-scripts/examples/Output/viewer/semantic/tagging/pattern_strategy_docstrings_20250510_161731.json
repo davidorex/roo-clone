@@ -1,0 +1,35 @@
+{
+  "module": "Pattern-based tag extraction strategy.\n\nThis module provides a pattern-based strategy for extracting tags\nthat match specific regex patterns, such as common Git commit patterns.",
+  "classes": {
+    "PatternTagStrategy": {
+      "docstring": "Strategy that extracts tags based on regex pattern matching.\n    \n    This is particularly useful for Git commit messages that follow\n    conventional formats or domain-specific patterns.",
+      "methods": {
+        "__init__": {
+          "docstring": "Initialize the pattern tag strategy.\n        \n        Args:\n            patterns: List of regex patterns to match (with capturing groups)\n            **kwargs: Additional configuration options",
+          "args": [
+            "patterns"
+          ]
+        },
+        "_default_patterns": {
+          "docstring": "Get default patterns for Git commit messages.",
+          "args": []
+        },
+        "extract_tags": {
+          "docstring": "Extract tags using regex pattern matching.\n        \n        Args:\n            text: Input text to extract tags from\n            max_tags: Maximum number of tags to extract\n            min_confidence: Minimum confidence threshold\n            \n        Returns:\n            List of TagCandidate objects",
+          "args": [
+            "text",
+            "max_tags",
+            "min_confidence"
+          ]
+        },
+        "capabilities": {
+          "docstring": "Get capabilities of this strategy.",
+          "args": [
+            "cls"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

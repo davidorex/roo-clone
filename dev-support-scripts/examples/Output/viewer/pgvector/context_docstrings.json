@@ -1,0 +1,15 @@
+{
+  "module": "Context object for embedding operations.\n\nThis module provides:\n1. EmbeddingContext class that inherits from BaseContext\n2. Specialized properties for embedding operations\n3. Integration with other context types across subsystems",
+  "classes": {
+    "EmbeddingContext": {
+      "docstring": "Context object for embedding operations.",
+      "methods": {
+        "__init__": {
+          "docstring": null,
+          "args": []
+        }
+      }
+    }
+  },
+  "functions": {}
+}

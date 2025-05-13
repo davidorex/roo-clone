@@ -1,0 +1,31 @@
+{
+  "module": "Registry for chunking strategy implementations.\n\nThis module implements a specialized registry for chunking strategies following the\nUnified Registry System pattern, providing standardized registration, retrieval,\nand caching functionality.",
+  "classes": {
+    "ChunkingStrategyRegistry": {
+      "docstring": "Registry for chunking strategies, extending the AdvancedRegistry.\n    Provides specialized methods for chunking strategy needs.",
+      "methods": {
+        "create_for_content_type": {
+          "docstring": "Create an appropriate chunking strategy for a specific content type.\n        \n        Args:\n            content_type: Type of content ('code', 'prose', 'mixed', etc.)\n            **kwargs: Additional options for the strategy\n            \n        Returns:\n            Appropriate chunking strategy for the content type",
+          "args": [
+            "cls",
+            "content_type"
+          ]
+        }
+      }
+    },
+    "BoundaryProviderRegistry": {
+      "docstring": "Registry for boundary providers, extending the AdvancedRegistry.\n    Establishes formal integration boundaries between subsystems.",
+      "methods": {
+        "negotiate_provider": {
+          "docstring": "Create a boundary provider with capability negotiation.\n        \n        Args:\n            provider_name: Name of the provider to create\n            requested_capabilities: Capabilities requested by the consumer\n            **kwargs: Additional provider options\n            \n        Returns:\n            Provider instance with negotiated capabilities",
+          "args": [
+            "cls",
+            "provider_name",
+            "requested_capabilities"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

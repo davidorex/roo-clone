@@ -1,0 +1,30 @@
+{
+  "module": "Global pytest fixtures and configuration.\n\nThis file contains fixtures that are available to all tests,\nparticularly those related to cross-subsystem functionality.",
+  "classes": {},
+  "functions": {
+    "register_test_backends": {
+      "docstring": "Register test implementations of vector backends.",
+      "args": []
+    },
+    "setup_vector_backends": {
+      "docstring": "Automatically setup vector backends for all tests.",
+      "args": []
+    },
+    "pytest_configure": {
+      "docstring": "Configure Django settings for pytest.",
+      "args": []
+    },
+    "reset_registries": {
+      "docstring": "Reset all registries between tests to prevent cross-test state leakage.",
+      "args": []
+    },
+    "sample_texts": {
+      "docstring": "Provide sample texts for various content types.",
+      "args": []
+    },
+    "context_objects": {
+      "docstring": "Create context objects for testing.",
+      "args": []
+    }
+  }
+}

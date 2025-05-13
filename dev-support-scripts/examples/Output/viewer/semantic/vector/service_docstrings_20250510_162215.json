@@ -1,0 +1,102 @@
+{
+  "module": null,
+  "classes": {
+    "VectorService": {
+      "docstring": "Service layer for vector database operations.\n    Provides high-level operations with automatic backend configuration.",
+      "methods": {
+        "initialize": {
+          "docstring": "Initialize service configurations.",
+          "args": [
+            "cls"
+          ]
+        },
+        "get_default_backend_type": {
+          "docstring": "Get the default backend type from settings.",
+          "args": [
+            "cls"
+          ]
+        },
+        "store_vectors": {
+          "docstring": "Store vectors using the configured backend.\n        \n        Args:\n            vectors: List of vectors to store\n            metadata: Optional metadata for each vector\n            ids: Optional custom IDs for vectors\n            collection: Optional collection/namespace name\n            backend_type: Optional backend type override\n            **options: Additional backend-specific options\n            \n        Returns:\n            Dictionary with operation results",
+          "args": [
+            "cls",
+            "vectors",
+            "metadata",
+            "ids",
+            "collection",
+            "backend_type"
+          ]
+        },
+        "search_vectors": {
+          "docstring": "Search for similar vectors using the configured backend.\n        \n        Args:\n            query_vector: Vector to search for\n            top_k: Number of results to return\n            filter_expr: Optional filter expression for metadata\n            collection: Optional collection/namespace name\n            metric: Similarity metric to use\n            include_metadata: Whether to include metadata in results\n            include_vectors: Whether to include vector data in results\n            backend_type: Optional backend type override\n            **options: Additional backend-specific options\n            \n        Returns:\n            List of vector search results",
+          "args": [
+            "cls",
+            "query_vector",
+            "top_k",
+            "filter_expr",
+            "collection",
+            "metric",
+            "include_metadata",
+            "include_vectors",
+            "backend_type"
+          ]
+        },
+        "search_with_context": {
+          "docstring": "Search vectors using a context object.\n        \n        Args:\n            context: Vector context with search parameters\n            query_vector: Optional query vector (overrides any in context)\n            backend_type: Optional backend type override\n            \n        Returns:\n            List of vector search results",
+          "args": [
+            "cls",
+            "context",
+            "query_vector",
+            "backend_type"
+          ]
+        },
+        "delete_vectors": {
+          "docstring": "Delete vectors using the configured backend.\n        \n        Args:\n            ids: Optional list of vector IDs to delete\n            filter_expr: Optional filter expression to match vectors to delete\n            collection: Optional collection/namespace name\n            backend_type: Optional backend type override\n            **options: Additional backend-specific options\n            \n        Returns:\n            Dictionary with operation results",
+          "args": [
+            "cls",
+            "ids",
+            "filter_expr",
+            "collection",
+            "backend_type"
+          ]
+        },
+        "create_collection": {
+          "docstring": "Create a new vector collection.\n        \n        Args:\n            name: Collection name\n            dimensions: Vector dimensions (uses get_vector_dimensions() if not provided)\n            metric: Similarity metric to use\n            metadata_schema: Optional schema for metadata fields\n            backend_type: Optional backend type override\n            **options: Additional backend-specific options\n            \n        Returns:\n            Dictionary with operation results",
+          "args": [
+            "cls",
+            "name",
+            "dimensions",
+            "metric",
+            "metadata_schema",
+            "backend_type"
+          ]
+        },
+        "find_vectors_by_metadata": {
+          "docstring": "Find vectors by metadata filter (convenience method).\n        \n        Args:\n            filter_expr: Filter expression to match vectors\n            collection: Optional collection/namespace name\n            include_vectors: Whether to include vector data in results\n            backend_type: Optional backend type override\n            **options: Additional backend-specific options\n            \n        Returns:\n            List of matching vectors with metadata",
+          "args": [
+            "cls",
+            "filter_expr",
+            "collection",
+            "include_vectors",
+            "backend_type"
+          ]
+        },
+        "get_backends_by_capabilities": {
+          "docstring": "Get list of available backends that match required capabilities.\n        \n        Args:\n            required_capabilities: Dictionary of required capabilities\n            \n        Returns:\n            List of backend information dictionaries",
+          "args": [
+            "cls",
+            "required_capabilities"
+          ]
+        },
+        "_get_backend": {
+          "docstring": "Get a backend instance for the specified type.\n        \n        Args:\n            backend_type: Backend type\n            **options: Backend-specific options\n            \n        Returns:\n            Configured backend instance",
+          "args": [
+            "cls",
+            "backend_type"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

@@ -1,0 +1,63 @@
+{
+  "module": "Base abstractions for tag extraction strategies.\n\nThis module defines the core interfaces for tag extraction\nwith standardized strategy patterns aligned with the Unified Registry System.",
+  "classes": {
+    "TagStrategyType": {
+      "docstring": "Enumeration of tag extraction strategy types for type-safe registration and usage.",
+      "methods": {}
+    },
+    "TagCandidate": {
+      "docstring": "Represents a tag candidate extracted from text.\n    Contains the tag text, confidence score, and metadata.",
+      "methods": {
+        "__init__": {
+          "docstring": null,
+          "args": [
+            "text",
+            "confidence",
+            "source",
+            "start",
+            "end",
+            "metadata"
+          ]
+        }
+      }
+    },
+    "TagExtractionStrategy": {
+      "docstring": "Abstract base class for tag extraction strategies.\n    \n    All concrete tag extraction strategies must implement this interface\n    to ensure consistent behavior across different implementations.",
+      "methods": {
+        "extract_tags": {
+          "docstring": "Extract tags from text according to the strategy.\n        \n        Args:\n            text: Input text to extract tags from\n            max_tags: Maximum number of tags to extract (optional)\n            min_confidence: Minimum confidence threshold (optional)\n            \n        Returns:\n            List of TagCandidate objects",
+          "args": [
+            "text",
+            "max_tags",
+            "min_confidence"
+          ]
+        },
+        "capabilities": {
+          "docstring": "Get the capabilities of this tag extraction strategy.\n        \n        Returns:\n            Dictionary of capabilities and their values",
+          "args": [
+            "cls"
+          ]
+        }
+      }
+    },
+    "LinguisticTagConsumer": {
+      "docstring": "Integration interface for consuming linguistic analysis for tagging.\n    Establishes a formal boundary between tagging and linguistic subsystems.",
+      "methods": {
+        "capabilities": {
+          "docstring": "Get declared capabilities of this linguistic consumer.\n        \n        Returns:\n            Dictionary of capabilities with their supported values",
+          "args": [
+            "cls"
+          ]
+        },
+        "consume_linguistic_units": {
+          "docstring": "Convert linguistic units to tag candidates.\n        \n        Args:\n            text: Text that was analyzed\n            unit_types: Types of linguistic units to convert\n            **options: Additional options\n            \n        Returns:\n            List of TagCandidate objects derived from linguistic analysis",
+          "args": [
+            "text",
+            "unit_types"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

@@ -1,0 +1,38 @@
+{
+  "module": "Unit tests for error recovery and edge cases in vector operations.\n\nThese tests verify the system's behavior under failure conditions\nand edge cases, ensuring graceful degradation and proper error handling.",
+  "classes": {},
+  "functions": {
+    "test_connection_failure_recovery": {
+      "docstring": "Test behavior when database connection fails.",
+      "args": []
+    },
+    "test_invalid_backend_type_handling": {
+      "docstring": "Test handling of invalid backend types.",
+      "args": []
+    },
+    "test_empty_vector_handling": {
+      "docstring": "Test handling of empty vectors.",
+      "args": []
+    },
+    "test_dimension_mismatch_handling": {
+      "docstring": "Test graceful handling of dimension mismatch errors.",
+      "args": []
+    },
+    "test_invalid_metric_handling": {
+      "docstring": "Test handling of invalid similarity metrics.",
+      "args": []
+    },
+    "test_concurrent_collection_creation": {
+      "docstring": "Test handling of concurrent collection creation attempts.",
+      "args": []
+    },
+    "test_service_error_isolation": {
+      "docstring": "Test that errors in one operation don't affect subsequent operations.",
+      "args": []
+    },
+    "test_duplicate_id_handling": {
+      "docstring": "Test handling of duplicate IDs in store operations.",
+      "args": []
+    }
+  }
+}

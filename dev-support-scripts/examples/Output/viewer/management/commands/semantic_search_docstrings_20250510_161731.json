@@ -1,0 +1,21 @@
+{
+  "module": null,
+  "classes": {
+    "Command": {
+      "docstring": null,
+      "methods": {
+        "add_arguments": {
+          "docstring": null,
+          "args": [
+            "parser"
+          ]
+        },
+        "handle": {
+          "docstring": null,
+          "args": []
+        }
+      }
+    }
+  },
+  "functions": {}
+}

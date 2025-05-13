@@ -1,0 +1,63 @@
+{
+  "module": "Tagging service for strategy resolution and management.\n\nThis module provides a service layer for tag extraction operations,\nhandling strategy resolution, caching, and context-aware processing.",
+  "classes": {
+    "TaggingContext": {
+      "docstring": "Context object for tagging operations.\n    Used for context-aware strategy creation and parameter injection.\n    Inherits common properties from BaseContext for cross-subsystem standardization.",
+      "methods": {
+        "__init__": {
+          "docstring": null,
+          "args": []
+        }
+      }
+    },
+    "TaggingService": {
+      "docstring": "Service for tag extraction operations.\n    \n    This service handles the resolution of tag extraction strategies,\n    providing a single point of access for tagging operations with\n    advanced caching and context awareness.",
+      "methods": {
+        "initialize": {
+          "docstring": "Initialize service configurations.",
+          "args": [
+            "cls"
+          ]
+        },
+        "extract_tags": {
+          "docstring": "Extract tags from text using the appropriate strategy.\n        \n        Args:\n            text: Text to extract tags from\n            content_type: Type of content (for strategy selection)\n            strategy_type: Specific strategy type to use\n            max_tags: Maximum tags to return\n            min_confidence: Minimum confidence threshold\n            **options: Additional options for the strategy\n            \n        Returns:\n            List of tag candidates",
+          "args": [
+            "cls",
+            "text",
+            "content_type",
+            "strategy_type",
+            "max_tags",
+            "min_confidence"
+          ]
+        },
+        "extract_tags_with_context": {
+          "docstring": "Extract tags using a provided context.\n        \n        Args:\n            context: Tagging context\n            **kwargs: Additional options that override context values\n            \n        Returns:\n            List of tag candidates",
+          "args": [
+            "cls",
+            "context"
+          ]
+        },
+        "extract_tags_with_chunking": {
+          "docstring": "Extract tags with content chunking for more contextual awareness.\n        \n        Args:\n            text: Text to extract tags from\n            chunking_strategy_type: Type of chunking strategy to use\n            max_tags_per_chunk: Maximum tags to extract per chunk\n            max_total_tags: Maximum total tags to return\n            min_confidence: Minimum confidence threshold\n            context: Tagging context to use (optional)\n            **options: Additional options\n            \n        Returns:\n            List of tag candidates from all chunks",
+          "args": [
+            "cls",
+            "text",
+            "chunking_strategy_type",
+            "max_tags_per_chunk",
+            "max_total_tags",
+            "min_confidence",
+            "context"
+          ]
+        },
+        "_detect_content_type": {
+          "docstring": "Detect the content type from text.\n        \n        Args:\n            text: Text to analyze\n            \n        Returns:\n            Content type string",
+          "args": [
+            "cls",
+            "text"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

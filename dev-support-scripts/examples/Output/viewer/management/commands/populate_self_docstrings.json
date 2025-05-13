@@ -1,0 +1,21 @@
+{
+  "module": "Management command to add the current Git repository to the database.\n\nThis command adds the Git Commit Viewer repository itself to the database\nfor development purposes, using the same repository processing logic as\nthe web interface to ensure consistency.",
+  "classes": {
+    "Command": {
+      "docstring": null,
+      "methods": {
+        "add_arguments": {
+          "docstring": null,
+          "args": [
+            "parser"
+          ]
+        },
+        "handle": {
+          "docstring": null,
+          "args": []
+        }
+      }
+    }
+  },
+  "functions": {}
+}

@@ -1,0 +1,93 @@
+{
+  "entry_points": [
+    {
+      "type": "view",
+      "name": "validate_git_repo",
+      "module": "viewer.views"
+    },
+    {
+      "type": "view",
+      "name": "index",
+      "module": "viewer.views"
+    },
+    {
+      "type": "view",
+      "name": "list_repositories",
+      "module": "viewer.views"
+    },
+    {
+      "type": "view",
+      "name": "fetch_commits",
+      "module": "viewer.views"
+    },
+    {
+      "type": "view",
+      "name": "view_commits",
+      "module": "viewer.views"
+    },
+    {
+      "type": "view",
+      "name": "commit_detail",
+      "module": "viewer.views"
+    },
+    {
+      "type": "view",
+      "name": "semantic_search_api",
+      "module": "viewer.views"
+    }
+  ],
+  "management_commands": [
+    {
+      "name": "install_pgvector",
+      "module": "viewer.pgvector.management.commands.install_pgvector"
+    },
+    {
+      "name": "manage_tag_dictionary",
+      "module": "viewer.management.commands.manage_tag_dictionary"
+    },
+    {
+      "name": "generate_embeddings",
+      "module": "viewer.management.commands.generate_embeddings"
+    },
+    {
+      "name": "process_linguistic",
+      "module": "viewer.management.commands.process_linguistic"
+    },
+    {
+      "name": "populate_self",
+      "module": "viewer.management.commands.populate_self"
+    },
+    {
+      "name": "test_dimension_fix",
+      "module": "viewer.management.commands.test_dimension_fix"
+    },
+    {
+      "name": "clear_data",
+      "module": "viewer.management.commands.clear_data"
+    },
+    {
+      "name": "import_tag_taxonomy",
+      "module": "viewer.management.commands.import_tag_taxonomy"
+    },
+    {
+      "name": "sync_vector_dimensions",
+      "module": "viewer.management.commands.sync_vector_dimensions"
+    },
+    {
+      "name": "generate_commit_tags",
+      "module": "viewer.management.commands.generate_commit_tags"
+    },
+    {
+      "name": "add_self",
+      "module": "viewer.management.commands.add_self"
+    },
+    {
+      "name": "evaluate_semantic_search",
+      "module": "viewer.management.commands.evaluate_semantic_search"
+    },
+    {
+      "name": "semantic_search",
+      "module": "viewer.management.commands.semantic_search"
+    }
+  ]
+}

@@ -1,0 +1,2747 @@
+{
+  "......tests.unit.semantic.vector.test_utils": {
+    "module_name": "......tests.unit.semantic.vector.test_utils",
+    "file_path": "/Users/david/Projects/git-commit-viewer/tests/unit/semantic/vector/test_utils.py",
+    "assertions": [
+      {
+        "function": "TestVectorFormatUtils.test_normalize_vector_format",
+        "line_number": 28,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "isinstance"
+          },
+          "args": [
+            {
+              "name": "numpy_vec"
+            },
+            {
+              "name": "np.ndarray"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestVectorFormatUtils.test_normalize_vector_format",
+        "line_number": 29,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "np.array_equal"
+          },
+          "args": [
+            {
+              "name": "numpy_vec"
+            },
+            "{'name': 'np.array'}(...)"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestVectorFormatUtils.test_normalize_vector_format",
+        "line_number": 34,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "isinstance"
+          },
+          "args": [
+            {
+              "name": "list_vec"
+            },
+            {
+              "name": "list"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestVectorFormatUtils.test_normalize_vector_format",
+        "line_number": 35,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "list_vec"
+          },
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            [
+              4.0,
+              5.0,
+              6.0
+            ]
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestVectorFormatUtils.test_normalize_vector_format",
+        "line_number": 40,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "isinstance"
+          },
+          "args": [
+            {
+              "name": "numpy_result"
+            },
+            {
+              "name": "np.ndarray"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestVectorFormatUtils.test_normalize_vector_format",
+        "line_number": 41,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "np.array_equal"
+          },
+          "args": [
+            {
+              "name": "numpy_result"
+            },
+            "{'name': 'np.array'}(...)"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestVectorFormatUtils.test_ensure_dimensions",
+        "line_number": 52,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "result"
+          },
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            [
+              1.0,
+              2.0,
+              3.0
+            ]
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestVectorFormatUtils.test_ensure_dimensions",
+        "line_number": 57,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "result"
+          },
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            [
+              1.0,
+              2.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestVectorFormatUtils.test_ensure_dimensions",
+        "line_number": 62,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "isinstance"
+          },
+          "args": [
+            {
+              "name": "result"
+            },
+            {
+              "name": "np.ndarray"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestVectorFormatUtils.test_ensure_dimensions",
+        "line_number": 63,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "np.array_equal"
+          },
+          "args": [
+            {
+              "name": "result"
+            },
+            "{'name': 'np.array'}(...)"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestVectorFormatUtils.test_vector_to_db_string",
+        "line_number": 69,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "result"
+          },
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            "[1.0,2.0,3.0]"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestVectorFormatUtils.test_vector_to_db_string",
+        "line_number": 74,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "result"
+          },
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            "[1.0,2.0,3.0]"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestVectorFormatUtils.test_vector_to_db_string",
+        "line_number": 79,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "result"
+          },
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            "[1.0,2.0,3.0]"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestVectorFormatUtils.test_vector_to_db_string",
+        "line_number": 84,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'result.count'}(...)",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            2
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestVectorFormatUtils.test_vector_to_db_string_invisible_commas_fix",
+        "line_number": 93,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": ",",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            {
+              "name": "result"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestVectorFormatUtils.test_vector_to_db_string_invisible_commas_fix",
+        "line_number": 94,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'result.count'}(...)",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            2
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestVectorFormatUtils.test_vector_to_db_string_invisible_commas_fix",
+        "line_number": 102,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'len'}(...)",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            5
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestVectorFormatUtils.test_vector_to_db_string_invisible_commas_fix",
+        "line_number": 108,
+        "type": "assert",
+        "test": {
+          "type": "expression",
+          "value": "<class 'ast.BoolOp'>"
+        },
+        "message": "<class 'ast.JoinedStr'>"
+      },
+      {
+        "function": "TestVectorFormatUtils.test_vector_to_db_string_invisible_commas_fix",
+        "line_number": 110,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "inf",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            "{'name': 'part.lower'}(...)"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestVectorFormatUtils.test_vector_to_db_string_invisible_commas_fix",
+        "line_number": 112,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "nan",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            "{'name': 'part.lower'}(...)"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestSimilarityCalculations.test_calculate_cosine_similarity",
+        "line_number": 125,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": 0,
+          "ops": [
+            "<=",
+            "<"
+          ],
+          "comparators": [
+            {
+              "name": "similarity"
+            },
+            0.01
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestSimilarityCalculations.test_calculate_cosine_similarity",
+        "line_number": 129,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": 0.99,
+          "ops": [
+            "<=",
+            "<="
+          ],
+          "comparators": [
+            {
+              "name": "similarity"
+            },
+            1.0
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestSimilarityCalculations.test_calculate_cosine_similarity",
+        "line_number": 134,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": 0.99,
+          "ops": [
+            "<=",
+            "<="
+          ],
+          "comparators": [
+            {
+              "name": "similarity"
+            },
+            1.0
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestSimilarityCalculations.test_calculate_euclidean_distance",
+        "line_number": 142,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'calculate_euclidean_distance'}(...)",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            5.0
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestSimilarityCalculations.test_calculate_euclidean_distance",
+        "line_number": 145,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'calculate_euclidean_distance'}(...)",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            0.0
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestSimilarityCalculations.test_calculate_dot_product",
+        "line_number": 153,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'calculate_dot_product'}(...)",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            32.0
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestSimilarityCalculations.test_calculate_dot_product",
+        "line_number": 158,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'calculate_dot_product'}(...)",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            0.0
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestSimilarityCalculations.test_similarity_to_score",
+        "line_number": 163,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'similarity_to_score'}(...)",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            1.0
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestSimilarityCalculations.test_similarity_to_score",
+        "line_number": 164,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'similarity_to_score'}(...)",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            0.5
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestSimilarityCalculations.test_similarity_to_score",
+        "line_number": 165,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'similarity_to_score'}(...)",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            0.0
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestSimilarityCalculations.test_similarity_to_score",
+        "line_number": 168,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'similarity_to_score'}(...)",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            1.0
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestSimilarityCalculations.test_similarity_to_score",
+        "line_number": 169,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'similarity_to_score'}(...)",
+          "ops": [
+            "<"
+          ],
+          "comparators": [
+            0.5
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestMetadataUtils.test_get_original_metadata",
+        "line_number": 184,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "result"
+          },
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            {
+              "key": "value"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestMetadataUtils.test_get_original_metadata",
+        "line_number": 189,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "result"
+          },
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            {
+              "name": "unwrapped"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestMetadataUtils.test_get_original_metadata",
+        "line_number": 192,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'get_original_metadata'}(...)",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            {}
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestMetadataUtils.test_get_original_metadata",
+        "line_number": 193,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'get_original_metadata'}(...)",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            {}
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestMetadataUtils.test_get_metadata_source_type",
+        "line_number": 202,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'get_metadata_source_type'}(...)",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            "test"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestMetadataUtils.test_get_metadata_source_type",
+        "line_number": 205,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'get_metadata_source_type'}(...)",
+          "ops": [
+            "is"
+          ],
+          "comparators": [
+            null
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestMetadataUtils.test_get_metadata_source_type",
+        "line_number": 208,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'get_metadata_source_type'}(...)",
+          "ops": [
+            "is"
+          ],
+          "comparators": [
+            null
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestMetadataUtils.test_get_metadata_source_type",
+        "line_number": 209,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'get_metadata_source_type'}(...)",
+          "ops": [
+            "is"
+          ],
+          "comparators": [
+            null
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestMetadataUtils.test_preserve_metadata",
+        "line_number": 216,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "result"
+          },
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            {
+              "_metadata_version": "1.0",
+              "_source_type": "test",
+              "_source_metadata": {
+                "name": "raw"
+              }
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestMetadataUtils.test_preserve_metadata",
+        "line_number": 229,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "result"
+          },
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            {
+              "name": "wrapped"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestMetadataUtils.test_preserve_metadata",
+        "line_number": 233,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "result"
+          },
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            {
+              "_metadata_version": "1.0"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestMetadataUtils.test_preserve_metadata",
+        "line_number": 235,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "result"
+          },
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            {
+              "_metadata_version": "1.0"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestFilterUtils.test_matches_filter",
+        "line_number": 250,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "matches_filter"
+          },
+          "args": [
+            {
+              "name": "metadata"
+            },
+            {
+              "category": "test"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestFilterUtils.test_matches_filter",
+        "line_number": 251,
+        "type": "assert",
+        "test": {
+          "type": "expression",
+          "value": "<class 'ast.UnaryOp'>"
+        },
+        "message": null
+      },
+      {
+        "function": "TestFilterUtils.test_matches_filter",
+        "line_number": 254,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "matches_filter"
+          },
+          "args": [
+            {
+              "name": "metadata"
+            },
+            {
+              "category": [
+                "test",
+                "other"
+              ]
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestFilterUtils.test_matches_filter",
+        "line_number": 255,
+        "type": "assert",
+        "test": {
+          "type": "expression",
+          "value": "<class 'ast.UnaryOp'>"
+        },
+        "message": null
+      },
+      {
+        "function": "TestFilterUtils.test_matches_filter",
+        "line_number": 258,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "matches_filter"
+          },
+          "args": [
+            {
+              "name": "metadata"
+            },
+            {
+              "category": "test",
+              "count": 5
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestFilterUtils.test_matches_filter",
+        "line_number": 259,
+        "type": "assert",
+        "test": {
+          "type": "expression",
+          "value": "<class 'ast.UnaryOp'>"
+        },
+        "message": null
+      },
+      {
+        "function": "TestFilterUtils.test_matches_filter",
+        "line_number": 262,
+        "type": "assert",
+        "test": {
+          "type": "expression",
+          "value": "<class 'ast.UnaryOp'>"
+        },
+        "message": null
+      },
+      {
+        "function": "TestDimensionsUtils.test_get_vector_dimensions_app_config",
+        "line_number": 278,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'get_vector_dimensions'}(...)",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            768
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestDimensionsUtils.test_get_vector_dimensions_settings",
+        "line_number": 288,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'get_vector_dimensions'}(...)",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            1024
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestDimensionsUtils.test_get_vector_dimensions_default",
+        "line_number": 304,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "isinstance"
+          },
+          "args": [
+            {
+              "name": "dimensions"
+            },
+            {
+              "name": "int"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "TestDimensionsUtils.test_get_vector_dimensions_default",
+        "line_number": 305,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "dimensions"
+          },
+          "ops": [
+            ">"
+          ],
+          "comparators": [
+            0
+          ]
+        },
+        "message": null
+      }
+    ],
+    "mocks": [],
+    "imports": {
+      "np": "numpy",
+      "pytest": "pytest",
+      "math": "math"
+    },
+    "from_imports": {
+      "patch": [
+        "unittest.mock",
+        "patch"
+      ],
+      "MagicMock": [
+        "unittest.mock",
+        "MagicMock"
+      ],
+      "get_vector_dimensions": [
+        "viewer.semantic.vector.utils",
+        "get_vector_dimensions"
+      ],
+      "normalize_vector_format": [
+        "viewer.semantic.vector.utils",
+        "normalize_vector_format"
+      ],
+      "ensure_dimensions": [
+        "viewer.semantic.vector.utils",
+        "ensure_dimensions"
+      ],
+      "vector_to_db_string": [
+        "viewer.semantic.vector.utils",
+        "vector_to_db_string"
+      ],
+      "calculate_cosine_similarity": [
+        "viewer.semantic.vector.utils",
+        "calculate_cosine_similarity"
+      ],
+      "calculate_euclidean_distance": [
+        "viewer.semantic.vector.utils",
+        "calculate_euclidean_distance"
+      ],
+      "calculate_dot_product": [
+        "viewer.semantic.vector.utils",
+        "calculate_dot_product"
+      ],
+      "similarity_to_score": [
+        "viewer.semantic.vector.utils",
+        "similarity_to_score"
+      ],
+      "matches_filter": [
+        "viewer.semantic.vector.utils",
+        "matches_filter"
+      ],
+      "get_original_metadata": [
+        "viewer.semantic.vector.utils",
+        "get_original_metadata"
+      ],
+      "get_metadata_source_type": [
+        "viewer.semantic.vector.utils",
+        "get_metadata_source_type"
+      ],
+      "preserve_metadata": [
+        "viewer.semantic.vector.utils",
+        "preserve_metadata"
+      ]
+    }
+  },
+  "......tests.unit.semantic.vector.test_error_recovery": {
+    "module_name": "......tests.unit.semantic.vector.test_error_recovery",
+    "file_path": "/Users/david/Projects/git-commit-viewer/tests/unit/semantic/vector/test_error_recovery.py",
+    "assertions": [
+      {
+        "function": "test_connection_failure_recovery",
+        "line_number": 36,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "backend"
+          },
+          "ops": [
+            "is not"
+          ],
+          "comparators": [
+            null
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_connection_failure_recovery",
+        "line_number": 40,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "isinstance"
+          },
+          "args": [
+            {
+              "name": "capabilities"
+            },
+            {
+              "name": "dict"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_empty_vector_handling",
+        "line_number": 91,
+        "type": "assert",
+        "test": {
+          "type": "expression",
+          "value": true
+        },
+        "message": null
+      },
+      {
+        "function": "test_empty_vector_handling",
+        "line_number": 94,
+        "type": "assert",
+        "test": {
+          "type": "expression",
+          "value": "<class 'ast.BoolOp'>"
+        },
+        "message": "<class 'ast.JoinedStr'>"
+      },
+      {
+        "function": "test_dimension_mismatch_handling",
+        "line_number": 129,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'len'}(...)",
+          "ops": [
+            ">="
+          ],
+          "comparators": [
+            0
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_dimension_mismatch_handling",
+        "line_number": 133,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "any"
+          },
+          "args": [
+            "<class 'ast.GeneratorExp'>"
+          ]
+        },
+        "message": "<class 'ast.JoinedStr'>"
+      },
+      {
+        "function": "test_invalid_metric_handling",
+        "line_number": 171,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "isinstance"
+          },
+          "args": [
+            {
+              "name": "results"
+            },
+            {
+              "name": "list"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_invalid_metric_handling",
+        "line_number": 172,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'len'}(...)",
+          "ops": [
+            ">"
+          ],
+          "comparators": [
+            0
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_invalid_metric_handling",
+        "line_number": 175,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "any"
+          },
+          "args": [
+            "<class 'ast.GeneratorExp'>"
+          ]
+        },
+        "message": "<class 'ast.JoinedStr'>"
+      },
+      {
+        "function": "test_concurrent_collection_creation",
+        "line_number": 210,
+        "type": "assert",
+        "test": {
+          "type": "expression",
+          "value": true
+        },
+        "message": null
+      },
+      {
+        "function": "test_concurrent_collection_creation",
+        "line_number": 214,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "any"
+          },
+          "args": [
+            "<class 'ast.GeneratorExp'>"
+          ]
+        },
+        "message": "<class 'ast.JoinedStr'>"
+      },
+      {
+        "function": "test_service_error_isolation",
+        "line_number": 233,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "backend_type"
+          },
+          "ops": [
+            "is not"
+          ],
+          "comparators": [
+            null
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_duplicate_id_handling",
+        "line_number": 277,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "<attr of <class 'ast.Subscript'>>.id",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            "vec1"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_duplicate_id_handling",
+        "line_number": 278,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "<attr of <attr of <class 'ast.Subscript'>>.metadata>.get(...)",
+          "ops": [
+            "is"
+          ],
+          "comparators": [
+            false
+          ]
+        },
+        "message": null
+      }
+    ],
+    "mocks": [],
+    "imports": {
+      "pytest": "pytest",
+      "unittest.mock": "unittest.mock",
+      "np": "numpy",
+      "uuid": "uuid"
+    },
+    "from_imports": {
+      "patch": [
+        "unittest.mock",
+        "patch"
+      ],
+      "MagicMock": [
+        "unittest.mock",
+        "MagicMock"
+      ],
+      "Dict": [
+        "typing",
+        "Dict"
+      ],
+      "Any": [
+        "typing",
+        "Any"
+      ],
+      "VectorBackendType": [
+        "viewer.semantic.vector.interfaces",
+        "VectorBackendType"
+      ],
+      "get_vector_database": [
+        "viewer.semantic.vector",
+        "get_vector_database"
+      ],
+      "ensure_dimensions": [
+        "viewer.semantic.vector.utils",
+        "ensure_dimensions"
+      ],
+      "VectorService": [
+        "viewer.semantic.vector.service",
+        "VectorService"
+      ]
+    }
+  },
+  "......tests.unit.semantic.vector.test_contract": {
+    "module_name": "......tests.unit.semantic.vector.test_contract",
+    "file_path": "/Users/david/Projects/git-commit-viewer/tests/unit/semantic/vector/test_contract.py",
+    "assertions": [
+      {
+        "function": "test_vector_database_contract",
+        "line_number": 25,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "callable"
+          },
+          "args": [
+            {
+              "name": "backend.store_vectors"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_vector_database_contract",
+        "line_number": 26,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "callable"
+          },
+          "args": [
+            {
+              "name": "backend.search_vectors"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_vector_database_contract",
+        "line_number": 27,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "callable"
+          },
+          "args": [
+            {
+              "name": "backend.delete_vectors"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_vector_database_contract",
+        "line_number": 28,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "callable"
+          },
+          "args": [
+            {
+              "name": "backend.create_collection"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_vector_database_contract",
+        "line_number": 32,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "similarity_metrics",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            {
+              "name": "caps"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_backend_type_enum_consistency",
+        "line_number": 50,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "memory",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            {
+              "name": "available_types"
+            }
+          ]
+        },
+        "message": "Memory backend not registered"
+      },
+      {
+        "function": "test_similarity_metric_enum_consistency",
+        "line_number": 75,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "metric.value"
+          },
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            {
+              "name": "metrics_list"
+            }
+          ]
+        },
+        "message": "<class 'ast.JoinedStr'>"
+      },
+      {
+        "function": "test_method_signature_consistency",
+        "line_number": 97,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "vectors",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            {
+              "name": "store_params"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_method_signature_consistency",
+        "line_number": 98,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "metadata",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            {
+              "name": "store_params"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_method_signature_consistency",
+        "line_number": 100,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "any"
+          },
+          "args": [
+            "<class 'ast.GeneratorExp'>"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_method_signature_consistency",
+        "line_number": 105,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "query_vector",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            {
+              "name": "search_params"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_method_signature_consistency",
+        "line_number": 107,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "any"
+          },
+          "args": [
+            "<class 'ast.GeneratorExp'>"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_method_signature_consistency",
+        "line_number": 111,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "any"
+          },
+          "args": [
+            "<class 'ast.GeneratorExp'>"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_method_signature_consistency",
+        "line_number": 115,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "name",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            {
+              "name": "create_params"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_method_signature_consistency",
+        "line_number": 116,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "dimensions",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            {
+              "name": "create_params"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_capability_declaration_structure",
+        "line_number": 133,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "similarity_metrics",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            {
+              "name": "capabilities"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_capability_declaration_structure",
+        "line_number": 134,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "filtering",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            {
+              "name": "capabilities"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_capability_declaration_structure",
+        "line_number": 135,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "max_dimensions",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            {
+              "name": "capabilities"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_capability_declaration_structure",
+        "line_number": 136,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "persistence",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            {
+              "name": "capabilities"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_capability_declaration_structure",
+        "line_number": 139,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "operators",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            "<class 'ast.Subscript'>"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_capability_declaration_structure",
+        "line_number": 140,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "complexity",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            "<class 'ast.Subscript'>"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_capability_declaration_structure",
+        "line_number": 143,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "isinstance"
+          },
+          "args": [
+            "<class 'ast.Subscript'>",
+            {
+              "name": "list"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_capability_declaration_structure",
+        "line_number": 145,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "<class 'ast.Subscript'>",
+          "ops": [
+            "is not"
+          ],
+          "comparators": [
+            null
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_capability_declaration_structure",
+        "line_number": 147,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "isinstance"
+          },
+          "args": [
+            "<class 'ast.Subscript'>",
+            {
+              "name": "bool"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_model_result_consistency",
+        "line_number": 170,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'len'}(...)",
+          "ops": [
+            ">"
+          ],
+          "comparators": [
+            0
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_model_result_consistency",
+        "line_number": 174,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "hasattr"
+          },
+          "args": [
+            {
+              "name": "result"
+            },
+            "id"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_model_result_consistency",
+        "line_number": 175,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "hasattr"
+          },
+          "args": [
+            {
+              "name": "result"
+            },
+            "score"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_model_result_consistency",
+        "line_number": 176,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "hasattr"
+          },
+          "args": [
+            {
+              "name": "result"
+            },
+            "metadata"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_model_result_consistency",
+        "line_number": 179,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "result.similarity"
+          },
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            {
+              "name": "result.score"
+            }
+          ]
+        },
+        "message": null
+      }
+    ],
+    "mocks": [],
+    "imports": {
+      "pytest": "pytest",
+      "np": "numpy",
+      "inspect": "inspect"
+    },
+    "from_imports": {
+      "List": [
+        "typing",
+        "List"
+      ],
+      "Dict": [
+        "typing",
+        "Dict"
+      ],
+      "Any": [
+        "typing",
+        "Any"
+      ],
+      "VectorDatabase": [
+        "viewer.semantic.vector.interfaces",
+        "VectorDatabase"
+      ],
+      "VectorBackendType": [
+        "viewer.semantic.vector.interfaces",
+        "VectorBackendType"
+      ],
+      "SimilarityMetric": [
+        "viewer.semantic.vector.interfaces",
+        "SimilarityMetric"
+      ],
+      "get_vector_database": [
+        "viewer.semantic.vector",
+        "get_vector_database"
+      ],
+      "VectorDatabaseRegistry": [
+        "viewer.semantic.vector.registry",
+        "VectorDatabaseRegistry"
+      ],
+      "MemoryVectorDatabase": [
+        "viewer.semantic.vector.backends.memory",
+        "MemoryVectorDatabase"
+      ]
+    }
+  },
+  "......tests.unit.semantic.vector.test_capability_negotiation": {
+    "module_name": "......tests.unit.semantic.vector.test_capability_negotiation",
+    "file_path": "/Users/david/Projects/git-commit-viewer/tests/unit/semantic/vector/test_capability_negotiation.py",
+    "assertions": [
+      {
+        "function": "test_exact_capability_match",
+        "line_number": 31,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "similarity_metrics",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            {
+              "name": "result"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_exact_capability_match",
+        "line_number": 32,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "<class 'ast.Subscript'>",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            {
+              "name": "SimilarityMetric.COSINE.value"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_intersection_capability_match",
+        "line_number": 52,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "similarity_metrics",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            {
+              "name": "result"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_intersection_capability_match",
+        "line_number": 53,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "isinstance"
+          },
+          "args": [
+            "<class 'ast.Subscript'>",
+            {
+              "name": "list"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_intersection_capability_match",
+        "line_number": 54,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "SimilarityMetric.COSINE.value"
+          },
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            "<class 'ast.Subscript'>"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_intersection_capability_match",
+        "line_number": 55,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "SimilarityMetric.EUCLIDEAN.value"
+          },
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            "<class 'ast.Subscript'>"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_intersection_capability_match",
+        "line_number": 56,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "unknown_metric",
+          "ops": [
+            "not in"
+          ],
+          "comparators": [
+            "<class 'ast.Subscript'>"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_fallback_for_empty_intersection",
+        "line_number": 72,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "similarity_metrics",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            {
+              "name": "result"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_fallback_for_empty_intersection",
+        "line_number": 73,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'len'}(...)",
+          "ops": [
+            ">"
+          ],
+          "comparators": [
+            0
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_fallback_for_empty_intersection",
+        "line_number": 77,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "<class 'ast.Subscript'>",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            "<class 'ast.Subscript'>"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_return_type_handling",
+        "line_number": 94,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "similarity_metrics",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            {
+              "name": "result"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_return_type_handling",
+        "line_number": 95,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "<class 'ast.Subscript'>",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            [
+              "cosine",
+              "euclidean",
+              "dot_product"
+            ]
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_return_type_handling",
+        "line_number": 99,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "vector_formats",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            {
+              "name": "result"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_return_type_handling",
+        "line_number": 100,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "any"
+          },
+          "args": [
+            "<class 'ast.GeneratorExp'>"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_nested_capability_handling",
+        "line_number": 120,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "filters_operators",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            {
+              "name": "result"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_nested_capability_handling",
+        "line_number": 121,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "<class 'ast.Subscript'>",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            [
+              "equals",
+              "in"
+            ]
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_cross_backend_consistency",
+        "line_number": 147,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "all"
+          },
+          "args": [
+            "<class 'ast.GeneratorExp'>"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_cross_backend_consistency",
+        "line_number": 148,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "all"
+          },
+          "args": [
+            "<class 'ast.GeneratorExp'>"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_capability_provider_selection",
+        "line_number": 166,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "similarity_metrics",
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            {
+              "name": "negotiated"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_capability_provider_selection",
+        "line_number": 167,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "SimilarityMetric.COSINE.value"
+          },
+          "ops": [
+            "in"
+          ],
+          "comparators": [
+            "<class 'ast.Subscript'>"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_capability_provider_selection",
+        "line_number": 176,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "preferred_backend.__class__.__name__"
+          },
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            "MemoryVectorDatabase"
+          ]
+        },
+        "message": null
+      }
+    ],
+    "mocks": [],
+    "imports": {
+      "pytest": "pytest",
+      "np": "numpy"
+    },
+    "from_imports": {
+      "Dict": [
+        "typing",
+        "Dict"
+      ],
+      "Any": [
+        "typing",
+        "Any"
+      ],
+      "patch": [
+        "unittest.mock",
+        "patch"
+      ],
+      "VectorBackendType": [
+        "viewer.semantic.vector.interfaces",
+        "VectorBackendType"
+      ],
+      "SimilarityMetric": [
+        "viewer.semantic.vector.interfaces",
+        "SimilarityMetric"
+      ],
+      "get_vector_database": [
+        "viewer.semantic.vector",
+        "get_vector_database"
+      ],
+      "VectorDatabaseRegistry": [
+        "viewer.semantic.vector.registry",
+        "VectorDatabaseRegistry"
+      ]
+    }
+  },
+  "......tests.unit.semantic.vector.test_independence": {
+    "module_name": "......tests.unit.semantic.vector.test_independence",
+    "file_path": "/Users/david/Projects/git-commit-viewer/tests/unit/semantic/vector/test_independence.py",
+    "assertions": [
+      {
+        "function": "test_vector_dimensions_fallback",
+        "line_number": 28,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'get_vector_dimensions'}(...)",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            1024
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_vector_dimensions_fallback",
+        "line_number": 37,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "isinstance"
+          },
+          "args": [
+            {
+              "name": "dimensions"
+            },
+            {
+              "name": "int"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_vector_dimensions_fallback",
+        "line_number": 38,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "dimensions"
+          },
+          "ops": [
+            ">"
+          ],
+          "comparators": [
+            0
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_module_import_independence",
+        "line_number": 63,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "isinstance"
+          },
+          "args": [
+            {
+              "name": "dimensions"
+            },
+            {
+              "name": "int"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_module_import_independence",
+        "line_number": 64,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "dimensions"
+          },
+          "ops": [
+            ">"
+          ],
+          "comparators": [
+            0
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_connection_config_independence",
+        "line_number": 83,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "hasattr"
+          },
+          "args": [
+            {
+              "name": "config"
+            },
+            "get_connection_params"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_connection_config_independence",
+        "line_number": 84,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "callable"
+          },
+          "args": [
+            {
+              "name": "config.get_connection_params"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_connection_config_independence",
+        "line_number": 87,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'config.get_connection_params'}(...)",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            {}
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_backend_creation_independence",
+        "line_number": 108,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "hasattr"
+          },
+          "args": [
+            {
+              "name": "backend"
+            },
+            "store_vectors"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_backend_creation_independence",
+        "line_number": 109,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "callable"
+          },
+          "args": [
+            {
+              "name": "backend.store_vectors"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_service_initialization_independence",
+        "line_number": 129,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "hasattr"
+          },
+          "args": [
+            {
+              "name": "service.VectorService"
+            },
+            "DATABASE_CACHE_ID"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_service_initialization_independence",
+        "line_number": 130,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "service.VectorService.DATABASE_CACHE_ID"
+          },
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            "vector_databases"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_service_initialization_independence",
+        "line_number": 133,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "django",
+          "ops": [
+            "not in"
+          ],
+          "comparators": [
+            "{'name': 'str'}(...)"
+          ]
+        },
+        "message": "<class 'ast.JoinedStr'>"
+      },
+      {
+        "function": "test_field_independence",
+        "line_number": 148,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "isinstance"
+          },
+          "args": [
+            {
+              "name": "processed"
+            },
+            {
+              "name": "str"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_field_independence",
+        "line_number": 149,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "processed.startswith"
+          },
+          "args": [
+            "["
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_field_independence",
+        "line_number": 150,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "processed.endswith"
+          },
+          "args": [
+            "]"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_field_independence",
+        "line_number": 156,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'padded.count'}(...)",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            767
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_cross_subsystem_independence",
+        "line_number": 178,
+        "type": "assert",
+        "test": {
+          "type": "expression",
+          "value": false
+        },
+        "message": "<class 'ast.JoinedStr'>"
+      },
+      {
+        "function": "test_utils_module_independence",
+        "line_number": 201,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "isinstance"
+          },
+          "args": [
+            {
+              "name": "numpy_vec"
+            },
+            {
+              "name": "np.ndarray"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_utils_module_independence",
+        "line_number": 205,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "db_string"
+          },
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            "[0.1,0.2,0.3]"
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_utils_module_independence",
+        "line_number": 209,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "{'name': 'len'}(...)",
+          "ops": [
+            "=="
+          ],
+          "comparators": [
+            5
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_utils_module_independence",
+        "line_number": 213,
+        "type": "assert",
+        "test": {
+          "type": "call",
+          "function": {
+            "name": "isinstance"
+          },
+          "args": [
+            {
+              "name": "dimensions"
+            },
+            {
+              "name": "int"
+            }
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_utils_module_independence",
+        "line_number": 214,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": {
+            "name": "dimensions"
+          },
+          "ops": [
+            ">"
+          ],
+          "comparators": [
+            0
+          ]
+        },
+        "message": null
+      },
+      {
+        "function": "test_utils_module_independence",
+        "line_number": 217,
+        "type": "assert",
+        "test": {
+          "type": "comparison",
+          "left": "django",
+          "ops": [
+            "not in"
+          ],
+          "comparators": [
+            "{'name': 'str'}(...)"
+          ]
+        },
+        "message": "<class 'ast.JoinedStr'>"
+      }
+    ],
+    "mocks": [],
+    "imports": {
+      "pytest": "pytest",
+      "sys": "sys",
+      "importlib": "importlib",
+      "np": "numpy",
+      "viewer.semantic.vector": "viewer.semantic.vector",
+      "viewer.semantic.vector.interfaces": "viewer.semantic.vector.interfaces",
+      "viewer.semantic.vector.models": "viewer.semantic.vector.models",
+      "viewer.semantic.vector.service": "viewer.semantic.vector.service",
+      "vector_utils": "viewer.semantic.vector.utils"
+    },
+    "from_imports": {
+      "patch": [
+        "unittest.mock",
+        "patch"
+      ],
+      "MagicMock": [
+        "unittest.mock",
+        "MagicMock"
+      ],
+      "PropertyMock": [
+        "unittest.mock",
+        "PropertyMock"
+      ],
+      "Dict": [
+        "typing",
+        "Dict"
+      ],
+      "Any": [
+        "typing",
+        "Any"
+      ],
+      "get_vector_dimensions": [
+        "viewer.semantic.vector.utils",
+        "get_vector_dimensions"
+      ],
+      "normalize_vector_format": [
+        "viewer.semantic.vector.utils",
+        "normalize_vector_format"
+      ],
+      "ensure_dimensions": [
+        "viewer.semantic.vector.utils",
+        "ensure_dimensions"
+      ],
+      "vector_to_db_string": [
+        "viewer.semantic.vector.utils",
+        "vector_to_db_string"
+      ],
+      "VectorBackendType": [
+        "viewer.semantic.vector.interfaces",
+        "VectorBackendType"
+      ],
+      "ConnectionConfigRegistry": [
+        "viewer.semantic.vector.registry",
+        "ConnectionConfigRegistry"
+      ],
+      "get_vector_database": [
+        "viewer.semantic.vector",
+        "get_vector_database"
+      ],
+      "service": [
+        "viewer.semantic.vector",
+        "service"
+      ],
+      "VectorField": [
+        "viewer.semantic.vector.fields",
+        "VectorField"
+      ]
+    }
+  }
+}

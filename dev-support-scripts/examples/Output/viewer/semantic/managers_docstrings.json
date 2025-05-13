@@ -1,0 +1,28 @@
+{
+  "module": "Custom model managers for semantic search functionality.\n\nThis module provides Django model managers that enhance models with\nsemantic search capabilities, particularly for vector similarity searches.",
+  "classes": {
+    "SemanticManager": {
+      "docstring": "Manager that adds semantic search capabilities to a model.\n    \n    This manager extends the standard Django manager with methods for\n    performing vector similarity searches using pgvector.\n    \n    Example:\n        class Article(models.Model):\n            title = models.CharField(max_length=200)\n            content = models.TextField()\n            embedding = VectorField(dimensions=1536)\n            \n            objects = models.Manager()\n            semantic = SemanticManager()\n            \n        # Usage:\n        similar_articles = Article.semantic.semantic_search(\"How to use Django\")",
+      "methods": {
+        "semantic_search": {
+          "docstring": "Search for semantically similar items using vector similarity.\n        \n        Args:\n            query_text: The text to search for\n            embedding_service: Service to generate embeddings (optional)\n            limit: Maximum number of results (default: 10)\n            threshold: Similarity threshold (optional)\n            \n        Returns:\n            QuerySet: Items ordered by semantic similarity\n            \n        Note:\n            This requires pgvector extension to be installed in PostgreSQL.\n            If pgvector is not available, falls back to exact text search.",
+          "args": [
+            "query_text",
+            "embedding_service",
+            "limit",
+            "threshold"
+          ]
+        },
+        "semantic_filter": {
+          "docstring": "Filter semantically similar items with additional criteria.\n        \n        This combines vector similarity search with traditional Django filters.\n        \n        Example:\n            Commit.semantic.semantic_filter(\n                query_text=\"Fix authentication bug\",\n                path__contains=\"auth\",\n                embedding_service=my_service\n            )\n            \n        Args:\n            query_text: The text to search for semantically\n            embedding_service: Service to generate embeddings (optional)\n            limit: Maximum number of results (optional, default: 100)\n            threshold: Similarity threshold (optional)\n            **kwargs: Additional filter criteria\n            \n        Returns:\n            QuerySet: Items filtered by both semantic similarity and other criteria",
+          "args": []
+        },
+        "_find_vector_field": {
+          "docstring": "Find a vector field in the model.\n        \n        This tries to find a field that looks like a vector field based on naming\n        conventions: message_embedding, diff_embedding, embedding, etc.\n        \n        Returns:\n            str: The name of the vector field, or None if no vector field is found",
+          "args": []
+        }
+      }
+    }
+  },
+  "functions": {}
+}

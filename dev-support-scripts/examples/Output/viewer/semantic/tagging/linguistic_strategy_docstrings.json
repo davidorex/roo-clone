@@ -1,0 +1,73 @@
+{
+  "module": "Linguistic-based tag extraction strategy.\n\nThis module provides a strategy that leverages the linguistics interface\nto extract tags based on linguistic analysis of text.",
+  "classes": {
+    "DefaultLinguisticConsumer": {
+      "docstring": "Default implementation of a linguistic consumer for tag extraction.\n    \n    Consumes linguistic units and converts them to tag candidates.",
+      "methods": {
+        "__init__": {
+          "docstring": "Initialize the linguistic consumer.\n        \n        Args:\n            importance_threshold: Minimum importance for linguistic units\n            confidence_factors: Confidence multipliers by unit type\n            **kwargs: Additional options",
+          "args": [
+            "importance_threshold",
+            "confidence_factors"
+          ]
+        },
+        "capabilities": {
+          "docstring": "Get capabilities of this linguistic consumer.",
+          "args": [
+            "cls"
+          ]
+        },
+        "negotiate_capabilities": {
+          "docstring": "Negotiate capabilities with the requester.\n        \n        Args:\n            requested_capabilities: Capabilities requested by consumer\n            \n        Returns:\n            Negotiated capabilities (intersection of requested and supported)",
+          "args": [
+            "requested_capabilities"
+          ]
+        },
+        "set_negotiated_capabilities": {
+          "docstring": "Store the negotiated capabilities.",
+          "args": [
+            "capabilities"
+          ]
+        },
+        "consume_linguistic_units": {
+          "docstring": "Convert linguistic units to tag candidates.\n        \n        Args:\n            text: Text that was analyzed\n            unit_types: Types of linguistic units to convert\n            **options: Additional options\n            \n        Returns:\n            List of TagCandidate objects derived from linguistic analysis",
+          "args": [
+            "text",
+            "unit_types"
+          ]
+        }
+      }
+    },
+    "NounPhraseTagStrategy": {
+      "docstring": "Strategy that extracts tags from noun phrases using linguistic analysis.",
+      "methods": {
+        "__init__": {
+          "docstring": "Initialize the noun phrase tag strategy.\n        \n        Args:\n            consumer_name: Name of the linguistic consumer to use\n            unit_types: Types of linguistic units to extract\n            **kwargs: Additional options",
+          "args": [
+            "consumer_name",
+            "unit_types"
+          ]
+        },
+        "consumer": {
+          "docstring": "Lazy-load the linguistic consumer.",
+          "args": []
+        },
+        "extract_tags": {
+          "docstring": "Extract tags using linguistic noun phrase analysis.\n        \n        Args:\n            text: Input text to extract tags from\n            max_tags: Maximum number of tags to extract\n            min_confidence: Minimum confidence threshold\n            \n        Returns:\n            List of TagCandidate objects",
+          "args": [
+            "text",
+            "max_tags",
+            "min_confidence"
+          ]
+        },
+        "capabilities": {
+          "docstring": "Get capabilities of this strategy.",
+          "args": [
+            "cls"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

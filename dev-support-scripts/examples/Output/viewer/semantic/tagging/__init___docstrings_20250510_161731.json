@@ -1,0 +1,49 @@
+{
+  "module": "Tag extraction strategies for automatic tagging.\n\nThis package provides various strategies for extracting tags from content\nusing different techniques including linguistic analysis, pattern matching,\nand embedding-based approaches.",
+  "classes": {},
+  "functions": {
+    "register_tag_strategy": {
+      "docstring": "Decorator to register a tag extraction strategy.",
+      "args": [
+        "name_or_enum"
+      ]
+    },
+    "get_tag_strategy": {
+      "docstring": "Get a tag extraction strategy by name or enum.",
+      "args": [
+        "name_or_enum"
+      ]
+    },
+    "get_cached_strategy": {
+      "docstring": "Get a cached tag extraction strategy by name or enum.",
+      "args": [
+        "name_or_enum",
+        "cache_id"
+      ]
+    },
+    "create_for_content_type": {
+      "docstring": "Create appropriate tag extraction strategy for a content type.",
+      "args": [
+        "content_type"
+      ]
+    },
+    "create_chain": {
+      "docstring": "Create a chain of tag extraction strategies.",
+      "args": [
+        "strategy_types"
+      ]
+    },
+    "extract_tags": {
+      "docstring": "Extract tags from text using the appropriate strategy.",
+      "args": [
+        "text"
+      ]
+    },
+    "extract_tags_with_chunking": {
+      "docstring": "Extract tags with content chunking for more contextual awareness.",
+      "args": [
+        "text"
+      ]
+    }
+  }
+}

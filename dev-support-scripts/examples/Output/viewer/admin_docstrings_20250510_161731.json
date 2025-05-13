@@ -1,0 +1,60 @@
+{
+  "module": null,
+  "classes": {
+    "RepositoryAdmin": {
+      "docstring": null,
+      "methods": {}
+    },
+    "BranchAdmin": {
+      "docstring": null,
+      "methods": {}
+    },
+    "CommitAdmin": {
+      "docstring": null,
+      "methods": {}
+    },
+    "FileChangeAdmin": {
+      "docstring": null,
+      "methods": {}
+    },
+    "EmbeddingProviderAdmin": {
+      "docstring": null,
+      "methods": {}
+    },
+    "EmbeddingConfigurationAdmin": {
+      "docstring": null,
+      "methods": {
+        "save_model": {
+          "docstring": "Override to provide feedback when activating a configuration",
+          "args": [
+            "request",
+            "obj",
+            "form",
+            "change"
+          ]
+        }
+      }
+    },
+    "TagDictionaryAdmin": {
+      "docstring": null,
+      "methods": {}
+    },
+    "CanonicalTagAdmin": {
+      "docstring": null,
+      "methods": {}
+    },
+    "TagVariantAdmin": {
+      "docstring": null,
+      "methods": {}
+    },
+    "CommitTagAdmin": {
+      "docstring": null,
+      "methods": {}
+    },
+    "TagAdmin": {
+      "docstring": null,
+      "methods": {}
+    }
+  },
+  "functions": {}
+}

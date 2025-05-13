@@ -1,0 +1,29 @@
+{
+  "module": "Unified context objects for cross-subsystem standardization.\n\nThis module provides the core BaseContext class that standardizes context propagation \nacross all semantic subsystems (linguistic, chunking, tagging, and embeddings).\nIt solves the issue of context properties like language being lost when crossing\nsubsystem boundaries.",
+  "classes": {
+    "BaseContext": {
+      "docstring": "Base context class with standard properties across all subsystems.",
+      "methods": {
+        "__init__": {
+          "docstring": null,
+          "args": []
+        },
+        "to_dict": {
+          "docstring": "Convert context to dictionary of properties.",
+          "args": []
+        },
+        "to_options_dict": {
+          "docstring": "Convert context to options dictionary for service calls.\n        \n        Returns a dictionary suitable for use as **kwargs in service method calls.\n        Removes 'text' since it's typically passed separately.",
+          "args": []
+        },
+        "create_subcontext": {
+          "docstring": "Create a context object of different type preserving common properties.\n        \n        Args:\n            context_class: Context class to instantiate\n            **overrides: Properties to override in the new context\n            \n        Returns:\n            New context object with preserved properties",
+          "args": [
+            "context_class"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

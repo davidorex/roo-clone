@@ -1,0 +1,40 @@
+{
+  "module": "Boundary provider implementation for linguistic processing.\n\nThis module provides an implementation of the BoundaryProvider interface\nusing linguistic analysis to identify natural boundaries in text.",
+  "classes": {
+    "LinguisticBoundaryProvider": {
+      "docstring": "Boundary provider using linguistic processing to identify boundaries.",
+      "methods": {
+        "__init__": {
+          "docstring": "Initialize the boundary provider.\n        \n        Args:\n            processor_type: Type of linguistic processor to use\n            **options: Additional options for the processor",
+          "args": [
+            "processor_type"
+          ]
+        },
+        "processor": {
+          "docstring": "Lazy-load the linguistic processor.",
+          "args": []
+        },
+        "capabilities": {
+          "docstring": "Get capabilities of this boundary provider.",
+          "args": [
+            "cls"
+          ]
+        },
+        "set_negotiated_capabilities": {
+          "docstring": "Store the negotiated capabilities.",
+          "args": [
+            "capabilities"
+          ]
+        },
+        "get_boundaries": {
+          "docstring": "Get text boundaries using linguistic processing.\n        \n        Args:\n            text: Text to analyze\n            boundary_types: Types of boundaries to detect\n            **options: Additional options for boundary detection\n            \n        Returns:\n            List of ChunkingBoundary objects",
+          "args": [
+            "text",
+            "boundary_types"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

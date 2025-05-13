@@ -1,0 +1,87 @@
+{
+  "module": null,
+  "classes": {
+    "SentenceExtractorStrategy": {
+      "docstring": "Strategy for extracting sentences from text.",
+      "methods": {
+        "__init__": {
+          "docstring": "Initialize the strategy.\n        \n        Args:\n            processor_type: Type of processor to use (or None for automatic selection)\n            **kwargs: Additional processor options",
+          "args": [
+            "processor_type"
+          ]
+        },
+        "processor": {
+          "docstring": "Lazy-load the processor.",
+          "args": []
+        },
+        "can_process": {
+          "docstring": "Check if this strategy can process the context.",
+          "args": [
+            "context"
+          ]
+        },
+        "process": {
+          "docstring": "Extract sentences from the context text.",
+          "args": [
+            "context"
+          ]
+        }
+      }
+    },
+    "NounPhraseExtractorStrategy": {
+      "docstring": "Strategy for extracting noun phrases from text.",
+      "methods": {
+        "__init__": {
+          "docstring": "Initialize the strategy.",
+          "args": [
+            "processor_type"
+          ]
+        },
+        "processor": {
+          "docstring": "Lazy-load the processor.",
+          "args": []
+        },
+        "can_process": {
+          "docstring": "Check if this strategy can process the context.",
+          "args": [
+            "context"
+          ]
+        },
+        "process": {
+          "docstring": "Extract noun phrases from the context text.",
+          "args": [
+            "context"
+          ]
+        }
+      }
+    },
+    "EntityExtractorStrategy": {
+      "docstring": "Strategy for extracting named entities from text.",
+      "methods": {
+        "__init__": {
+          "docstring": "Initialize the strategy.",
+          "args": [
+            "processor_type"
+          ]
+        },
+        "processor": {
+          "docstring": "Lazy-load the processor.",
+          "args": []
+        },
+        "can_process": {
+          "docstring": "Check if this strategy can process the context.",
+          "args": [
+            "context"
+          ]
+        },
+        "process": {
+          "docstring": "Extract entities from the context text.",
+          "args": [
+            "context"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

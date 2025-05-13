@@ -1,0 +1,19 @@
+Enhanced Mock Access Path Analysis
+===============================
+
+Analyzed 0 functions from target modules
+
+Target Modules Examined:
+- .vector.utils*
+
+
+No functions with multiple call paths found.
+
+Potential Alternative Import Paths
+-------------------------------
+
+No alternative import paths found for target functions.
+
+Mock Strategy Recommendations
+---------------------------
+No commonly mocked functions found in the target modules.

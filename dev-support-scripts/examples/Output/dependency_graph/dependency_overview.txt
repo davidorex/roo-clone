@@ -1,0 +1,35 @@
+Dependency Graph Overview
+========================
+
+Total modules: 103
+Total subsystems: 9
+Average dependencies per module: 1.75
+
+Most Central Components:
+  - viewer.models (16 dependents)
+  - viewer.semantic.registry (10 dependents)
+  - viewer.semantic.linguistic (8 dependents)
+  - viewer.semantic.chunking (7 dependents)
+  - viewer.services.embedder_registry (7 dependents)
+  - viewer.semantic.vector (5 dependents)
+  - viewer.pgvector.fields (4 dependents)
+  - viewer.semantic.context (4 dependents)
+  - viewer.semantic.tagging (4 dependents)
+  - viewer.services.tag_normalization_service (4 dependents)
+
+Circular Dependencies:
+  - viewer.semantic.registry → viewer.semantic.registry
+  - viewer.models → viewer.services.tag_normalization_service → viewer.models
+  - viewer.services.tag_normalization_service → viewer.models → viewer.services.tag_normalization_service
+
+Subsystem Boundaries:
+  - management → viewer_core: 32 dependencies
+  - viewer_core → services: 11 dependencies
+  - semantic_core → chunking: 11 dependencies
+  - services → viewer_core: 11 dependencies
+  - management → linguistic: 10 dependencies
+  - management → services: 8 dependencies
+  - semantic_core → vector: 8 dependencies
+  - pgvector → vector: 5 dependencies
+  - linguistic → chunking: 5 dependencies
+  - services → pgvector: 5 dependencies

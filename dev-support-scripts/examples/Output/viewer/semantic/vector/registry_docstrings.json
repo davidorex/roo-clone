@@ -1,0 +1,61 @@
+{
+  "module": null,
+  "classes": {
+    "VectorDatabaseRegistry": {
+      "docstring": "Registry for vector database implementations, extending the AdvancedRegistry.\n    Provides specialized methods for vector database operations.",
+      "methods": {
+        "get_database_by_capabilities": {
+          "docstring": "Get appropriate database implementation based on required capabilities.\n        \n        Args:\n            required_capabilities: Capabilities the database must support\n            preferred_backend: Optional preferred backend type\n            **kwargs: Additional parameters for database creation\n            \n        Returns:\n            Vector database instance matching requirements",
+          "args": [
+            "cls",
+            "required_capabilities",
+            "preferred_backend"
+          ]
+        },
+        "_check_capabilities": {
+          "docstring": "Check if a backend supports required capabilities using negotiate_capabilities.\n        \n        Args:\n            backend: Vector database instance\n            required_capabilities: Required capabilities\n            \n        Returns:\n            True if backend supports all required capabilities",
+          "args": [
+            "cls",
+            "backend",
+            "required_capabilities"
+          ]
+        }
+      }
+    },
+    "ConnectionConfigRegistry": {
+      "docstring": "Registry for connection configurations, extending the AdvancedRegistry.\n    Provides methods for loading and managing connection configurations.",
+      "methods": {
+        "get_from_settings": {
+          "docstring": "Get connection configuration from Django settings.\n        \n        Args:\n            backend_type: Type of backend to get configuration for\n            **kwargs: Additional parameters to override settings\n            \n        Returns:\n            ConnectionConfiguration instance",
+          "args": [
+            "cls",
+            "backend_type"
+          ]
+        },
+        "get_from_env": {
+          "docstring": "Get connection configuration from environment variables.\n        \n        Args:\n            backend_type: Type of backend to get configuration for\n            **kwargs: Additional parameters to override environment variables\n            \n        Returns:\n            ConnectionConfiguration instance",
+          "args": [
+            "cls",
+            "backend_type"
+          ]
+        }
+      }
+    },
+    "VectorAdapterRegistry": {
+      "docstring": "Registry for vector adapters, extending the AdvancedRegistry.\n    Provides methods for vector format adaptation across subsystems.",
+      "methods": {
+        "adapt_to_format": {
+          "docstring": "Adapt a vector to the target format and dimensions.\n        \n        Args:\n            vector: Input vector\n            target_format: Target format\n            dimensions: Optional target dimensions\n            adapter_name: Name of adapter to use\n            \n        Returns:\n            Adapted vector",
+          "args": [
+            "cls",
+            "vector",
+            "target_format",
+            "dimensions",
+            "adapter_name"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

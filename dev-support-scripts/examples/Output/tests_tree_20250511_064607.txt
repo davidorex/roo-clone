@@ -1,0 +1,29 @@
+tests
+├── README.md
+├── conftest.py
+├── e2e/
+├── integration/
+│   ├── test_capability_negotiation.py
+│   ├── test_context_flow.py
+│   ├── test_contexts.py
+│   ├── test_cross_backend_consistency.py
+│   ├── test_embedding_integration.py
+│   ├── test_initialization.py
+│   ├── test_metadata.py
+│   └── test_vector_fields.py
+├── package/
+│   └── test_independence.py
+└── unit/
+    ├── app/
+    └── semantic/
+        ├── chunking/
+        ├── embeddings/
+        ├── linguistic/
+        │   └── test_registry.py
+        ├── tagging/
+        └── vector/
+            ├── test_contract.py
+            ├── test_error_recovery.py
+            ├── test_utils.py
+            ├── test_vector_capability_negotiation.py
+            └── test_vector_independence.py

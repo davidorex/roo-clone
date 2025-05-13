@@ -1,0 +1,34 @@
+{
+  "module": "Unit tests for vector capability negotiation system.\n\nThese tests verify the behavior of capability negotiation between\nconsumers and providers, ensuring proper matching, fallback behavior,\nand type handling.",
+  "classes": {},
+  "functions": {
+    "test_exact_capability_match": {
+      "docstring": "Test negotiation when exact capabilities are requested.",
+      "args": []
+    },
+    "test_intersection_capability_match": {
+      "docstring": "Test negotiation when multiple capabilities are requested and some match.",
+      "args": []
+    },
+    "test_fallback_for_empty_intersection": {
+      "docstring": "Test fallback behavior when capability intersection is empty.",
+      "args": []
+    },
+    "test_return_type_handling": {
+      "docstring": "Test correct type handling based on CAPABILITY_RETURN_MODES.",
+      "args": []
+    },
+    "test_nested_capability_handling": {
+      "docstring": "Test negotiation of nested capability structures.",
+      "args": []
+    },
+    "test_cross_backend_consistency": {
+      "docstring": "Test that capability negotiation is consistent across backends.",
+      "args": []
+    },
+    "test_capability_provider_selection": {
+      "docstring": "Test selecting providers based on capabilities.",
+      "args": []
+    }
+  }
+}

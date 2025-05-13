@@ -1,0 +1,55 @@
+{
+  "module": null,
+  "classes": {
+    "NLPService": {
+      "docstring": "Service for natural language processing operations.",
+      "methods": {
+        "__init__": {
+          "docstring": "Initialize NLP service with models.\n        \n        Args:\n            use_local_only (bool): If True, only use local models and never download.\n                                   Default is True to prevent network issues.",
+          "args": [
+            "use_local_only"
+          ]
+        },
+        "extract_tags": {
+          "docstring": "Extract tags from text using multiple strategies.",
+          "args": [
+            "text",
+            "min_confidence",
+            "normalize"
+          ]
+        },
+        "extract_keywords": {
+          "docstring": "Extract keywords using KeyBERT.",
+          "args": [
+            "text"
+          ]
+        },
+        "extract_technical_terms": {
+          "docstring": "Extract technical terminology using regex patterns.",
+          "args": [
+            "text"
+          ]
+        },
+        "extract_textrank_phrases": {
+          "docstring": "Extract key phrases using TextRank.",
+          "args": [
+            "text"
+          ]
+        },
+        "_normalize_tags": {
+          "docstring": "Normalize and deduplicate tags.",
+          "args": [
+            "tags"
+          ]
+        },
+        "_dictionary_normalize": {
+          "docstring": "Apply dictionary normalization to tags.",
+          "args": [
+            "tags"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

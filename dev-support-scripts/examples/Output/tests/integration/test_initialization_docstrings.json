@@ -1,0 +1,54 @@
+{
+  "module": "Integration tests for service initialization and import sequences.\n\nThese tests verify that services initialize correctly regardless of\nthe order of initialization and import sequence, avoiding circular imports.",
+  "classes": {},
+  "functions": {
+    "test_initialization_order_independence": {
+      "docstring": "Test that initialization order doesn't affect adapter registration.",
+      "args": [
+        "reset_registries"
+      ]
+    },
+    "test_import_sequence_stability": {
+      "docstring": "Test that import order doesn't cause circular import problems.",
+      "args": [
+        "reset_registries"
+      ]
+    },
+    "test_adapter_registration_completeness": {
+      "docstring": "Test that all expected adapters are registered.",
+      "args": [
+        "reset_registries"
+      ]
+    },
+    "test_adapter_bidirectional_availability": {
+      "docstring": "Test that adapters are available in both directions.",
+      "args": [
+        "reset_registries"
+      ]
+    },
+    "test_error_recovery_during_initialization": {
+      "docstring": "Test recovery from errors during initialization.",
+      "args": [
+        "reset_registries"
+      ]
+    },
+    "test_lazy_loading_patterns": {
+      "docstring": "Test that lazy loading patterns work correctly with initializations.",
+      "args": [
+        "reset_registries"
+      ]
+    },
+    "test_registry_state_isolation": {
+      "docstring": "Test that registry state is properly isolated between tests.",
+      "args": [
+        "reset_registries"
+      ]
+    },
+    "test_embedding_system_initialization": {
+      "docstring": "Test initialization of the embedding system with other subsystems.",
+      "args": [
+        "reset_registries"
+      ]
+    }
+  }
+}

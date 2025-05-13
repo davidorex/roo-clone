@@ -1,0 +1,5 @@
+{
+  "module": "Services for the Git Commit Viewer application.\n\nThis package contains service classes and utility functions that provide\nfunctionality to the application, particularly for embedding generation\nand processing.",
+  "classes": {},
+  "functions": {}
+}

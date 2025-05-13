@@ -1,0 +1,15 @@
+{
+  "module": null,
+  "classes": {
+    "PgvectorConfig": {
+      "docstring": "Configuration for the pgvector app.",
+      "methods": {
+        "ready": {
+          "docstring": "Register lookups when the app is ready.",
+          "args": []
+        }
+      }
+    }
+  },
+  "functions": {}
+}

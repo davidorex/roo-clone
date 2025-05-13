@@ -1,0 +1,81 @@
+{
+  "module": "Decorators for semantic model handling.\n\nThis module provides decorators for Django models that enhance them\nwith semantic search capabilities and vector operations.",
+  "classes": {},
+  "functions": {
+    "semantic_unit": {
+      "docstring": "Decorator to mark a model as a semantic unit for retrieval with linguistic processing\n    and vector operations.\n    \n    This decorator adds metadata and helper methods to models for semantic search\n    capabilities. It marks which fields should be included in embeddings and\n    which fields may require chunking due to length. It also enables linguistic\n    processing for enhanced natural language understanding and vector operations\n    for similarity search.\n    \n    Args:\n        embedding_fields: List of fields to include in the embedding\n        chunk_fields: List of fields that may need chunking\n        linguistic_options: Model-level linguistic processing options\n        field_linguistic_options: Field-specific linguistic processing options\n        default_chunking_strategy: Default chunking strategy for all fields\n                                   (string or ChunkingStrategyType)\n        field_chunking_strategies: Field-specific chunking strategies\n        vector_options: Model-level vector operation options (similarity_metric, backend_type, etc.)\n        field_vector_options: Field-specific vector operation options\n        **kwargs: Additional options\n        \n    Returns:\n        A decorator function that enhances the model class\n        \n    Example:\n        @semantic_unit(\n            embedding_fields=['title', 'content'],\n            chunk_fields=['content'],\n            linguistic_options={\n                'processor': LinguisticProcessorType.SPACY,\n                'model_name': 'en_core_web_md',\n                'chunking': 'paragraph',\n            },\n            field_linguistic_options={\n                'content': {\n                    'chunking': 'sentence',\n                },\n                'code': {\n                    'chunking': 'token',\n                    'processor': None,  # Disable linguistic processing for code\n                }\n            },\n            default_chunking_strategy=ChunkingStrategyType.PARAGRAPH\n        )\n        class Document(models.Model):\n            title = models.CharField(max_length=200)\n            content = models.TextField()\n            code = models.TextField()",
+      "args": [
+        "embedding_fields",
+        "chunk_fields",
+        "linguistic_options",
+        "field_linguistic_options",
+        "default_chunking_strategy",
+        "field_chunking_strategies",
+        "vector_options",
+        "field_vector_options"
+      ]
+    },
+    "decorator": {
+      "docstring": null,
+      "args": [
+        "cls"
+      ]
+    },
+    "get_embedding_text": {
+      "docstring": "Combine the content of all embedding fields into a single text string.\n            \n            Returns:\n                str: The combined text content for embedding generation",
+      "args": [
+        "self"
+      ]
+    },
+    "needs_chunking": {
+      "docstring": "Check if a field needs chunking based on decorator configuration.\n            \n            Args:\n                field_name: The name of the field to check\n                \n            Returns:\n                bool: True if the field is in the chunk_fields list",
+      "args": [
+        "self",
+        "field_name"
+      ]
+    },
+    "get_chunking_context": {
+      "docstring": "Create a chunking context for a specific field.\n            \n            Args:\n                field_name: Field name to create context for\n                \n            Returns:\n                ChunkingContext object",
+      "args": [
+        "self",
+        "field_name"
+      ]
+    },
+    "get_linguistic_processor": {
+      "docstring": "Get the linguistic processor for a specific field or the model.\n            \n            Args:\n                field_name: Optional field name to get the processor for\n                \n            Returns:\n                A linguistic processor instance or None if not configured",
+      "args": [
+        "self",
+        "field_name"
+      ]
+    },
+    "get_chunking_strategy": {
+      "docstring": "Get the chunking strategy for a specific field or the model.\n            \n            Args:\n                field_name: Optional field name to get the strategy for\n                \n            Returns:\n                A chunking strategy instance",
+      "args": [
+        "self",
+        "field_name"
+      ]
+    },
+    "get_vector_context": {
+      "docstring": "Create a vector context for vector operations.\n                \n                This context contains parameters for vector search and other operations.\n                It automatically includes relevant options from the model configuration.\n                \n                Args:\n                    field_name: Optional field name to create context for\n                    \n                Returns:\n                    VectorContext object configured for this model/field",
+      "args": [
+        "self",
+        "field_name"
+      ]
+    },
+    "vector_similarity_search": {
+      "docstring": "Search for similar vectors using this model's data.\n                \n                Args:\n                    query_text: Text to search for (alternative to query_vector)\n                    query_vector: Vector to search for (alternative to query_text)\n                    embedding_service: Optional service to generate embeddings from text\n                    **kwargs: Additional search parameters (top_k, filter_expr, etc.)\n                    \n                Returns:\n                    List of VectorSearchResult objects with similarity scores",
+      "args": [
+        "self",
+        "query_text",
+        "query_vector",
+        "embedding_service"
+      ]
+    },
+    "get_vector_capabilities": {
+      "docstring": "Get negotiated capabilities for vector operations on this model.\n                \n                Args:\n                    **kwargs: Additional capability requirements\n                    \n                Returns:\n                    Dictionary of negotiated capabilities",
+      "args": [
+        "self"
+      ]
+    }
+  }
+}

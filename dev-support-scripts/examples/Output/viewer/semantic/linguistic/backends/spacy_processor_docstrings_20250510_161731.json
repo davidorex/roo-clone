@@ -1,0 +1,68 @@
+{
+  "module": null,
+  "classes": {
+    "SpacyProcessor": {
+      "docstring": "Linguistic processor implementation using spaCy.",
+      "methods": {
+        "__init__": {
+          "docstring": "Initialize the spaCy processor.\n        \n        Args:\n            model_name: Name of the spaCy model to use\n            **options: Additional options for the processor",
+          "args": [
+            "model_name"
+          ]
+        },
+        "nlp": {
+          "docstring": "Thread-safe lazy load of the spaCy model.",
+          "args": []
+        },
+        "process_text": {
+          "docstring": "Process text with the spaCy pipeline and return the Doc object.",
+          "args": [
+            "text"
+          ]
+        },
+        "extract_linguistic_units": {
+          "docstring": "Extract linguistic units using spaCy.\n        \n        Args:\n            text: Input text to process\n            unit_types: Types of units to extract ('sentences', 'noun_phrases', 'entities', etc.)\n                       If None, extracts all supported types\n        \n        Returns:\n            List of LinguisticUnit objects",
+          "args": [
+            "text",
+            "unit_types"
+          ]
+        },
+        "supported_unit_types": {
+          "docstring": "Get the list of unit types supported by this processor.",
+          "args": []
+        }
+      }
+    },
+    "SpacyBoundaryProvider": {
+      "docstring": "Boundary provider using spaCy for linguistic boundary detection.",
+      "methods": {
+        "__init__": {
+          "docstring": null,
+          "args": [
+            "model_name"
+          ]
+        },
+        "capabilities": {
+          "docstring": "Get capabilities of this boundary provider.",
+          "args": [
+            "cls"
+          ]
+        },
+        "set_negotiated_capabilities": {
+          "docstring": "Store the negotiated capabilities.",
+          "args": [
+            "capabilities"
+          ]
+        },
+        "get_boundaries": {
+          "docstring": "Get text boundaries using spaCy.\n        \n        Args:\n            text: Text to analyze\n            boundary_types: Types of boundaries to detect\n            **options: Additional options for boundary detection\n            \n        Returns:\n            List of boundary dictionaries",
+          "args": [
+            "text",
+            "boundary_types"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

@@ -1,0 +1,82 @@
+{
+  "module": "Registry system for embedding provider implementations.\n\nThis module implements a specialized registry for embedders following the\nUnified Registry System pattern. It provides:\n\n1. A standardized Embedder interface (abstract base class)\n2. The EmbeddingRegistry with context-aware instance creation\n3. Configuration-based embedder instantiation\n4. Advanced caching for embedder instances\n5. Dimension synchronization for vector embeddings",
+  "classes": {
+    "Embedder": {
+      "docstring": "Abstract base class for all embedders.",
+      "methods": {
+        "embed": {
+          "docstring": "Generate embedding vector for text.\n        \n        Args:\n            text: Text to embed\n            \n        Returns:\n            Vector representation as list of floats",
+          "args": [
+            "text"
+          ]
+        },
+        "dimensions": {
+          "docstring": "Get the dimensions of the embeddings produced.\n        \n        Returns:\n            Number of dimensions in the embedding vectors",
+          "args": []
+        },
+        "from_config": {
+          "docstring": "Create embedder from configuration.\n        \n        Args:\n            config: Database configuration object\n            \n        Returns:\n            Configured embedder instance",
+          "args": [
+            "cls",
+            "config"
+          ]
+        }
+      }
+    },
+    "EmbeddingRegistry": {
+      "docstring": "Registry for embedding implementations.",
+      "methods": {
+        "create_from_config": {
+          "docstring": "Create embedder from database configuration with dimension synchronization.\n        \n        Args:\n            config: Database configuration object\n            \n        Returns:\n            Configured embedder instance",
+          "args": [
+            "cls",
+            "config"
+          ]
+        },
+        "get_active_embedder": {
+          "docstring": "Get embedder using the active configuration.\n        \n        Returns:\n            Active embedder instance\n            \n        Raises:\n            ValueError: If no active configuration is found",
+          "args": [
+            "cls"
+          ]
+        },
+        "get_cached_active_embedder": {
+          "docstring": "Get a cached instance of the active embedder.\n        \n        Creates the embedder if not in cache or if cache has expired.\n        \n        Args:\n            cache_id: Cache identifier (default: \"active_embedder\")\n            \n        Returns:\n            Cached embedder instance",
+          "args": [
+            "cls",
+            "cache_id"
+          ]
+        },
+        "detect_content_type": {
+          "docstring": "Detect content type using the tagging system.\n        \n        Args:\n            text: Text to analyze\n            \n        Returns:\n            Content type string ('code', 'prose', 'mixed', etc.)",
+          "args": [
+            "cls",
+            "text"
+          ]
+        },
+        "create_for_content": {
+          "docstring": "Create an appropriate embedder based on content analysis.\n        \n        Args:\n            text: Text to analyze and embed\n            context: Optional context object\n            **kwargs: Additional options\n            \n        Returns:\n            Embedder optimized for the detected content type",
+          "args": [
+            "cls",
+            "text",
+            "context"
+          ]
+        },
+        "create_for_content_type": {
+          "docstring": "Create an appropriate embedder for a specific content type.\n        \n        Args:\n            content_type: Type of content ('code', 'text', 'mixed', etc.)\n            context: Embedding context with additional settings\n            **kwargs: Additional options for the embedder\n            \n        Returns:\n            Embedder optimized for the content type",
+          "args": [
+            "cls",
+            "content_type",
+            "context"
+          ]
+        },
+        "initialize": {
+          "docstring": "Initialize the embedding registry system.\n        \n        This method ensures all required registry lookups are\n        registered and embedded providers are properly set up.",
+          "args": [
+            "cls"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

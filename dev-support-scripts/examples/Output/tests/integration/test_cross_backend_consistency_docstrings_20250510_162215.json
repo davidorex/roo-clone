@@ -1,0 +1,38 @@
+{
+  "module": "Integration tests for cross-backend consistency.\n\nThese tests ensure that different vector backends produce\nconsistent and comparable results for the same operations.",
+  "classes": {},
+  "functions": {
+    "test_vectors": {
+      "docstring": "Generate consistent test vectors for cross-backend tests.",
+      "args": []
+    },
+    "get_available_backends": {
+      "docstring": "Get available backends for testing.",
+      "args": []
+    },
+    "test_cross_backend_consistency": {
+      "docstring": "Test that operations have consistent behavior across backends.",
+      "args": [
+        "test_vectors"
+      ]
+    },
+    "test_similarity_metric_consistency": {
+      "docstring": "Test consistency of similarity metrics across backends.",
+      "args": [
+        "test_vectors"
+      ]
+    },
+    "test_vector_format_consistency": {
+      "docstring": "Test consistency with different vector format inputs.",
+      "args": []
+    },
+    "test_empty_collection_handling": {
+      "docstring": "Test consistency in handling empty collections.",
+      "args": []
+    },
+    "test_dimension_handling": {
+      "docstring": "Test consistent handling of vector dimensions across backends.",
+      "args": []
+    }
+  }
+}

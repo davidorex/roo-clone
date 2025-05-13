@@ -1,0 +1,98 @@
+{
+  "module": "Unit tests for vector utility functions.\n\nThese tests verify that all utility functions in the vector.utils module\nwork correctly and handle edge cases appropriately.",
+  "classes": {
+    "TestVectorFormatUtils": {
+      "docstring": "Tests for vector format conversion utilities.",
+      "methods": {
+        "test_normalize_vector_format": {
+          "docstring": "Test vector format normalization.",
+          "args": []
+        },
+        "test_ensure_dimensions": {
+          "docstring": "Test dimension adjustment.",
+          "args": []
+        },
+        "test_vector_to_db_string": {
+          "docstring": "Test conversion to database string format.",
+          "args": []
+        },
+        "test_vector_to_db_string_invisible_commas_fix": {
+          "docstring": "Test specifically for the 'invisible commas' issue fixed in this refactoring.",
+          "args": []
+        }
+      }
+    },
+    "TestSimilarityCalculations": {
+      "docstring": "Tests for similarity calculation utilities.",
+      "methods": {
+        "test_calculate_cosine_similarity": {
+          "docstring": "Test cosine similarity calculation.",
+          "args": []
+        },
+        "test_calculate_euclidean_distance": {
+          "docstring": "Test Euclidean distance calculation.",
+          "args": []
+        },
+        "test_calculate_dot_product": {
+          "docstring": "Test dot product calculation.",
+          "args": []
+        },
+        "test_similarity_to_score": {
+          "docstring": "Test conversion of raw similarity values to normalized scores.",
+          "args": []
+        }
+      }
+    },
+    "TestMetadataUtils": {
+      "docstring": "Tests for metadata handling utilities.",
+      "methods": {
+        "test_get_original_metadata": {
+          "docstring": "Test extracting original metadata.",
+          "args": []
+        },
+        "test_get_metadata_source_type": {
+          "docstring": "Test getting source type from metadata.",
+          "args": []
+        },
+        "test_preserve_metadata": {
+          "docstring": "Test standardizing metadata.",
+          "args": []
+        }
+      }
+    },
+    "TestFilterUtils": {
+      "docstring": "Tests for filter matching utilities.",
+      "methods": {
+        "test_matches_filter": {
+          "docstring": "Test filter matching logic.",
+          "args": []
+        }
+      }
+    },
+    "TestDimensionsUtils": {
+      "docstring": "Tests for dimension handling utilities.",
+      "methods": {
+        "test_get_vector_dimensions_app_config": {
+          "docstring": "Test getting dimensions from app config.",
+          "args": []
+        },
+        "test_get_vector_dimensions_settings": {
+          "docstring": "Test getting dimensions from Django settings.",
+          "args": []
+        },
+        "test_get_vector_dimensions_default": {
+          "docstring": "Test getting default dimensions when all lookups fail.",
+          "args": []
+        },
+        "mock_getattr": {
+          "docstring": null,
+          "args": [
+            "s",
+            "name"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

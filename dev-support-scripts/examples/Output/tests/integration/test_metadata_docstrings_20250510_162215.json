@@ -1,0 +1,37 @@
+{
+  "module": "Integration tests for metadata transformation across subsystem boundaries.\n\nThese tests verify that metadata is properly preserved during cross-system \nconversions, particularly in round-trip scenarios where data passes through\nmultiple subsystems.",
+  "classes": {},
+  "functions": {
+    "test_metadata_preservation_in_roundtrip": {
+      "docstring": "Test that metadata is preserved in round-trip conversions.",
+      "args": [
+        "reset_registries"
+      ]
+    },
+    "test_nested_metadata_handling": {
+      "docstring": "Test that deeply nested metadata structures are preserved.",
+      "args": [
+        "reset_registries"
+      ]
+    },
+    "test_empty_metadata_handling": {
+      "docstring": "Test conversions with null or empty metadata.",
+      "args": [
+        "reset_registries"
+      ]
+    },
+    "test_metadata_source_type_tracking": {
+      "docstring": "Test that source type information is preserved in metadata.",
+      "args": [
+        "reset_registries"
+      ]
+    },
+    "test_cross_system_metadata_consistency": {
+      "docstring": "Test metadata consistency across all three systems.",
+      "args": [
+        "reset_registries",
+        "sample_texts"
+      ]
+    }
+  }
+}

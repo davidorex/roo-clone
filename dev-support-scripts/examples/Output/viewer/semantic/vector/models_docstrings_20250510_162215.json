@@ -1,0 +1,36 @@
+{
+  "module": null,
+  "classes": {
+    "VectorContext": {
+      "docstring": "Context object that flows through vector operations.\n    Contains parameters, metadata, and execution context for vector operations.\n    \n    Also serves as execution context for context-aware registry methods.",
+      "methods": {
+        "with_updates": {
+          "docstring": "Create a new context with updated values.",
+          "args": []
+        }
+      }
+    },
+    "VectorSearchResult": {
+      "docstring": "Standardized result format for vector searches.\n    Ensures consistency across different backends.",
+      "methods": {
+        "similarity": {
+          "docstring": "Get similarity score (alias for score).",
+          "args": []
+        }
+      }
+    },
+    "SimilarityMetric": {
+      "docstring": "Standard similarity metrics supported across backends.",
+      "methods": {
+        "from_string": {
+          "docstring": "Convert string to enum value with fallback to COSINE.",
+          "args": [
+            "cls",
+            "value"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

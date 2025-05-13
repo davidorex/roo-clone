@@ -1,0 +1,17 @@
+{
+  "module": "Centralized adapter registration for cross-subsystem integration.\n\nThis module owns all cross-system type conversion adapters to break circular \nimport dependencies between subsystems. Instead of each subsystem registering\nadapters for other subsystems (which creates import loops), all adapter \nregistration happens in this central module.",
+  "classes": {},
+  "functions": {
+    "initialize_cross_system_adapters": {
+      "docstring": "Initialize all cross-system adapters in the correct order.",
+      "args": []
+    },
+    "_preserve_metadata": {
+      "docstring": "Standardize metadata handling across conversions.\n        \n        If original_metadata contains a '_source_metadata' key, it's a nested structure\n        that should be unpacked. Otherwise, wrap it in our standardized format.",
+      "args": [
+        "original_metadata",
+        "source_type"
+      ]
+    }
+  }
+}

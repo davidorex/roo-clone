@@ -1,0 +1,118 @@
+{
+  "module": null,
+  "classes": {
+    "VectorBackendType": {
+      "docstring": "Type-safe enumeration of vector database backends.",
+      "methods": {}
+    },
+    "VectorDatabase": {
+      "docstring": "Abstract base class for vector database operations.\n    Defines the contract that all vector database implementations must implement.",
+      "methods": {
+        "default_capabilities": {
+          "docstring": "Get default capabilities that apply to all instances of this vector database.\n        Use for class-level capability declarations.\n        \n        Returns:\n            Dictionary of default capabilities with their supported values",
+          "args": [
+            "cls"
+          ]
+        },
+        "capabilities": {
+          "docstring": "Get instance-specific capabilities for this vector database.\n        By default uses class default_capabilities, but can be overridden\n        for instance-specific variations.\n        \n        Returns:\n            Dictionary of capabilities with their supported values",
+          "args": []
+        },
+        "negotiate_capabilities": {
+          "docstring": "Negotiate capabilities between consumer and provider.\n        \n        Args:\n            requested_capabilities: Capabilities requested by consumer\n            \n        Returns:\n            Dictionary of supported capabilities that will be provided\n            \n        Type Policy:\n            - Set-based capabilities: Always returned as lists\n              because they represent multiple concurrent capabilities\n            - Mode selection capabilities: Returned as scalars when only\n              one value is requested and matched, to simplify usage for consumers",
+          "args": [
+            "requested_capabilities"
+          ]
+        },
+        "store_vectors": {
+          "docstring": "Store vectors in the database.\n        \n        Args:\n            vectors: List of vectors to store\n            metadata: Optional metadata for each vector (same length as vectors)\n            ids: Optional custom IDs for vectors (generated if not provided)\n            collection: Optional collection/namespace name\n            \n        Returns:\n            Dictionary with operation results",
+          "args": [
+            "vectors",
+            "metadata",
+            "ids",
+            "collection"
+          ]
+        },
+        "search_vectors": {
+          "docstring": "Search for similar vectors.\n        \n        Args:\n            query_vector: Vector to search for\n            top_k: Number of results to return\n            filter_expr: Optional filter expression for metadata\n            collection: Optional collection/namespace name\n            metric: Similarity metric to use\n            include_metadata: Whether to include metadata in results\n            include_vectors: Whether to include vector data in results\n            \n        Returns:\n            List of vector search results",
+          "args": [
+            "query_vector",
+            "top_k",
+            "filter_expr",
+            "collection",
+            "metric",
+            "include_metadata",
+            "include_vectors"
+          ]
+        },
+        "delete_vectors": {
+          "docstring": "Delete vectors by ID or filter expression.\n        \n        Args:\n            ids: Optional list of vector IDs to delete\n            filter_expr: Optional filter expression to match vectors to delete\n            collection: Optional collection/namespace name\n            \n        Returns:\n            Dictionary with operation results",
+          "args": [
+            "ids",
+            "filter_expr",
+            "collection"
+          ]
+        },
+        "create_collection": {
+          "docstring": "Create a new vector collection/index.\n        \n        Args:\n            name: Collection name\n            dimensions: Vector dimensions\n            metric: Similarity metric\n            metadata_schema: Optional schema for metadata fields\n            \n        Returns:\n            Dictionary with operation results",
+          "args": [
+            "name",
+            "dimensions",
+            "metric",
+            "metadata_schema"
+          ]
+        }
+      }
+    },
+    "ConnectionConfiguration": {
+      "docstring": "Abstract base class for vector database connection configuration.\n    Provides standardized access to connection parameters across backends.",
+      "methods": {
+        "get_connection_params": {
+          "docstring": "Get parameters required for establishing a connection.\n        \n        Returns:\n            Dictionary of connection parameters",
+          "args": []
+        },
+        "get_options": {
+          "docstring": "Get additional options for configuring the database.\n        \n        Returns:\n            Dictionary of additional options",
+          "args": []
+        },
+        "from_settings": {
+          "docstring": "Create configuration from Django settings.\n        \n        Args:\n            settings_dict: Optional settings dictionary (uses Django settings if not provided)\n            \n        Returns:\n            ConnectionConfiguration instance",
+          "args": [
+            "cls",
+            "settings_dict"
+          ]
+        },
+        "from_env": {
+          "docstring": "Create configuration from environment variables.\n        \n        Returns:\n            ConnectionConfiguration instance",
+          "args": [
+            "cls"
+          ]
+        }
+      }
+    },
+    "VectorAdapter": {
+      "docstring": "Integration interface for adapting vectors between subsystems.\n    Establishes formal boundary between vector subsystem and other subsystems.",
+      "methods": {
+        "default_capabilities": {
+          "docstring": "Get default capabilities that apply to all instances of this adapter.\n        \n        Returns:\n            Dictionary of default capabilities with their supported values",
+          "args": [
+            "cls"
+          ]
+        },
+        "capabilities": {
+          "docstring": "Get instance-specific capabilities for this adapter.\n        By default uses class default_capabilities, but can be overridden\n        for instance-specific variations.\n        \n        Returns:\n            Dictionary of capabilities with their supported values",
+          "args": []
+        },
+        "adapt_vector": {
+          "docstring": "Adapt a vector to the target format and dimensions.\n        \n        Args:\n            vector: Input vector in any supported format\n            target_format: Desired output format\n            target_dimensions: Optional target dimensions (if resizing needed)\n            \n        Returns:\n            Adapted vector in the target format and dimensions",
+          "args": [
+            "vector",
+            "target_format",
+            "target_dimensions"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

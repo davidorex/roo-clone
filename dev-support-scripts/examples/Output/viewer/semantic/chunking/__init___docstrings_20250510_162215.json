@@ -1,0 +1,31 @@
+{
+  "module": "Chunking strategies for text processing.\n\nThis package provides various strategies for chunking text content\ninto smaller pieces that fit within embedding model token limits.",
+  "classes": {},
+  "functions": {
+    "register_chunking_strategy": {
+      "docstring": "Decorator to register a chunking strategy.",
+      "args": [
+        "name_or_enum"
+      ]
+    },
+    "get_chunking_strategy": {
+      "docstring": "Get a chunking strategy by name or enum.",
+      "args": [
+        "name_or_enum"
+      ]
+    },
+    "get_cached_strategy": {
+      "docstring": "Get a cached chunking strategy by name or enum.",
+      "args": [
+        "name_or_enum",
+        "cache_id"
+      ]
+    },
+    "create_for_content_type": {
+      "docstring": "Create appropriate chunking strategy for a content type.",
+      "args": [
+        "content_type"
+      ]
+    }
+  }
+}

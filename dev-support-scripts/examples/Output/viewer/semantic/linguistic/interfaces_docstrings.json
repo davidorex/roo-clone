@@ -1,0 +1,71 @@
+{
+  "module": null,
+  "classes": {
+    "LinguisticProcessorType": {
+      "docstring": "Type-safe enumeration of linguistic processor types.",
+      "methods": {}
+    },
+    "LinguisticProcessor": {
+      "docstring": "Abstract base class for linguistic processors.\n    Defines the contract that all processors must implement.",
+      "methods": {
+        "process_text": {
+          "docstring": "Process text with the full NLP pipeline and return a processor-specific document.",
+          "args": [
+            "text"
+          ]
+        },
+        "extract_linguistic_units": {
+          "docstring": "Extract structured linguistic units from text.\n        \n        Args:\n            text: Input text to process\n            unit_types: Optional list of unit types to extract (e.g., 'sentences', 'noun_phrases')\n                        If None, extracts all supported unit types\n                        \n        Returns:\n            List of LinguisticUnit objects",
+          "args": [
+            "text",
+            "unit_types"
+          ]
+        },
+        "supported_unit_types": {
+          "docstring": "Get the list of linguistic unit types supported by this processor.\n        \n        Returns:\n            List of supported unit type names (e.g., 'sentences', 'noun_phrases')",
+          "args": []
+        }
+      }
+    },
+    "LinguisticStrategyType": {
+      "docstring": "Type-safe enumeration of linguistic strategy types.",
+      "methods": {}
+    },
+    "LinguisticStrategy": {
+      "docstring": "Abstract base class for atomic linguistic strategies.\n    Each strategy performs a single focused linguistic operation.",
+      "methods": {
+        "process": {
+          "docstring": "Process the linguistic context and return the updated context.\n        \n        Args:\n            context: The linguistic context to process\n            \n        Returns:\n            The updated linguistic context",
+          "args": [
+            "context"
+          ]
+        },
+        "can_process": {
+          "docstring": "Determine if this strategy can process the given context.\n        \n        Args:\n            context: The linguistic context to check\n            \n        Returns:\n            True if this strategy can process the context, False otherwise",
+          "args": [
+            "context"
+          ]
+        }
+      }
+    },
+    "BoundaryProvider": {
+      "docstring": "Integration interface for providing text boundaries.\n    Establishes a formal boundary between linguistic and chunking subsystems.",
+      "methods": {
+        "capabilities": {
+          "docstring": "Get declared capabilities of this boundary provider.\n        \n        Returns:\n            Dictionary of capabilities with their supported values",
+          "args": [
+            "cls"
+          ]
+        },
+        "get_boundaries": {
+          "docstring": "Get text boundaries of specified types.\n        \n        Args:\n            text: Text to analyze\n            boundary_types: Types of boundaries to detect\n            **options: Additional options for boundary detection\n            \n        Returns:\n            List of boundary dictionaries with start, end, and metadata",
+          "args": [
+            "text",
+            "boundary_types"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

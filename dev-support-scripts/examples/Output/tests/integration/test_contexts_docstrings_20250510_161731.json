@@ -1,0 +1,58 @@
+{
+  "module": "Integration tests for context object propagation across subsystem boundaries.\n\nThese tests verify that context properties are properly propagated when\ncrossing between subsystems, ensuring consistent settings and behavior.",
+  "classes": {},
+  "functions": {
+    "test_context_creation_and_inheritance": {
+      "docstring": "Test creation of BaseContext and its subclasses.",
+      "args": [
+        "reset_registries"
+      ]
+    },
+    "test_context_conversion_between_subsystems": {
+      "docstring": "Test converting context objects between subsystems.",
+      "args": [
+        "reset_registries",
+        "context_objects"
+      ]
+    },
+    "test_language_preference_propagation": {
+      "docstring": "Test that language preferences propagate across subsystems.",
+      "args": [
+        "reset_registries"
+      ]
+    },
+    "test_content_type_propagation": {
+      "docstring": "Test that content type information propagates properly.",
+      "args": [
+        "reset_registries",
+        "sample_texts"
+      ]
+    },
+    "test_linguistic_to_tagging_context_propagation": {
+      "docstring": "Test context propagation from linguistic to tagging system.",
+      "args": [
+        "reset_registries"
+      ]
+    },
+    "test_backward_compatibility": {
+      "docstring": "Test that services work with and without context objects.",
+      "args": [
+        "reset_registries",
+        "sample_texts"
+      ]
+    },
+    "test_context_to_options_conversion": {
+      "docstring": "Test converting context to options dictionary.",
+      "args": [
+        "reset_registries"
+      ]
+    },
+    "test_chunking_with_embedding_context": {
+      "docstring": "Test using embedding context with chunking service.",
+      "args": [
+        "reset_registries",
+        "sample_texts"
+      ]
+    }
+  }
+}

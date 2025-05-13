@@ -1,0 +1,21 @@
+{
+  "module": null,
+  "classes": {
+    "Command": {
+      "docstring": null,
+      "methods": {
+        "add_arguments": {
+          "docstring": "Add command arguments.",
+          "args": [
+            "parser"
+          ]
+        },
+        "handle": {
+          "docstring": "Execute the command.",
+          "args": []
+        }
+      }
+    }
+  },
+  "functions": {}
+}

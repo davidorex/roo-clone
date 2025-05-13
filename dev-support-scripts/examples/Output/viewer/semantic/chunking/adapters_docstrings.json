@@ -1,0 +1,10 @@
+{
+  "module": "Adapters for cross-system integration.\n\nThis module provides adapters between the chunking system and other\nsubsystems, enabling seamless integration across boundaries.",
+  "classes": {},
+  "functions": {
+    "initialize_adapters": {
+      "docstring": "Initialize adapters for cross-system integration.\n    \n    This function sets up adapters between types in different subsystems\n    to enable seamless conversion between them.",
+      "args": []
+    }
+  }
+}

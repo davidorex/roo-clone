@@ -1,0 +1,1136 @@
+[
+  {
+    "from_module": "viewer.models",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.semantic.vector",
+    "to_subsystem": "vector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.models",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.services.tag_normalization_service",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.apps",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.semantic.adapters",
+    "to_subsystem": "semantic_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.apps",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.semantic.linguistic",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.apps",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.semantic.chunking",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.apps",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.semantic.tagging",
+    "to_subsystem": "tagging",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.apps",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.pgvector.registry",
+    "to_subsystem": "pgvector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.apps",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.services.embedder_registry",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.apps",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.services.embedders",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.apps",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.services.embedders",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.apps",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.services.embedders",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.apps",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.services.embedder_registry",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.apps",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.services.embedder_registry",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.models_tagging",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.semantic.tagging",
+    "to_subsystem": "tagging",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.models_tagging",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.semantic.tagging",
+    "to_subsystem": "tagging",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.models_tagging",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.services.tag_normalization_service",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.views",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.services.search_service",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.views",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.services.embedder_registry",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.views",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.services.repository_processor",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.migrations.0007_commitmessagechunk_diffchunk_commit_author_email_and_more",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.pgvector.fields",
+    "to_subsystem": "pgvector",
+    "type": "import"
+  },
+  {
+    "from_module": "viewer.migrations.0007_commitmessagechunk_diffchunk_commit_author_email_and_more",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.semantic.fields",
+    "to_subsystem": "semantic_core",
+    "type": "import"
+  },
+  {
+    "from_module": "viewer.migrations.0007_commitmessagechunk_diffchunk_commit_author_email_and_more",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.semantic.mixins",
+    "to_subsystem": "semantic_core",
+    "type": "import"
+  },
+  {
+    "from_module": "viewer.migrations.0010_alter_commit_message_embedding_and_more",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.pgvector.fields",
+    "to_subsystem": "pgvector",
+    "type": "import"
+  },
+  {
+    "from_module": "viewer.migrations.0011_tagdictionary_canonicaltag_alter_commit_tags_and_more",
+    "from_subsystem": "viewer_core",
+    "to_module": "viewer.pgvector.fields",
+    "to_subsystem": "pgvector",
+    "type": "import"
+  },
+  {
+    "from_module": "viewer.pgvector.service",
+    "from_subsystem": "pgvector",
+    "to_module": "viewer.semantic.linguistic",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.pgvector.service",
+    "from_subsystem": "pgvector",
+    "to_module": "viewer.semantic.linguistic",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.pgvector.service",
+    "from_subsystem": "pgvector",
+    "to_module": "viewer.semantic.chunking",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.pgvector.service",
+    "from_subsystem": "pgvector",
+    "to_module": "viewer.semantic.chunking",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.pgvector.fields",
+    "from_subsystem": "pgvector",
+    "to_module": "viewer.semantic.vector",
+    "to_subsystem": "vector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.pgvector.registry",
+    "from_subsystem": "pgvector",
+    "to_module": "viewer.semantic.registry",
+    "to_subsystem": "semantic_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.pgvector.registry",
+    "from_subsystem": "pgvector",
+    "to_module": "viewer.semantic.vector",
+    "to_subsystem": "vector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.pgvector.registry",
+    "from_subsystem": "pgvector",
+    "to_module": "viewer.semantic.vector.service",
+    "to_subsystem": "vector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.pgvector.registry",
+    "from_subsystem": "pgvector",
+    "to_module": "viewer.semantic.vector.service",
+    "to_subsystem": "vector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.pgvector.registry",
+    "from_subsystem": "pgvector",
+    "to_module": "viewer.semantic.tagging.service",
+    "to_subsystem": "tagging",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.pgvector.expressions",
+    "from_subsystem": "pgvector",
+    "to_module": "viewer.semantic.vector",
+    "to_subsystem": "vector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.pgvector.context",
+    "from_subsystem": "pgvector",
+    "to_module": "viewer.semantic.context",
+    "to_subsystem": "semantic_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.manage_tag_dictionary",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.manage_tag_dictionary",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.manage_tag_dictionary",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.manage_tag_dictionary",
+    "from_subsystem": "management",
+    "to_module": "viewer.services.tag_normalization_service",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.generate_embeddings",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.generate_embeddings",
+    "from_subsystem": "management",
+    "to_module": "viewer.services.embedder_registry",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.generate_embeddings",
+    "from_subsystem": "management",
+    "to_module": "viewer.services.embedding_processor",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.process_linguistic",
+    "from_subsystem": "management",
+    "to_module": "viewer.semantic.linguistic",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.process_linguistic",
+    "from_subsystem": "management",
+    "to_module": "viewer.semantic.linguistic",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.process_linguistic",
+    "from_subsystem": "management",
+    "to_module": "viewer.semantic.linguistic",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.populate_self",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.populate_self",
+    "from_subsystem": "management",
+    "to_module": "viewer.services.repository_processor",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.test_dimension_fix",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.test_dimension_fix",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.test_dimension_fix",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.test_dimension_fix",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.clear_data",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.clear_data",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.clear_data",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.clear_data",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.clear_data",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.clear_data",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.clear_data",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.clear_data",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.clear_data",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.clear_data",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.import_tag_taxonomy",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.sync_vector_dimensions",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.generate_commit_tags",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.generate_commit_tags",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.generate_commit_tags",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.generate_commit_tags",
+    "from_subsystem": "management",
+    "to_module": "viewer.services.nlp_service",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.generate_commit_tags",
+    "from_subsystem": "management",
+    "to_module": "viewer.semantic.linguistic",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.generate_commit_tags",
+    "from_subsystem": "management",
+    "to_module": "viewer.semantic.linguistic",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.generate_commit_tags",
+    "from_subsystem": "management",
+    "to_module": "viewer.semantic.linguistic",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.generate_commit_tags",
+    "from_subsystem": "management",
+    "to_module": "viewer.semantic.linguistic",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.generate_commit_tags",
+    "from_subsystem": "management",
+    "to_module": "viewer.semantic.linguistic",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.generate_commit_tags",
+    "from_subsystem": "management",
+    "to_module": "viewer.semantic.linguistic",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.generate_commit_tags",
+    "from_subsystem": "management",
+    "to_module": "viewer.semantic.linguistic",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.generate_commit_tags",
+    "from_subsystem": "management",
+    "to_module": "viewer.semantic.tagging",
+    "to_subsystem": "tagging",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.generate_commit_tags",
+    "from_subsystem": "management",
+    "to_module": "viewer.semantic.tagging",
+    "to_subsystem": "tagging",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.generate_commit_tags",
+    "from_subsystem": "management",
+    "to_module": "viewer.semantic.tagging",
+    "to_subsystem": "tagging",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.add_self",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.add_self",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.add_self",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.add_self",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.evaluate_semantic_search",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.evaluate_semantic_search",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.evaluate_semantic_search",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.evaluate_semantic_search",
+    "from_subsystem": "management",
+    "to_module": "viewer.services.embedder_registry",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.evaluate_semantic_search",
+    "from_subsystem": "management",
+    "to_module": "viewer.pgvector",
+    "to_subsystem": "pgvector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.evaluate_semantic_search",
+    "from_subsystem": "management",
+    "to_module": "viewer.pgvector",
+    "to_subsystem": "pgvector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.evaluate_semantic_search",
+    "from_subsystem": "management",
+    "to_module": "viewer.services.nlp_service",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.semantic_search",
+    "from_subsystem": "management",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.semantic_search",
+    "from_subsystem": "management",
+    "to_module": "viewer.services.embedder_registry",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.management.commands.semantic_search",
+    "from_subsystem": "management",
+    "to_module": "viewer.pgvector.lookups",
+    "to_subsystem": "pgvector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.fields",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.chunking",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.fields",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.chunking",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.fields",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.chunking",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.fields",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.chunking",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.fields",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.chunking",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.registry",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.vector.utils",
+    "to_subsystem": "vector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.registry",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.vector.utils",
+    "to_subsystem": "vector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.registry",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.vector.utils",
+    "to_subsystem": "vector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.managers",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.services",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.adapters",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.linguistic.models",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.adapters",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.chunking.base",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.adapters",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.tagging.base",
+    "to_subsystem": "tagging",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.adapters",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.linguistic.registry",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.adapters",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.chunking.registry",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.adapters",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.tagging.registry",
+    "to_subsystem": "tagging",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.decorators",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.chunking",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.decorators",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.chunking",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.decorators",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.linguistic",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.decorators",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.linguistic",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.decorators",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.vector",
+    "to_subsystem": "vector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.decorators",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.vector",
+    "to_subsystem": "vector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.decorators",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.vector",
+    "to_subsystem": "vector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.decorators",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.vector",
+    "to_subsystem": "vector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.decorators",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.vector",
+    "to_subsystem": "vector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.decorators",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.chunking",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.decorators",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.semantic.chunking",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.decorators",
+    "from_subsystem": "semantic_core",
+    "to_module": "viewer.services",
+    "to_subsystem": "services",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.tagging.service",
+    "from_subsystem": "tagging",
+    "to_module": "viewer.semantic.context",
+    "to_subsystem": "semantic_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.tagging.service",
+    "from_subsystem": "tagging",
+    "to_module": "viewer.semantic.chunking",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.tagging.service",
+    "from_subsystem": "tagging",
+    "to_module": "viewer.semantic.chunking",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.tagging.registry",
+    "from_subsystem": "tagging",
+    "to_module": "viewer.semantic.registry",
+    "to_subsystem": "semantic_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.tagging.base",
+    "from_subsystem": "tagging",
+    "to_module": "viewer.semantic.registry",
+    "to_subsystem": "semantic_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.tagging.linguistic_strategy",
+    "from_subsystem": "tagging",
+    "to_module": "viewer.semantic.linguistic",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.tagging.adapters",
+    "from_subsystem": "tagging",
+    "to_module": "viewer.semantic.linguistic",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.tagging.adapters",
+    "from_subsystem": "tagging",
+    "to_module": "viewer.semantic.linguistic",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.tagging.adapters",
+    "from_subsystem": "tagging",
+    "to_module": "viewer.semantic.chunking",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.tagging.adapters",
+    "from_subsystem": "tagging",
+    "to_module": "viewer.semantic.chunking",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.chunking.service",
+    "from_subsystem": "chunking",
+    "to_module": "viewer.semantic.context",
+    "to_subsystem": "semantic_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.chunking.registry",
+    "from_subsystem": "chunking",
+    "to_module": "viewer.semantic.registry",
+    "to_subsystem": "semantic_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.chunking.base",
+    "from_subsystem": "chunking",
+    "to_module": "viewer.semantic.registry",
+    "to_subsystem": "semantic_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.chunking.adapters",
+    "from_subsystem": "chunking",
+    "to_module": "viewer.semantic.linguistic",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.chunking.adapters",
+    "from_subsystem": "chunking",
+    "to_module": "viewer.semantic.linguistic",
+    "to_subsystem": "linguistic",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.linguistic.interfaces",
+    "from_subsystem": "linguistic",
+    "to_module": "viewer.semantic.registry",
+    "to_subsystem": "semantic_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.linguistic.models",
+    "from_subsystem": "linguistic",
+    "to_module": "viewer.semantic.context",
+    "to_subsystem": "semantic_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.linguistic.registry",
+    "from_subsystem": "linguistic",
+    "to_module": "viewer.semantic.registry",
+    "to_subsystem": "semantic_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.linguistic.registry",
+    "from_subsystem": "linguistic",
+    "to_module": "viewer.semantic.registry",
+    "to_subsystem": "semantic_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.linguistic.registry",
+    "from_subsystem": "linguistic",
+    "to_module": "viewer.semantic.chunking.base",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.linguistic.boundary_provider",
+    "from_subsystem": "linguistic",
+    "to_module": "viewer.semantic.chunking",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.linguistic.boundary_provider",
+    "from_subsystem": "linguistic",
+    "to_module": "viewer.semantic.chunking",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.linguistic.boundary_provider",
+    "from_subsystem": "linguistic",
+    "to_module": "viewer.semantic.chunking",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.linguistic.boundary_provider",
+    "from_subsystem": "linguistic",
+    "to_module": "viewer.semantic.chunking",
+    "to_subsystem": "chunking",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.vector.interfaces",
+    "from_subsystem": "vector",
+    "to_module": "viewer.semantic.registry",
+    "to_subsystem": "semantic_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.semantic.vector.registry",
+    "from_subsystem": "vector",
+    "to_module": "viewer.semantic.registry",
+    "to_subsystem": "semantic_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.services.tag_normalization_service",
+    "from_subsystem": "services",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.services.tag_normalization_service",
+    "from_subsystem": "services",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.services.tag_normalization_service",
+    "from_subsystem": "services",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.services.tag_normalization_service",
+    "from_subsystem": "services",
+    "to_module": "viewer.pgvector",
+    "to_subsystem": "pgvector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.services.tag_normalization_service",
+    "from_subsystem": "services",
+    "to_module": "viewer.pgvector",
+    "to_subsystem": "pgvector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.services.tag_normalization_service",
+    "from_subsystem": "services",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.services.embedding_processor",
+    "from_subsystem": "services",
+    "to_module": "viewer.semantic.fields",
+    "to_subsystem": "semantic_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.services.embedders",
+    "from_subsystem": "services",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.services.repository_processor",
+    "from_subsystem": "services",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.services.repository_processor",
+    "from_subsystem": "services",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.services.repository_processor",
+    "from_subsystem": "services",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.services.repository_processor",
+    "from_subsystem": "services",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.services.embedder_registry",
+    "from_subsystem": "services",
+    "to_module": "viewer.pgvector.registry",
+    "to_subsystem": "pgvector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.services.search_service",
+    "from_subsystem": "services",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.services.search_service",
+    "from_subsystem": "services",
+    "to_module": "viewer.models",
+    "to_subsystem": "viewer_core",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.services.search_service",
+    "from_subsystem": "services",
+    "to_module": "viewer.pgvector",
+    "to_subsystem": "pgvector",
+    "type": "from"
+  },
+  {
+    "from_module": "viewer.services.search_service",
+    "from_subsystem": "services",
+    "to_module": "viewer.pgvector",
+    "to_subsystem": "pgvector",
+    "type": "from"
+  }
+]

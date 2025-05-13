@@ -1,0 +1,51 @@
+{
+  "module": "Chunking services for breaking text into smaller pieces for embedding.\n\nThis module provides services for chunking text content into smaller pieces\nthat fit within embedding model token limits while preserving context.",
+  "classes": {
+    "ChunkingService": {
+      "docstring": "Service responsible for chunking text content into smaller pieces\n    that fit within embedding model token limits while preserving context.",
+      "methods": {
+        "__init__": {
+          "docstring": "Initialize the chunking service with a specific tokenizer.\n        \n        Args:\n            tokenizer_name: Name of the tiktoken tokenizer to use\n            max_tokens: Maximum tokens per chunk (defaults to settings)",
+          "args": [
+            "tokenizer_name",
+            "max_tokens"
+          ]
+        },
+        "chunk_text": {
+          "docstring": "Split text into chunks that don't exceed token limit.\n        \n        Args:\n            text: Text to chunk\n            max_tokens: Maximum tokens per chunk (overrides instance setting)\n            max_chunks: Maximum number of chunks to return (None for unlimited)\n            \n        Returns:\n            List of dictionaries with text chunks and token counts",
+          "args": [
+            "text",
+            "max_tokens",
+            "max_chunks"
+          ]
+        },
+        "_chunk_text_by_chars": {
+          "docstring": "Fallback method that chunks text by character count when tokenizer is not available.\n        \n        Args:\n            text: Text to chunk\n            char_limit: Maximum characters per chunk\n            max_chunks: Maximum number of chunks to return (None for unlimited)\n            \n        Returns:\n            List of dictionaries with text chunks",
+          "args": [
+            "text",
+            "char_limit",
+            "max_chunks"
+          ]
+        },
+        "chunk_with_context": {
+          "docstring": "Create chunks with overlapping context to maintain coherence.\n        \n        Args:\n            text: Text to chunk (assumed to be line-based like code)\n            context_lines: Number of context lines to preserve\n            max_chunks: Maximum number of chunks to return (None for unlimited)\n            \n        Returns:\n            List of dictionaries with content and context",
+          "args": [
+            "text",
+            "context_lines",
+            "max_chunks"
+          ]
+        },
+        "process_model_field": {
+          "docstring": "Process a specific field of a model instance, creating chunks.\n        \n        Args:\n            model_instance: The model instance to process\n            field_name: Name of the field to chunk\n            chunk_model_name: Name of the model to store chunks in\n            max_chunks: Maximum number of chunks to create (None for unlimited)\n            \n        Returns:\n            List of created chunk instances",
+          "args": [
+            "model_instance",
+            "field_name",
+            "chunk_model_name",
+            "max_chunks"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

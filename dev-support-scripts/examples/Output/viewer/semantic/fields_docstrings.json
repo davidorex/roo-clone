@@ -1,0 +1,47 @@
+{
+  "module": "Custom field types for semantic models.\n\nThis module provides custom Django model fields that enhance models with\nsemantic capabilities, particularly for handling long text content that\nneeds to be chunked for embedding.",
+  "classes": {
+    "ChunkableTextField": {
+      "docstring": "A text field that automatically handles chunking for long content.\n    \n    This field extends the standard TextField but adds functionality to\n    automatically chunk content that exceeds token limits for embedding\n    models. It works with a related chunk model to store the chunked content.\n    \n    Example:\n        class Article(models.Model):\n            title = models.CharField(max_length=200)\n            content = ChunkableTextField(\n                chunk_model='ArticleChunk',\n                max_tokens=1000\n            )\n            \n        # Will generate methods:\n        article.get_content_chunks()  # Returns all chunks for this field",
+      "methods": {
+        "__init__": {
+          "docstring": "Initialize the chunkable text field.\n        \n        Args:\n            chunk_model: The model to use for chunks\n            max_tokens: Maximum tokens per chunk\n            chunking_strategy: Strategy for chunking (string or ChunkingStrategyType)\n            strategy_options: Options for the chunking strategy\n            *args, **kwargs: Arguments for the parent TextField",
+          "args": []
+        },
+        "deconstruct": {
+          "docstring": "Deconstruct the field for migrations.\n        \n        Returns:\n            tuple: (name, path, args, kwargs) for field reconstruction",
+          "args": []
+        },
+        "contribute_to_class": {
+          "docstring": "Add helper methods to the model class.\n        \n        Args:\n            cls: The model class\n            name: The name of the field\n            **kwargs: Additional arguments",
+          "args": [
+            "cls",
+            "name"
+          ]
+        },
+        "get_chunks_method": {
+          "docstring": "Get all chunks for this field.\n            \n            Returns:\n                QuerySet: All chunks for this field, ordered by chunk_index",
+          "args": [
+            "instance"
+          ]
+        },
+        "needs_chunking_method": {
+          "docstring": "Check if the field content needs chunking based on token count and strategy.\n            \n            Returns:\n                bool: True if the field content needs chunking",
+          "args": [
+            "instance"
+          ]
+        },
+        "create_chunks_method": {
+          "docstring": "Create chunks for this field and store them in the chunk model.\n            \n            Args:\n                processor: Optional processing function for customizing chunking logic\n                strategy: Override chunking strategy (string or ChunkingStrategyType)\n                strategy_opts: Options for the chunking strategy\n                \n            Returns:\n                list: The created chunk objects",
+          "args": [
+            "instance",
+            "processor",
+            "strategy",
+            "strategy_opts"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}

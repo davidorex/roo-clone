@@ -1,0 +1,63 @@
+{
+  "module": null,
+  "classes": {
+    "TagNormalizationService": {
+      "docstring": "Service for tag normalization and dictionary management.",
+      "methods": {
+        "__init__": {
+          "docstring": "Initialize with optional specific dictionary.",
+          "args": [
+            "dictionary_id"
+          ]
+        },
+        "normalize_tag": {
+          "docstring": "Convert tag to its canonical form.",
+          "args": [
+            "tag_text"
+          ]
+        },
+        "_clean_text": {
+          "docstring": "Clean and standardize tag text.",
+          "args": [
+            "text"
+          ]
+        },
+        "_lemmatize": {
+          "docstring": "Convert to base form using spaCy.",
+          "args": [
+            "text"
+          ]
+        },
+        "_find_similar_tag": {
+          "docstring": "Find similar canonical tag by embedding similarity.",
+          "args": [
+            "text",
+            "threshold"
+          ]
+        },
+        "get_or_create_canonical": {
+          "docstring": "Get canonical tag or create one if it doesn't exist.",
+          "args": [
+            "tag_text",
+            "category",
+            "description"
+          ]
+        },
+        "suggest_parent": {
+          "docstring": "Suggest a parent tag based on semantic similarity.",
+          "args": [
+            "tag"
+          ]
+        },
+        "generate_tag_embeddings": {
+          "docstring": "Generate embeddings for tags.",
+          "args": [
+            "tags",
+            "batch_size"
+          ]
+        }
+      }
+    }
+  },
+  "functions": {}
+}
