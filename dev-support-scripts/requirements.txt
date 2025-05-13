@@ -5,6 +5,3 @@ rich>=13.0.0
 
 # Optional dependencies that may be useful
 pandas>=2.0.0  # For data manipulation in analysis scripts
-matplotlib>=3.7.0  # For visualization in some reports
-networkx>=3.0  # For graph operations in dependency analysis
-termcolor>=2.3.0  # For colored terminal output
