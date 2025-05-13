@@ -76,11 +76,60 @@ dev-support-scripts/Output/
 dev-support-scripts/requirements.txt
 ```
 
+## Output File Conventions
+
+All scripts will use consistent, predictable output paths and filenames:
+
+1. **Hard-coded Base Directories**: All output goes to predetermined paths under `dev-support-scripts/output/`
+2. **Timestamped Filenames**: All output files include ISO-format timestamps (YYYYMMDD_HHMMSS)
+3. **Component Prefixes**: When analyzing specific components, filenames include the component name
+
+Example directory structure:
+```
+dev-support-scripts/
+├── output/
+│   ├── dependency_graph/
+│   │   └── dependency_graph_20250514_053000.json
+│   ├── api_contracts/
+│   │   └── core_api_contracts_20250514_053100.json
+│   └── test_coverage/
+│       └── test_coverage_summary_20250514_053200.json
+```
+
 ## Script-Specific Adaptations
 
 ### Dependency Graph Generator
 
 ```python
+def generate_dependency_graph(src_dir):
+    # Generate timestamp for filename
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    
+    # Hard-coded output directory
+    output_dir = os.path.join(os.path.dirname(__file__), "output", "dependency_graph")
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Fixed filename pattern with timestamp
+    output_file = os.path.join(output_dir, f"dependency_graph_{timestamp}.json")
+    
+    # Extract imports using tree-sitter
+    imports = []
+    for file_path in find_typescript_files(src_dir):
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+            file_imports = extract_typescript_imports(content, parser, query)
+            imports.extend(file_imports)
+    
+    # Process imports to build graph
+    graph = build_graph(imports)
+    
+    # Write to timestamped output file
+    with open(output_file, 'w', encoding='utf-8') as f:
+        json.dump(graph, f, indent=2)
+    
+    print(f"Dependency graph generated: {output_file}")
+    return output_file
+
 def extract_typescript_imports(file_content, parser, query):
     """Extract imports from TypeScript files using tree-sitter."""
     tree = parser.parse(bytes(file_content, "utf8"))
@@ -93,13 +142,40 @@ def extract_typescript_imports(file_content, parser, query):
             # ...
     
     return imports
-
-# Main function would then process these imports to build the dependency graph
 ```
 
 ### API Contract Analyzer
 
 ```python
+def analyze_api_contracts(component_pattern):
+    # Generate timestamp for filename
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    
+    # Hard-coded output directory
+    output_dir = os.path.join(os.path.dirname(__file__), "output", "api_contracts")
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Component name used in filename
+    component_slug = component_pattern.replace("/", "-").replace(".", "-")
+    
+    # Fixed filename pattern with timestamp
+    output_file = os.path.join(output_dir, f"{component_slug}_api_contracts_{timestamp}.json")
+    
+    # Extract interfaces
+    interfaces = []
+    for file_path in find_typescript_files(component_pattern):
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+            file_interfaces = extract_typescript_interfaces(content, parser, query)
+            interfaces.extend(file_interfaces)
+    
+    # Write to timestamped output file
+    with open(output_file, 'w', encoding='utf-8') as f:
+        json.dump(interfaces, f, indent=2)
+    
+    print(f"API contracts generated: {output_file}")
+    return output_file
+
 def extract_typescript_interfaces(file_content, parser, query):
     """Extract interface definitions from TypeScript files."""
     tree = parser.parse(bytes(file_content, "utf8"))
@@ -122,14 +198,15 @@ def extract_typescript_interfaces(file_content, parser, query):
 # Activate the Python environment
 cd dev-support-scripts
 
-# Run the analysis on the TypeScript codebase
-python dependency_graph_generator.py --src-dir ../src --output-dir ./Output/dependency_graph
+# Run the analysis - note no output path needed, it's hardcoded in the script
+python dependency_graph_generator.py --src-dir ../src
 ```
 
 ### Generating API Contract Documentation
 
 ```bash
-python api_contract_analyzer.py --component-pattern "src/core" --output-dir ./Output/api_contracts
+# No output directory needed - script uses timestamp and hard-coded paths
+python api_contract_analyzer.py --component-pattern "src/core"
 ```
 
 ## Benefits of This Approach
