@@ -86,7 +86,7 @@ It synchronizes with the core extension through VSCode's message passing system 
 
 The Cline class is the heart of the extension, managing task execution, state persistence, and tool coordination. Each task runs in its own instance of the Cline class, ensuring isolation and proper state management.
 
-### Task Execution Loop
+### Task Execution Loop -- This is something I want to re-architect: not a loop: not a mad-rush to task completion: the conversation is the model I want: user states, ai responds and action stops; user states, ai responds and stops;
 
 The core task execution loop follows this pattern:
 
