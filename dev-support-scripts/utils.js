@@ -44,10 +44,17 @@ function writeJsonFile(filePath, data, indent = 2, includeTimestamp = false) {
 function readJsonFile(filePath) {
 	try {
 		if (fs.existsSync(filePath)) {
-			const rawData = fs.readFileSync(filePath, "utf8");
-			// Remove leading comments if any (// or /* */ style)
-			const jsonString = rawData.replace(/^\s*(\/\/.*|\/\*[\s\S]*?\*\/)\s*/gm, '');
-			return JSON.parse(jsonString);
+			let rawData = fs.readFileSync(filePath, "utf8");
+            // Remove BOM if present
+            if (rawData.charCodeAt(0) === 0xFEFF) {
+                rawData = rawData.slice(1);
+            }
+			// Remove all single-line comments that start a line (possibly with leading whitespace)
+            // Remove all multi-line comments
+            const jsonString = rawData
+                .replace(/^\s*\/\/.*$/gm, '') // Remove full lines of single-line comments
+                .replace(/\/\*[\s\S]*?\*\//g, ''); // Remove multi-line comments
+			return JSON.parse(jsonString.trim()); // Trim whitespace before parsing
 		}
 		// console.warn(`File not found: ${filePath}`);
 		return null;

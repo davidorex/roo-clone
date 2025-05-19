@@ -11,6 +11,8 @@
 const fs = require("fs").promises;
 const path = require("path");
 const utils = require("./utils");
+const { Worker, isMainThread, parentPort, workerData } = require("worker_threads"); // Added missing imports
+const os = require("os"); // Was missing, needed for cpuCount
 const ts = require("typescript"); // For AST traversal if we implement deeper "uses_symbols"
 
 const API_CONTRACTS_DIR = utils.API_CONTRACTS_DIR;
@@ -146,24 +148,17 @@ async function findUsageLocationsHeuristic(symbolName, dependentModulePaths) {
 }
 
 
-async function main() {
-    const args = process.argv.slice(2);
-    if (args.length === 0) {
-        console.error("Usage: ./symbol_context_analyzer.js <fully_qualified_symbol_name>");
-        console.error("Example: ./symbol_context_analyzer.js src/core/Cline.Cline.initiateTaskLoop");
-        console.error("Example: ./symbol_context_analyzer.js src/utils/string.fixModelHtmlEscaping");
-        process.exit(1);
-    }
-
-    const fqn = args[0];
-    const parsedFqn = utils.parseFullyQualifiedSymbol(fqn);
-
-    if (!parsedFqn) {
-        console.error(`Invalid fully qualified symbol name: ${fqn}`);
-        process.exit(1);
-    }
-
-    const { modulePath, className, symbolName } = parsedFqn;
+/**
+ * Generates a dossier for a single symbol.
+ * @param {{modulePath: string, className: string|null, symbolName: string}} fqnDetails
+ * @param {any} safeMutationsReport - Pre-loaded safe_mutations_report.json content
+ * @param {any} circularDepsData - Pre-loaded circular_dependencies.json content
+ * @param {any} depIndex - Pre-loaded dependency_index.json content
+ * @returns {Promise<SymbolDossier | null>}
+ */
+async function generateDossierForSymbol(fqnDetails, safeMutationsReport, circularDepsData, depIndex) {
+    const { modulePath, className, symbolName } = fqnDetails;
+    const fqn = className ? `${modulePath}.${className}.${symbolName}` : `${modulePath}.${symbolName}`;
     const sanitizedModuleName = modulePath.replace(/\//g, "_").replace(/\./g, "_");
 
     /** @type {SymbolDossier} */
@@ -182,11 +177,10 @@ async function main() {
         source_file_path: path.join(utils.PROJECT_ROOT, modulePath + ".ts") // Assuming .ts
     };
 
-    // 1. Get API Contract info for the symbol
     const apiContractFile = path.join(API_CONTRACTS_DIR, `${sanitizedModuleName}_contracts.json`);
     const apiContractData = utils.readJsonFile(apiContractFile);
     const symbolApiInfo = findSymbolInApiContract(apiContractData, className, symbolName);
-    
+
     if (symbolApiInfo) {
         dossier.element_type = symbolApiInfo.elementType;
         dossier.signature = {
@@ -198,24 +192,18 @@ async function main() {
             dossier.signature.properties = Object.keys(symbolApiInfo.details.attributes || {});
         }
     } else {
-        console.warn(`Symbol ${symbolName} (class: ${className}) not found in API contracts for module ${modulePath}.`);
+        // console.warn(`Symbol ${symbolName} (class: ${className}) not found in API contracts for module ${modulePath}. Skipping dossier.`);
+        return null; // Skip if symbol definition not found
     }
 
-    // 2. Get best available docstring
     if (dossier.element_type) {
         dossier.docstring = getBestDocstring(modulePath, className, symbolName, dossier.element_type);
     }
 
-    // 3. Get module context from safe_mutations_report
-    const safeMutationsReportFile = path.join(SAFE_MUTATIONS_ANALYSIS_DIR, "safe_mutations_report.json");
-    const safeMutationsReport = utils.readJsonFile(safeMutationsReportFile);
     if (safeMutationsReport) {
         dossier.module_context = safeMutationsReport.find(card => card.module === modulePath) || null;
     }
 
-    // 4. Get cycle info
-    const circularDepsFile = path.join(DEPENDENCY_GRAPH_DIR, "circular_dependencies.json");
-    const circularDepsData = utils.readJsonFile(circularDepsFile);
     if (circularDepsData?.circular_dependencies) {
         const cycle = circularDepsData.circular_dependencies.find(c => c.includes(modulePath));
         if (cycle) {
@@ -224,9 +212,6 @@ async function main() {
         }
     }
     
-    // 5. "Used By Modules" Heuristic (Modules importing this symbol's module)
-    const depIndexFile = path.join(DEPENDENCY_GRAPH_DIR, "dependency_index.json");
-    const depIndex = utils.readJsonFile(depIndexFile);
     if (depIndex?.modules) {
         depIndex.modules.forEach(mod => {
             if (mod.dependencies?.includes(modulePath)) {
@@ -234,31 +219,184 @@ async function main() {
             }
         });
     }
-    dossier.used_by_modules_heuristic = dossier.used_by_modules_heuristic.slice(0,10); // Limit for brevity
+    dossier.used_by_modules_heuristic = dossier.used_by_modules_heuristic.slice(0,10);
 
-    // 6. "Used By Locations" Heuristic (Regex search in dependent modules)
     if (dossier.used_by_modules_heuristic.length > 0) {
-        dossier.used_by_locations_heuristic = await findUsageLocationsHeuristic(symbolName, dossier.used_by_modules_heuristic);
+        // Only search if the symbol is likely exported (heuristic: top-level or class method)
+        // More precise check would be to see if it's in module_context.exports
+        const isPotentiallyExported = !className || (className && dossier.element_type === 'method');
+        if (isPotentiallyExported) {
+             dossier.used_by_locations_heuristic = await findUsageLocationsHeuristic(symbolName, dossier.used_by_modules_heuristic);
+        }
     }
 
-    // 7. "Uses Symbols" Heuristic (TODO: Implement AST traversal for more accuracy)
-    // For now, list module-level imports as a proxy
     const moduleDepFile = path.join(DEPENDENCY_GRAPH_DIR, `${sanitizedModuleName}_dependencies.json`);
     const moduleDepData = utils.readJsonFile(moduleDepFile);
     if (moduleDepData?.imports) {
         dossier.uses_symbols_heuristic = moduleDepData.imports.map(imp => imp.module).slice(0,10);
     }
-
-    // Ensure output directory exists
-    utils.ensureDirExists(SYMBOL_CONTEXT_OUTPUT_DIR);
-
-    // Generate filename from FQN
-    const outputFileName = fqn.replace(/\//g, "_").replace(/\./g, "_") + "_dossier.json";
-    const outputFilePath = path.join(SYMBOL_CONTEXT_OUTPUT_DIR, outputFileName);
-
-    utils.writeJsonFile(outputFilePath, dossier, 2, true);
-    console.log(`Symbol dossier generated: ${outputFilePath}`);
+    return dossier;
 }
+
+/**
+ * @param {{ fqnDetailsList: {modulePath: string, className: string|null, symbolName: string}[], safeMutationsReport: any, circularDepsData: any, depIndex: any, workerId: number }} workerData
+ */
+async function workerThread() {
+    const { fqnDetailsList, safeMutationsReport, circularDepsData, depIndex, workerId } = workerData;
+    // console.log(`SymbolContext Worker ${workerId}: Processing ${fqnDetailsList.length} symbols`);
+
+    for (const fqnDetails of fqnDetailsList) {
+        try {
+            const dossier = await generateDossierForSymbol(fqnDetails, safeMutationsReport, circularDepsData, depIndex);
+            if (dossier) {
+                const fqn = fqnDetails.className ? `${fqnDetails.modulePath}.${fqnDetails.className}.${fqnDetails.symbolName}` : `${fqnDetails.modulePath}.${fqnDetails.symbolName}`;
+                const outputFileName = fqn.replace(/\//g, "_").replace(/\./g, "_") + "_dossier.json";
+                const outputFilePath = path.join(SYMBOL_CONTEXT_OUTPUT_DIR, outputFileName);
+                utils.writeJsonFile(outputFilePath, dossier, 2, false); // Timestamp not needed for individual files
+            }
+        } catch (error) {
+            const fqn = fqnDetails.className ? `${fqnDetails.modulePath}.${fqnDetails.className}.${fqnDetails.symbolName}` : `${fqnDetails.modulePath}.${fqnDetails.symbolName}`;
+            console.error(`Error generating dossier for ${fqn} in worker ${workerId}:`, error);
+        }
+    }
+    parentPort.postMessage(fqnDetailsList.length); // Send back count of processed items
+}
+
+async function main() {
+    if (!isMainThread) {
+        return workerThread();
+    }
+
+    try {
+        utils.ensureDirExists(SYMBOL_CONTEXT_OUTPUT_DIR);
+
+        // Pre-load global reports
+        const safeMutationsReportFile = path.join(SAFE_MUTATIONS_ANALYSIS_DIR, "safe_mutations_report.json");
+        const safeMutationsReport = utils.readJsonFile(safeMutationsReportFile);
+        const circularDepsFile = path.join(DEPENDENCY_GRAPH_DIR, "circular_dependencies.json");
+        const circularDepsData = utils.readJsonFile(circularDepsFile);
+        const depIndexFile = path.join(DEPENDENCY_GRAPH_DIR, "dependency_index.json");
+        const depIndex = utils.readJsonFile(depIndexFile);
+
+        if (!safeMutationsReport || !circularDepsData || !depIndex) {
+            console.error("Failed to load one or more global report files. Exiting.");
+            process.exit(1);
+        }
+
+        const apiContractsIndexFile = path.join(API_CONTRACTS_DIR, "___analysis.json");
+        const apiContractsIndex = utils.readJsonFile(apiContractsIndexFile);
+
+        if (!apiContractsIndex || !apiContractsIndex.modules) {
+            console.error("Could not read API contracts index file or it's improperly formatted.");
+            process.exit(1);
+        }
+
+        /** @type {{modulePath: string, className: string|null, symbolName: string}[]} */
+        let allFqnDetails = [];
+
+        for (const moduleEntry of apiContractsIndex.modules) {
+            const modulePath = moduleEntry.name; // Assuming name is the relative module path
+            const sanitizedModuleName = modulePath.replace(/\//g, "_").replace(/\./g, "_");
+            const apiContractFile = path.join(API_CONTRACTS_DIR, `${sanitizedModuleName}_contracts.json`);
+            const apiContractData = utils.readJsonFile(apiContractFile);
+
+            if (!apiContractData) continue;
+
+            // Top-level functions, interfaces, types, classes
+            Object.keys(apiContractData.functions || {}).forEach(funcName => allFqnDetails.push({ modulePath, className: null, symbolName: funcName }));
+            Object.keys(apiContractData.interfaces || {}).forEach(ifaceName => allFqnDetails.push({ modulePath, className: null, symbolName: ifaceName }));
+            Object.keys(apiContractData.types || {}).forEach(typeName => allFqnDetails.push({ modulePath, className: null, symbolName: typeName }));
+            Object.keys(apiContractData.classes || {}).forEach(className => {
+                allFqnDetails.push({ modulePath, className: null, symbolName: className }); // The class itself
+                const classData = apiContractData.classes[className];
+                Object.keys(classData.methods || {}).forEach(methodName => allFqnDetails.push({ modulePath, className, symbolName: methodName }));
+                Object.keys(classData.attributes || {}).forEach(propName => allFqnDetails.push({ modulePath, className, symbolName: propName }));
+            });
+        }
+        
+        console.log(`Found ${allFqnDetails.length} symbols to analyze.`);
+        if (allFqnDetails.length === 0) {
+            console.log("No symbols found to process.");
+            return;
+        }
+
+        const cpuCount = os.cpus().length;
+        const defaultMaxWorkers = Math.max(1, cpuCount > 1 ? cpuCount - 1 : 1);
+        const args = process.argv.slice(2);
+        const concurrencyArgIndex = args.indexOf("--concurrency");
+        const userMaxWorkers = concurrencyArgIndex !== -1 ? parseInt(args[concurrencyArgIndex + 1], 10) : null;
+        const maxWorkers = userMaxWorkers || defaultMaxWorkers;
+        
+        const useParallel = allFqnDetails.length > 50 && maxWorkers > 1; // Adjust threshold as needed
+        let totalProcessed = 0;
+
+        if (useParallel) {
+            console.log(`Using ${maxWorkers} worker threads for symbol context analysis.`);
+            const chunkSize = Math.ceil(allFqnDetails.length / maxWorkers);
+            const workerPayloads = [];
+            for (let i = 0; i < allFqnDetails.length; i += chunkSize) {
+                workerPayloads.push({
+                    fqnDetailsList: allFqnDetails.slice(i, i + chunkSize),
+                    safeMutationsReport,
+                    circularDepsData,
+                    depIndex,
+                    workerId: workerPayloads.length
+                });
+            }
+
+            const workerPromises = workerPayloads.map((payload) => {
+                return new Promise((resolve, reject) => {
+                    const worker = new Worker(__filename, { workerData: payload });
+                    worker.on("message", (count) => resolve(count)); // Worker sends back count of items it processed
+                    worker.on("error", reject);
+                    worker.on("exit", (code) => {
+                        if (code !== 0) {
+                            reject(new Error(`Worker ${payload.workerId} stopped with exit code ${code}`));
+                        }
+                    });
+                });
+            });
+            const counts = await Promise.all(workerPromises);
+            totalProcessed = counts.reduce((sum, count) => sum + count, 0);
+
+        } else {
+            console.log("Using sequential processing for symbol context analysis.");
+            for (const fqnDetail of allFqnDetails) {
+                try {
+                    const dossier = await generateDossierForSymbol(fqnDetail, safeMutationsReport, circularDepsData, depIndex);
+                    if (dossier) {
+                        const fqn = fqnDetail.className ? `${fqnDetail.modulePath}.${fqnDetail.className}.${fqnDetail.symbolName}` : `${fqnDetail.modulePath}.${fqnDetail.symbolName}`;
+                        const outputFileName = fqn.replace(/\//g, "_").replace(/\./g, "_") + "_dossier.json";
+                        const outputFilePath = path.join(SYMBOL_CONTEXT_OUTPUT_DIR, outputFileName);
+                        utils.writeJsonFile(outputFilePath, dossier, 2, false);
+                        totalProcessed++;
+                    }
+                } catch (error) {
+                     const fqn = fqnDetail.className ? `${fqnDetail.modulePath}.${fqnDetail.className}.${fqnDetail.symbolName}` : `${fqnDetail.modulePath}.${fqnDetail.symbolName}`;
+                    console.error(`Error generating dossier for ${fqn}:`, error);
+                }
+            }
+        }
+        
+        // Create an index file
+        const indexFilePath = path.join(SYMBOL_CONTEXT_OUTPUT_DIR, "___symbol_dossiers_index.json");
+        const indexContent = {
+            generated_on: utils.getTimestamp(),
+            command: process.argv.map(arg => arg.includes(" ") ? `"${arg}"` : arg).join(" "),
+            total_symbols_processed: totalProcessed,
+            // Could list all FQNs and their filenames here if needed, but might be very large
+        };
+        utils.writeJsonFile(indexFilePath, indexContent, 2);
+
+
+        console.log(`Symbol context analysis complete. ${totalProcessed} dossiers generated in: ${SYMBOL_CONTEXT_OUTPUT_DIR}`);
+
+    } catch (error) {
+        console.error(`Fatal error in Symbol Context Analyzer: ${error}`);
+        process.exit(1);
+    }
+}
+
 
 main().catch(error => {
     console.error("Symbol Context Analyzer Main Error:", error);
