@@ -14,3 +14,10 @@ pnpm-lock.yaml
 
 dev-support-scripts/api_contracts/
 dev-support-scripts/dependency_graph
+# Analysis script outputs
+dev-support-scripts/api_contracts/
+dev-support-scripts/dependency_graph/
+dev-support-scripts/docstring_inventory/
+dev-support-scripts/generated_docstring_inventory/
+dev-support-scripts/safe_mutations_analysis/
+dev-support-scripts/symbol_context_dossiers/
