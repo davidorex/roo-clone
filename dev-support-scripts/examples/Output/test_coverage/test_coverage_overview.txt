@@ -1,7 +1,0 @@
-Test Coverage Overview
-=====================
-
-Total components: 0
-Components with tests: 0 (0.0%)
-Total test cases: 0
-

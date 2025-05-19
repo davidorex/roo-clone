@@ -1,0 +1,91 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/shared/ClineAccount",
+  "file_path": "/Users/david/Projects/cline/src/shared/ClineAccount.ts",
+  "classes": {},
+  "interfaces": {
+    "BalanceResponse": {
+      "properties": {
+        "currentBalance": {
+          "type": "number",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "UsageTransaction": {
+      "properties": {
+        "spentAt": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "credits": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "modelProvider": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "model": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "promptTokens": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "completionTokens": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "PaymentTransaction": {
+      "properties": {
+        "paidAt": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "amountCents": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "credits": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {},
+  "functions": {},
+  "imports": [],
+  "constants": {},
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 3,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

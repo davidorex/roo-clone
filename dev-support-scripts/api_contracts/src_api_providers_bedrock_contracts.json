@@ -1,0 +1,371 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/api/providers/bedrock",
+  "file_path": "/Users/david/Projects/cline/src/api/providers/bedrock.ts",
+  "classes": {
+    "AwsBedrockHandler": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "options",
+              "required": true,
+              "type": "ApiHandlerOptions"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "AwsBedrockHandler"
+        },
+        "createMessage": {
+          "parameters": [
+            {
+              "name": "systemPrompt",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "messages",
+              "required": true,
+              "type": "Anthropic.Messages.MessageParam[]"
+            }
+          ],
+          "docstring": null,
+          "decorators": [
+            {
+              "name": "withRetry",
+              "args": [],
+              "kwargs": {}
+            }
+          ],
+          "return_type": "ApiStream"
+        },
+        "getModel": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "{ id: BedrockModelId; info: ModelInfo }"
+        },
+        "getAwsCredentials": {
+          "parameters": [],
+          "docstring": "Gets AWS credentials using the provider chain\nCentralizes credential retrieval logic for all AWS services",
+          "decorators": [],
+          "return_type": "Promise<{\n\t\taccessKeyId: string\n\t\tsecretAccessKey: string\n\t\tsessionToken?: string\n\t}>"
+        },
+        "getRegion": {
+          "parameters": [],
+          "docstring": "Gets the AWS region to use, with fallback to default",
+          "decorators": [],
+          "return_type": "string"
+        },
+        "getBedrockClient": {
+          "parameters": [],
+          "docstring": "Creates a BedrockRuntimeClient with the appropriate credentials",
+          "decorators": [],
+          "return_type": "Promise<BedrockRuntimeClient>"
+        },
+        "getAnthropicClient": {
+          "parameters": [],
+          "docstring": "Creates an AnthropicBedrock client with the appropriate credentials",
+          "decorators": [],
+          "return_type": "Promise<AnthropicBedrock>"
+        },
+        "getModelId": {
+          "parameters": [],
+          "docstring": "Gets the appropriate model ID, accounting for cross-region inference if enabled",
+          "decorators": [],
+          "return_type": "Promise<string>"
+        },
+        "withTempEnv": {
+          "parameters": [
+            {
+              "name": "updateEnv",
+              "required": true,
+              "type": "() => void"
+            },
+            {
+              "name": "fn",
+              "required": true,
+              "type": "() => Promise<R>"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<R>"
+        },
+        "setEnv": {
+          "parameters": [
+            {
+              "name": "key",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "value",
+              "required": true,
+              "type": "string | undefined"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "createDeepseekMessage": {
+          "parameters": [
+            {
+              "name": "systemPrompt",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "messages",
+              "required": true,
+              "type": "Anthropic.Messages.MessageParam[]"
+            },
+            {
+              "name": "modelId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "model",
+              "required": true,
+              "type": "{ id: BedrockModelId; info: ModelInfo }"
+            }
+          ],
+          "docstring": "Creates a message using the Deepseek R1 model through AWS Bedrock",
+          "decorators": [],
+          "return_type": "ApiStream"
+        },
+        "formatDeepseekR1Prompt": {
+          "parameters": [
+            {
+              "name": "systemPrompt",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "messages",
+              "required": true,
+              "type": "Anthropic.Messages.MessageParam[]"
+            }
+          ],
+          "docstring": "Formats prompt for DeepSeek R1 model according to documentation\nFirst uses convertToR1Format to merge consecutive messages with the same role,\nthen converts to the string format that DeepSeek R1 expects",
+          "decorators": [],
+          "return_type": "string"
+        },
+        "estimateInputTokens": {
+          "parameters": [
+            {
+              "name": "systemPrompt",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "messages",
+              "required": true,
+              "type": "Anthropic.Messages.MessageParam[]"
+            }
+          ],
+          "docstring": "Estimates token count based on text length (approximate)\nNote: This is a rough estimation, as the actual token count depends on the tokenizer",
+          "decorators": [],
+          "return_type": "number"
+        },
+        "estimateTokenCount": {
+          "parameters": [
+            {
+              "name": "text",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": "Estimates token count for a text string",
+          "decorators": [],
+          "return_type": "number"
+        },
+        "createNovaMessage": {
+          "parameters": [
+            {
+              "name": "systemPrompt",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "messages",
+              "required": true,
+              "type": "Anthropic.Messages.MessageParam[]"
+            },
+            {
+              "name": "modelId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "model",
+              "required": true,
+              "type": "{ id: BedrockModelId; info: ModelInfo }"
+            }
+          ],
+          "docstring": "Creates a message using Amazon Nova models through AWS Bedrock\nImplements support for Nova Micro, Nova Lite, and Nova Pro models",
+          "decorators": [],
+          "return_type": "ApiStream"
+        },
+        "formatNovaMessages": {
+          "parameters": [
+            {
+              "name": "messages",
+              "required": true,
+              "type": "Anthropic.Messages.MessageParam[]"
+            }
+          ],
+          "docstring": "Formats messages for Amazon Nova models according to the SDK specification",
+          "decorators": [],
+          "return_type": "{ role: ConversationRole; content: any[] }[]"
+        }
+      },
+      "attributes": {
+        "options": "ApiHandlerOptions",
+        "DEFAULT_REGION": "any"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/api/providers/bedrock.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {},
+  "types": {},
+  "functions": {},
+  "imports": [
+    {
+      "name": "AnthropicBedrock",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "Anthropic",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "withRetry",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "convertToR1Format",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiHandlerOptions",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "bedrockDefaultModelId",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "BedrockModelId",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "bedrockModels",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ModelInfo",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "calculateApiCostOpenAI",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiStream",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "fromNodeProviderChain",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "BedrockRuntimeClient",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ConversationRole",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ConverseStreamCommand",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "InvokeModelWithResponseStreamCommand",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "model": "unknown",
+    "reasoningOn": "unknown",
+    "userMsgIndices": "unknown",
+    "lastUserMsgIndex": "unknown",
+    "secondLastMsgUserIndex": "unknown",
+    "client": "unknown",
+    "stream": "unknown",
+    "usage": "unknown",
+    "modelId": "unknown",
+    "id": "unknown",
+    "providerChain": "unknown",
+    "credentials": "unknown",
+    "previousEnv": "unknown",
+    "formattedPrompt": "unknown",
+    "command": "unknown",
+    "inputTokenEstimate": "unknown",
+    "TOKEN_REPORT_THRESHOLD": "100",
+    "response": "unknown",
+    "decodedChunk": "unknown",
+    "parsedChunk": "unknown",
+    "totalCost": "unknown",
+    "text": "unknown",
+    "chunkTokens": "unknown",
+    "finalTotalCost": "unknown",
+    "r1Messages": "unknown",
+    "formattedMessages": "unknown",
+    "inputTokens": "unknown",
+    "outputTokens": "unknown",
+    "role": "unknown",
+    "formatMatch": "unknown",
+    "base64Data": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 2,
+    "method_count": 16,
+    "inner_class_count": 0
+  }
+}

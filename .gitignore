@@ -11,3 +11,6 @@ tmp
 pnpm-lock.yaml
 
 .clineignore
+
+dev-support-scripts/api_contracts/
+dev-support-scripts/dependency_graph

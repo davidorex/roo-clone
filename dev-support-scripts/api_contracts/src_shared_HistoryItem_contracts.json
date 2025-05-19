@@ -1,0 +1,84 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/shared/HistoryItem",
+  "file_path": "/Users/david/Projects/cline/src/shared/HistoryItem.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {
+    "HistoryItem": {
+      "docstring": null,
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "ts": {
+          "type": "number",
+          "required": true,
+          "docstring": null
+        },
+        "task": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "tokensIn": {
+          "type": "number",
+          "required": true,
+          "docstring": null
+        },
+        "tokensOut": {
+          "type": "number",
+          "required": true,
+          "docstring": null
+        },
+        "cacheWrites": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "cacheReads": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "totalCost": {
+          "type": "number",
+          "required": true,
+          "docstring": null
+        },
+        "size": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "shadowGitConfigWorkTree": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "conversationHistoryDeletedRange": {
+          "type": "[number, number]",
+          "required": false,
+          "docstring": null
+        }
+      }
+    }
+  },
+  "functions": {},
+  "imports": [],
+  "constants": {},
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 1,
+    "function_count": 0,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

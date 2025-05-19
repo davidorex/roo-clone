@@ -1,0 +1,204 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/integrations/checkpoints/CheckpointTracker",
+  "file_path": "/Users/david/Projects/cline/src/integrations/checkpoints/CheckpointTracker.ts",
+  "classes": {
+    "CheckpointTracker": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "globalStoragePath",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "taskId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "cwd",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "cwdHash",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": "Creates a new CheckpointTracker instance to manage checkpoints for a specific task.\nThe constructor is private - use the static create() method to instantiate.\n\n@param taskId - Unique identifier for the task being tracked\n@param cwd - The current working directory to track files in\n@param cwdHash - Hash of the working directory path for shadow git organization",
+          "decorators": [],
+          "return_type": "CheckpointTracker"
+        },
+        "create": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "globalStoragePath",
+              "required": true,
+              "type": "string | undefined"
+            }
+          ],
+          "docstring": "Creates a new CheckpointTracker instance for tracking changes in a task.\nHandles initialization of the shadow git repository.\n\n@param taskId - Unique identifier for the task to track\n@param globalStoragePath - the globalStorage path\n@returns Promise resolving to new CheckpointTracker instance, or undefined if checkpoints are disabled\n@throws Error if:\n- globalStoragePath is not supplied\n- Git is not installed\n- Working directory is invalid or in a protected location\n- Shadow git initialization fails\n\nKey operations:\n- Validates git installation and settings\n- Creates/initializes shadow git repository\n\nConfiguration:\n- Respects 'cline.enableCheckpoints' VS Code setting",
+          "decorators": [],
+          "return_type": "Promise<CheckpointTracker | undefined>"
+        },
+        "commit": {
+          "parameters": [],
+          "docstring": "Creates a new checkpoint commit in the shadow git repository.\n\nKey behaviors:\n- Creates commit with checkpoint files in shadow git repo\n- Caches the created commit hash\n\nCommit structure:\n- Commit message: \"checkpoint-{cwdHash}-{taskId}\"\n- Always allows empty commits\n\nDependencies:\n- Requires initialized shadow git (getShadowGitPath)\n- Uses addCheckpointFiles to stage changes using 'git add .'\n- Relies on git's native exclusion handling via the exclude file\n\n@returns Promise<string | undefined> The created commit hash, or undefined if:\n- Shadow git access fails\n- Staging files fails\n- Commit creation fails\n@throws Error if unable to:\n- Access shadow git path\n- Initialize simple-git\n- Stage or commit files",
+          "decorators": [],
+          "return_type": "Promise<string | undefined>"
+        },
+        "getShadowGitConfigWorkTree": {
+          "parameters": [],
+          "docstring": "Retrieves the worktree path from the shadow git configuration.\nThe worktree path indicates where the shadow git repository is tracking files,\nwhich should match the current workspace directory.\n\nKey behaviors:\n- Caches result in lastRetrievedShadowGitConfigWorkTree to avoid repeated reads\n- Returns cached value if available\n- Reads git config if no cached value exists\n\nConfiguration read:\n- Uses simple-git to read core.worktree config\n- Operates on shadow git at path from getShadowGitPath()\n\n@returns Promise<string | undefined> The configured worktree path, or undefined if:\n- Shadow git repository doesn't exist\n- Config read fails\n- No worktree is configured\n@throws Error if unable to:\n- Access shadow git path\n- Initialize simple-git\n- Read git configuration",
+          "decorators": [],
+          "return_type": "Promise<string | undefined>"
+        },
+        "resetHead": {
+          "parameters": [
+            {
+              "name": "commitHash",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": "Resets the shadow git repository's HEAD to a specific checkpoint commit.\nThis will discard all changes after the target commit and restore the\nworking directory to that checkpoint's state.\n\nDependencies:\n- Requires initialized shadow git (getShadowGitPath)\n- Must be called with a valid commit hash from this task's history\n\n@param commitHash - The hash of the checkpoint commit to reset to\n@returns Promise<void> Resolves when reset is complete\n@throws Error if unable to:\n- Access shadow git path\n- Initialize simple-git\n- Reset to target commit",
+          "decorators": [],
+          "return_type": "Promise<void>"
+        },
+        "getDiffSet": {
+          "parameters": [
+            {
+              "name": "lhsHash",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "rhsHash",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": "Return an array describing changed files between one commit and either:\n  - another commit, or\n  - the current working directory (including uncommitted changes).\n\nIf `rhsHash` is omitted, compares `lhsHash` to the working directory.\nIf you want truly untracked files to appear, `git add` them first.\n\n@param lhsHash - The commit to compare from (older commit)\n@param rhsHash - The commit to compare to (newer commit).\n                 If omitted, we compare to the working directory.\n@returns Array of file changes with before/after content",
+          "decorators": [],
+          "return_type": "Promise<\n\t\tArray<{\n\t\t\trelativePath: string\n\t\t\tabsolutePath: string\n\t\t\tbefore: string\n\t\t\tafter: string\n\t\t}>\n\t>"
+        },
+        "getDiffCount": {
+          "parameters": [
+            {
+              "name": "lhsHash",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "rhsHash",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": "Returns the number of files changed between two commits.\n\n@param lhsHash - The commit to compare from (older commit)\n@param rhsHash - The commit to compare to (newer commit).\n                 If omitted, we compare to the working directory.\n@returns The number of files changed between the commits",
+          "decorators": [],
+          "return_type": "Promise<number>"
+        }
+      },
+      "attributes": {
+        "globalStoragePath": "string",
+        "taskId": "string",
+        "cwd": "string",
+        "cwdHash": "string",
+        "lastRetrievedShadowGitConfigWorkTree": "string",
+        "gitOperations": "GitOperations"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": "CheckpointTracker Module\n\nCore implementation of Cline's Checkpoints system that provides version control\ncapabilities without interfering with the user's main Git repository. Key features:\n\nShadow Git Repository:\n- Creates and manages an isolated Git repository for tracking checkpoints\n- Handles nested Git repositories by temporarily disabling them\n- Configures Git settings automatically (identity, LFS, etc.)\n\nFile Management:\n- Integrates with CheckpointExclusions for file filtering\n- Handles workspace validation and path resolution\n- Manages Git worktree configuration\n\nCheckpoint Operations:\n- Creates checkpoints (commits) of the current state\n- Provides diff capabilities between checkpoints\n- Supports resetting to previous checkpoints\n\nSafety Features:\n- Prevents usage in sensitive directories (home, desktop, etc.)\n- Validates workspace configuration\n- Handles cleanup and resource disposal\n\nCheckpoint Architecture:\n- Unique shadow git repository for each workspace\n- Workspaces are identified by name, and hashed to a unique number\n- All commits for a workspace are stored in one shadow git, under a single branch",
+      "file_path": "/Users/david/Projects/cline/src/integrations/checkpoints/CheckpointTracker.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {},
+  "types": {},
+  "functions": {},
+  "imports": [
+    {
+      "name": "fs",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "simpleGit",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    },
+    {
+      "name": "telemetryService",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "GitOperations",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "getShadowGitPath",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "getWorkingDirectory",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "hashWorkingDir",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "startTime": "unknown",
+    "enableCheckpoints": "unknown",
+    "workingDir": "unknown",
+    "cwdHash": "unknown",
+    "newTracker": "unknown",
+    "gitPath": "unknown",
+    "durationMs": "unknown",
+    "git": "unknown",
+    "commitMessage": "unknown",
+    "result": "unknown",
+    "commitHash": "unknown",
+    "diffRange": "unknown",
+    "diffSummary": "unknown",
+    "filePath": "unknown",
+    "absolutePath": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 6,
+    "method_count": 7,
+    "inner_class_count": 0
+  }
+}

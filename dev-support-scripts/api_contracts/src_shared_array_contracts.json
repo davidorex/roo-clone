@@ -1,0 +1,73 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/shared/array",
+  "file_path": "/Users/david/Projects/cline/src/shared/array.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "findLastIndex": {
+      "parameters": [
+        {
+          "name": "array",
+          "required": true,
+          "type": "Array<T>"
+        },
+        {
+          "name": "predicate",
+          "required": true,
+          "type": "(value: T, index: number, obj: T[]) => boolean"
+        }
+      ],
+      "docstring": "Returns the index of the last element in the array where predicate is true, and -1\notherwise.\n@param array The source array to search in\n@param predicate find calls predicate once for each element of the array, in descending\norder, until it finds one where predicate returns true. If such an element is found,\nfindLastIndex immediately returns that element index. Otherwise, findLastIndex returns -1.",
+      "decorators": [],
+      "return_type": "number"
+    },
+    "findLast": {
+      "parameters": [
+        {
+          "name": "array",
+          "required": true,
+          "type": "Array<T>"
+        },
+        {
+          "name": "predicate",
+          "required": true,
+          "type": "(value: T, index: number, obj: T[]) => boolean"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "T | undefined"
+    },
+    "parsePartialArrayString": {
+      "parameters": [
+        {
+          "name": "arrayString",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": "Converts a partial or complete stringified array into an actual array.\nHandles both complete JSON strings and incomplete array strings.\nSplits on the specific tokens: [\"  \", \"  \"]\n@param arrayString A string representation of an array, which may be incomplete\n@returns Array of strings parsed from the input",
+      "decorators": [],
+      "return_type": "string[]"
+    }
+  },
+  "imports": [],
+  "constants": {
+    "index": "unknown",
+    "trimmed": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 3,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  },
+  "docstring": "Returns the index of the last element in the array where predicate is true, and -1\notherwise.\n@param array The source array to search in\n@param predicate find calls predicate once for each element of the array, in descending\norder, until it finds one where predicate returns true. If such an element is found,\nfindLastIndex immediately returns that element index. Otherwise, findLastIndex returns -1."
+}

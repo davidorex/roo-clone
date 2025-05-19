@@ -1,0 +1,195 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/integrations/terminal/TerminalProcess",
+  "file_path": "/Users/david/Projects/cline/src/integrations/terminal/TerminalProcess.ts",
+  "classes": {
+    "TerminalProcess": {
+      "methods": {
+        "run": {
+          "parameters": [
+            {
+              "name": "terminal",
+              "required": true,
+              "type": "vscode.Terminal"
+            },
+            {
+              "name": "command",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "emitIfEol": {
+          "parameters": [
+            {
+              "name": "chunk",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "emitRemainingBufferIfListening": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "continue": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "getUnretrievedOutput": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "string"
+        },
+        "removeLastLineArtifacts": {
+          "parameters": [
+            {
+              "name": "output",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        }
+      },
+      "attributes": {
+        "waitForShellIntegration": "boolean",
+        "isListening": "boolean",
+        "buffer": "string",
+        "fullOutput": "string",
+        "lastRetrievedIndex": "number",
+        "isHot": "boolean",
+        "hotTimer": "NodeJS.Timeout | null"
+      },
+      "inner_classes": {},
+      "bases": [
+        "EventEmitter<TerminalProcessEvents>"
+      ],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/integrations/terminal/TerminalProcess.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {
+    "TerminalProcessEvents": {
+      "properties": {
+        "line": {
+          "type": "[line: string]",
+          "required": true,
+          "docstring": null
+        },
+        "continue": {
+          "type": "[]",
+          "required": true,
+          "docstring": null
+        },
+        "completed": {
+          "type": "[]",
+          "required": true,
+          "docstring": null
+        },
+        "error": {
+          "type": "[error: Error]",
+          "required": true,
+          "docstring": null
+        },
+        "no_shell_integration": {
+          "type": "[]",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {
+    "TerminalProcessResultPromise": {
+      "docstring": null,
+      "type": "intersection",
+      "components": [
+        "TerminalProcess",
+        "Promise<void>"
+      ]
+    }
+  },
+  "functions": {
+    "mergePromise": {
+      "parameters": [
+        {
+          "name": "process",
+          "required": true,
+          "type": "TerminalProcess"
+        },
+        {
+          "name": "promise",
+          "required": true,
+          "type": "Promise<void>"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "TerminalProcessResultPromise"
+    }
+  },
+  "imports": [
+    {
+      "name": "EventEmitter",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "stripAnsi",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    }
+  ],
+  "constants": {
+    "PROCESS_HOT_TIMEOUT_NORMAL": "2_000",
+    "PROCESS_HOT_TIMEOUT_COMPILING": "15_000",
+    "execution": "unknown",
+    "stream": "unknown",
+    "outputBetweenSequences": "unknown",
+    "vscodeSequenceRegex": "unknown",
+    "lastMatch": "unknown",
+    "lines": "unknown",
+    "compilingMarkers": "unknown",
+    "markerNullifiers": "unknown",
+    "isCompiling": "unknown",
+    "remainingBuffer": "unknown",
+    "unretrieved": "unknown",
+    "lastLine": "unknown",
+    "nativePromisePrototype": "unknown",
+    "descriptors": "unknown",
+    "value": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 1,
+    "type_count": 1,
+    "function_count": 1,
+    "attribute_count": 7,
+    "method_count": 6,
+    "inner_class_count": 0
+  }
+}

@@ -1,5 +1,0 @@
-{
-  "module": "Semantic utilities for natural language processing and vector search capabilities.\n\nThis package provides utilities for integrating semantic search into Django models\nusing PostgreSQL pgvector extension.",
-  "classes": {},
-  "functions": {}
-}

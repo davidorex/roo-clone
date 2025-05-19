@@ -1,0 +1,127 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/api/providers/xai",
+  "file_path": "/Users/david/Projects/cline/src/api/providers/xai.ts",
+  "classes": {
+    "XAIHandler": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "options",
+              "required": true,
+              "type": "ApiHandlerOptions"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "XAIHandler"
+        },
+        "createMessage": {
+          "parameters": [
+            {
+              "name": "systemPrompt",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "messages",
+              "required": true,
+              "type": "Anthropic.Messages.MessageParam[]"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "ApiStream"
+        },
+        "getModel": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "{ id: XAIModelId; info: ModelInfo }"
+        }
+      },
+      "attributes": {
+        "options": "ApiHandlerOptions",
+        "client": "OpenAI"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/api/providers/xai.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {},
+  "types": {},
+  "functions": {},
+  "imports": [
+    {
+      "name": "Anthropic",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "OpenAI",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiHandlerOptions",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "XAIModelId",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ModelInfo",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "xaiDefaultModelId",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "xaiModels",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "convertToOpenAiMessages",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiStream",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "stream": "unknown",
+    "delta": "unknown",
+    "modelId": "unknown",
+    "id": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 2,
+    "method_count": 3,
+    "inner_class_count": 0
+  }
+}

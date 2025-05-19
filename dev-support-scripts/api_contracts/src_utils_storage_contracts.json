@@ -1,0 +1,51 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/utils/storage",
+  "file_path": "/Users/david/Projects/cline/src/utils/storage.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "getTotalTasksSize": {
+      "parameters": [
+        {
+          "name": "storagePath",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": "Gets the total size of tasks and checkpoints directories\n@param storagePath The base storage path (typically globalStorageUri.fsPath)\n@returns The total size in bytes, or null if calculation fails",
+      "decorators": [],
+      "return_type": "Promise<number | null>"
+    }
+  },
+  "imports": [
+    {
+      "name": "path",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "getFolderSize",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "tasksDir": "unknown",
+    "checkpointsDir": "unknown",
+    "tasksSize": "unknown",
+    "checkpointsSize": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 1,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

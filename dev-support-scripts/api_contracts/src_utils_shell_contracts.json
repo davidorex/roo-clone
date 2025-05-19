@@ -1,0 +1,154 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/utils/shell",
+  "file_path": "/Users/david/Projects/cline/src/utils/shell.ts",
+  "classes": {},
+  "interfaces": {
+    "MacTerminalProfile": {
+      "properties": {
+        "path": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "WindowsTerminalProfile": {
+      "properties": {
+        "path": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "source": {
+          "type": "\"PowerShell\" | \"WSL\"",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "LinuxTerminalProfile": {
+      "properties": {
+        "path": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {
+    "MacTerminalProfiles": {
+      "docstring": null,
+      "type": "Record<string, MacTerminalProfile>"
+    },
+    "WindowsTerminalProfiles": {
+      "docstring": null,
+      "type": "Record<string, WindowsTerminalProfile>"
+    },
+    "LinuxTerminalProfiles": {
+      "docstring": null,
+      "type": "Record<string, LinuxTerminalProfile>"
+    }
+  },
+  "functions": {
+    "getWindowsTerminalConfig": {
+      "parameters": [],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "any"
+    },
+    "getMacTerminalConfig": {
+      "parameters": [],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "any"
+    },
+    "getLinuxTerminalConfig": {
+      "parameters": [],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "any"
+    },
+    "getWindowsShellFromVSCode": {
+      "parameters": [],
+      "docstring": "Attempts to retrieve a shell path from VS Code config on Windows.",
+      "decorators": [],
+      "return_type": "string | null"
+    },
+    "getMacShellFromVSCode": {
+      "parameters": [],
+      "docstring": "Attempts to retrieve a shell path from VS Code config on macOS.",
+      "decorators": [],
+      "return_type": "string | null"
+    },
+    "getLinuxShellFromVSCode": {
+      "parameters": [],
+      "docstring": "Attempts to retrieve a shell path from VS Code config on Linux.",
+      "decorators": [],
+      "return_type": "string | null"
+    },
+    "getShellFromUserInfo": {
+      "parameters": [],
+      "docstring": "Tries to get a user’s shell from os.userInfo() (works on Unix if the\nunderlying system call is supported). Returns null on error or if not found.",
+      "decorators": [],
+      "return_type": "string | null"
+    },
+    "getShellFromEnv": {
+      "parameters": [],
+      "docstring": "Returns the environment-based shell variable, or null if not set.",
+      "decorators": [],
+      "return_type": "string | null"
+    },
+    "getShell": {
+      "parameters": [],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "string"
+    }
+  },
+  "imports": [
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    },
+    {
+      "name": "userInfo",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "SHELL_PATHS": "unknown",
+    "config": "unknown",
+    "defaultProfileName": "unknown",
+    "profiles": "unknown",
+    "{ defaultProfileName, profiles }": "unknown",
+    "profile": "unknown",
+    "{ shell }": "unknown",
+    "{ env }": "unknown",
+    "windowsShell": "unknown",
+    "macShell": "unknown",
+    "linuxShell": "unknown",
+    "userInfoShell": "unknown",
+    "envShell": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 3,
+    "type_count": 3,
+    "function_count": 9,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

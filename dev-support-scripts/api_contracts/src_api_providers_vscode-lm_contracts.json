@@ -1,0 +1,586 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/api/providers/vscode-lm",
+  "file_path": "/Users/david/Projects/cline/src/api/providers/vscode-lm.ts",
+  "classes": {
+    "LanguageModelTextPart": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "value",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "LanguageModelTextPart"
+        }
+      },
+      "attributes": {
+        "value": "string"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/api/providers/vscode-lm.ts",
+      "decorators": []
+    },
+    "LanguageModelToolCallPart": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "callId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "input",
+              "required": true,
+              "type": "object"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "LanguageModelToolCallPart"
+        }
+      },
+      "attributes": {
+        "callId": "string",
+        "name": "string",
+        "input": "object"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/api/providers/vscode-lm.ts",
+      "decorators": []
+    },
+    "LanguageModelPromptTsxPart": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "value",
+              "required": true,
+              "type": "unknown"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "LanguageModelPromptTsxPart"
+        }
+      },
+      "attributes": {
+        "value": "unknown"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/api/providers/vscode-lm.ts",
+      "decorators": []
+    },
+    "LanguageModelToolResultPart": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "callId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "content",
+              "required": true,
+              "type": "Array<LanguageModelTextPart | LanguageModelPromptTsxPart | unknown>"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "LanguageModelToolResultPart"
+        }
+      },
+      "attributes": {
+        "callId": "string",
+        "content": "Array<LanguageModelTextPart | LanguageModelPromptTsxPart | unknown>"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/api/providers/vscode-lm.ts",
+      "decorators": []
+    },
+    "LanguageModelChatMessage": {
+      "methods": {
+        "User": {
+          "parameters": [
+            {
+              "name": "content",
+              "required": true,
+              "type": "string | Array<LanguageModelTextPart | LanguageModelToolResultPart>"
+            },
+            {
+              "name": "name",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "LanguageModelChatMessage"
+        },
+        "Assistant": {
+          "parameters": [
+            {
+              "name": "content",
+              "required": true,
+              "type": "string | Array<LanguageModelTextPart | LanguageModelToolCallPart>"
+            },
+            {
+              "name": "name",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "LanguageModelChatMessage"
+        },
+        "constructor": {
+          "parameters": [
+            {
+              "name": "role",
+              "required": true,
+              "type": "LanguageModelChatMessageRole"
+            },
+            {
+              "name": "content",
+              "required": true,
+              "type": "string | Array<LanguageModelTextPart | LanguageModelToolResultPart | LanguageModelToolCallPart>"
+            },
+            {
+              "name": "name",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "LanguageModelChatMessage"
+        }
+      },
+      "attributes": {
+        "role": "LanguageModelChatMessageRole",
+        "content": "Array<LanguageModelTextPart | LanguageModelToolResultPart | LanguageModelToolCallPart>",
+        "name": "string | undefined"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/api/providers/vscode-lm.ts",
+      "decorators": []
+    },
+    "VsCodeLmHandler": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "options",
+              "required": true,
+              "type": "ApiHandlerOptions"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "VsCodeLmHandler"
+        },
+        "createClient": {
+          "parameters": [
+            {
+              "name": "selector",
+              "required": true,
+              "type": "vscode.LanguageModelChatSelector"
+            }
+          ],
+          "docstring": "Creates a language model chat client based on the provided selector.\n\n@param selector - Selector criteria to filter language model chat instances\n@returns Promise resolving to the first matching language model chat instance\n@throws Error when no matching models are found with the given selector\n\n@example\nconst selector = { vendor: \"copilot\", family: \"gpt-4o\" };\nconst chatClient = await createClient(selector);",
+          "decorators": [],
+          "return_type": "Promise<vscode.LanguageModelChat>"
+        },
+        "dispose": {
+          "parameters": [],
+          "docstring": "Creates and streams a message using the VS Code Language Model API.\n\n@param systemPrompt - The system prompt to initialize the conversation context\n@param messages - An array of message parameters following the Anthropic message format\n\n@yields {ApiStream} An async generator that yields either text chunks or tool calls from the model response\n\n@throws {Error} When vsCodeLmModelSelector option is not provided\n@throws {Error} When the response stream encounters an error\n\n@remarks\nThis method handles the initialization of the VS Code LM client if not already created,\nconverts the messages to VS Code LM format, and streams the response chunks.\nTool calls handling is currently a work in progress.",
+          "decorators": [],
+          "return_type": "void"
+        },
+        "countTokens": {
+          "parameters": [
+            {
+              "name": "text",
+              "required": true,
+              "type": "string | vscode.LanguageModelChatMessage"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<number>"
+        },
+        "calculateTotalInputTokens": {
+          "parameters": [
+            {
+              "name": "systemPrompt",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "vsCodeLmMessages",
+              "required": true,
+              "type": "vscode.LanguageModelChatMessage[]"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<number>"
+        },
+        "ensureCleanState": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "void"
+        },
+        "getClient": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<vscode.LanguageModelChat>"
+        },
+        "cleanTerminalOutput": {
+          "parameters": [
+            {
+              "name": "text",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "string"
+        },
+        "cleanMessageContent": {
+          "parameters": [
+            {
+              "name": "content",
+              "required": true,
+              "type": "any"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "createMessage": {
+          "parameters": [
+            {
+              "name": "systemPrompt",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "messages",
+              "required": true,
+              "type": "Anthropic.Messages.MessageParam[]"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "ApiStream"
+        },
+        "getModel": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "{ id: string; info: ModelInfo }"
+        },
+        "completePrompt": {
+          "parameters": [
+            {
+              "name": "prompt",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<string>"
+        }
+      },
+      "attributes": {
+        "options": "ApiHandlerOptions",
+        "client": "vscode.LanguageModelChat | null",
+        "disposable": "vscode.Disposable | null",
+        "currentRequestCancellation": "vscode.CancellationTokenSource | null"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": "Handles interaction with VS Code's Language Model API for chat-based operations.\nThis handler implements the ApiHandler interface to provide VS Code LM specific functionality.\n\n@implements {ApiHandler}\n\n@remarks\nThe handler manages a VS Code language model chat client and provides methods to:\n- Create and manage chat client instances\n- Stream messages using VS Code's Language Model API\n- Retrieve model information\n\n@example\n```typescript\nconst options = {\n  vsCodeLmModelSelector: { vendor: \"copilot\", family: \"gpt-4\" }\n};\nconst handler = new VsCodeLmHandler(options);\n\n// Stream a conversation\nconst systemPrompt = \"You are a helpful assistant\";\nconst messages = [{ role: \"user\", content: \"Hello!\" }];\nfor await (const chunk of handler.createMessage(systemPrompt, messages)) {\n  console.log(chunk);\n}\n```",
+      "file_path": "/Users/david/Projects/cline/src/api/providers/vscode-lm.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {
+    "LanguageModelChatSelector": {
+      "properties": {
+        "vendor": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "family": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "version": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "id": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "LanguageModelChatTool": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "description": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "inputSchema": {
+          "type": "object",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "LanguageModelChatRequestOptions": {
+      "properties": {
+        "justification": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "modelOptions": {
+          "type": "{ [name: string]: any }",
+          "required": false,
+          "docstring": null
+        },
+        "tools": {
+          "type": "LanguageModelChatTool[]",
+          "required": false,
+          "docstring": null
+        },
+        "toolMode": {
+          "type": "LanguageModelChatToolMode",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "LanguageModelChatResponse": {
+      "properties": {
+        "stream": {
+          "type": "AsyncIterable<LanguageModelTextPart | LanguageModelToolCallPart | unknown>",
+          "required": true,
+          "docstring": null
+        },
+        "text": {
+          "type": "AsyncIterable<string>",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "LanguageModelChat": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "id": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "vendor": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "family": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "version": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "maxInputTokens": {
+          "type": "number",
+          "required": true,
+          "docstring": null
+        },
+        "sendRequest": {
+          "type": "(messages: LanguageModelChatMessage[], options?: LanguageModelChatRequestOptions, token?: CancellationToken) => Thenable<LanguageModelChatResponse>",
+          "required": true,
+          "docstring": null
+        },
+        "countTokens": {
+          "type": "(text: string | LanguageModelChatMessage, token?: CancellationToken) => Thenable<number>",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {},
+  "functions": {
+    "selectChatModels": {
+      "parameters": [
+        {
+          "name": "selector",
+          "required": false,
+          "type": "LanguageModelChatSelector"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Thenable<LanguageModelChat[]>"
+    }
+  },
+  "imports": [
+    {
+      "name": "Anthropic",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    },
+    {
+      "name": "ApiHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "SingleCompletionHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "calculateApiCostAnthropic",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiStream",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "convertToVsCodeLmMessages",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "SELECTOR_SEPARATOR",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "stringifyVsCodeLmModelSelector",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiHandlerOptions",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ModelInfo",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "openAiModelInfoSaneDefaults",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "models": "unknown",
+    "errorMessage": "unknown",
+    "systemTokens": "unknown",
+    "messageTokens": "unknown",
+    "selector": "unknown",
+    "message": "unknown",
+    "cleaned": "unknown",
+    "client": "unknown",
+    "cleanedSystemPrompt": "unknown",
+    "cleanedMessages": "unknown",
+    "vsCodeLmMessages": "unknown",
+    "totalInputTokens": "unknown",
+    "requestOptions": "unknown",
+    "response": "unknown",
+    "toolCall": "unknown",
+    "toolCallText": "unknown",
+    "totalOutputTokens": "unknown",
+    "errorDetails": "unknown",
+    "requiredProps": "unknown",
+    "modelParts": "unknown",
+    "modelId": "unknown",
+    "modelInfo": "unknown",
+    "fallbackId": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 6,
+    "interface_count": 5,
+    "type_count": 0,
+    "function_count": 1,
+    "attribute_count": 14,
+    "method_count": 19,
+    "inner_class_count": 0
+  }
+}

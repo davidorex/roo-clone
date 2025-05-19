@@ -1,0 +1,153 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/core/ignore/ClineIgnoreController",
+  "file_path": "/Users/david/Projects/cline/src/core/ignore/ClineIgnoreController.ts",
+  "classes": {
+    "ClineIgnoreController": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "cwd",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "ClineIgnoreController"
+        },
+        "initialize": {
+          "parameters": [],
+          "docstring": "Initialize the controller by loading custom patterns\nMust be called after construction and before using the controller",
+          "decorators": [],
+          "return_type": "Promise<void>"
+        },
+        "setupFileWatcher": {
+          "parameters": [],
+          "docstring": "Set up the file watcher for .clineignore changes",
+          "decorators": [],
+          "return_type": "void"
+        },
+        "loadClineIgnore": {
+          "parameters": [],
+          "docstring": "Load custom patterns from .clineignore if it exists",
+          "decorators": [],
+          "return_type": "Promise<void>"
+        },
+        "validateAccess": {
+          "parameters": [
+            {
+              "name": "filePath",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": "Check if a file should be accessible to the LLM\n@param filePath - Path to check (relative to cwd)\n@returns true if file is accessible, false if ignored",
+          "decorators": [],
+          "return_type": "boolean"
+        },
+        "validateCommand": {
+          "parameters": [
+            {
+              "name": "command",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": "Check if a terminal command should be allowed to execute based on file access patterns\n@param command - Terminal command to validate\n@returns path of file that is being accessed if it is being accessed, undefined if command is allowed",
+          "decorators": [],
+          "return_type": "string | undefined"
+        },
+        "filterPaths": {
+          "parameters": [
+            {
+              "name": "paths",
+              "required": true,
+              "type": "string[]"
+            }
+          ],
+          "docstring": "Filter an array of paths, removing those that should be ignored\n@param paths - Array of paths to filter (relative to cwd)\n@returns Array of allowed paths",
+          "decorators": [],
+          "return_type": "string[]"
+        },
+        "dispose": {
+          "parameters": [],
+          "docstring": "Clean up resources when the controller is no longer needed",
+          "decorators": [],
+          "return_type": "void"
+        }
+      },
+      "attributes": {
+        "cwd": "string",
+        "ignoreInstance": "Ignore",
+        "disposables": "vscode.Disposable[]",
+        "clineIgnoreContent": "string | undefined"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": "Controls LLM access to files by enforcing ignore patterns.\nDesigned to be instantiated once in Cline.ts and passed to file manipulation services.\nUses the 'ignore' library to support standard .gitignore syntax in .clineignore files.",
+      "file_path": "/Users/david/Projects/cline/src/core/ignore/ClineIgnoreController.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {},
+  "types": {},
+  "functions": {},
+  "imports": [
+    {
+      "name": "path",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "fileExistsAtPath",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "fs",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ignore",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "Ignore",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    }
+  ],
+  "constants": {
+    "LOCK_TEXT_SYMBOL": "\"\\u{1F512}\"",
+    "clineignorePattern": "unknown",
+    "fileWatcher": "unknown",
+    "ignorePath": "unknown",
+    "content": "unknown",
+    "absolutePath": "unknown",
+    "relativePath": "unknown",
+    "parts": "unknown",
+    "baseCommand": "unknown",
+    "fileReadingCommands": "unknown",
+    "arg": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 4,
+    "method_count": 8,
+    "inner_class_count": 0
+  }
+}

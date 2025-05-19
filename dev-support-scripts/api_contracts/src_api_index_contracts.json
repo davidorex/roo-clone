@@ -1,0 +1,196 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/api/index",
+  "file_path": "/Users/david/Projects/cline/src/api/index.ts",
+  "classes": {},
+  "interfaces": {
+    "ApiHandler": {
+      "properties": {
+        "createMessage": {
+          "type": "(systemPrompt: string, messages: Anthropic.Messages.MessageParam[]) => ApiStream",
+          "required": true,
+          "docstring": null
+        },
+        "getModel": {
+          "type": "() => { id: string; info: ModelInfo }",
+          "required": true,
+          "docstring": null
+        },
+        "getApiStreamUsage": {
+          "type": "() => Promise<ApiStreamUsageChunk | undefined>",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "SingleCompletionHandler": {
+      "properties": {
+        "completePrompt": {
+          "type": "(prompt: string) => Promise<string>",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {},
+  "functions": {
+    "buildApiHandler": {
+      "parameters": [
+        {
+          "name": "configuration",
+          "required": true,
+          "type": "ApiConfiguration"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "ApiHandler"
+    }
+  },
+  "imports": [
+    {
+      "name": "Anthropic",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiConfiguration",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ModelInfo",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "AnthropicHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "AwsBedrockHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "OpenRouterHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "VertexHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "OpenAiHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "OllamaHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "LmStudioHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "GeminiHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "OpenAiNativeHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiStream",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiStreamUsageChunk",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "DeepSeekHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "RequestyHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "TogetherHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "QwenHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "MistralHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "VsCodeLmHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "LiteLlmHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "AskSageHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "XAIHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "SambanovaHandler",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "{ apiProvider, ...options }": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 2,
+    "type_count": 0,
+    "function_count": 1,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

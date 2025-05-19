@@ -1,6 +1,0 @@
-git_commit_viewer
-├── __init__.py (2025-04-26)
-├── asgi.py (2025-04-26)
-├── settings.py (2025-05-03)
-├── urls.py (2025-04-27)
-└── wsgi.py (2025-04-26)

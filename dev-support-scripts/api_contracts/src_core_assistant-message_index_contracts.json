@@ -1,0 +1,90 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/core/assistant-message/index",
+  "file_path": "/Users/david/Projects/cline/src/core/assistant-message/index.ts",
+  "classes": {},
+  "interfaces": {
+    "TextContent": {
+      "properties": {
+        "type": {
+          "type": "\"text\"",
+          "required": true,
+          "docstring": null
+        },
+        "content": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "partial": {
+          "type": "boolean",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "ToolUse": {
+      "properties": {
+        "type": {
+          "type": "\"tool_use\"",
+          "required": true,
+          "docstring": null
+        },
+        "name": {
+          "type": "ToolUseName",
+          "required": true,
+          "docstring": null
+        },
+        "params": {
+          "type": "Partial<Record<ToolParamName, string>>",
+          "required": true,
+          "docstring": null
+        },
+        "partial": {
+          "type": "boolean",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {
+    "AssistantMessageContent": {
+      "docstring": null,
+      "type": "union",
+      "values": [
+        "TextContent",
+        "ToolUse"
+      ]
+    },
+    "ToolUseName": {
+      "docstring": null,
+      "type": "(typeof toolUseNames)[number]"
+    },
+    "ToolParamName": {
+      "docstring": null,
+      "type": "(typeof toolParamNames)[number]"
+    }
+  },
+  "functions": {},
+  "imports": [],
+  "constants": {
+    "toolUseNames": "unknown",
+    "toolParamNames": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 2,
+    "type_count": 3,
+    "function_count": 0,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

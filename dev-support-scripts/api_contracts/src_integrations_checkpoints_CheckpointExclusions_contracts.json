@@ -1,0 +1,100 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/integrations/checkpoints/CheckpointExclusions",
+  "file_path": "/Users/david/Projects/cline/src/integrations/checkpoints/CheckpointExclusions.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "getBuildArtifactPatterns": {
+      "parameters": [],
+      "docstring": "Returns patterns for common build and development artifact directories\n@returns Array of glob patterns for build artifacts",
+      "decorators": [],
+      "return_type": "string[]"
+    },
+    "getMediaFilePatterns": {
+      "parameters": [],
+      "docstring": "Returns patterns for common media and image file types\n@returns Array of glob patterns for media files",
+      "decorators": [],
+      "return_type": "string[]"
+    },
+    "getCacheFilePatterns": {
+      "parameters": [],
+      "docstring": "Returns patterns for cache, temporary, and system files\n@returns Array of glob patterns for cache files",
+      "decorators": [],
+      "return_type": "string[]"
+    },
+    "getConfigFilePatterns": {
+      "parameters": [],
+      "docstring": "Returns patterns for environment and configuration files\n@returns Array of glob patterns for config files",
+      "decorators": [],
+      "return_type": "string[]"
+    },
+    "getLargeDataFilePatterns": {
+      "parameters": [],
+      "docstring": "Returns patterns for common large binary and archive files\n@returns Array of glob patterns for large data files",
+      "decorators": [],
+      "return_type": "string[]"
+    },
+    "getDatabaseFilePatterns": {
+      "parameters": [],
+      "docstring": "Returns patterns for database and data storage files\n@returns Array of glob patterns for database files",
+      "decorators": [],
+      "return_type": "string[]"
+    },
+    "getGeospatialPatterns": {
+      "parameters": [],
+      "docstring": "Returns patterns for geospatial and mapping data files\n@returns Array of glob patterns for geospatial files",
+      "decorators": [],
+      "return_type": "string[]"
+    },
+    "getLogFilePatterns": {
+      "parameters": [],
+      "docstring": "Returns patterns for log and debug output files\n@returns Array of glob patterns for log files",
+      "decorators": [],
+      "return_type": "string[]"
+    }
+  },
+  "imports": [
+    {
+      "name": "fs",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "join",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "fileExistsAtPath",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "GIT_DISABLED_SUFFIX",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "getDefaultExclusions": "unknown",
+    "writeExcludesFile": "unknown",
+    "excludesPath": "unknown",
+    "patterns": "unknown",
+    "getLfsPatterns": "unknown",
+    "attributesPath": "unknown",
+    "attributesContent": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 8,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

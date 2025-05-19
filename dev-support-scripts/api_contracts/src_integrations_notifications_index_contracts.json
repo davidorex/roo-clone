@@ -1,0 +1,112 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/integrations/notifications/index",
+  "file_path": "/Users/david/Projects/cline/src/integrations/notifications/index.ts",
+  "classes": {},
+  "interfaces": {
+    "NotificationOptions": {
+      "properties": {
+        "title": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "subtitle": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "message": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {},
+  "functions": {
+    "showMacOSNotification": {
+      "parameters": [
+        {
+          "name": "options",
+          "required": true,
+          "type": "NotificationOptions"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<void>"
+    },
+    "showWindowsNotification": {
+      "parameters": [
+        {
+          "name": "options",
+          "required": true,
+          "type": "NotificationOptions"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<void>"
+    },
+    "showLinuxNotification": {
+      "parameters": [
+        {
+          "name": "options",
+          "required": true,
+          "type": "NotificationOptions"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<void>"
+    },
+    "showSystemNotification": {
+      "parameters": [
+        {
+          "name": "options",
+          "required": true,
+          "type": "NotificationOptions"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<void>"
+    }
+  },
+  "imports": [
+    {
+      "name": "execa",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "platform",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "{ title, subtitle = \"\", message }": "unknown",
+    "script": "unknown",
+    "{ subtitle, message }": "unknown",
+    "{ title = \"\", subtitle = \"\", message }": "unknown",
+    "fullMessage": "unknown",
+    "{ title = \"Cline\", message }": "unknown",
+    "escapedOptions": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 1,
+    "type_count": 0,
+    "function_count": 4,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

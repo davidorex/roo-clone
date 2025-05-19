@@ -1,0 +1,253 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/services/browser/BrowserSession",
+  "file_path": "/Users/david/Projects/cline/src/services/browser/BrowserSession.ts",
+  "classes": {
+    "BrowserSession": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "context",
+              "required": true,
+              "type": "vscode.ExtensionContext"
+            },
+            {
+              "name": "browserSettings",
+              "required": true,
+              "type": "BrowserSettings"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "BrowserSession"
+        },
+        "ensureChromiumExists": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<PCRStats>"
+        },
+        "launchBrowser": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "closeBrowser": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<BrowserActionResult>"
+        },
+        "doAction": {
+          "parameters": [
+            {
+              "name": "action",
+              "required": true,
+              "type": "(page: Page) => Promise<void>"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<BrowserActionResult>"
+        },
+        "navigateToUrl": {
+          "parameters": [
+            {
+              "name": "url",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<BrowserActionResult>"
+        },
+        "waitTillHTMLStable": {
+          "parameters": [
+            {
+              "name": "page",
+              "required": true,
+              "type": "Page"
+            },
+            {
+              "name": "timeout",
+              "required": false,
+              "type": "any"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "click": {
+          "parameters": [
+            {
+              "name": "coordinate",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<BrowserActionResult>"
+        },
+        "type": {
+          "parameters": [
+            {
+              "name": "text",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<BrowserActionResult>"
+        },
+        "scrollDown": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<BrowserActionResult>"
+        },
+        "scrollUp": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<BrowserActionResult>"
+        }
+      },
+      "attributes": {
+        "context": "vscode.ExtensionContext",
+        "browser": "Browser",
+        "page": "Page",
+        "currentMousePosition": "string",
+        "browserSettings": "BrowserSettings"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/services/browser/BrowserSession.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {
+    "PCRStats": {
+      "properties": {
+        "puppeteer": {
+          "type": "{ launch: typeof launch }",
+          "required": true,
+          "docstring": null
+        },
+        "executablePath": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {},
+  "functions": {},
+  "imports": [
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    },
+    {
+      "name": "fs/promises",
+      "alias": "fs",
+      "from_import": false
+    },
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "Browser",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "Page",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ScreenshotOptions",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "TimeoutError",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "launch",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "PCR",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "pWaitFor",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "setTimeout",
+      "alias": "setTimeoutPromise",
+      "from_import": true
+    },
+    {
+      "name": "fileExistsAtPath",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "BrowserActionResult",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "BrowserSettings",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "globalStoragePath": "unknown",
+    "puppeteerDir": "unknown",
+    "dirExists": "unknown",
+    "chromeExecutablePath": "unknown",
+    "stats": "unknown",
+    "logs": "unknown",
+    "consoleListener": "unknown",
+    "errorListener": "unknown",
+    "checkDurationMsecs": "500",
+    "maxChecks": "unknown",
+    "minStableSizeIterations": "3",
+    "[x, y]": "unknown",
+    "requestListener": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 1,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 5,
+    "method_count": 11,
+    "inner_class_count": 0
+  }
+}

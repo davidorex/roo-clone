@@ -1,0 +1,688 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/shared/ExtensionMessage",
+  "file_path": "/Users/david/Projects/cline/src/shared/ExtensionMessage.ts",
+  "classes": {},
+  "interfaces": {
+    "ExtensionMessage": {
+      "properties": {
+        "type": {
+          "type": "| \"action\"\n\t\t| \"state\"\n\t\t| \"selectedImages\"\n\t\t| \"ollamaModels\"\n\t\t| \"lmStudioModels\"\n\t\t| \"theme\"\n\t\t| \"workspaceUpdated\"\n\t\t| \"invoke\"\n\t\t| \"partialMessage\"\n\t\t| \"openRouterModels\"\n\t\t| \"openAiModels\"\n\t\t| \"mcpServers\"\n\t\t| \"relinquishControl\"\n\t\t| \"vsCodeLmModels\"\n\t\t| \"requestVsCodeLmModels\"\n\t\t| \"authCallback\"\n\t\t| \"mcpMarketplaceCatalog\"\n\t\t| \"mcpDownloadDetails\"\n\t\t| \"commitSearchResults\"\n\t\t| \"openGraphData\"\n\t\t| \"isImageUrlResult\"\n\t\t| \"didUpdateSettings\"\n\t\t| \"userCreditsBalance\"\n\t\t| \"userCreditsUsage\"\n\t\t| \"userCreditsPayments\"\n\t\t| \"totalTasksSize\"\n\t\t| \"addToInput\"",
+          "required": true,
+          "docstring": null
+        },
+        "text": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "action": {
+          "type": "| \"chatButtonClicked\"\n\t\t| \"mcpButtonClicked\"\n\t\t| \"settingsButtonClicked\"\n\t\t| \"historyButtonClicked\"\n\t\t| \"didBecomeVisible\"\n\t\t| \"accountLoginClicked\"\n\t\t| \"accountLogoutClicked\"\n\t\t| \"accountButtonClicked\"",
+          "required": false,
+          "docstring": null
+        },
+        "invoke": {
+          "type": "Invoke",
+          "required": false,
+          "docstring": null
+        },
+        "state": {
+          "type": "ExtensionState",
+          "required": false,
+          "docstring": null
+        },
+        "images": {
+          "type": "string[]",
+          "required": false,
+          "docstring": null
+        },
+        "ollamaModels": {
+          "type": "string[]",
+          "required": false,
+          "docstring": null
+        },
+        "lmStudioModels": {
+          "type": "string[]",
+          "required": false,
+          "docstring": null
+        },
+        "vsCodeLmModels": {
+          "type": "{ vendor?: string; family?: string; version?: string; id?: string }[]",
+          "required": false,
+          "docstring": null
+        },
+        "filePaths": {
+          "type": "string[]",
+          "required": false,
+          "docstring": null
+        },
+        "partialMessage": {
+          "type": "ClineMessage",
+          "required": false,
+          "docstring": null
+        },
+        "openRouterModels": {
+          "type": "Record<string, ModelInfo>",
+          "required": false,
+          "docstring": null
+        },
+        "openAiModels": {
+          "type": "string[]",
+          "required": false,
+          "docstring": null
+        },
+        "mcpServers": {
+          "type": "McpServer[]",
+          "required": false,
+          "docstring": null
+        },
+        "customToken": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "mcpMarketplaceCatalog": {
+          "type": "McpMarketplaceCatalog",
+          "required": false,
+          "docstring": null
+        },
+        "error": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "mcpDownloadDetails": {
+          "type": "McpDownloadResponse",
+          "required": false,
+          "docstring": null
+        },
+        "commits": {
+          "type": "GitCommit[]",
+          "required": false,
+          "docstring": null
+        },
+        "openGraphData": {
+          "type": "{\n\t\ttitle?: string\n\t\tdescription?: string\n\t\timage?: string\n\t\turl?: string\n\t\tsiteName?: string\n\t\ttype?: string\n\t}",
+          "required": false,
+          "docstring": null
+        },
+        "url": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "isImage": {
+          "type": "boolean",
+          "required": false,
+          "docstring": null
+        },
+        "userCreditsBalance": {
+          "type": "BalanceResponse",
+          "required": false,
+          "docstring": null
+        },
+        "userCreditsUsage": {
+          "type": "UsageTransaction[]",
+          "required": false,
+          "docstring": null
+        },
+        "userCreditsPayments": {
+          "type": "PaymentTransaction[]",
+          "required": false,
+          "docstring": null
+        },
+        "totalTasksSize": {
+          "type": "number | null",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "ExtensionState": {
+      "properties": {
+        "apiConfiguration": {
+          "type": "ApiConfiguration",
+          "required": false,
+          "docstring": null
+        },
+        "autoApprovalSettings": {
+          "type": "AutoApprovalSettings",
+          "required": true,
+          "docstring": null
+        },
+        "browserSettings": {
+          "type": "BrowserSettings",
+          "required": true,
+          "docstring": null
+        },
+        "chatSettings": {
+          "type": "ChatSettings",
+          "required": true,
+          "docstring": null
+        },
+        "checkpointTrackerErrorMessage": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "clineMessages": {
+          "type": "ClineMessage[]",
+          "required": true,
+          "docstring": null
+        },
+        "currentTaskItem": {
+          "type": "HistoryItem",
+          "required": false,
+          "docstring": null
+        },
+        "customInstructions": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "mcpMarketplaceEnabled": {
+          "type": "boolean",
+          "required": false,
+          "docstring": null
+        },
+        "planActSeparateModelsSetting": {
+          "type": "boolean",
+          "required": true,
+          "docstring": null
+        },
+        "platform": {
+          "type": "Platform",
+          "required": true,
+          "docstring": null
+        },
+        "shouldShowAnnouncement": {
+          "type": "boolean",
+          "required": true,
+          "docstring": null
+        },
+        "taskHistory": {
+          "type": "HistoryItem[]",
+          "required": true,
+          "docstring": null
+        },
+        "telemetrySetting": {
+          "type": "TelemetrySetting",
+          "required": true,
+          "docstring": null
+        },
+        "uriScheme": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "userInfo": {
+          "type": "{\n\t\tdisplayName: string | null\n\t\temail: string | null\n\t\tphotoURL: string | null\n\t}",
+          "required": false,
+          "docstring": null
+        },
+        "version": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "vscMachineId": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "ClineMessage": {
+      "properties": {
+        "ts": {
+          "type": "number",
+          "required": true,
+          "docstring": null
+        },
+        "type": {
+          "type": "\"ask\" | \"say\"",
+          "required": true,
+          "docstring": null
+        },
+        "ask": {
+          "type": "ClineAsk",
+          "required": false,
+          "docstring": null
+        },
+        "say": {
+          "type": "ClineSay",
+          "required": false,
+          "docstring": null
+        },
+        "text": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "reasoning": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "images": {
+          "type": "string[]",
+          "required": false,
+          "docstring": null
+        },
+        "partial": {
+          "type": "boolean",
+          "required": false,
+          "docstring": null
+        },
+        "lastCheckpointHash": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "isCheckpointCheckedOut": {
+          "type": "boolean",
+          "required": false,
+          "docstring": null
+        },
+        "conversationHistoryIndex": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "conversationHistoryDeletedRange": {
+          "type": "[number, number]",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "ClineSayTool": {
+      "properties": {
+        "tool": {
+          "type": "| \"editedExistingFile\"\n\t\t| \"newFileCreated\"\n\t\t| \"readFile\"\n\t\t| \"listFilesTopLevel\"\n\t\t| \"listFilesRecursive\"\n\t\t| \"listCodeDefinitionNames\"\n\t\t| \"searchFiles\"",
+          "required": true,
+          "docstring": null
+        },
+        "path": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "diff": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "content": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "regex": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "filePattern": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "ClineSayBrowserAction": {
+      "properties": {
+        "action": {
+          "type": "BrowserAction",
+          "required": true,
+          "docstring": null
+        },
+        "coordinate": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "text": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "ClineAskUseMcpServer": {
+      "properties": {
+        "serverName": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "type": {
+          "type": "\"use_mcp_tool\" | \"access_mcp_resource\"",
+          "required": true,
+          "docstring": null
+        },
+        "toolName": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "arguments": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "uri": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "ClinePlanModeResponse": {
+      "properties": {
+        "response": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "options": {
+          "type": "string[]",
+          "required": false,
+          "docstring": null
+        },
+        "selected": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "ClineAskQuestion": {
+      "properties": {
+        "question": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "options": {
+          "type": "string[]",
+          "required": false,
+          "docstring": null
+        },
+        "selected": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "ClineApiReqInfo": {
+      "properties": {
+        "request": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "tokensIn": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "tokensOut": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "cacheWrites": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "cacheReads": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "cost": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "cancelReason": {
+          "type": "ClineApiReqCancelReason",
+          "required": false,
+          "docstring": null
+        },
+        "streamingFailedMessage": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {
+    "Invoke": {
+      "docstring": null,
+      "type": "union",
+      "values": [
+        "\"sendMessage\"",
+        "\"primaryButtonClick\"",
+        "\"secondaryButtonClick\""
+      ]
+    },
+    "Platform": {
+      "docstring": null,
+      "type": "union",
+      "values": [
+        "\"aix\"",
+        "\"darwin\"",
+        "\"freebsd\"",
+        "\"linux\"",
+        "\"openbsd\"",
+        "\"sunos\"",
+        "\"win32\"",
+        "\"unknown\""
+      ]
+    },
+    "ClineAsk": {
+      "docstring": null,
+      "type": "union",
+      "values": [
+        "\"followup\"",
+        "\"plan_mode_respond\"",
+        "\"command\"",
+        "\"command_output\"",
+        "\"completion_result\"",
+        "\"tool\"",
+        "\"api_req_failed\"",
+        "\"resume_task\"",
+        "\"resume_completed_task\"",
+        "\"mistake_limit_reached\"",
+        "\"auto_approval_max_req_reached\"",
+        "\"browser_action_launch\"",
+        "\"use_mcp_server\""
+      ]
+    },
+    "ClineSay": {
+      "docstring": null,
+      "type": "union",
+      "values": [
+        "\"task\"",
+        "\"error\"",
+        "\"api_req_started\"",
+        "\"api_req_finished\"",
+        "\"text\"",
+        "\"reasoning\"",
+        "\"completion_result\"",
+        "\"user_feedback\"",
+        "\"user_feedback_diff\"",
+        "\"api_req_retried\"",
+        "\"command\"",
+        "\"command_output\"",
+        "\"tool\"",
+        "\"shell_integration_warning\"",
+        "\"browser_action_launch\"",
+        "\"browser_action\"",
+        "\"browser_action_result\"",
+        "\"mcp_server_request_started\"",
+        "\"mcp_server_response\"",
+        "\"use_mcp_server\"",
+        "\"diff_error\"",
+        "\"deleted_api_reqs\"",
+        "\"clineignore_error\"",
+        "\"checkpoint_created\""
+      ]
+    },
+    "BrowserAction": {
+      "docstring": null,
+      "type": "(typeof browserActions)[number]"
+    },
+    "BrowserActionResult": {
+      "docstring": null,
+      "type": "object",
+      "properties": {
+        "screenshot": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "logs": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "currentUrl": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "currentMousePosition": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        }
+      }
+    },
+    "ClineApiReqCancelReason": {
+      "docstring": null,
+      "type": "union",
+      "values": [
+        "\"streaming_failed\"",
+        "\"user_cancelled\""
+      ]
+    }
+  },
+  "functions": {},
+  "imports": [
+    {
+      "name": "GitCommit",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiConfiguration",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ModelInfo",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "AutoApprovalSettings",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "BrowserSettings",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ChatSettings",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "HistoryItem",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "McpServer",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "McpMarketplaceCatalog",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "McpMarketplaceItem",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "McpDownloadResponse",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "TelemetrySetting",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "BalanceResponse",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "UsageTransaction",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "PaymentTransaction",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "DEFAULT_PLATFORM": "\"unknown\"",
+    "browserActions": "unknown",
+    "COMPLETION_RESULT_CHANGES_FLAG": "\"HAS_CHANGES\""
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 9,
+    "type_count": 7,
+    "function_count": 0,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

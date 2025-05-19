@@ -1,0 +1,355 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/shared/mcp",
+  "file_path": "/Users/david/Projects/cline/src/shared/mcp.ts",
+  "classes": {},
+  "interfaces": {
+    "McpMarketplaceItem": {
+      "properties": {
+        "mcpId": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "githubUrl": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "name": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "author": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "description": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "codiconIcon": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "logoUrl": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "category": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "tags": {
+          "type": "string[]",
+          "required": true,
+          "docstring": null
+        },
+        "requiresApiKey": {
+          "type": "boolean",
+          "required": true,
+          "docstring": null
+        },
+        "readmeContent": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "llmsInstallationContent": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "isRecommended": {
+          "type": "boolean",
+          "required": true,
+          "docstring": null
+        },
+        "githubStars": {
+          "type": "number",
+          "required": true,
+          "docstring": null
+        },
+        "downloadCount": {
+          "type": "number",
+          "required": true,
+          "docstring": null
+        },
+        "createdAt": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "updatedAt": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "lastGithubSync": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "McpMarketplaceCatalog": {
+      "properties": {
+        "items": {
+          "type": "McpMarketplaceItem[]",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "McpDownloadResponse": {
+      "properties": {
+        "mcpId": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "githubUrl": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "name": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "author": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "description": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "readmeContent": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "llmsInstallationContent": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "requiresApiKey": {
+          "type": "boolean",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {
+    "McpMode": {
+      "docstring": null,
+      "type": "union",
+      "values": [
+        "\"full\"",
+        "\"server-use-only\"",
+        "\"off\""
+      ]
+    },
+    "McpServer": {
+      "docstring": null,
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "config": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "status": {
+          "type": "\"connected\" | \"connecting\" | \"disconnected\"",
+          "required": true,
+          "docstring": null
+        },
+        "error": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "tools": {
+          "type": "McpTool[]",
+          "required": false,
+          "docstring": null
+        },
+        "resources": {
+          "type": "McpResource[]",
+          "required": false,
+          "docstring": null
+        },
+        "resourceTemplates": {
+          "type": "McpResourceTemplate[]",
+          "required": false,
+          "docstring": null
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": false,
+          "docstring": null
+        },
+        "timeout": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        }
+      }
+    },
+    "McpTool": {
+      "docstring": null,
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "description": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "inputSchema": {
+          "type": "object",
+          "required": false,
+          "docstring": null
+        },
+        "autoApprove": {
+          "type": "boolean",
+          "required": false,
+          "docstring": null
+        }
+      }
+    },
+    "McpResource": {
+      "docstring": null,
+      "type": "object",
+      "properties": {
+        "uri": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "name": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "mimeType": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "description": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        }
+      }
+    },
+    "McpResourceTemplate": {
+      "docstring": null,
+      "type": "object",
+      "properties": {
+        "uriTemplate": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "name": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "description": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "mimeType": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        }
+      }
+    },
+    "McpResourceResponse": {
+      "docstring": null,
+      "type": "object",
+      "properties": {
+        "_meta": {
+          "type": "Record<string, any>",
+          "required": false,
+          "docstring": null
+        },
+        "contents": {
+          "type": "Array<{\n\t\turi: string\n\t\tmimeType?: string\n\t\ttext?: string\n\t\tblob?: string\n\t}>",
+          "required": true,
+          "docstring": null
+        }
+      }
+    },
+    "McpToolCallResponse": {
+      "docstring": null,
+      "type": "object",
+      "properties": {
+        "_meta": {
+          "type": "Record<string, any>",
+          "required": false,
+          "docstring": null
+        },
+        "content": {
+          "type": "Array<\n\t\t| {\n\t\t\t\ttype: \"text\"\n\t\t\t\ttext: string\n\t\t  }\n\t\t| {\n\t\t\t\ttype: \"image\"\n\t\t\t\tdata: string\n\t\t\t\tmimeType: string\n\t\t  }\n\t\t| {\n\t\t\t\ttype: \"resource\"\n\t\t\t\tresource: {\n\t\t\t\t\turi: string\n\t\t\t\t\tmimeType?: string\n\t\t\t\t\ttext?: string\n\t\t\t\t\tblob?: string\n\t\t\t\t}\n\t\t  }\n\t>",
+          "required": true,
+          "docstring": null
+        },
+        "isError": {
+          "type": "boolean",
+          "required": false,
+          "docstring": null
+        }
+      }
+    }
+  },
+  "functions": {},
+  "imports": [],
+  "constants": {
+    "DEFAULT_MCP_TIMEOUT_SECONDS": "60",
+    "MIN_MCP_TIMEOUT_SECONDS": "1"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 3,
+    "type_count": 7,
+    "function_count": 0,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

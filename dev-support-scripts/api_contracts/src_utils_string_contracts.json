@@ -1,0 +1,48 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/utils/string",
+  "file_path": "/Users/david/Projects/cline/src/utils/string.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "fixModelHtmlEscaping": {
+      "parameters": [
+        {
+          "name": "text",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": "Fixes incorrectly escaped HTML entities in AI model outputs\n@param text String potentially containing incorrectly escaped HTML entities from AI models\n@returns String with HTML entities converted back to normal characters",
+      "decorators": [],
+      "return_type": "string"
+    },
+    "removeInvalidChars": {
+      "parameters": [
+        {
+          "name": "text",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": "Removes invalid characters (like the replacement character �) from a string\n@param text String potentially containing invalid characters\n@returns String with invalid characters removed",
+      "decorators": [],
+      "return_type": "string"
+    }
+  },
+  "imports": [],
+  "constants": {},
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 2,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  },
+  "docstring": "Fixes incorrectly escaped HTML entities in AI model outputs\n@param text String potentially containing incorrectly escaped HTML entities from AI models\n@returns String with HTML entities converted back to normal characters"
+}

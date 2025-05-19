@@ -1,0 +1,108 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/utils/path",
+  "file_path": "/Users/david/Projects/cline/src/utils/path.ts",
+  "classes": {},
+  "interfaces": {
+    "String": {
+      "properties": {
+        "toPosix": {
+          "type": "() => string",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {},
+  "functions": {
+    "toPosixPath": {
+      "parameters": [
+        {
+          "name": "p",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "any"
+    },
+    "arePathsEqual": {
+      "parameters": [
+        {
+          "name": "path1",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "path2",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "boolean"
+    },
+    "normalizePath": {
+      "parameters": [
+        {
+          "name": "p",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "string"
+    },
+    "getReadablePath": {
+      "parameters": [
+        {
+          "name": "cwd",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "relPath",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "string"
+    }
+  },
+  "imports": [
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "os",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "isExtendedLengthPath": "unknown",
+    "absolutePath": "unknown",
+    "normalizedRelPath": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 1,
+    "type_count": 0,
+    "function_count": 4,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

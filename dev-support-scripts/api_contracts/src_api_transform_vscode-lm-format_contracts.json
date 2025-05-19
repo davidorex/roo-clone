@@ -1,0 +1,88 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/api/transform/vscode-lm-format",
+  "file_path": "/Users/david/Projects/cline/src/api/transform/vscode-lm-format.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "asObjectSafe": {
+      "parameters": [
+        {
+          "name": "value",
+          "required": true,
+          "type": "any"
+        }
+      ],
+      "docstring": "Safely converts a value into a plain object.",
+      "decorators": [],
+      "return_type": "object"
+    },
+    "convertToVsCodeLmMessages": {
+      "parameters": [
+        {
+          "name": "anthropicMessages",
+          "required": true,
+          "type": "Anthropic.Messages.MessageParam[]"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "vscode.LanguageModelChatMessage[]"
+    },
+    "convertToAnthropicRole": {
+      "parameters": [
+        {
+          "name": "vsCodeLmMessageRole",
+          "required": true,
+          "type": "vscode.LanguageModelChatMessageRole"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "string | null"
+    },
+    "convertToAnthropicMessage": {
+      "parameters": [
+        {
+          "name": "vsCodeLmMessage",
+          "required": true,
+          "type": "vscode.LanguageModelChatMessage"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<Anthropic.Messages.Message>"
+    }
+  },
+  "imports": [
+    {
+      "name": "Anthropic",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    }
+  ],
+  "constants": {
+    "vsCodeLmMessages": "unknown",
+    "{ nonToolMessages, toolMessages }": "unknown",
+    "contentParts": "unknown",
+    "toolContentParts": "unknown",
+    "anthropicRole": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 4,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

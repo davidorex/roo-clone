@@ -1,0 +1,47 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/shared/combineCommandSequences",
+  "file_path": "/Users/david/Projects/cline/src/shared/combineCommandSequences.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "combineCommandSequences": {
+      "parameters": [
+        {
+          "name": "messages",
+          "required": true,
+          "type": "ClineMessage[]"
+        }
+      ],
+      "docstring": "Combines sequences of command and command_output messages in an array of ClineMessages.\n\nThis function processes an array of ClineMessages objects, looking for sequences\nwhere a 'command' message is followed by one or more 'command_output' messages.\nWhen such a sequence is found, it combines them into a single message, merging\ntheir text contents.\n\n@param messages - An array of ClineMessage objects to process.\n@returns A new array of ClineMessage objects with command sequences combined.\n\n@example\nconst messages: ClineMessage[] = [\n  { type: 'ask', ask: 'command', text: 'ls', ts: 1625097600000 },\n  { type: 'ask', ask: 'command_output', text: 'file1.txt', ts: 1625097601000 },\n  { type: 'ask', ask: 'command_output', text: 'file2.txt', ts: 1625097602000 }\n];\nconst result = simpleCombineCommandSequences(messages);\n// Result: [{ type: 'ask', ask: 'command', text: 'ls\\nfile1.txt\\nfile2.txt', ts: 1625097600000 }]",
+      "decorators": [],
+      "return_type": "ClineMessage[]"
+    }
+  },
+  "imports": [
+    {
+      "name": "ClineMessage",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "combinedCommands": "unknown",
+    "output": "unknown",
+    "combinedCommand": "unknown",
+    "COMMAND_OUTPUT_STRING": "\"Output:\"",
+    "COMMAND_REQ_APP_STRING": "\"REQ_APP\""
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 1,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

@@ -1,0 +1,172 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/core/mentions/index",
+  "file_path": "/Users/david/Projects/cline/src/core/mentions/index.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "openMention": {
+      "parameters": [
+        {
+          "name": "mention",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "void"
+    },
+    "parseMentions": {
+      "parameters": [
+        {
+          "name": "text",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "cwd",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "urlContentFetcher",
+          "required": true,
+          "type": "UrlContentFetcher"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<string>"
+    },
+    "getFileOrFolderContent": {
+      "parameters": [
+        {
+          "name": "mentionPath",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "cwd",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<string>"
+    },
+    "getWorkspaceProblems": {
+      "parameters": [
+        {
+          "name": "cwd",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "string"
+    }
+  },
+  "imports": [
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    },
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "openFile",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "UrlContentFetcher",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "mentionRegexGlobal",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "fs",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "extractTextFromFile",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "isBinaryFile",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "diagnosticsToProblemsString",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "getLatestTerminalOutput",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "getCommitInfo",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "getWorkingState",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "cwd": "unknown",
+    "relPath": "unknown",
+    "absPath": "unknown",
+    "mentions": "unknown",
+    "mentionPath": "unknown",
+    "urlMention": "unknown",
+    "uniqueMentions": "unknown",
+    "markdown": "unknown",
+    "content": "unknown",
+    "problems": "unknown",
+    "terminalOutput": "unknown",
+    "workingState": "unknown",
+    "commitInfo": "unknown",
+    "stats": "unknown",
+    "isBinary": "unknown",
+    "entries": "unknown",
+    "fileContentPromises": "unknown",
+    "isLast": "unknown",
+    "linePrefix": "unknown",
+    "filePath": "unknown",
+    "absoluteFilePath": "unknown",
+    "fileContents": "unknown",
+    "diagnostics": "unknown",
+    "result": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 4,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

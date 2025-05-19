@@ -1,0 +1,134 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/dev/commands/tasks",
+  "file_path": "/Users/david/Projects/cline/src/dev/commands/tasks.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "registerTaskCommands": {
+      "parameters": [
+        {
+          "name": "context",
+          "required": true,
+          "type": "vscode.ExtensionContext"
+        },
+        {
+          "name": "provider",
+          "required": true,
+          "type": "ClineProvider"
+        }
+      ],
+      "docstring": "Registers development-only commands for task manipulation.\nThese are only activated in development mode.",
+      "decorators": [],
+      "return_type": "vscode.Disposable[]"
+    },
+    "createRealisticMessageSequence": {
+      "parameters": [
+        {
+          "name": "baseTimestamp",
+          "required": true,
+          "type": "number"
+        },
+        {
+          "name": "taskPrompt",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "taskIndex",
+          "required": true,
+          "type": "number"
+        }
+      ],
+      "docstring": "Creates a realistic sequence of messages that would occur in a typical task",
+      "decorators": [],
+      "return_type": "ClineMessage[]"
+    },
+    "getRandomTaskName": {
+      "parameters": [
+        {
+          "name": "index",
+          "required": true,
+          "type": "number"
+        }
+      ],
+      "docstring": "Returns a random task name for test data",
+      "decorators": [],
+      "return_type": "string"
+    },
+    "getRandomFileName": {
+      "parameters": [
+        {
+          "name": "index",
+          "required": true,
+          "type": "number"
+        }
+      ],
+      "docstring": "Returns a random file name for test data",
+      "decorators": [],
+      "return_type": "string"
+    }
+  },
+  "imports": [
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    },
+    {
+      "name": "fs/promises",
+      "alias": "fs",
+      "from_import": false
+    },
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "ClineProvider",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "HistoryItem",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineMessage",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "count": "unknown",
+    "tasksCount": "unknown",
+    "globalStoragePath": "unknown",
+    "tasksDir": "unknown",
+    "timestamp": "unknown",
+    "taskId": "unknown",
+    "taskDir": "unknown",
+    "taskName": "unknown",
+    "messages": "unknown",
+    "historyItem": "unknown",
+    "getNextTimestamp": "unknown",
+    "fileName": "unknown",
+    "commitHash": "unknown",
+    "messageType": "unknown",
+    "tasks": "unknown",
+    "files": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 4,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

@@ -350,7 +350,7 @@
 		"prettier": "^3.3.3",
 		"should": "^13.2.3",
 		"sinon": "^19.0.2",
-		"typescript": "^5.4.5"
+		"typescript": "^5.8.3"
 	},
 	"dependencies": {
 		"@anthropic-ai/bedrock-sdk": "^0.12.4",

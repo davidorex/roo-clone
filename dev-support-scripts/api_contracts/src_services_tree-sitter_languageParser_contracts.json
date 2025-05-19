@@ -1,0 +1,145 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/services/tree-sitter/languageParser",
+  "file_path": "/Users/david/Projects/cline/src/services/tree-sitter/languageParser.ts",
+  "classes": {},
+  "interfaces": {
+    "LanguageParser": {
+      "properties": {
+        "[index: string]": {
+          "type": "{\n\t\tparser: Parser\n\t\tquery: Parser.Query\n\t}",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {},
+  "functions": {
+    "loadLanguage": {
+      "parameters": [
+        {
+          "name": "langName",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "any"
+    },
+    "initializeParser": {
+      "parameters": [],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "any"
+    },
+    "loadRequiredLanguageParsers": {
+      "parameters": [
+        {
+          "name": "filesToParse",
+          "required": true,
+          "type": "string[]"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<LanguageParser>"
+    }
+  },
+  "imports": [
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "Parser",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "javascriptQuery",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "typescriptQuery",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "pythonQuery",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "rustQuery",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "goQuery",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "cppQuery",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "cQuery",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "csharpQuery",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "rubyQuery",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "javaQuery",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "phpQuery",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "swiftQuery",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "kotlinQuery",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "extensionsToLoad": "unknown",
+    "parsers": "unknown",
+    "parser": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 1,
+    "type_count": 0,
+    "function_count": 3,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

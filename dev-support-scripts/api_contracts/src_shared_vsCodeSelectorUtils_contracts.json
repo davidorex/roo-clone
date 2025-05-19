@@ -1,0 +1,43 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/shared/vsCodeSelectorUtils",
+  "file_path": "/Users/david/Projects/cline/src/shared/vsCodeSelectorUtils.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "stringifyVsCodeLmModelSelector": {
+      "parameters": [
+        {
+          "name": "selector",
+          "required": true,
+          "type": "LanguageModelChatSelector"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "string"
+    }
+  },
+  "imports": [
+    {
+      "name": "LanguageModelChatSelector",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "SELECTOR_SEPARATOR": "\"/\""
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 1,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

@@ -1,0 +1,85 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/core/assistant-message/parse-assistant-message",
+  "file_path": "/Users/david/Projects/cline/src/core/assistant-message/parse-assistant-message.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "parseAssistantMessage": {
+      "parameters": [
+        {
+          "name": "assistantMessage",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "any"
+    }
+  },
+  "imports": [
+    {
+      "name": "AssistantMessageContent",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "TextContent",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ToolUse",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ToolParamName",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "toolParamNames",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "toolUseNames",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ToolUseName",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "char": "unknown",
+    "currentParamValue": "unknown",
+    "paramClosingTag": "unknown",
+    "currentToolValue": "unknown",
+    "toolUseClosingTag": "unknown",
+    "possibleParamOpeningTags": "unknown",
+    "contentParamName": "\"content\"",
+    "toolContent": "unknown",
+    "contentStartTag": "unknown",
+    "contentEndTag": "unknown",
+    "contentStartIndex": "unknown",
+    "contentEndIndex": "unknown",
+    "possibleToolUseOpeningTags": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 1,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

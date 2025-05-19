@@ -1,0 +1,448 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/services/telemetry/TelemetryService",
+  "file_path": "/Users/david/Projects/cline/src/services/telemetry/TelemetryService.ts",
+  "classes": {
+    "PostHogClient": {
+      "methods": {
+        "constructor": {
+          "parameters": [],
+          "docstring": "Private constructor to enforce singleton pattern\nInitializes PostHog client with configuration",
+          "decorators": [],
+          "return_type": "PostHogClient"
+        },
+        "updateTelemetryState": {
+          "parameters": [
+            {
+              "name": "didUserOptIn",
+              "required": true,
+              "type": "boolean"
+            }
+          ],
+          "docstring": "Updates the telemetry state based on user preferences and VSCode settings\nOnly enables telemetry if both VSCode global telemetry is enabled and user has opted in\n@param didUserOptIn Whether the user has explicitly opted into telemetry",
+          "decorators": [],
+          "return_type": "void"
+        },
+        "getInstance": {
+          "parameters": [],
+          "docstring": "Gets or creates the singleton instance of PostHogClient\n@returns The PostHogClient instance",
+          "decorators": [],
+          "return_type": "PostHogClient"
+        },
+        "capture": {
+          "parameters": [
+            {
+              "name": "event",
+              "required": true,
+              "type": "{ event: string; properties?: any }"
+            }
+          ],
+          "docstring": "Captures a telemetry event if telemetry is enabled\n@param event The event to capture with its properties",
+          "decorators": [],
+          "return_type": "void"
+        },
+        "captureTaskCreated": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "apiProvider",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": "Records when a new task/conversation is started\n@param taskId Unique identifier for the new task",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "captureTaskRestarted": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "apiProvider",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": "Records when a task/conversation is restarted\n@param taskId Unique identifier for the new task",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "captureTaskCompleted": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": "Records when cline calls the task completion_result tool signifying that cline is done with the task\n@param taskId Unique identifier for the task",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "captureConversationTurnEvent": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "provider",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "model",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "source",
+              "required": true,
+              "type": "\"user\" | \"assistant\""
+            }
+          ],
+          "docstring": "Captures that a message was sent, and includes the API provider and model used\n@param taskId Unique identifier for the task\n@param provider The API provider (e.g., OpenAI, Anthropic)\n@param model The specific model used (e.g., GPT-4, Claude)\n@param source The source of the message (\"user\" | \"model\"). Used to track message patterns and identify when users need to correct the model's responses.",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "captureTokenUsage": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "tokensIn",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "tokensOut",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "model",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": "TODO\nRecords token usage metrics for cost tracking and usage analysis\n@param taskId Unique identifier for the task\n@param tokensIn Number of input tokens consumed\n@param tokensOut Number of output tokens generated\n@param model The model used for token calculation",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "captureModeSwitch": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "mode",
+              "required": true,
+              "type": "\"plan\" | \"act\""
+            }
+          ],
+          "docstring": "Records when a task switches between plan and act modes\n@param taskId Unique identifier for the task\n@param mode The mode being switched to (plan or act)",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "captureToolUsage": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "tool",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "autoApproved",
+              "required": true,
+              "type": "boolean"
+            },
+            {
+              "name": "success",
+              "required": true,
+              "type": "boolean"
+            }
+          ],
+          "docstring": "Records when a tool is used during task execution\n@param taskId Unique identifier for the task\n@param tool Name of the tool being used\n@param autoApproved Whether the tool was auto-approved based on settings\n@param success Whether the tool execution was successful",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "captureCheckpointUsage": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "action",
+              "required": true,
+              "type": "\"shadow_git_initialized\" | \"commit_created\" | \"restored\" | \"diff_generated\""
+            },
+            {
+              "name": "durationMs",
+              "required": false,
+              "type": "number"
+            }
+          ],
+          "docstring": "Records interactions with the git-based checkpoint system\n@param taskId Unique identifier for the task\n@param action The type of checkpoint action\n@param durationMs Optional duration of the operation in milliseconds",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "captureProviderSwitch": {
+          "parameters": [
+            {
+              "name": "from",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "to",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "location",
+              "required": true,
+              "type": "\"settings\" | \"bottom\""
+            },
+            {
+              "name": "taskId",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": "Records when the user switches between different API providers\n@param from Previous provider name\n@param to New provider name\n@param location Where the switch occurred (settings panel or bottom bar)\n@param taskId Optional task identifier if switch occurred during a task",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "captureImageAttached": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "imageCount",
+              "required": true,
+              "type": "number"
+            }
+          ],
+          "docstring": "Records when images are attached to a conversation\n@param taskId Unique identifier for the task\n@param imageCount Number of images attached",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "captureButtonClick": {
+          "parameters": [
+            {
+              "name": "button",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "taskId",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": "Records general button click interactions in the UI\n@param button Identifier for the button that was clicked\n@param taskId Optional task identifier if click occurred during a task",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "captureMarketplaceOpened": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": "Records when the marketplace view is opened\n@param taskId Optional task identifier if marketplace was opened during a task",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "captureSettingsOpened": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": "Records when the settings panel is opened\n@param taskId Optional task identifier if settings were opened during a task",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "captureHistoryOpened": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": "Records when the task history view is opened\n@param taskId Optional task identifier if history was opened during a task",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "captureTaskPopped": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": "Records when a task is removed from the task history\n@param taskId Unique identifier for the task being removed",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "captureDiffEditFailure": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "errorType",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": "Records when a diff edit (replace_in_file) operation fails\n@param taskId Unique identifier for the task\n@param errorType Type of error that occurred (e.g., \"search_not_found\", \"invalid_format\")",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "captureModelSelected": {
+          "parameters": [
+            {
+              "name": "model",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "provider",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "taskId",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": "Records when a different model is selected for use\n@param model Name of the selected model\n@param provider Provider of the selected model\n@param taskId Optional task identifier if model was selected during a task",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "captureHistoricalTaskLoaded": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": "Records when a historical task is loaded from storage\n@param taskId Unique identifier for the historical task",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "captureRetryClicked": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": "Records when the retry button is clicked for failed operations\n@param taskId Unique identifier for the task being retried",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "isTelemetryEnabled": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "boolean"
+        },
+        "shutdown": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<void>"
+        }
+      },
+      "attributes": {
+        "EVENTS": "any",
+        "instance": "PostHogClient",
+        "client": "PostHog",
+        "distinctId": "string",
+        "telemetryEnabled": "boolean",
+        "version": "string"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": "PostHogClient handles telemetry event tracking for the Cline extension\nUses PostHog analytics to track user interactions and system events\nRespects user privacy settings and VSCode's global telemetry configuration",
+      "file_path": "/Users/david/Projects/cline/src/services/telemetry/TelemetryService.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {},
+  "types": {},
+  "functions": {},
+  "imports": [
+    {
+      "name": "PostHog",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    },
+    {
+      "name": "version",
+      "alias": "extensionVersion",
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "telemetryLevel": "unknown",
+    "globalTelemetryEnabled": "unknown",
+    "propertiesWithVersion": "unknown",
+    "properties": "unknown",
+    "telemetryService": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 6,
+    "method_count": 25,
+    "inner_class_count": 0
+  }
+}

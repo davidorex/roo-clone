@@ -1,0 +1,44 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/shared/combineApiRequests",
+  "file_path": "/Users/david/Projects/cline/src/shared/combineApiRequests.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "combineApiRequests": {
+      "parameters": [
+        {
+          "name": "messages",
+          "required": true,
+          "type": "ClineMessage[]"
+        }
+      ],
+      "docstring": "Combines API request start and finish messages in an array of ClineMessages.\n\nThis function looks for pairs of 'api_req_started' and 'api_req_finished' messages.\nWhen it finds a pair, it combines them into a single 'api_req_combined' message.\nThe JSON data in the text fields of both messages are merged.\n\n@param messages - An array of ClineMessage objects to process.\n@returns A new array of ClineMessage objects with API requests combined.\n\n@example\nconst messages = [\n  { type: \"say\", say: \"api_req_started\", text: '{\"request\":\"GET /api/data\"}', ts: 1000 },\n  { type: \"say\", say: \"api_req_finished\", text: '{\"cost\":0.005}', ts: 1001 }\n];\nconst result = combineApiRequests(messages);\n// Result: [{ type: \"say\", say: \"api_req_started\", text: '{\"request\":\"GET /api/data\",\"cost\":0.005}', ts: 1000 }]",
+      "decorators": [],
+      "return_type": "ClineMessage[]"
+    }
+  },
+  "imports": [
+    {
+      "name": "ClineMessage",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "combinedApiRequests": "unknown",
+    "combinedRequest": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 1,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

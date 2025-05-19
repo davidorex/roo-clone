@@ -1,0 +1,187 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/integrations/terminal/TerminalManager",
+  "file_path": "/Users/david/Projects/cline/src/integrations/terminal/TerminalManager.ts",
+  "classes": {
+    "TerminalManager": {
+      "methods": {
+        "constructor": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "TerminalManager"
+        },
+        "runCommand": {
+          "parameters": [
+            {
+              "name": "terminalInfo",
+              "required": true,
+              "type": "TerminalInfo"
+            },
+            {
+              "name": "command",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "TerminalProcessResultPromise"
+        },
+        "getOrCreateTerminal": {
+          "parameters": [
+            {
+              "name": "cwd",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<TerminalInfo>"
+        },
+        "getTerminals": {
+          "parameters": [
+            {
+              "name": "busy",
+              "required": true,
+              "type": "boolean"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "{ id: number; lastCommand: string }[]"
+        },
+        "getUnretrievedOutput": {
+          "parameters": [
+            {
+              "name": "terminalId",
+              "required": true,
+              "type": "number"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "string"
+        },
+        "isProcessHot": {
+          "parameters": [
+            {
+              "name": "terminalId",
+              "required": true,
+              "type": "number"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "boolean"
+        },
+        "disposeAll": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        }
+      },
+      "attributes": {
+        "terminalIds": "Set<number>",
+        "processes": "Map<number, TerminalProcess>",
+        "disposables": "vscode.Disposable[]"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/integrations/terminal/TerminalManager.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {
+    "Terminal": {
+      "properties": {
+        "shellIntegration": {
+          "type": "{\n\t\t\tcwd?: vscode.Uri\n\t\t\texecuteCommand?: (command: string) => {\n\t\t\t\tread: () => AsyncIterable<string>\n\t\t\t}\n\t\t}",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "Window": {
+      "properties": {
+        "onDidStartTerminalShellExecution": {
+          "type": "(\n\t\t\tlistener: (e: any) => any,\n\t\t\tthisArgs?: any,\n\t\t\tdisposables?: vscode.Disposable[],\n\t\t) => vscode.Disposable",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {},
+  "functions": {},
+  "imports": [
+    {
+      "name": "pWaitFor",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    },
+    {
+      "name": "arePathsEqual",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "mergePromise",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "TerminalProcess",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "TerminalProcessResultPromise",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "TerminalInfo",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "TerminalRegistry",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "process": "unknown",
+    "promise": "unknown",
+    "existingProcess": "unknown",
+    "terminals": "unknown",
+    "matchingTerminal": "unknown",
+    "terminalCwd": "unknown",
+    "availableTerminal": "unknown",
+    "newTerminalInfo": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 2,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 3,
+    "method_count": 7,
+    "inner_class_count": 0
+  }
+}

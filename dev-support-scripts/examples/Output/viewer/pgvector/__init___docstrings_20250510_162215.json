@@ -1,5 +1,0 @@
-{
-  "module": "Django pgvector integration for Git Commit Viewer.\n\nThis package provides PostgreSQL vector field and operations support\nfor semantic search functionality within the Git Commit Viewer.",
-  "classes": {},
-  "functions": {}
-}

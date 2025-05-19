@@ -1,0 +1,222 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/integrations/editor/DiffViewProvider",
+  "file_path": "/Users/david/Projects/cline/src/integrations/editor/DiffViewProvider.ts",
+  "classes": {
+    "DiffViewProvider": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "cwd",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "DiffViewProvider"
+        },
+        "open": {
+          "parameters": [
+            {
+              "name": "relPath",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<void>"
+        },
+        "update": {
+          "parameters": [
+            {
+              "name": "accumulatedContent",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "isFinal",
+              "required": true,
+              "type": "boolean"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "saveChanges": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<{\n\t\tnewProblemsMessage: string | undefined\n\t\tuserEdits: string | undefined\n\t\tautoFormattingEdits: string | undefined\n\t\tfinalContent: string | undefined\n\t}>"
+        },
+        "revertChanges": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<void>"
+        },
+        "closeAllDiffViews": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "openDiffEditor": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<vscode.TextEditor>"
+        },
+        "scrollEditorToLine": {
+          "parameters": [
+            {
+              "name": "line",
+              "required": true,
+              "type": "number"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "scrollToFirstDiff": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "reset": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        }
+      },
+      "attributes": {
+        "editType": "\"create\" | \"modify\"",
+        "isEditing": "any",
+        "originalContent": "string | undefined",
+        "createdDirs": "string[]",
+        "documentWasOpen": "any",
+        "relPath": "string",
+        "newContent": "string",
+        "activeDiffEditor": "vscode.TextEditor",
+        "fadedOverlayController": "DecorationController",
+        "activeLineController": "DecorationController",
+        "streamedLines": "string[]",
+        "preDiagnostics": "[vscode.Uri, vscode.Diagnostic[]][]",
+        "cwd": "string"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/integrations/editor/DiffViewProvider.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {},
+  "types": {},
+  "functions": {},
+  "imports": [
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    },
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "fs/promises",
+      "alias": "fs",
+      "from_import": false
+    },
+    {
+      "name": "createDirectoriesForFile",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "arePathsEqual",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "formatResponse",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "DecorationController",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "diff",
+      "alias": "diff",
+      "from_import": false
+    },
+    {
+      "name": "diagnosticsToProblemsString",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "getNewDiagnostics",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "DIFF_VIEW_URI_SCHEME": "\"cline-diff\"",
+    "fileExists": "unknown",
+    "absolutePath": "unknown",
+    "existingDocument": "unknown",
+    "tabs": "unknown",
+    "accumulatedLines": "unknown",
+    "diffLines": "unknown",
+    "diffEditor": "unknown",
+    "document": "unknown",
+    "beginningOfDocument": "unknown",
+    "currentLine": "unknown",
+    "edit": "unknown",
+    "rangeToReplace": "unknown",
+    "contentToReplace": "unknown",
+    "hasEmptyLastLine": "unknown",
+    "updatedDocument": "unknown",
+    "preSaveContent": "unknown",
+    "postSaveContent": "unknown",
+    "postDiagnostics": "unknown",
+    "newProblems": "unknown",
+    "newProblemsMessage": "unknown",
+    "newContentEOL": "unknown",
+    "normalizedPreSaveContent": "unknown",
+    "normalizedPostSaveContent": "unknown",
+    "normalizedNewContent": "unknown",
+    "fullRange": "unknown",
+    "uri": "unknown",
+    "diffTab": "unknown",
+    "editor": "unknown",
+    "fileName": "unknown",
+    "disposable": "unknown",
+    "scrollLine": "unknown",
+    "currentContent": "unknown",
+    "diffs": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 13,
+    "method_count": 10,
+    "inner_class_count": 0
+  }
+}

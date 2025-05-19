@@ -1,0 +1,257 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/integrations/checkpoints/CheckpointTracker-old",
+  "file_path": "/Users/david/Projects/cline/src/integrations/checkpoints/CheckpointTracker-old.ts",
+  "classes": {
+    "CheckpointTracker": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "provider",
+              "required": true,
+              "type": "ClineProvider"
+            },
+            {
+              "name": "taskId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "cwd",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "CheckpointTracker"
+        },
+        "create": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "provider",
+              "required": false,
+              "type": "ClineProvider"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<CheckpointTracker | undefined>"
+        },
+        "getWorkingDirectory": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<string>"
+        },
+        "getShadowGitPath": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<string>"
+        },
+        "doesShadowGitExist": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "provider",
+              "required": false,
+              "type": "ClineProvider"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<boolean>"
+        },
+        "initShadowGit": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<string>"
+        },
+        "getShadowGitConfigWorkTree": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<string | undefined>"
+        },
+        "commit": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<string | undefined>"
+        },
+        "resetHead": {
+          "parameters": [
+            {
+              "name": "commitHash",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<void>"
+        },
+        "getDiffSet": {
+          "parameters": [
+            {
+              "name": "lhsHash",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "rhsHash",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": "Return an array describing changed files between one commit and either:\n  - another commit, or\n  - the current working directory (including uncommitted changes).\n\nIf `rhsHash` is omitted, compares `lhsHash` to the working directory.\nIf you want truly untracked files to appear, `git add` them first.\n\n@param lhsHash - The commit to compare from (older commit)\n@param rhsHash - The commit to compare to (newer commit).\n                 If omitted, we compare to the working directory.\n@returns Array of file changes with before/after content",
+          "decorators": [],
+          "return_type": "Promise<\n\t\tArray<{\n\t\t\trelativePath: string\n\t\t\tabsolutePath: string\n\t\t\tbefore: string\n\t\t\tafter: string\n\t\t}>\n\t>"
+        },
+        "addAllFiles": {
+          "parameters": [
+            {
+              "name": "git",
+              "required": true,
+              "type": "SimpleGit"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "renameNestedGitRepos": {
+          "parameters": [
+            {
+              "name": "disable",
+              "required": true,
+              "type": "boolean"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "dispose": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        }
+      },
+      "attributes": {
+        "providerRef": "WeakRef<ClineProvider>",
+        "taskId": "string",
+        "disposables": "vscode.Disposable[]",
+        "cwd": "string",
+        "lastRetrievedShadowGitConfigWorkTree": "string",
+        "lastCheckpointHash": "string"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/integrations/checkpoints/CheckpointTracker-old.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {},
+  "types": {},
+  "functions": {},
+  "imports": [
+    {
+      "name": "fs",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "os",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "simpleGit",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "SimpleGit",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    },
+    {
+      "name": "ClineProvider",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "fileExistsAtPath",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "globby",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "enableCheckpoints": "unknown",
+    "cwd": "unknown",
+    "newTracker": "unknown",
+    "homedir": "unknown",
+    "desktopPath": "unknown",
+    "documentsPath": "unknown",
+    "downloadsPath": "unknown",
+    "globalStoragePath": "unknown",
+    "checkpointsDir": "unknown",
+    "gitPath": "unknown",
+    "worktree": "unknown",
+    "git": "unknown",
+    "attributesPath": "unknown",
+    "attributesContent": "unknown",
+    "excludesPath": "unknown",
+    "result": "unknown",
+    "commitHash": "unknown",
+    "rootCommit": "unknown",
+    "diffSummary": "unknown",
+    "cwdPath": "unknown",
+    "filePath": "unknown",
+    "absolutePath": "unknown",
+    "gitPaths": "unknown",
+    "fullPath": "unknown",
+    "GIT_DISABLED_SUFFIX": "\"_disabled\""
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 6,
+    "method_count": 13,
+    "inner_class_count": 0
+  }
+}

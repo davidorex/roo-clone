@@ -1,0 +1,114 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/integrations/theme/getTheme",
+  "file_path": "/Users/david/Projects/cline/src/integrations/theme/getTheme.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {
+    "JsonObject": {
+      "docstring": null,
+      "type": "object",
+      "properties": {}
+    }
+  },
+  "functions": {
+    "parseThemeString": {
+      "parameters": [
+        {
+          "name": "themeString",
+          "required": true,
+          "type": "string | undefined"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "any"
+    },
+    "getTheme": {
+      "parameters": [],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "any"
+    },
+    "mergeJson": {
+      "parameters": [
+        {
+          "name": "first",
+          "required": true,
+          "type": "JsonObject"
+        },
+        {
+          "name": "second",
+          "required": true,
+          "type": "JsonObject"
+        },
+        {
+          "name": "mergeBehavior",
+          "required": false,
+          "type": "\"merge\" | \"overwrite\""
+        },
+        {
+          "name": "mergeKeys",
+          "required": false,
+          "type": "{ [key: string]: (a: any, b: any) => boolean }"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "any"
+    },
+    "getExtensionUri": {
+      "parameters": [],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "vscode.Uri"
+    }
+  },
+  "imports": [
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    },
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "fs/promises",
+      "alias": "fs",
+      "from_import": false
+    },
+    {
+      "name": "convertTheme",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "defaultThemes": "unknown",
+    "colorTheme": "unknown",
+    "extension": "unknown",
+    "themePath": "unknown",
+    "filename": "unknown",
+    "includeThemeString": "unknown",
+    "includeTheme": "unknown",
+    "converted": "unknown",
+    "copyOfFirst": "unknown",
+    "secondValue": "unknown",
+    "firstValue": "unknown",
+    "keptFromFirst": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 1,
+    "function_count": 4,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

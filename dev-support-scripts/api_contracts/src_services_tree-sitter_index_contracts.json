@@ -1,0 +1,129 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/services/tree-sitter/index",
+  "file_path": "/Users/david/Projects/cline/src/services/tree-sitter/index.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "parseSourceCodeForDefinitionsTopLevel": {
+      "parameters": [
+        {
+          "name": "dirPath",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "clineIgnoreController",
+          "required": false,
+          "type": "ClineIgnoreController"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<string>"
+    },
+    "separateFiles": {
+      "parameters": [
+        {
+          "name": "allFiles",
+          "required": true,
+          "type": "string[]"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "{\n\tfilesToParse: string[]\n\tremainingFiles: string[]\n}"
+    },
+    "parseFile": {
+      "parameters": [
+        {
+          "name": "filePath",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "languageParsers",
+          "required": true,
+          "type": "LanguageParser"
+        },
+        {
+          "name": "clineIgnoreController",
+          "required": false,
+          "type": "ClineIgnoreController"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<string | null>"
+    }
+  },
+  "imports": [
+    {
+      "name": "fs/promises",
+      "alias": "fs",
+      "from_import": false
+    },
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "listFiles",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "LanguageParser",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "loadRequiredLanguageParsers",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "fileExistsAtPath",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineIgnoreController",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "dirExists": "unknown",
+    "[allFiles, _]": "unknown",
+    "{ filesToParse, remainingFiles }": "unknown",
+    "languageParsers": "unknown",
+    "allowedFilesToParse": "unknown",
+    "definitions": "unknown",
+    "extensions": "unknown",
+    "filesToParse": "unknown",
+    "remainingFiles": "unknown",
+    "fileContent": "unknown",
+    "ext": "unknown",
+    "{ parser, query }": "unknown",
+    "tree": "unknown",
+    "captures": "unknown",
+    "lines": "unknown",
+    "{ node, name }": "unknown",
+    "startLine": "unknown",
+    "endLine": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 3,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

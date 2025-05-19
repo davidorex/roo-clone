@@ -1,0 +1,88 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/shared/Languages",
+  "file_path": "/Users/david/Projects/cline/src/shared/Languages.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {
+    "LanguageKey": {
+      "docstring": null,
+      "type": "union",
+      "values": [
+        "\"en\"",
+        "\"ar\"",
+        "\"pt-BR\"",
+        "\"cs\"",
+        "\"fr\"",
+        "\"de\"",
+        "\"hi\"",
+        "\"hu\"",
+        "\"it\"",
+        "\"ja\"",
+        "\"ko\"",
+        "\"pl\"",
+        "\"pt-PT\"",
+        "\"ru\"",
+        "\"zh-CN\"",
+        "\"es\"",
+        "\"zh-TW\"",
+        "\"tr\""
+      ]
+    },
+    "LanguageDisplay": {
+      "docstring": null,
+      "type": "union",
+      "values": [
+        "\"English\"",
+        "\"Arabic - العربية\"",
+        "\"Portuguese - Português (Brasil)\"",
+        "\"Czech - Čeština\"",
+        "\"French - Français\"",
+        "\"German - Deutsch\"",
+        "\"Hindi - हिन्दी\"",
+        "\"Hungarian - Magyar\"",
+        "\"Italian - Italiano\"",
+        "\"Japanese - 日本語\"",
+        "\"Korean - 한국어\"",
+        "\"Polish - Polski\"",
+        "\"Portuguese - Português (Portugal)\"",
+        "\"Russian - Русский\"",
+        "\"Simplified Chinese - 简体中文\"",
+        "\"Spanish - Español\"",
+        "\"Traditional Chinese - 繁體中文\"",
+        "\"Turkish - Türkçe\""
+      ]
+    }
+  },
+  "functions": {
+    "getLanguageKey": {
+      "parameters": [
+        {
+          "name": "display",
+          "required": true,
+          "type": "LanguageDisplay | undefined"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "LanguageKey"
+    }
+  },
+  "imports": [],
+  "constants": {
+    "DEFAULT_LANGUAGE_SETTINGS": "\"en\"",
+    "languageOptions": "unknown",
+    "languageOption": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 2,
+    "function_count": 1,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

@@ -1,0 +1,144 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/integrations/terminal/TerminalRegistry",
+  "file_path": "/Users/david/Projects/cline/src/integrations/terminal/TerminalRegistry.ts",
+  "classes": {
+    "TerminalRegistry": {
+      "methods": {
+        "createTerminal": {
+          "parameters": [
+            {
+              "name": "cwd",
+              "required": false,
+              "type": "string | vscode.Uri | undefined"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "TerminalInfo"
+        },
+        "getTerminal": {
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "type": "number"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "TerminalInfo | undefined"
+        },
+        "updateTerminal": {
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "updates",
+              "required": true,
+              "type": "Partial<TerminalInfo>"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "removeTerminal": {
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "type": "number"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "getAllTerminals": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "TerminalInfo[]"
+        },
+        "isTerminalClosed": {
+          "parameters": [
+            {
+              "name": "terminal",
+              "required": true,
+              "type": "vscode.Terminal"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "boolean"
+        }
+      },
+      "attributes": {
+        "terminals": "TerminalInfo[]",
+        "nextTerminalId": "any"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/integrations/terminal/TerminalRegistry.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {
+    "TerminalInfo": {
+      "properties": {
+        "terminal": {
+          "type": "vscode.Terminal",
+          "required": true,
+          "docstring": null
+        },
+        "busy": {
+          "type": "boolean",
+          "required": true,
+          "docstring": null
+        },
+        "lastCommand": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "id": {
+          "type": "number",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {},
+  "functions": {},
+  "imports": [
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    }
+  ],
+  "constants": {
+    "terminal": "unknown",
+    "newInfo": "unknown",
+    "terminalInfo": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 1,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 2,
+    "method_count": 6,
+    "inner_class_count": 0
+  }
+}

@@ -1,5 +1,0 @@
-{
-  "module": "WSGI config for git_commit_viewer project.\n\nIt exposes the WSGI callable as a module-level variable named ``application``.\n\nFor more information on this file, see\nhttps://docs.djangoproject.com/en/5.2/howto/deployment/wsgi/",
-  "classes": {},
-  "functions": {}
-}

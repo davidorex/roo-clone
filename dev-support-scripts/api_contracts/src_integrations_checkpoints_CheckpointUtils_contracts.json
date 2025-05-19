@@ -1,0 +1,94 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/integrations/checkpoints/CheckpointUtils",
+  "file_path": "/Users/david/Projects/cline/src/integrations/checkpoints/CheckpointUtils.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "getShadowGitPath": {
+      "parameters": [
+        {
+          "name": "globalStoragePath",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "taskId",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "cwdHash",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": "Gets the path to the shadow Git repository in globalStorage.\n\nCheckpoints path structure:\nglobalStorage/\n  checkpoints/\n    {cwdHash}/\n      .git/\n\n@param globalStoragePath - The VS Code global storage path\n@param taskId - The ID of the task\n@param cwdHash - Hash of the working directory path\n@returns Promise<string> The absolute path to the shadow git directory\n@throws Error if global storage path is invalid",
+      "decorators": [],
+      "return_type": "Promise<string>"
+    },
+    "getWorkingDirectory": {
+      "parameters": [],
+      "docstring": "Gets the current working directory from the VS Code workspace.\nValidates that checkpoints are not being used in protected directories\nlike home, Desktop, Documents, or Downloads.\n\nProtected directories:\n- User's home directory\n- Desktop\n- Documents\n- Downloads\n\n@returns Promise<string> The absolute path to the current working directory\n@throws Error if no workspace is detected or if in a protected directory",
+      "decorators": [],
+      "return_type": "Promise<string>"
+    },
+    "hashWorkingDir": {
+      "parameters": [
+        {
+          "name": "workingDir",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": "Hashes the current working directory to a 13-character numeric hash.\n@param workingDir - The absolute path to the working directory\n@returns A 13-character numeric hash string used to identify the workspace\n@throws {Error} If the working directory path is empty or invalid",
+      "decorators": [],
+      "return_type": "string"
+    }
+  },
+  "imports": [
+    {
+      "name": "mkdir",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    },
+    {
+      "name": "os",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "checkpointsDir": "unknown",
+    "gitPath": "unknown",
+    "cwd": "unknown",
+    "homedir": "unknown",
+    "desktopPath": "unknown",
+    "documentsPath": "unknown",
+    "downloadsPath": "unknown",
+    "bigHash": "unknown",
+    "numericHash": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 3,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

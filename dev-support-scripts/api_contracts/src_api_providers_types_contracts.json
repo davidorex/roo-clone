@@ -1,0 +1,76 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/api/providers/types",
+  "file_path": "/Users/david/Projects/cline/src/api/providers/types.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {
+    "OpenRouterErrorResponse": {
+      "docstring": null,
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "{\n\t\tmessage: string\n\t\tcode: number\n\t\tmetadata?: OpenRouterProviderErrorMetadata | OpenRouterModerationErrorMetadata | Record<string, unknown>\n\t}",
+          "required": true,
+          "docstring": null
+        }
+      }
+    },
+    "OpenRouterProviderErrorMetadata": {
+      "docstring": null,
+      "type": "object",
+      "properties": {
+        "provider_name": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "raw": {
+          "type": "unknown",
+          "required": true,
+          "docstring": null
+        }
+      }
+    },
+    "OpenRouterModerationErrorMetadata": {
+      "docstring": null,
+      "type": "object",
+      "properties": {
+        "reasons": {
+          "type": "string[]",
+          "required": true,
+          "docstring": null
+        },
+        "flagged_input": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "provider_name": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "model_slug": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        }
+      }
+    }
+  },
+  "functions": {},
+  "imports": [],
+  "constants": {},
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 3,
+    "function_count": 0,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

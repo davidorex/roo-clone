@@ -1,0 +1,102 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/core/assistant-message/diff",
+  "file_path": "/Users/david/Projects/cline/src/core/assistant-message/diff.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "lineTrimmedFallbackMatch": {
+      "parameters": [
+        {
+          "name": "originalContent",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "searchContent",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "startIndex",
+          "required": true,
+          "type": "number"
+        }
+      ],
+      "docstring": "Attempts a line-trimmed fallback match for the given search content in the original content.\nIt tries to match `searchContent` lines against a block of lines in `originalContent` starting\nfrom `lastProcessedIndex`. Lines are matched by trimming leading/trailing whitespace and ensuring\nthey are identical afterwards.\n\nReturns [matchIndexStart, matchIndexEnd] if found, or false if not found.",
+      "decorators": [],
+      "return_type": "[number, number] | false"
+    },
+    "blockAnchorFallbackMatch": {
+      "parameters": [
+        {
+          "name": "originalContent",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "searchContent",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "startIndex",
+          "required": true,
+          "type": "number"
+        }
+      ],
+      "docstring": "Attempts to match blocks of code by using the first and last lines as anchors.\nThis is a third-tier fallback strategy that helps match blocks where we can identify\nthe correct location by matching the beginning and end, even if the exact content\ndiffers slightly.\n\nThe matching strategy:\n1. Only attempts to match blocks of 3 or more lines to avoid false positives\n2. Extracts from the search content:\n   - First line as the \"start anchor\"\n   - Last line as the \"end anchor\"\n3. For each position in the original content:\n   - Checks if the next line matches the start anchor\n   - If it does, jumps ahead by the search block size\n   - Checks if that line matches the end anchor\n   - All comparisons are done after trimming whitespace\n\nThis approach is particularly useful for matching blocks of code where:\n- The exact content might have minor differences\n- The beginning and end of the block are distinctive enough to serve as anchors\n- The overall structure (number of lines) remains the same\n\n@param originalContent - The full content of the original file\n@param searchContent - The content we're trying to find in the original file\n@param startIndex - The character index in originalContent where to start searching\n@returns A tuple of [startIndex, endIndex] if a match is found, false otherwise",
+      "decorators": [],
+      "return_type": "[number, number] | false"
+    },
+    "constructNewFileContent": {
+      "parameters": [
+        {
+          "name": "diffContent",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "originalContent",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "isFinal",
+          "required": true,
+          "type": "boolean"
+        }
+      ],
+      "docstring": "This function reconstructs the file content by applying a streamed diff (in a\nspecialized SEARCH/REPLACE block format) to the original file content. It is designed\nto handle both incremental updates and the final resulting file after all chunks have\nbeen processed.\n\nThe diff format is a custom structure that uses three markers to define changes:\n\n  <<<<<<< SEARCH\n  [Exact content to find in the original file]\n  =======\n  [Content to replace with]\n  >>>>>>> REPLACE\n\nBehavior and Assumptions:\n1. The file is processed chunk-by-chunk. Each chunk of `diffContent` may contain\n   partial or complete SEARCH/REPLACE blocks. By calling this function with each\n   incremental chunk (with `isFinal` indicating the last chunk), the final reconstructed\n   file content is produced.\n\n2. Matching Strategy (in order of attempt):\n   a. Exact Match: First attempts to find the exact SEARCH block text in the original file\n   b. Line-Trimmed Match: Falls back to line-by-line comparison ignoring leading/trailing whitespace\n   c. Block Anchor Match: For blocks of 3+ lines, tries to match using first/last lines as anchors\n   If all matching strategies fail, an error is thrown.\n\n3. Empty SEARCH Section:\n   - If SEARCH is empty and the original file is empty, this indicates creating a new file\n     (pure insertion).\n   - If SEARCH is empty and the original file is not empty, this indicates a complete\n     file replacement (the entire original content is considered matched and replaced).\n\n4. Applying Changes:\n   - Before encountering the \"=======\" marker, lines are accumulated as search content.\n   - After \"=======\" and before \">>>>>>> REPLACE\", lines are accumulated as replacement content.\n   - Once the block is complete (\">>>>>>> REPLACE\"), the matched section in the original\n     file is replaced with the accumulated replacement lines, and the position in the original\n     file is advanced.\n\n5. Incremental Output:\n   - As soon as the match location is found and we are in the REPLACE section, each new\n     replacement line is appended to the result so that partial updates can be viewed\n     incrementally.\n\n6. Partial Markers:\n   - If the final line of the chunk looks like it might be part of a marker but is not one\n     of the known markers, it is removed. This prevents incomplete or partial markers\n     from corrupting the output.\n\n7. Finalization:\n   - Once all chunks have been processed (when `isFinal` is true), any remaining original\n     content after the last replaced section is appended to the result.\n   - Trailing newlines are not forcibly added. The code tries to output exactly what is specified.\n\nErrors:\n- If the search block cannot be matched using any of the available matching strategies,\n  an error is thrown.",
+      "decorators": [],
+      "return_type": "Promise<string>"
+    }
+  },
+  "imports": [],
+  "constants": {
+    "originalLines": "unknown",
+    "searchLines": "unknown",
+    "originalTrimmed": "unknown",
+    "searchTrimmed": "unknown",
+    "firstLineSearch": "unknown",
+    "lastLineSearch": "unknown",
+    "searchBlockSize": "unknown",
+    "lastLine": "unknown",
+    "exactIndex": "unknown",
+    "lineMatch": "unknown",
+    "blockMatch": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 3,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  },
+  "docstring": "Attempts a line-trimmed fallback match for the given search content in the original content.\nIt tries to match `searchContent` lines against a block of lines in `originalContent` starting\nfrom `lastProcessedIndex`. Lines are matched by trimming leading/trailing whitespace and ensuring\nthey are identical afterwards.\n\nReturns [matchIndexStart, matchIndexEnd] if found, or false if not found."
+}

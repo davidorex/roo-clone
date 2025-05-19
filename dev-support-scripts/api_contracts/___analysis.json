@@ -1,0 +1,427 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "total_modules": 128,
+  "total_classes": 45,
+  "total_interfaces": 58,
+  "total_types": 59,
+  "total_functions": 135,
+  "total_methods": 351,
+  "total_attributes": 184,
+  "circular_dependencies": [],
+  "key_interfaces": [
+    {
+      "module": "src/core/Cline",
+      "name": "Cline",
+      "method_count": 33,
+      "attribute_count": 44,
+      "inner_class_count": 0,
+      "derived_count": 0,
+      "interface_complexity": 77,
+      "bases": [],
+      "docstring": null
+    },
+    {
+      "module": "src/core/webview/ClineProvider",
+      "name": "ClineProvider",
+      "method_count": 61,
+      "attribute_count": 11,
+      "inner_class_count": 0,
+      "derived_count": 0,
+      "interface_complexity": 72,
+      "bases": [],
+      "docstring": null
+    },
+    {
+      "module": "src/services/mcp/McpHub",
+      "name": "McpHub",
+      "method_count": 27,
+      "attribute_count": 6,
+      "inner_class_count": 0,
+      "derived_count": 0,
+      "interface_complexity": 33,
+      "bases": [],
+      "docstring": null
+    },
+    {
+      "module": "src/services/telemetry/TelemetryService",
+      "name": "PostHogClient",
+      "method_count": 25,
+      "attribute_count": 6,
+      "inner_class_count": 0,
+      "derived_count": 0,
+      "interface_complexity": 31,
+      "bases": [],
+      "docstring": "PostHogClient handles telemetry event tracking for the Cline extension\nUses PostHog analytics to track user interactions and system events\nRespects user privacy settings and VSCode's global telemetry configuration"
+    },
+    {
+      "module": "src/integrations/editor/DiffViewProvider",
+      "name": "DiffViewProvider",
+      "method_count": 10,
+      "attribute_count": 13,
+      "inner_class_count": 0,
+      "derived_count": 0,
+      "interface_complexity": 23,
+      "bases": [],
+      "docstring": null
+    },
+    {
+      "module": "src/integrations/checkpoints/CheckpointTracker-old",
+      "name": "CheckpointTracker",
+      "method_count": 13,
+      "attribute_count": 6,
+      "inner_class_count": 0,
+      "derived_count": 0,
+      "interface_complexity": 19,
+      "bases": [],
+      "docstring": null
+    },
+    {
+      "module": "src/api/providers/bedrock",
+      "name": "AwsBedrockHandler",
+      "method_count": 16,
+      "attribute_count": 2,
+      "inner_class_count": 0,
+      "derived_count": 0,
+      "interface_complexity": 18,
+      "bases": [],
+      "docstring": null
+    },
+    {
+      "module": "src/api/providers/vscode-lm",
+      "name": "VsCodeLmHandler",
+      "method_count": 12,
+      "attribute_count": 4,
+      "inner_class_count": 0,
+      "derived_count": 0,
+      "interface_complexity": 16,
+      "bases": [],
+      "docstring": "Handles interaction with VS Code's Language Model API for chat-based operations.\nThis handler implements the ApiHandler interface to provide VS Code LM specific functionality.\n\n@implements {ApiHandler}\n\n@remarks\nThe handler manages a VS Code language model chat client and provides methods to:\n- Create and manage chat client instances\n- Stream messages using VS Code's Language Model API\n- Retrieve model information\n\n@example\n```typescript\nconst options = {\n  vsCodeLmModelSelector: { vendor: \"copilot\", family: \"gpt-4\" }\n};\nconst handler = new VsCodeLmHandler(options);\n\n// Stream a conversation\nconst systemPrompt = \"You are a helpful assistant\";\nconst messages = [{ role: \"user\", content: \"Hello!\" }];\nfor await (const chunk of handler.createMessage(systemPrompt, messages)) {\n  console.log(chunk);\n}\n```"
+    },
+    {
+      "module": "src/services/browser/BrowserSession",
+      "name": "BrowserSession",
+      "method_count": 11,
+      "attribute_count": 5,
+      "inner_class_count": 0,
+      "derived_count": 0,
+      "interface_complexity": 16,
+      "bases": [],
+      "docstring": null
+    },
+    {
+      "module": "src/integrations/workspace/WorkspaceTracker",
+      "name": "WorkspaceTracker",
+      "method_count": 11,
+      "attribute_count": 3,
+      "inner_class_count": 0,
+      "derived_count": 0,
+      "interface_complexity": 14,
+      "bases": [],
+      "docstring": null
+    },
+    {
+      "module": "src/integrations/checkpoints/CheckpointTracker",
+      "name": "CheckpointTracker",
+      "method_count": 7,
+      "attribute_count": 6,
+      "inner_class_count": 0,
+      "derived_count": 0,
+      "interface_complexity": 13,
+      "bases": [],
+      "docstring": "CheckpointTracker Module\n\nCore implementation of Cline's Checkpoints system that provides version control\ncapabilities without interfering with the user's main Git repository. Key features:\n\nShadow Git Repository:\n- Creates and manages an isolated Git repository for tracking checkpoints\n- Handles nested Git repositories by temporarily disabling them\n- Configures Git settings automatically (identity, LFS, etc.)\n\nFile Management:\n- Integrates with CheckpointExclusions for file filtering\n- Handles workspace validation and path resolution\n- Manages Git worktree configuration\n\nCheckpoint Operations:\n- Creates checkpoints (commits) of the current state\n- Provides diff capabilities between checkpoints\n- Supports resetting to previous checkpoints\n\nSafety Features:\n- Prevents usage in sensitive directories (home, desktop, etc.)\n- Validates workspace configuration\n- Handles cleanup and resource disposal\n\nCheckpoint Architecture:\n- Unique shadow git repository for each workspace\n- Workspaces are identified by name, and hashed to a unique number\n- All commits for a workspace are stored in one shadow git, under a single branch"
+    },
+    {
+      "module": "src/integrations/terminal/TerminalProcess",
+      "name": "TerminalProcess",
+      "method_count": 6,
+      "attribute_count": 7,
+      "inner_class_count": 0,
+      "derived_count": 0,
+      "interface_complexity": 13,
+      "bases": [
+        "EventEmitter<TerminalProcessEvents>"
+      ],
+      "docstring": null
+    },
+    {
+      "module": "src/core/ignore/ClineIgnoreController",
+      "name": "ClineIgnoreController",
+      "method_count": 8,
+      "attribute_count": 4,
+      "inner_class_count": 0,
+      "derived_count": 0,
+      "interface_complexity": 12,
+      "bases": [],
+      "docstring": "Controls LLM access to files by enforcing ignore patterns.\nDesigned to be instantiated once in Cline.ts and passed to file manipulation services.\nUses the 'ignore' library to support standard .gitignore syntax in .clineignore files."
+    },
+    {
+      "module": "src/integrations/terminal/TerminalManager",
+      "name": "TerminalManager",
+      "method_count": 7,
+      "attribute_count": 3,
+      "inner_class_count": 0,
+      "derived_count": 0,
+      "interface_complexity": 10,
+      "bases": [],
+      "docstring": null
+    },
+    {
+      "module": "src/integrations/editor/DecorationController",
+      "name": "DecorationController",
+      "method_count": 6,
+      "attribute_count": 3,
+      "inner_class_count": 0,
+      "derived_count": 0,
+      "interface_complexity": 9,
+      "bases": [],
+      "docstring": null
+    },
+    {
+      "module": "src/api/providers/openrouter",
+      "name": "OpenRouterHandler",
+      "method_count": 5,
+      "attribute_count": 3,
+      "inner_class_count": 0,
+      "derived_count": 0,
+      "interface_complexity": 8,
+      "bases": [],
+      "docstring": null
+    },
+    {
+      "module": "src/integrations/terminal/TerminalRegistry",
+      "name": "TerminalRegistry",
+      "method_count": 6,
+      "attribute_count": 2,
+      "inner_class_count": 0,
+      "derived_count": 0,
+      "interface_complexity": 8,
+      "bases": [],
+      "docstring": null
+    },
+    {
+      "module": "src/services/account/ClineAccountService",
+      "name": "ClineAccountService",
+      "method_count": 6,
+      "attribute_count": 2,
+      "inner_class_count": 0,
+      "derived_count": 0,
+      "interface_complexity": 8,
+      "bases": [],
+      "docstring": null
+    },
+    {
+      "module": "src/services/browser/UrlContentFetcher",
+      "name": "UrlContentFetcher",
+      "method_count": 5,
+      "attribute_count": 3,
+      "inner_class_count": 0,
+      "derived_count": 0,
+      "interface_complexity": 8,
+      "bases": [],
+      "docstring": null
+    },
+    {
+      "module": "src/api/providers/cline",
+      "name": "ClineHandler",
+      "method_count": 4,
+      "attribute_count": 3,
+      "inner_class_count": 0,
+      "derived_count": 0,
+      "interface_complexity": 7,
+      "bases": [],
+      "docstring": null
+    }
+  ],
+  "central_modules": [
+    {
+      "name": "src/core/Cline",
+      "imported_by_count": 0,
+      "class_count": 1,
+      "method_count": 33,
+      "attribute_count": 44,
+      "interface_complexity": 77
+    },
+    {
+      "name": "src/core/webview/ClineProvider",
+      "imported_by_count": 0,
+      "class_count": 1,
+      "method_count": 61,
+      "attribute_count": 11,
+      "interface_complexity": 72
+    },
+    {
+      "name": "src/api/providers/vscode-lm",
+      "imported_by_count": 0,
+      "class_count": 6,
+      "method_count": 19,
+      "attribute_count": 14,
+      "interface_complexity": 33
+    },
+    {
+      "name": "src/services/mcp/McpHub",
+      "imported_by_count": 0,
+      "class_count": 1,
+      "method_count": 27,
+      "attribute_count": 6,
+      "interface_complexity": 33
+    },
+    {
+      "name": "src/services/telemetry/TelemetryService",
+      "imported_by_count": 0,
+      "class_count": 1,
+      "method_count": 25,
+      "attribute_count": 6,
+      "interface_complexity": 31
+    },
+    {
+      "name": "src/integrations/editor/DiffViewProvider",
+      "imported_by_count": 0,
+      "class_count": 1,
+      "method_count": 10,
+      "attribute_count": 13,
+      "interface_complexity": 23
+    },
+    {
+      "name": "src/integrations/checkpoints/CheckpointTracker-old",
+      "imported_by_count": 0,
+      "class_count": 1,
+      "method_count": 13,
+      "attribute_count": 6,
+      "interface_complexity": 19
+    },
+    {
+      "name": "src/api/providers/bedrock",
+      "imported_by_count": 0,
+      "class_count": 1,
+      "method_count": 16,
+      "attribute_count": 2,
+      "interface_complexity": 18
+    },
+    {
+      "name": "src/services/browser/BrowserSession",
+      "imported_by_count": 0,
+      "class_count": 1,
+      "method_count": 11,
+      "attribute_count": 5,
+      "interface_complexity": 16
+    },
+    {
+      "name": "src/integrations/workspace/WorkspaceTracker",
+      "imported_by_count": 0,
+      "class_count": 1,
+      "method_count": 11,
+      "attribute_count": 3,
+      "interface_complexity": 14
+    },
+    {
+      "name": "src/integrations/checkpoints/CheckpointTracker",
+      "imported_by_count": 0,
+      "class_count": 1,
+      "method_count": 7,
+      "attribute_count": 6,
+      "interface_complexity": 13
+    },
+    {
+      "name": "src/integrations/terminal/TerminalProcess",
+      "imported_by_count": 0,
+      "class_count": 1,
+      "method_count": 6,
+      "attribute_count": 7,
+      "interface_complexity": 13
+    },
+    {
+      "name": "src/core/ignore/ClineIgnoreController",
+      "imported_by_count": 0,
+      "class_count": 1,
+      "method_count": 8,
+      "attribute_count": 4,
+      "interface_complexity": 12
+    },
+    {
+      "name": "src/integrations/terminal/TerminalManager",
+      "imported_by_count": 0,
+      "class_count": 1,
+      "method_count": 7,
+      "attribute_count": 3,
+      "interface_complexity": 10
+    },
+    {
+      "name": "src/integrations/editor/DecorationController",
+      "imported_by_count": 0,
+      "class_count": 1,
+      "method_count": 6,
+      "attribute_count": 3,
+      "interface_complexity": 9
+    },
+    {
+      "name": "src/api/providers/openrouter",
+      "imported_by_count": 0,
+      "class_count": 1,
+      "method_count": 5,
+      "attribute_count": 3,
+      "interface_complexity": 8
+    },
+    {
+      "name": "src/integrations/terminal/TerminalRegistry",
+      "imported_by_count": 0,
+      "class_count": 1,
+      "method_count": 6,
+      "attribute_count": 2,
+      "interface_complexity": 8
+    },
+    {
+      "name": "src/services/account/ClineAccountService",
+      "imported_by_count": 0,
+      "class_count": 1,
+      "method_count": 6,
+      "attribute_count": 2,
+      "interface_complexity": 8
+    },
+    {
+      "name": "src/services/browser/UrlContentFetcher",
+      "imported_by_count": 0,
+      "class_count": 1,
+      "method_count": 5,
+      "attribute_count": 3,
+      "interface_complexity": 8
+    },
+    {
+      "name": "src/api/providers/cline",
+      "imported_by_count": 0,
+      "class_count": 1,
+      "method_count": 4,
+      "attribute_count": 3,
+      "interface_complexity": 7
+    }
+  ],
+  "inheritance_map": {
+    "EventEmitter<TerminalProcessEvents>": [
+      "src/integrations/terminal/TerminalProcess.TerminalProcess"
+    ]
+  },
+  "type_definitions": {
+    "total": 59,
+    "by_module": {
+      "src/api/providers/asksage": 2,
+      "src/api/providers/types": 3,
+      "src/api/transform/mistral-format": 1,
+      "src/api/transform/stream": 2,
+      "src/core/Cline": 2,
+      "src/core/assistant-message/index": 3,
+      "src/core/webview/ClineProvider": 2,
+      "src/integrations/editor/DecorationController": 1,
+      "src/integrations/terminal/TerminalProcess": 1,
+      "src/integrations/theme/getTheme": 1,
+      "src/services/mcp/McpHub": 3,
+      "src/shared/ExtensionMessage": 7,
+      "src/shared/HistoryItem": 1,
+      "src/shared/Languages": 2,
+      "src/shared/TelemetrySetting": 1,
+      "src/shared/WebviewMessage": 2,
+      "src/shared/api": 15,
+      "src/shared/mcp": 7,
+      "src/utils/shell": 3
+    }
+  }
+}

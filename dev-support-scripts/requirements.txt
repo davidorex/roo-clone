@@ -1,7 +1,0 @@
-# Core dependencies
-tree-sitter>=0.20.1
-PyYAML>=6.0
-rich>=13.0.0
-
-# Optional dependencies that may be useful
-pandas>=2.0.0  # For data manipulation in analysis scripts

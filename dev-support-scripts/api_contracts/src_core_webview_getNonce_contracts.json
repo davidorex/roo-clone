@@ -1,0 +1,32 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/core/webview/getNonce",
+  "file_path": "/Users/david/Projects/cline/src/core/webview/getNonce.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "getNonce": {
+      "parameters": [],
+      "docstring": "A helper function that returns a unique alphanumeric identifier called a nonce.\n\n@remarks This function is primarily used to help enforce content security\npolicies for resources/scripts being executed in a webview context.\n\n@returns A nonce",
+      "decorators": [],
+      "return_type": "any"
+    }
+  },
+  "imports": [],
+  "constants": {
+    "possible": "\"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\""
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 1,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  },
+  "docstring": "A helper function that returns a unique alphanumeric identifier called a nonce.\n\n@remarks This function is primarily used to help enforce content security\npolicies for resources/scripts being executed in a webview context.\n\n@returns A nonce"
+}

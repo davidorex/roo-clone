@@ -1,0 +1,173 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/integrations/checkpoints/CheckpointGitOperations",
+  "file_path": "/Users/david/Projects/cline/src/integrations/checkpoints/CheckpointGitOperations.ts",
+  "classes": {
+    "GitOperations": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "cwd",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": "Creates a new GitOperations instance.\n\n@param cwd - The current working directory for git operations",
+          "decorators": [],
+          "return_type": "GitOperations"
+        },
+        "initShadowGit": {
+          "parameters": [
+            {
+              "name": "gitPath",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "cwd",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "taskId",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": "Initializes or verifies a shadow Git repository for checkpoint tracking.\nCreates a new repository if one doesn't exist, or verifies the worktree\nconfiguration if it does.\n\nKey operations:\n- Creates/verifies shadow git repository\n- Configures git settings (user, LFS, etc.)\n- Sets up worktree to point to workspace\n\n@param gitPath - Path to the .git directory\n@param cwd - The current working directory for git operations\n@returns Promise<string> Path to the initialized .git directory\n@throws Error if:\n- Worktree verification fails for existing repository\n- Git initialization or configuration fails\n- Unable to create initial commit\n- LFS pattern setup fails",
+          "decorators": [],
+          "return_type": "Promise<string>"
+        },
+        "getShadowGitConfigWorkTree": {
+          "parameters": [
+            {
+              "name": "gitPath",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": "Retrieves the worktree path from the shadow git configuration.\nThe worktree path indicates where the shadow git repository is tracking files,\nwhich should match the current workspace directory.\n\n@param gitPath - Path to the .git directory\n@returns Promise<string | undefined> The worktree path or undefined if not found\n@throws Error if unable to get worktree path",
+          "decorators": [],
+          "return_type": "Promise<string | undefined>"
+        },
+        "renameNestedGitRepos": {
+          "parameters": [
+            {
+              "name": "disable",
+              "required": true,
+              "type": "boolean"
+            }
+          ],
+          "docstring": "Since we use git to track checkpoints, we need to temporarily disable nested git repos to work around git's\nrequirement of using submodules for nested repos.\n\nThis method renames nested .git directories by adding/removing a suffix to temporarily disable/enable them.\nThe root .git directory is preserved. Uses VS Code's workspace API to find nested .git directories and\nonly processes actual directories (not files named .git).\n\n@param disable - If true, adds suffix to disable nested git repos. If false, removes suffix to re-enable them.\n@throws Error if renaming any .git directory fails",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "addCheckpointFiles": {
+          "parameters": [
+            {
+              "name": "git",
+              "required": true,
+              "type": "SimpleGit"
+            }
+          ],
+          "docstring": "Adds files to the shadow git repository while handling nested git repos.\nUses git commands to list files and stages them for commit.\nRespects .gitignore and handles LFS patterns.\n\nProcess:\n1. Updates exclude patterns from LFS config\n2. Temporarily disables nested git repos\n3. Gets list of tracked and untracked files from git (respecting .gitignore)\n4. Adds all files to git staging\n5. Re-enables nested git repos\n\n@param git - SimpleGit instance configured for the shadow git repo\n@returns Promise<CheckpointAddResult> Object containing success status, message, and file count\n@throws Error if:\n - File operations fail\n - Git commands error\n - LFS pattern updates fail\n - Nested git repo handling fails",
+          "decorators": [],
+          "return_type": "Promise<CheckpointAddResult>"
+        }
+      },
+      "attributes": {
+        "cwd": "string"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": "GitOperations Class\n\nHandles git-specific operations for Cline's Checkpoints system.\n\nKey responsibilities:\n- Git repository initialization and configuration\n- Git settings management (user, LFS, etc.)\n- Worktree configuration and management\n- Managing nested git repositories during checkpoint operations\n- File staging and checkpoint creation\n- Shadow git repository maintenance and cleanup",
+      "file_path": "/Users/david/Projects/cline/src/integrations/checkpoints/CheckpointGitOperations.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {
+    "CheckpointAddResult": {
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {},
+  "functions": {},
+  "imports": [
+    {
+      "name": "fs",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "globby",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "simpleGit",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "SimpleGit",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "fileExistsAtPath",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "getLfsPatterns",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "writeExcludesFile",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "telemetryService",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "git": "unknown",
+    "worktree": "unknown",
+    "startTime": "unknown",
+    "checkpointsDir": "unknown",
+    "lfsPatterns": "unknown",
+    "durationMs": "unknown",
+    "gitPaths": "unknown",
+    "fullPath": "unknown",
+    "GIT_DISABLED_SUFFIX": "\"_disabled\""
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 1,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 1,
+    "method_count": 5,
+    "inner_class_count": 0
+  }
+}

@@ -1,0 +1,139 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/api/providers/gemini",
+  "file_path": "/Users/david/Projects/cline/src/api/providers/gemini.ts",
+  "classes": {
+    "GeminiHandler": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "options",
+              "required": true,
+              "type": "ApiHandlerOptions"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "GeminiHandler"
+        },
+        "createMessage": {
+          "parameters": [
+            {
+              "name": "systemPrompt",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "messages",
+              "required": true,
+              "type": "Anthropic.Messages.MessageParam[]"
+            }
+          ],
+          "docstring": null,
+          "decorators": [
+            {
+              "name": "withRetry",
+              "args": [],
+              "kwargs": {}
+            }
+          ],
+          "return_type": "ApiStream"
+        },
+        "getModel": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "{ id: GeminiModelId; info: ModelInfo }"
+        }
+      },
+      "attributes": {
+        "options": "ApiHandlerOptions",
+        "client": "GoogleGenerativeAI"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/api/providers/gemini.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {},
+  "types": {},
+  "functions": {},
+  "imports": [
+    {
+      "name": "Anthropic",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "GoogleGenerativeAI",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "withRetry",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiHandlerOptions",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "geminiDefaultModelId",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "GeminiModelId",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "geminiModels",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ModelInfo",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "convertAnthropicMessageToGemini",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiStream",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "model": "unknown",
+    "result": "unknown",
+    "response": "unknown",
+    "modelId": "unknown",
+    "id": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 2,
+    "method_count": 3,
+    "inner_class_count": 0
+  }
+}

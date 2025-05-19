@@ -1,0 +1,132 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/integrations/editor/DecorationController",
+  "file_path": "/Users/david/Projects/cline/src/integrations/editor/DecorationController.ts",
+  "classes": {
+    "DecorationController": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "decorationType",
+              "required": true,
+              "type": "DecorationType"
+            },
+            {
+              "name": "editor",
+              "required": true,
+              "type": "vscode.TextEditor"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "DecorationController"
+        },
+        "getDecoration": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "addLines": {
+          "parameters": [
+            {
+              "name": "startIndex",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "numLines",
+              "required": true,
+              "type": "number"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "clear": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "updateOverlayAfterLine": {
+          "parameters": [
+            {
+              "name": "line",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "totalLines",
+              "required": true,
+              "type": "number"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "setActiveLine": {
+          "parameters": [
+            {
+              "name": "line",
+              "required": true,
+              "type": "number"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        }
+      },
+      "attributes": {
+        "decorationType": "DecorationType",
+        "editor": "vscode.TextEditor",
+        "ranges": "vscode.Range[]"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/integrations/editor/DecorationController.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {},
+  "types": {
+    "DecorationType": {
+      "docstring": null,
+      "type": "union",
+      "values": [
+        "\"fadedOverlay\"",
+        "\"activeLine\""
+      ]
+    }
+  },
+  "functions": {},
+  "imports": [
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    }
+  ],
+  "constants": {
+    "fadedOverlayDecorationType": "unknown",
+    "activeLineDecorationType": "unknown",
+    "lastRange": "unknown",
+    "endLine": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 0,
+    "type_count": 1,
+    "function_count": 0,
+    "attribute_count": 3,
+    "method_count": 6,
+    "inner_class_count": 0
+  }
+}

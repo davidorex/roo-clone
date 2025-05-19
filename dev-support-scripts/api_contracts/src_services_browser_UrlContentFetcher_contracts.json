@@ -1,0 +1,156 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/services/browser/UrlContentFetcher",
+  "file_path": "/Users/david/Projects/cline/src/services/browser/UrlContentFetcher.ts",
+  "classes": {
+    "UrlContentFetcher": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "context",
+              "required": true,
+              "type": "vscode.ExtensionContext"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "UrlContentFetcher"
+        },
+        "ensureChromiumExists": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<PCRStats>"
+        },
+        "launchBrowser": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<void>"
+        },
+        "closeBrowser": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<void>"
+        },
+        "urlToMarkdown": {
+          "parameters": [
+            {
+              "name": "url",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<string>"
+        }
+      },
+      "attributes": {
+        "context": "vscode.ExtensionContext",
+        "browser": "Browser",
+        "page": "Page"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/services/browser/UrlContentFetcher.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {
+    "PCRStats": {
+      "properties": {
+        "puppeteer": {
+          "type": "{ launch: typeof launch }",
+          "required": true,
+          "docstring": null
+        },
+        "executablePath": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {},
+  "functions": {},
+  "imports": [
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    },
+    {
+      "name": "fs/promises",
+      "alias": "fs",
+      "from_import": false
+    },
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "Browser",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "Page",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "launch",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "cheerio",
+      "alias": "cheerio",
+      "from_import": false
+    },
+    {
+      "name": "TurndownService",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "PCR",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "fileExistsAtPath",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "globalStoragePath": "unknown",
+    "puppeteerDir": "unknown",
+    "dirExists": "unknown",
+    "stats": "unknown",
+    "content": "unknown",
+    "$": "unknown",
+    "turndownService": "unknown",
+    "markdown": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 1,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 3,
+    "method_count": 5,
+    "inner_class_count": 0
+  }
+}

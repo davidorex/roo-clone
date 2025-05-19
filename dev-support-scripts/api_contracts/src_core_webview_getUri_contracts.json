@@ -1,0 +1,56 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/core/webview/getUri",
+  "file_path": "/Users/david/Projects/cline/src/core/webview/getUri.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "getUri": {
+      "parameters": [
+        {
+          "name": "webview",
+          "required": true,
+          "type": "Webview"
+        },
+        {
+          "name": "extensionUri",
+          "required": true,
+          "type": "Uri"
+        },
+        {
+          "name": "pathList",
+          "required": true,
+          "type": "string[]"
+        }
+      ],
+      "docstring": "A helper function which will get the webview URI of a given file or resource.\n\n@remarks This URI can be used within a webview's HTML as a link to the\ngiven file/resource.\n\n@param webview A reference to the extension webview\n@param extensionUri The URI of the directory containing the extension\n@param pathList An array of strings representing the path to a file/resource\n@returns A URI pointing to the file/resource",
+      "decorators": [],
+      "return_type": "any"
+    }
+  },
+  "imports": [
+    {
+      "name": "Uri",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "Webview",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {},
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 1,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

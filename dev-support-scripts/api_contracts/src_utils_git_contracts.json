@@ -1,0 +1,160 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/utils/git",
+  "file_path": "/Users/david/Projects/cline/src/utils/git.ts",
+  "classes": {},
+  "interfaces": {
+    "GitCommit": {
+      "properties": {
+        "hash": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "shortHash": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "subject": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "author": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "date": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {},
+  "functions": {
+    "checkGitRepo": {
+      "parameters": [
+        {
+          "name": "cwd",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<boolean>"
+    },
+    "checkGitInstalled": {
+      "parameters": [],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<boolean>"
+    },
+    "searchCommits": {
+      "parameters": [
+        {
+          "name": "query",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "cwd",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<GitCommit[]>"
+    },
+    "getCommitInfo": {
+      "parameters": [
+        {
+          "name": "hash",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "cwd",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<string>"
+    },
+    "getWorkingState": {
+      "parameters": [
+        {
+          "name": "cwd",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<string>"
+    },
+    "truncateOutput": {
+      "parameters": [
+        {
+          "name": "content",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "string"
+    }
+  },
+  "imports": [
+    {
+      "name": "exec",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "promisify",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "execAsync": "unknown",
+    "GIT_OUTPUT_LINE_LIMIT": "500",
+    "isInstalled": "unknown",
+    "isRepo": "unknown",
+    "{ stdout }": "unknown",
+    "{ stdout: hashStdout }": "unknown",
+    "commits": "unknown",
+    "lines": "unknown",
+    "{ stdout: info }": "unknown",
+    "[fullHash, shortHash, subject, author, date, body]": "unknown",
+    "{ stdout: stats }": "unknown",
+    "{ stdout: diff }": "unknown",
+    "summary": "unknown",
+    "output": "unknown",
+    "{ stdout: status }": "unknown",
+    "beforeLimit": "unknown",
+    "afterLimit": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 1,
+    "type_count": 0,
+    "function_count": 6,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

@@ -1,0 +1,51 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/shared/AutoApprovalSettings",
+  "file_path": "/Users/david/Projects/cline/src/shared/AutoApprovalSettings.ts",
+  "classes": {},
+  "interfaces": {
+    "AutoApprovalSettings": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "required": true,
+          "docstring": null
+        },
+        "actions": {
+          "type": "{\n\t\treadFiles: boolean // Read files and directories\n\t\teditFiles: boolean // Edit files\n\t\texecuteCommands: boolean // Execute safe commands\n\t\tuseBrowser: boolean // Use browser\n\t\tuseMcp: boolean // Use MCP servers\n\t}",
+          "required": true,
+          "docstring": null
+        },
+        "maxRequests": {
+          "type": "number",
+          "required": true,
+          "docstring": null
+        },
+        "enableNotifications": {
+          "type": "boolean",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {},
+  "functions": {},
+  "imports": [],
+  "constants": {
+    "DEFAULT_AUTO_APPROVAL_SETTINGS": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 1,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

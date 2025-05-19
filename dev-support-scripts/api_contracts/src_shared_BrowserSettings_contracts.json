@@ -1,0 +1,42 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/shared/BrowserSettings",
+  "file_path": "/Users/david/Projects/cline/src/shared/BrowserSettings.ts",
+  "classes": {},
+  "interfaces": {
+    "BrowserSettings": {
+      "properties": {
+        "viewport": {
+          "type": "{\n\t\twidth: number\n\t\theight: number\n\t}",
+          "required": true,
+          "docstring": null
+        },
+        "headless": {
+          "type": "boolean",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {},
+  "functions": {},
+  "imports": [],
+  "constants": {
+    "DEFAULT_BROWSER_SETTINGS": "unknown",
+    "BROWSER_VIEWPORT_PRESETS": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 1,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

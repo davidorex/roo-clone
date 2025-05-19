@@ -1,0 +1,103 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/integrations/misc/link-preview",
+  "file_path": "/Users/david/Projects/cline/src/integrations/misc/link-preview.ts",
+  "classes": {},
+  "interfaces": {
+    "OpenGraphData": {
+      "properties": {
+        "title": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "description": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "image": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "url": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "siteName": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "type": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {},
+  "functions": {
+    "fetchOpenGraphData": {
+      "parameters": [
+        {
+          "name": "url",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": "Fetches Open Graph metadata from a URL\n@param url The URL to fetch metadata from\n@returns Promise resolving to OpenGraphData",
+      "decorators": [],
+      "return_type": "Promise<OpenGraphData>"
+    },
+    "isImageUrl": {
+      "parameters": [
+        {
+          "name": "url",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": "Checks if a URL is an image by making a HEAD request and checking the content type\n@param url The URL to check\n@returns Promise resolving to boolean indicating if the URL is an image",
+      "decorators": [],
+      "return_type": "Promise<boolean>"
+    }
+  },
+  "imports": [
+    {
+      "name": "axios",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ogs",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "options": "unknown",
+    "{ result }": "unknown",
+    "data": "unknown",
+    "urlObj": "unknown",
+    "baseUrl": "unknown",
+    "response": "unknown",
+    "contentType": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 1,
+    "type_count": 0,
+    "function_count": 2,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

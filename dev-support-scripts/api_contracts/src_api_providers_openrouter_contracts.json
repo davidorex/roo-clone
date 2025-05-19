@@ -1,0 +1,191 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/api/providers/openrouter",
+  "file_path": "/Users/david/Projects/cline/src/api/providers/openrouter.ts",
+  "classes": {
+    "OpenRouterHandler": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "options",
+              "required": true,
+              "type": "ApiHandlerOptions"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "OpenRouterHandler"
+        },
+        "createMessage": {
+          "parameters": [
+            {
+              "name": "systemPrompt",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "messages",
+              "required": true,
+              "type": "Anthropic.Messages.MessageParam[]"
+            }
+          ],
+          "docstring": null,
+          "decorators": [
+            {
+              "name": "withRetry",
+              "args": [],
+              "kwargs": {}
+            }
+          ],
+          "return_type": "ApiStream"
+        },
+        "getApiStreamUsage": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<ApiStreamUsageChunk | undefined>"
+        },
+        "fetchGenerationDetails": {
+          "parameters": [
+            {
+              "name": "genId",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [
+            {
+              "name": "withRetry",
+              "args": [
+                {
+                  "maxRetries": "4",
+                  "baseDelay": "250",
+                  "maxDelay": "1000",
+                  "retryAllErrors": "true"
+                }
+              ],
+              "kwargs": {}
+            }
+          ],
+          "return_type": "any"
+        },
+        "getModel": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "{ id: string; info: ModelInfo }"
+        }
+      },
+      "attributes": {
+        "options": "ApiHandlerOptions",
+        "client": "OpenAI",
+        "lastGenerationId": "string"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/api/providers/openrouter.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {},
+  "types": {},
+  "functions": {},
+  "imports": [
+    {
+      "name": "Anthropic",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "axios",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "setTimeout",
+      "alias": "setTimeoutPromise",
+      "from_import": true
+    },
+    {
+      "name": "OpenAI",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiHandlerOptions",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ModelInfo",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "openRouterDefaultModelId",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "openRouterDefaultModelInfo",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "withRetry",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "createOpenRouterStream",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiStream",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiStreamUsageChunk",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "OpenRouterErrorResponse",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "stream": "unknown",
+    "error": "unknown",
+    "metadataStr": "unknown",
+    "delta": "unknown",
+    "apiStreamUsage": "unknown",
+    "generationIterator": "unknown",
+    "generation": "unknown",
+    "response": "unknown",
+    "modelId": "unknown",
+    "modelInfo": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 3,
+    "method_count": 5,
+    "inner_class_count": 0
+  }
+}

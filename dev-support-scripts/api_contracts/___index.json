@@ -1,0 +1,521 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "component": ".",
+  "modules": [
+    {
+      "name": "src/api/index",
+      "file": "src_api_index_contracts.json"
+    },
+    {
+      "name": "src/api/providers/anthropic",
+      "file": "src_api_providers_anthropic_contracts.json"
+    },
+    {
+      "name": "src/api/providers/asksage",
+      "file": "src_api_providers_asksage_contracts.json"
+    },
+    {
+      "name": "src/api/providers/bedrock",
+      "file": "src_api_providers_bedrock_contracts.json"
+    },
+    {
+      "name": "src/api/providers/cline",
+      "file": "src_api_providers_cline_contracts.json"
+    },
+    {
+      "name": "src/api/providers/deepseek",
+      "file": "src_api_providers_deepseek_contracts.json"
+    },
+    {
+      "name": "src/api/providers/gemini",
+      "file": "src_api_providers_gemini_contracts.json"
+    },
+    {
+      "name": "src/api/providers/litellm",
+      "file": "src_api_providers_litellm_contracts.json"
+    },
+    {
+      "name": "src/api/providers/lmstudio",
+      "file": "src_api_providers_lmstudio_contracts.json"
+    },
+    {
+      "name": "src/api/providers/mistral",
+      "file": "src_api_providers_mistral_contracts.json"
+    },
+    {
+      "name": "src/api/providers/ollama",
+      "file": "src_api_providers_ollama_contracts.json"
+    },
+    {
+      "name": "src/api/providers/openai-native",
+      "file": "src_api_providers_openai-native_contracts.json"
+    },
+    {
+      "name": "src/api/providers/openai",
+      "file": "src_api_providers_openai_contracts.json"
+    },
+    {
+      "name": "src/api/providers/openrouter",
+      "file": "src_api_providers_openrouter_contracts.json"
+    },
+    {
+      "name": "src/api/providers/qwen",
+      "file": "src_api_providers_qwen_contracts.json"
+    },
+    {
+      "name": "src/api/providers/requesty",
+      "file": "src_api_providers_requesty_contracts.json"
+    },
+    {
+      "name": "src/api/providers/sambanova",
+      "file": "src_api_providers_sambanova_contracts.json"
+    },
+    {
+      "name": "src/api/providers/together",
+      "file": "src_api_providers_together_contracts.json"
+    },
+    {
+      "name": "src/api/providers/types",
+      "file": "src_api_providers_types_contracts.json"
+    },
+    {
+      "name": "src/api/providers/vertex",
+      "file": "src_api_providers_vertex_contracts.json"
+    },
+    {
+      "name": "src/api/providers/vscode-lm",
+      "file": "src_api_providers_vscode-lm_contracts.json"
+    },
+    {
+      "name": "src/api/providers/xai",
+      "file": "src_api_providers_xai_contracts.json"
+    },
+    {
+      "name": "src/api/retry",
+      "file": "src_api_retry_contracts.json"
+    },
+    {
+      "name": "src/api/transform/gemini-format",
+      "file": "src_api_transform_gemini-format_contracts.json"
+    },
+    {
+      "name": "src/api/transform/mistral-format",
+      "file": "src_api_transform_mistral-format_contracts.json"
+    },
+    {
+      "name": "src/api/transform/o1-format",
+      "file": "src_api_transform_o1-format_contracts.json"
+    },
+    {
+      "name": "src/api/transform/ollama-format",
+      "file": "src_api_transform_ollama-format_contracts.json"
+    },
+    {
+      "name": "src/api/transform/openai-format",
+      "file": "src_api_transform_openai-format_contracts.json"
+    },
+    {
+      "name": "src/api/transform/openrouter-stream",
+      "file": "src_api_transform_openrouter-stream_contracts.json"
+    },
+    {
+      "name": "src/api/transform/r1-format",
+      "file": "src_api_transform_r1-format_contracts.json"
+    },
+    {
+      "name": "src/api/transform/stream",
+      "file": "src_api_transform_stream_contracts.json"
+    },
+    {
+      "name": "src/api/transform/vscode-lm-format",
+      "file": "src_api_transform_vscode-lm-format_contracts.json"
+    },
+    {
+      "name": "src/core/Cline",
+      "file": "src_core_Cline_contracts.json"
+    },
+    {
+      "name": "src/core/assistant-message/diff",
+      "file": "src_core_assistant-message_diff_contracts.json"
+    },
+    {
+      "name": "src/core/assistant-message/index",
+      "file": "src_core_assistant-message_index_contracts.json"
+    },
+    {
+      "name": "src/core/assistant-message/parse-assistant-message",
+      "file": "src_core_assistant-message_parse-assistant-message_contracts.json"
+    },
+    {
+      "name": "src/core/context-management/ContextManager",
+      "file": "src_core_context-management_ContextManager_contracts.json"
+    },
+    {
+      "name": "src/core/context-management/context-error-handling",
+      "file": "src_core_context-management_context-error-handling_contracts.json"
+    },
+    {
+      "name": "src/core/ignore/ClineIgnoreController",
+      "file": "src_core_ignore_ClineIgnoreController_contracts.json"
+    },
+    {
+      "name": "src/core/mentions/index",
+      "file": "src_core_mentions_index_contracts.json"
+    },
+    {
+      "name": "src/core/prompts/responses",
+      "file": "src_core_prompts_responses_contracts.json"
+    },
+    {
+      "name": "src/core/prompts/system",
+      "file": "src_core_prompts_system_contracts.json"
+    },
+    {
+      "name": "src/core/webview/ClineProvider",
+      "file": "src_core_webview_ClineProvider_contracts.json"
+    },
+    {
+      "name": "src/core/webview/getNonce",
+      "file": "src_core_webview_getNonce_contracts.json"
+    },
+    {
+      "name": "src/core/webview/getUri",
+      "file": "src_core_webview_getUri_contracts.json"
+    },
+    {
+      "name": "src/dev/commands/tasks",
+      "file": "src_dev_commands_tasks_contracts.json"
+    },
+    {
+      "name": "src/exports/index",
+      "file": "src_exports_index_contracts.json"
+    },
+    {
+      "name": "src/extension",
+      "file": "src_extension_contracts.json"
+    },
+    {
+      "name": "src/global-constants",
+      "file": "src_global-constants_contracts.json"
+    },
+    {
+      "name": "src/integrations/checkpoints/CheckpointExclusions",
+      "file": "src_integrations_checkpoints_CheckpointExclusions_contracts.json"
+    },
+    {
+      "name": "src/integrations/checkpoints/CheckpointGitOperations",
+      "file": "src_integrations_checkpoints_CheckpointGitOperations_contracts.json"
+    },
+    {
+      "name": "src/integrations/checkpoints/CheckpointMigration",
+      "file": "src_integrations_checkpoints_CheckpointMigration_contracts.json"
+    },
+    {
+      "name": "src/integrations/checkpoints/CheckpointTracker-old",
+      "file": "src_integrations_checkpoints_CheckpointTracker-old_contracts.json"
+    },
+    {
+      "name": "src/integrations/checkpoints/CheckpointTracker",
+      "file": "src_integrations_checkpoints_CheckpointTracker_contracts.json"
+    },
+    {
+      "name": "src/integrations/checkpoints/CheckpointUtils",
+      "file": "src_integrations_checkpoints_CheckpointUtils_contracts.json"
+    },
+    {
+      "name": "src/integrations/debug/DebugConsoleManager",
+      "file": "src_integrations_debug_DebugConsoleManager_contracts.json"
+    },
+    {
+      "name": "src/integrations/diagnostics/DiagnosticsMonitor",
+      "file": "src_integrations_diagnostics_DiagnosticsMonitor_contracts.json"
+    },
+    {
+      "name": "src/integrations/diagnostics/index",
+      "file": "src_integrations_diagnostics_index_contracts.json"
+    },
+    {
+      "name": "src/integrations/editor/DecorationController",
+      "file": "src_integrations_editor_DecorationController_contracts.json"
+    },
+    {
+      "name": "src/integrations/editor/DiffViewProvider",
+      "file": "src_integrations_editor_DiffViewProvider_contracts.json"
+    },
+    {
+      "name": "src/integrations/editor/detect-omission",
+      "file": "src_integrations_editor_detect-omission_contracts.json"
+    },
+    {
+      "name": "src/integrations/misc/export-markdown",
+      "file": "src_integrations_misc_export-markdown_contracts.json"
+    },
+    {
+      "name": "src/integrations/misc/extract-text",
+      "file": "src_integrations_misc_extract-text_contracts.json"
+    },
+    {
+      "name": "src/integrations/misc/link-preview",
+      "file": "src_integrations_misc_link-preview_contracts.json"
+    },
+    {
+      "name": "src/integrations/misc/open-file",
+      "file": "src_integrations_misc_open-file_contracts.json"
+    },
+    {
+      "name": "src/integrations/misc/process-images",
+      "file": "src_integrations_misc_process-images_contracts.json"
+    },
+    {
+      "name": "src/integrations/notifications/index",
+      "file": "src_integrations_notifications_index_contracts.json"
+    },
+    {
+      "name": "src/integrations/terminal/TerminalManager",
+      "file": "src_integrations_terminal_TerminalManager_contracts.json"
+    },
+    {
+      "name": "src/integrations/terminal/TerminalProcess",
+      "file": "src_integrations_terminal_TerminalProcess_contracts.json"
+    },
+    {
+      "name": "src/integrations/terminal/TerminalRegistry",
+      "file": "src_integrations_terminal_TerminalRegistry_contracts.json"
+    },
+    {
+      "name": "src/integrations/terminal/ansiUtils",
+      "file": "src_integrations_terminal_ansiUtils_contracts.json"
+    },
+    {
+      "name": "src/integrations/terminal/get-latest-output",
+      "file": "src_integrations_terminal_get-latest-output_contracts.json"
+    },
+    {
+      "name": "src/integrations/theme/getTheme",
+      "file": "src_integrations_theme_getTheme_contracts.json"
+    },
+    {
+      "name": "src/integrations/workspace/WorkspaceTracker",
+      "file": "src_integrations_workspace_WorkspaceTracker_contracts.json"
+    },
+    {
+      "name": "src/integrations/workspace/get-python-env",
+      "file": "src_integrations_workspace_get-python-env_contracts.json"
+    },
+    {
+      "name": "src/services/account/ClineAccountService",
+      "file": "src_services_account_ClineAccountService_contracts.json"
+    },
+    {
+      "name": "src/services/auth/config",
+      "file": "src_services_auth_config_contracts.json"
+    },
+    {
+      "name": "src/services/browser/BrowserSession",
+      "file": "src_services_browser_BrowserSession_contracts.json"
+    },
+    {
+      "name": "src/services/browser/UrlContentFetcher",
+      "file": "src_services_browser_UrlContentFetcher_contracts.json"
+    },
+    {
+      "name": "src/services/glob/list-files",
+      "file": "src_services_glob_list-files_contracts.json"
+    },
+    {
+      "name": "src/services/logging/Logger",
+      "file": "src_services_logging_Logger_contracts.json"
+    },
+    {
+      "name": "src/services/mcp/McpHub",
+      "file": "src_services_mcp_McpHub_contracts.json"
+    },
+    {
+      "name": "src/services/ripgrep/index",
+      "file": "src_services_ripgrep_index_contracts.json"
+    },
+    {
+      "name": "src/services/telemetry/TelemetryService",
+      "file": "src_services_telemetry_TelemetryService_contracts.json"
+    },
+    {
+      "name": "src/services/tree-sitter/index",
+      "file": "src_services_tree-sitter_index_contracts.json"
+    },
+    {
+      "name": "src/services/tree-sitter/languageParser",
+      "file": "src_services_tree-sitter_languageParser_contracts.json"
+    },
+    {
+      "name": "src/services/tree-sitter/queries/c-sharp",
+      "file": "src_services_tree-sitter_queries_c-sharp_contracts.json"
+    },
+    {
+      "name": "src/services/tree-sitter/queries/c",
+      "file": "src_services_tree-sitter_queries_c_contracts.json"
+    },
+    {
+      "name": "src/services/tree-sitter/queries/cpp",
+      "file": "src_services_tree-sitter_queries_cpp_contracts.json"
+    },
+    {
+      "name": "src/services/tree-sitter/queries/go",
+      "file": "src_services_tree-sitter_queries_go_contracts.json"
+    },
+    {
+      "name": "src/services/tree-sitter/queries/index",
+      "file": "src_services_tree-sitter_queries_index_contracts.json"
+    },
+    {
+      "name": "src/services/tree-sitter/queries/java",
+      "file": "src_services_tree-sitter_queries_java_contracts.json"
+    },
+    {
+      "name": "src/services/tree-sitter/queries/javascript",
+      "file": "src_services_tree-sitter_queries_javascript_contracts.json"
+    },
+    {
+      "name": "src/services/tree-sitter/queries/kotlin",
+      "file": "src_services_tree-sitter_queries_kotlin_contracts.json"
+    },
+    {
+      "name": "src/services/tree-sitter/queries/php",
+      "file": "src_services_tree-sitter_queries_php_contracts.json"
+    },
+    {
+      "name": "src/services/tree-sitter/queries/python",
+      "file": "src_services_tree-sitter_queries_python_contracts.json"
+    },
+    {
+      "name": "src/services/tree-sitter/queries/ruby",
+      "file": "src_services_tree-sitter_queries_ruby_contracts.json"
+    },
+    {
+      "name": "src/services/tree-sitter/queries/rust",
+      "file": "src_services_tree-sitter_queries_rust_contracts.json"
+    },
+    {
+      "name": "src/services/tree-sitter/queries/swift",
+      "file": "src_services_tree-sitter_queries_swift_contracts.json"
+    },
+    {
+      "name": "src/services/tree-sitter/queries/typescript",
+      "file": "src_services_tree-sitter_queries_typescript_contracts.json"
+    },
+    {
+      "name": "src/shared/AutoApprovalSettings",
+      "file": "src_shared_AutoApprovalSettings_contracts.json"
+    },
+    {
+      "name": "src/shared/BrowserSettings",
+      "file": "src_shared_BrowserSettings_contracts.json"
+    },
+    {
+      "name": "src/shared/ChatContent",
+      "file": "src_shared_ChatContent_contracts.json"
+    },
+    {
+      "name": "src/shared/ChatSettings",
+      "file": "src_shared_ChatSettings_contracts.json"
+    },
+    {
+      "name": "src/shared/ClineAccount",
+      "file": "src_shared_ClineAccount_contracts.json"
+    },
+    {
+      "name": "src/shared/ExtensionMessage",
+      "file": "src_shared_ExtensionMessage_contracts.json"
+    },
+    {
+      "name": "src/shared/HistoryItem",
+      "file": "src_shared_HistoryItem_contracts.json"
+    },
+    {
+      "name": "src/shared/Languages",
+      "file": "src_shared_Languages_contracts.json"
+    },
+    {
+      "name": "src/shared/TelemetrySetting",
+      "file": "src_shared_TelemetrySetting_contracts.json"
+    },
+    {
+      "name": "src/shared/UserInfo",
+      "file": "src_shared_UserInfo_contracts.json"
+    },
+    {
+      "name": "src/shared/WebviewMessage",
+      "file": "src_shared_WebviewMessage_contracts.json"
+    },
+    {
+      "name": "src/shared/api",
+      "file": "src_shared_api_contracts.json"
+    },
+    {
+      "name": "src/shared/array",
+      "file": "src_shared_array_contracts.json"
+    },
+    {
+      "name": "src/shared/combineApiRequests",
+      "file": "src_shared_combineApiRequests_contracts.json"
+    },
+    {
+      "name": "src/shared/combineCommandSequences",
+      "file": "src_shared_combineCommandSequences_contracts.json"
+    },
+    {
+      "name": "src/shared/context-mentions",
+      "file": "src_shared_context-mentions_contracts.json"
+    },
+    {
+      "name": "src/shared/getApiMetrics",
+      "file": "src_shared_getApiMetrics_contracts.json"
+    },
+    {
+      "name": "src/shared/mcp",
+      "file": "src_shared_mcp_contracts.json"
+    },
+    {
+      "name": "src/shared/vsCodeSelectorUtils",
+      "file": "src_shared_vsCodeSelectorUtils_contracts.json"
+    },
+    {
+      "name": "src/utils/cost",
+      "file": "src_utils_cost_contracts.json"
+    },
+    {
+      "name": "src/utils/fs",
+      "file": "src_utils_fs_contracts.json"
+    },
+    {
+      "name": "src/utils/git",
+      "file": "src_utils_git_contracts.json"
+    },
+    {
+      "name": "src/utils/path",
+      "file": "src_utils_path_contracts.json"
+    },
+    {
+      "name": "src/utils/shell",
+      "file": "src_utils_shell_contracts.json"
+    },
+    {
+      "name": "src/utils/storage",
+      "file": "src_utils_storage_contracts.json"
+    },
+    {
+      "name": "src/utils/string",
+      "file": "src_utils_string_contracts.json"
+    },
+    {
+      "name": "src/utils/time",
+      "file": "src_utils_time_contracts.json"
+    },
+    {
+      "name": "src/utils/validation",
+      "file": "src_utils_validation_contracts.json"
+    }
+  ],
+  "analysis_file": "___analysis.json",
+  "module_count": 128
+}

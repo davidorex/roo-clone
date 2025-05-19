@@ -1,0 +1,467 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/shared/api",
+  "file_path": "/Users/david/Projects/cline/src/shared/api.ts",
+  "classes": {},
+  "interfaces": {
+    "ApiHandlerOptions": {
+      "properties": {
+        "apiModelId": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "apiKey": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "clineApiKey": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "liteLlmBaseUrl": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "liteLlmModelId": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "liteLlmApiKey": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "anthropicBaseUrl": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "openRouterApiKey": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "openRouterModelId": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "openRouterModelInfo": {
+          "type": "ModelInfo",
+          "required": false,
+          "docstring": null
+        },
+        "openRouterProviderSorting": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "awsAccessKey": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "awsSecretKey": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "awsSessionToken": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "awsRegion": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "awsUseCrossRegionInference": {
+          "type": "boolean",
+          "required": false,
+          "docstring": null
+        },
+        "awsBedrockUsePromptCache": {
+          "type": "boolean",
+          "required": false,
+          "docstring": null
+        },
+        "awsUseProfile": {
+          "type": "boolean",
+          "required": false,
+          "docstring": null
+        },
+        "awsProfile": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "awsBedrockEndpoint": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "vertexProjectId": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "vertexRegion": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "openAiBaseUrl": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "openAiApiKey": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "openAiModelId": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "openAiModelInfo": {
+          "type": "OpenAiCompatibleModelInfo",
+          "required": false,
+          "docstring": null
+        },
+        "ollamaModelId": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "ollamaBaseUrl": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "ollamaApiOptionsCtxNum": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "lmStudioModelId": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "lmStudioBaseUrl": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "geminiApiKey": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "openAiNativeApiKey": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "deepSeekApiKey": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "requestyApiKey": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "requestyModelId": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "togetherApiKey": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "togetherModelId": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "qwenApiKey": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "mistralApiKey": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "azureApiVersion": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "vsCodeLmModelSelector": {
+          "type": "any",
+          "required": false,
+          "docstring": null
+        },
+        "o3MiniReasoningEffort": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "qwenApiLine": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "asksageApiUrl": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "asksageApiKey": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "xaiApiKey": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "thinkingBudgetTokens": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "sambanovaApiKey": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "ModelInfo": {
+      "properties": {
+        "maxTokens": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "contextWindow": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "supportsImages": {
+          "type": "boolean",
+          "required": false,
+          "docstring": null
+        },
+        "supportsComputerUse": {
+          "type": "boolean",
+          "required": false,
+          "docstring": null
+        },
+        "supportsPromptCache": {
+          "type": "boolean",
+          "required": true,
+          "docstring": null
+        },
+        "inputPrice": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "outputPrice": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "cacheWritesPrice": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "cacheReadsPrice": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "description": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    },
+    "OpenAiCompatibleModelInfo": {
+      "properties": {
+        "temperature": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "isR1FormatRequired": {
+          "type": "boolean",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [
+        "ModelInfo"
+      ],
+      "docstring": null
+    }
+  },
+  "types": {
+    "ApiProvider": {
+      "docstring": null,
+      "type": "union",
+      "values": [
+        "\"anthropic\"",
+        "\"openrouter\"",
+        "\"bedrock\"",
+        "\"vertex\"",
+        "\"openai\"",
+        "\"ollama\"",
+        "\"lmstudio\"",
+        "\"gemini\"",
+        "\"openai-native\"",
+        "\"requesty\"",
+        "\"together\"",
+        "\"deepseek\"",
+        "\"qwen\"",
+        "\"mistral\"",
+        "\"vscode-lm\"",
+        "\"cline\"",
+        "\"litellm\"",
+        "\"asksage\"",
+        "\"xai\"",
+        "\"sambanova\""
+      ]
+    },
+    "ApiConfiguration": {
+      "docstring": null,
+      "type": "intersection",
+      "components": [
+        "ApiHandlerOptions",
+        "{\n\tapiProvider?: ApiProvider\n}"
+      ]
+    },
+    "AnthropicModelId": {
+      "docstring": null,
+      "type": "keyof typeof anthropicModels"
+    },
+    "BedrockModelId": {
+      "docstring": null,
+      "type": "keyof typeof bedrockModels"
+    },
+    "VertexModelId": {
+      "docstring": null,
+      "type": "keyof typeof vertexModels"
+    },
+    "GeminiModelId": {
+      "docstring": null,
+      "type": "keyof typeof geminiModels"
+    },
+    "OpenAiNativeModelId": {
+      "docstring": null,
+      "type": "keyof typeof openAiNativeModels"
+    },
+    "DeepSeekModelId": {
+      "docstring": null,
+      "type": "keyof typeof deepSeekModels"
+    },
+    "MainlandQwenModelId": {
+      "docstring": null,
+      "type": "keyof typeof mainlandQwenModels"
+    },
+    "InternationalQwenModelId": {
+      "docstring": null,
+      "type": "keyof typeof internationalQwenModels"
+    },
+    "MistralModelId": {
+      "docstring": null,
+      "type": "keyof typeof mistralModels"
+    },
+    "LiteLLMModelId": {
+      "docstring": null,
+      "type": "string"
+    },
+    "AskSageModelId": {
+      "docstring": null,
+      "type": "keyof typeof askSageModels"
+    },
+    "XAIModelId": {
+      "docstring": null,
+      "type": "keyof typeof xaiModels"
+    },
+    "SambanovaModelId": {
+      "docstring": null,
+      "type": "keyof typeof sambanovaModels"
+    }
+  },
+  "functions": {},
+  "imports": [],
+  "constants": {
+    "anthropicDefaultModelId": "\"claude-3-7-sonnet-20250219\"",
+    "anthropicModels": "unknown",
+    "bedrockDefaultModelId": "\"anthropic.claude-3-7-sonnet-20250219-v1:0\"",
+    "bedrockModels": "unknown",
+    "openRouterDefaultModelId": "\"anthropic/claude-3.7-sonnet\"",
+    "openRouterDefaultModelInfo": "unknown",
+    "vertexDefaultModelId": "\"claude-3-7-sonnet@20250219\"",
+    "vertexModels": "unknown",
+    "openAiModelInfoSaneDefaults": "unknown",
+    "geminiDefaultModelId": "\"gemini-2.0-flash-001\"",
+    "geminiModels": "unknown",
+    "openAiNativeDefaultModelId": "\"gpt-4o\"",
+    "openAiNativeModels": "unknown",
+    "azureOpenAiDefaultApiVersion": "\"2024-08-01-preview\"",
+    "deepSeekDefaultModelId": "\"deepseek-chat\"",
+    "deepSeekModels": "unknown",
+    "internationalQwenDefaultModelId": "\"qwen-coder-plus-latest\"",
+    "mainlandQwenDefaultModelId": "\"qwen-coder-plus-latest\"",
+    "internationalQwenModels": "unknown",
+    "mainlandQwenModels": "unknown",
+    "mistralDefaultModelId": "\"codestral-2501\"",
+    "mistralModels": "unknown",
+    "liteLlmDefaultModelId": "\"gpt-3.5-turbo\"",
+    "liteLlmModelInfoSaneDefaults": "unknown",
+    "askSageDefaultModelId": "\"claude-35-sonnet\"",
+    "askSageDefaultURL": "\"https://api.asksage.ai/server\"",
+    "askSageModels": "unknown",
+    "xaiDefaultModelId": "\"grok-2-latest\"",
+    "xaiModels": "unknown",
+    "sambanovaDefaultModelId": "\"Meta-Llama-3.3-70B-Instruct\"",
+    "sambanovaModels": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 3,
+    "type_count": 15,
+    "function_count": 0,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

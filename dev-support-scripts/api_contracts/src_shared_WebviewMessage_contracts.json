@@ -1,0 +1,199 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/shared/WebviewMessage",
+  "file_path": "/Users/david/Projects/cline/src/shared/WebviewMessage.ts",
+  "classes": {},
+  "interfaces": {
+    "WebviewMessage": {
+      "properties": {
+        "type": {
+          "type": "| \"apiConfiguration\"\n\t\t| \"webviewDidLaunch\"\n\t\t| \"newTask\"\n\t\t| \"askResponse\"\n\t\t| \"clearTask\"\n\t\t| \"didShowAnnouncement\"\n\t\t| \"selectImages\"\n\t\t| \"exportCurrentTask\"\n\t\t| \"showTaskWithId\"\n\t\t| \"deleteTaskWithId\"\n\t\t| \"exportTaskWithId\"\n\t\t| \"resetState\"\n\t\t| \"requestOllamaModels\"\n\t\t| \"requestLmStudioModels\"\n\t\t| \"openImage\"\n\t\t| \"openInBrowser\"\n\t\t| \"openFile\"\n\t\t| \"openMention\"\n\t\t| \"cancelTask\"\n\t\t| \"refreshOpenRouterModels\"\n\t\t| \"refreshOpenAiModels\"\n\t\t| \"openMcpSettings\"\n\t\t| \"restartMcpServer\"\n\t\t| \"deleteMcpServer\"\n\t\t| \"autoApprovalSettings\"\n\t\t| \"browserSettings\"\n\t\t| \"togglePlanActMode\"\n\t\t| \"checkpointDiff\"\n\t\t| \"checkpointRestore\"\n\t\t| \"taskCompletionViewChanges\"\n\t\t| \"openExtensionSettings\"\n\t\t| \"requestVsCodeLmModels\"\n\t\t| \"toggleToolAutoApprove\"\n\t\t| \"toggleMcpServer\"\n\t\t| \"getLatestState\"\n\t\t| \"accountLoginClicked\"\n\t\t| \"accountLogoutClicked\"\n\t\t| \"showAccountViewClicked\"\n\t\t| \"authStateChanged\"\n\t\t| \"authCallback\"\n\t\t| \"fetchMcpMarketplace\"\n\t\t| \"downloadMcp\"\n\t\t| \"silentlyRefreshMcpMarketplace\"\n\t\t| \"searchCommits\"\n\t\t| \"showMcpView\"\n\t\t| \"fetchLatestMcpServersFromHub\"\n\t\t| \"telemetrySetting\"\n\t\t| \"openSettings\"\n\t\t| \"updateMcpTimeout\"\n\t\t| \"fetchOpenGraphData\"\n\t\t| \"checkIsImageUrl\"\n\t\t| \"invoke\"\n\t\t| \"updateSettings\"\n\t\t| \"clearAllTaskHistory\"\n\t\t| \"fetchUserCreditsData\"\n\t\t| \"optionsResponse\"\n\t\t| \"requestTotalTasksSize\"",
+          "required": true,
+          "docstring": null
+        },
+        "text": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": false,
+          "docstring": null
+        },
+        "askResponse": {
+          "type": "ClineAskResponse",
+          "required": false,
+          "docstring": null
+        },
+        "apiConfiguration": {
+          "type": "ApiConfiguration",
+          "required": false,
+          "docstring": null
+        },
+        "images": {
+          "type": "string[]",
+          "required": false,
+          "docstring": null
+        },
+        "bool": {
+          "type": "boolean",
+          "required": false,
+          "docstring": null
+        },
+        "number": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "autoApprovalSettings": {
+          "type": "AutoApprovalSettings",
+          "required": false,
+          "docstring": null
+        },
+        "browserSettings": {
+          "type": "BrowserSettings",
+          "required": false,
+          "docstring": null
+        },
+        "chatSettings": {
+          "type": "ChatSettings",
+          "required": false,
+          "docstring": null
+        },
+        "chatContent": {
+          "type": "ChatContent",
+          "required": false,
+          "docstring": null
+        },
+        "mcpId": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "timeout": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "serverName": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "toolNames": {
+          "type": "string[]",
+          "required": false,
+          "docstring": null
+        },
+        "autoApprove": {
+          "type": "boolean",
+          "required": false,
+          "docstring": null
+        },
+        "user": {
+          "type": "UserInfo | null",
+          "required": false,
+          "docstring": null
+        },
+        "customToken": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "url": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        },
+        "planActSeparateModelsSetting": {
+          "type": "boolean",
+          "required": false,
+          "docstring": null
+        },
+        "telemetrySetting": {
+          "type": "TelemetrySetting",
+          "required": false,
+          "docstring": null
+        },
+        "customInstructionsSetting": {
+          "type": "string",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {
+    "ClineAskResponse": {
+      "docstring": null,
+      "type": "union",
+      "values": [
+        "\"yesButtonClicked\"",
+        "\"noButtonClicked\"",
+        "\"messageResponse\""
+      ]
+    },
+    "ClineCheckpointRestore": {
+      "docstring": null,
+      "type": "union",
+      "values": [
+        "\"task\"",
+        "\"workspace\"",
+        "\"taskAndWorkspace\""
+      ]
+    }
+  },
+  "functions": {},
+  "imports": [
+    {
+      "name": "ApiConfiguration",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "AutoApprovalSettings",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "BrowserSettings",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ChatSettings",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "UserInfo",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ChatContent",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "TelemetrySetting",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {},
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 1,
+    "type_count": 2,
+    "function_count": 0,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

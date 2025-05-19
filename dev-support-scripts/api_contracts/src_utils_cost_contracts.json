@@ -1,0 +1,134 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/utils/cost",
+  "file_path": "/Users/david/Projects/cline/src/utils/cost.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "calculateApiCostInternal": {
+      "parameters": [
+        {
+          "name": "modelInfo",
+          "required": true,
+          "type": "ModelInfo"
+        },
+        {
+          "name": "inputTokens",
+          "required": true,
+          "type": "number"
+        },
+        {
+          "name": "outputTokens",
+          "required": true,
+          "type": "number"
+        },
+        {
+          "name": "cacheCreationInputTokens",
+          "required": true,
+          "type": "number"
+        },
+        {
+          "name": "cacheReadInputTokens",
+          "required": true,
+          "type": "number"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "number"
+    },
+    "calculateApiCostAnthropic": {
+      "parameters": [
+        {
+          "name": "modelInfo",
+          "required": true,
+          "type": "ModelInfo"
+        },
+        {
+          "name": "inputTokens",
+          "required": true,
+          "type": "number"
+        },
+        {
+          "name": "outputTokens",
+          "required": true,
+          "type": "number"
+        },
+        {
+          "name": "cacheCreationInputTokens",
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "cacheReadInputTokens",
+          "required": false,
+          "type": "number"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "number"
+    },
+    "calculateApiCostOpenAI": {
+      "parameters": [
+        {
+          "name": "modelInfo",
+          "required": true,
+          "type": "ModelInfo"
+        },
+        {
+          "name": "inputTokens",
+          "required": true,
+          "type": "number"
+        },
+        {
+          "name": "outputTokens",
+          "required": true,
+          "type": "number"
+        },
+        {
+          "name": "cacheCreationInputTokens",
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "cacheReadInputTokens",
+          "required": false,
+          "type": "number"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "number"
+    }
+  },
+  "imports": [
+    {
+      "name": "ModelInfo",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "cacheWritesCost": "unknown",
+    "cacheReadsCost": "unknown",
+    "baseInputCost": "unknown",
+    "outputCost": "unknown",
+    "totalCost": "unknown",
+    "cacheCreationInputTokensNum": "unknown",
+    "cacheReadInputTokensNum": "unknown",
+    "nonCachedInputTokens": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 3,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

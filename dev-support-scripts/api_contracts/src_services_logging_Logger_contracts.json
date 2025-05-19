@@ -1,0 +1,65 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/services/logging/Logger",
+  "file_path": "/Users/david/Projects/cline/src/services/logging/Logger.ts",
+  "classes": {
+    "Logger": {
+      "methods": {
+        "initialize": {
+          "parameters": [
+            {
+              "name": "outputChannel",
+              "required": true,
+              "type": "OutputChannel"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "log": {
+          "parameters": [
+            {
+              "name": "message",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        }
+      },
+      "attributes": {
+        "outputChannel": "OutputChannel"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": "Simple logging utility for the extension's backend code.\nUses VS Code's OutputChannel which must be initialized from extension.ts\nto ensure proper registration with the extension context.",
+      "file_path": "/Users/david/Projects/cline/src/services/logging/Logger.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {},
+  "types": {},
+  "functions": {},
+  "imports": [
+    {
+      "name": "OutputChannel",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {},
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 1,
+    "method_count": 2,
+    "inner_class_count": 0
+  }
+}

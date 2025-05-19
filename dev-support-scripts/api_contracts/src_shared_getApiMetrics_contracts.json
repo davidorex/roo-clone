@@ -1,0 +1,77 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/shared/getApiMetrics",
+  "file_path": "/Users/david/Projects/cline/src/shared/getApiMetrics.ts",
+  "classes": {},
+  "interfaces": {
+    "ApiMetrics": {
+      "properties": {
+        "totalTokensIn": {
+          "type": "number",
+          "required": true,
+          "docstring": null
+        },
+        "totalTokensOut": {
+          "type": "number",
+          "required": true,
+          "docstring": null
+        },
+        "totalCacheWrites": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "totalCacheReads": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "totalCost": {
+          "type": "number",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {},
+  "functions": {
+    "getApiMetrics": {
+      "parameters": [
+        {
+          "name": "messages",
+          "required": true,
+          "type": "ClineMessage[]"
+        }
+      ],
+      "docstring": "Calculates API metrics from an array of ClineMessages.\n\nThis function processes 'api_req_started' messages that have been combined with their\ncorresponding 'api_req_finished' messages by the combineApiRequests function. It also takes into account 'deleted_api_reqs' messages, which are aggregated from deleted messages.\nIt extracts and sums up the tokensIn, tokensOut, cacheWrites, cacheReads, and cost from these messages.\n\n@param messages - An array of ClineMessage objects to process.\n@returns An ApiMetrics object containing totalTokensIn, totalTokensOut, totalCacheWrites, totalCacheReads, and totalCost.\n\n@example\nconst messages = [\n  { type: \"say\", say: \"api_req_started\", text: '{\"request\":\"GET /api/data\",\"tokensIn\":10,\"tokensOut\":20,\"cost\":0.005}', ts: 1000 }\n];\nconst { totalTokensIn, totalTokensOut, totalCost } = getApiMetrics(messages);\n// Result: { totalTokensIn: 10, totalTokensOut: 20, totalCost: 0.005 }",
+      "decorators": [],
+      "return_type": "ApiMetrics"
+    }
+  },
+  "imports": [
+    {
+      "name": "ClineMessage",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "result": "unknown",
+    "parsedData": "unknown",
+    "{ tokensIn, tokensOut, cacheWrites, cacheReads, cost }": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 1,
+    "type_count": 0,
+    "function_count": 1,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

@@ -1,0 +1,102 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/integrations/debug/DebugConsoleManager",
+  "file_path": "/Users/david/Projects/cline/src/integrations/debug/DebugConsoleManager.ts",
+  "classes": {
+    "DebugConsoleManager": {
+      "methods": {
+        "constructor": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "DebugConsoleManager"
+        },
+        "getActiveSessions": {
+          "parameters": [],
+          "docstring": "Get all active debug sessions",
+          "decorators": [],
+          "return_type": "{ id: string; name: string }[]"
+        },
+        "getUnretrievedOutput": {
+          "parameters": [
+            {
+              "name": "sessionId",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": "Get any new output since the last retrieval for a specific debug session",
+          "decorators": [],
+          "return_type": "string | undefined"
+        },
+        "dispose": {
+          "parameters": [],
+          "docstring": "Clean up resources",
+          "decorators": [],
+          "return_type": "any"
+        }
+      },
+      "attributes": {
+        "sessions": "Map<string, DebugSession>",
+        "disposables": "vscode.Disposable[]"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/integrations/debug/DebugConsoleManager.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {
+    "DebugSession": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "name": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "output": {
+          "type": "string[]",
+          "required": true,
+          "docstring": null
+        },
+        "lastRetrievedIndex": {
+          "type": "number",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {},
+  "functions": {},
+  "imports": [
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    }
+  ],
+  "constants": {
+    "session": "unknown",
+    "newOutput": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 1,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 2,
+    "method_count": 4,
+    "inner_class_count": 0
+  }
+}

@@ -1,0 +1,163 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/api/transform/o1-format",
+  "file_path": "/Users/david/Projects/cline/src/api/transform/o1-format.ts",
+  "classes": {},
+  "interfaces": {
+    "ToolCall": {
+      "properties": {
+        "tool": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "tool_input": {
+          "type": "Record<string, string>",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {},
+  "functions": {
+    "convertToO1Messages": {
+      "parameters": [
+        {
+          "name": "openAiMessages",
+          "required": true,
+          "type": "OpenAI.Chat.ChatCompletionMessageParam[]"
+        },
+        {
+          "name": "systemPrompt",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "OpenAI.Chat.ChatCompletionMessageParam[]"
+    },
+    "parseAIResponse": {
+      "parameters": [
+        {
+          "name": "response",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "{\n\tnormalText: string\n\ttoolCalls: ToolCall[]\n}"
+    },
+    "parseToolCalls": {
+      "parameters": [
+        {
+          "name": "toolCallsText",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "ToolCall[]"
+    },
+    "parseToolCall": {
+      "parameters": [
+        {
+          "name": "toolName",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "content",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "ToolCall | null"
+    },
+    "validateToolInput": {
+      "parameters": [
+        {
+          "name": "toolName",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "tool_input",
+          "required": true,
+          "type": "Record<string, string>"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "boolean"
+    },
+    "convertO1ResponseToAnthropicMessage": {
+      "parameters": [
+        {
+          "name": "completion",
+          "required": true,
+          "type": "OpenAI.Chat.Completions.ChatCompletion"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Anthropic.Messages.Message"
+    }
+  },
+  "imports": [
+    {
+      "name": "Anthropic",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "OpenAI",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "o1SystemPrompt": "unknown",
+    "toolsReplaced": "unknown",
+    "messagesWithSystemPrompt": "unknown",
+    "toolNames": "unknown",
+    "toolCallPattern": "unknown",
+    "match": "unknown",
+    "toolCallStart": "unknown",
+    "normalText": "unknown",
+    "toolCallsText": "unknown",
+    "toolCalls": "unknown",
+    "toolMatch": "unknown",
+    "startTag": "unknown",
+    "endTag": "unknown",
+    "startIndex": "unknown",
+    "endIndex": "unknown",
+    "toolCallContent": "unknown",
+    "toolCall": "unknown",
+    "tool_input": "unknown",
+    "innerContent": "unknown",
+    "paramRegex": "unknown",
+    "[, paramName, paramValue]": "unknown",
+    "openAiMessage": "unknown",
+    "{ normalText, toolCalls }": "unknown",
+    "anthropicMessage": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 1,
+    "type_count": 0,
+    "function_count": 6,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

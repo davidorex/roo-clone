@@ -1,0 +1,1177 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/core/webview/ClineProvider",
+  "file_path": "/Users/david/Projects/cline/src/core/webview/ClineProvider.ts",
+  "classes": {
+    "ClineProvider": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "context",
+              "required": true,
+              "type": "vscode.ExtensionContext"
+            },
+            {
+              "name": "outputChannel",
+              "required": true,
+              "type": "vscode.OutputChannel"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "ClineProvider"
+        },
+        "dispose": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "handleSignOut": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "setUserInfo": {
+          "parameters": [
+            {
+              "name": "info",
+              "required": false,
+              "type": "{ displayName: string | null; email: string | null; photoURL: string | null }"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "getVisibleInstance": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "ClineProvider | undefined"
+        },
+        "resolveWebviewView": {
+          "parameters": [
+            {
+              "name": "webviewView",
+              "required": true,
+              "type": "vscode.WebviewView | vscode.WebviewPanel"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "initClineWithTask": {
+          "parameters": [
+            {
+              "name": "task",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "images",
+              "required": false,
+              "type": "string[]"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "initClineWithHistoryItem": {
+          "parameters": [
+            {
+              "name": "historyItem",
+              "required": true,
+              "type": "HistoryItem"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "postMessageToWebview": {
+          "parameters": [
+            {
+              "name": "message",
+              "required": true,
+              "type": "ExtensionMessage"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "getHtmlContent": {
+          "parameters": [
+            {
+              "name": "webview",
+              "required": true,
+              "type": "vscode.Webview"
+            }
+          ],
+          "docstring": "Defines and returns the HTML that should be rendered within the webview panel.\n\n@remarks This is also the place where references to the React webview build files\nare created and inserted into the webview HTML.\n\n@param webview A reference to the extension webview\n@param extensionUri The URI of the directory containing the extension\n@returns A template string literal containing the HTML that should be\nrendered within the webview panel",
+          "decorators": [],
+          "return_type": "string"
+        },
+        "getHMRHtmlContent": {
+          "parameters": [
+            {
+              "name": "webview",
+              "required": true,
+              "type": "vscode.Webview"
+            }
+          ],
+          "docstring": "Connects to the local Vite dev server to allow HMR, with fallback to the bundled assets\n\n@param webview A reference to the extension webview\n@returns A template string literal containing the HTML that should be\nrendered within the webview panel",
+          "decorators": [],
+          "return_type": "Promise<string>"
+        },
+        "setWebviewMessageListener": {
+          "parameters": [
+            {
+              "name": "webview",
+              "required": true,
+              "type": "vscode.Webview"
+            }
+          ],
+          "docstring": "Sets up an event listener to listen for messages passed from the webview context and\nexecutes code based on the message that is received.\n\n@param webview A reference to the extension webview",
+          "decorators": [],
+          "return_type": "any"
+        },
+        "updateTelemetrySetting": {
+          "parameters": [
+            {
+              "name": "telemetrySetting",
+              "required": true,
+              "type": "TelemetrySetting"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "togglePlanActModeWithChatSettings": {
+          "parameters": [
+            {
+              "name": "chatSettings",
+              "required": true,
+              "type": "ChatSettings"
+            },
+            {
+              "name": "chatContent",
+              "required": false,
+              "type": "ChatContent"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "cancelTask": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "updateCustomInstructions": {
+          "parameters": [
+            {
+              "name": "instructions",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "updateApiConfiguration": {
+          "parameters": [
+            {
+              "name": "apiConfiguration",
+              "required": true,
+              "type": "ApiConfiguration"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "getDocumentsPath": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<string>"
+        },
+        "ensureMcpServersDirectoryExists": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<string>"
+        },
+        "ensureSettingsDirectoryExists": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<string>"
+        },
+        "getVsCodeLmModels": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "getOllamaModels": {
+          "parameters": [
+            {
+              "name": "baseUrl",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "getLmStudioModels": {
+          "parameters": [
+            {
+              "name": "baseUrl",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "fetchUserCreditsData": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "validateAuthState": {
+          "parameters": [
+            {
+              "name": "state",
+              "required": true,
+              "type": "string | null"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<boolean>"
+        },
+        "handleAuthCallback": {
+          "parameters": [
+            {
+              "name": "customToken",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "apiKey",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "fetchMcpMarketplaceFromApi": {
+          "parameters": [
+            {
+              "name": "silent",
+              "required": false,
+              "type": "boolean"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<McpMarketplaceCatalog | undefined>"
+        },
+        "silentlyRefreshMcpMarketplace": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "fetchMcpMarketplace": {
+          "parameters": [
+            {
+              "name": "forceRefresh",
+              "required": false,
+              "type": "boolean"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "downloadMcp": {
+          "parameters": [
+            {
+              "name": "mcpId",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "getOpenAiModels": {
+          "parameters": [
+            {
+              "name": "baseUrl",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "apiKey",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "handleOpenRouterCallback": {
+          "parameters": [
+            {
+              "name": "code",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "ensureCacheDirectoryExists": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<string>"
+        },
+        "readOpenRouterModels": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<Record<string, ModelInfo> | undefined>"
+        },
+        "refreshOpenRouterModels": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "getFileMentionFromPath": {
+          "parameters": [
+            {
+              "name": "filePath",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "addSelectedCodeToChat": {
+          "parameters": [
+            {
+              "name": "code",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "filePath",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "languageId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "diagnostics",
+              "required": false,
+              "type": "vscode.Diagnostic[]"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "addSelectedTerminalOutputToChat": {
+          "parameters": [
+            {
+              "name": "output",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "terminalName",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "fixWithCline": {
+          "parameters": [
+            {
+              "name": "code",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "filePath",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "languageId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "diagnostics",
+              "required": true,
+              "type": "vscode.Diagnostic[]"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "convertDiagnosticsToProblemsString": {
+          "parameters": [
+            {
+              "name": "diagnostics",
+              "required": true,
+              "type": "vscode.Diagnostic[]"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "getTaskWithId": {
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<{\n\t\thistoryItem: HistoryItem\n\t\ttaskDirPath: string\n\t\tapiConversationHistoryFilePath: string\n\t\tuiMessagesFilePath: string\n\t\tapiConversationHistory: Anthropic.MessageParam[]\n\t}>"
+        },
+        "showTaskWithId": {
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "exportTaskWithId": {
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "deleteAllTaskHistory": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "refreshTotalTasksSize": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "deleteTaskWithId": {
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "deleteTaskFromState": {
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "postStateToWebview": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "getStateToPostToWebview": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<ExtensionState>"
+        },
+        "clearTask": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "getState": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "updateTaskHistory": {
+          "parameters": [
+            {
+              "name": "item",
+              "required": true,
+              "type": "HistoryItem"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<HistoryItem[]>"
+        },
+        "updateGlobalState": {
+          "parameters": [
+            {
+              "name": "key",
+              "required": true,
+              "type": "GlobalStateKey"
+            },
+            {
+              "name": "value",
+              "required": true,
+              "type": "any"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "getGlobalState": {
+          "parameters": [
+            {
+              "name": "key",
+              "required": true,
+              "type": "GlobalStateKey"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "updateWorkspaceState": {
+          "parameters": [
+            {
+              "name": "key",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "value",
+              "required": true,
+              "type": "any"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "getWorkspaceState": {
+          "parameters": [
+            {
+              "name": "key",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "storeSecret": {
+          "parameters": [
+            {
+              "name": "key",
+              "required": true,
+              "type": "SecretKey"
+            },
+            {
+              "name": "value",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "getSecret": {
+          "parameters": [
+            {
+              "name": "key",
+              "required": true,
+              "type": "SecretKey"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "fetchOpenGraphData": {
+          "parameters": [
+            {
+              "name": "url",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "checkIsImageUrl": {
+          "parameters": [
+            {
+              "name": "url",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "resetState": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        }
+      },
+      "attributes": {
+        "sideBarId": "any",
+        "tabPanelId": "any",
+        "activeInstances": "Set<ClineProvider>",
+        "disposables": "vscode.Disposable[]",
+        "view": "vscode.WebviewView | vscode.WebviewPanel",
+        "cline": "Cline",
+        "workspaceTracker": "WorkspaceTracker",
+        "mcpHub": "McpHub",
+        "accountService": "ClineAccountService",
+        "latestAnnouncementId": "any",
+        "outputChannel": "vscode.OutputChannel"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/core/webview/ClineProvider.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {},
+  "types": {
+    "SecretKey": {
+      "docstring": null,
+      "type": "union",
+      "values": [
+        "\"apiKey\"",
+        "\"clineApiKey\"",
+        "\"openRouterApiKey\"",
+        "\"awsAccessKey\"",
+        "\"awsSecretKey\"",
+        "\"awsSessionToken\"",
+        "\"openAiApiKey\"",
+        "\"geminiApiKey\"",
+        "\"openAiNativeApiKey\"",
+        "\"deepSeekApiKey\"",
+        "\"requestyApiKey\"",
+        "\"togetherApiKey\"",
+        "\"qwenApiKey\"",
+        "\"mistralApiKey\"",
+        "\"liteLlmApiKey\"",
+        "\"authNonce\"",
+        "\"asksageApiKey\"",
+        "\"xaiApiKey\"",
+        "\"sambanovaApiKey\""
+      ]
+    },
+    "GlobalStateKey": {
+      "docstring": null,
+      "type": "union",
+      "values": [
+        "\"apiProvider\"",
+        "\"apiModelId\"",
+        "\"awsRegion\"",
+        "\"awsUseCrossRegionInference\"",
+        "\"awsBedrockUsePromptCache\"",
+        "\"awsBedrockEndpoint\"",
+        "\"awsProfile\"",
+        "\"awsUseProfile\"",
+        "\"vertexProjectId\"",
+        "\"vertexRegion\"",
+        "\"lastShownAnnouncementId\"",
+        "\"customInstructions\"",
+        "\"taskHistory\"",
+        "\"openAiBaseUrl\"",
+        "\"openAiModelId\"",
+        "\"openAiModelInfo\"",
+        "\"ollamaModelId\"",
+        "\"ollamaBaseUrl\"",
+        "\"ollamaApiOptionsCtxNum\"",
+        "\"lmStudioModelId\"",
+        "\"lmStudioBaseUrl\"",
+        "\"anthropicBaseUrl\"",
+        "\"azureApiVersion\"",
+        "\"openRouterModelId\"",
+        "\"openRouterModelInfo\"",
+        "\"openRouterProviderSorting\"",
+        "\"autoApprovalSettings\"",
+        "\"browserSettings\"",
+        "\"chatSettings\"",
+        "\"vsCodeLmModelSelector\"",
+        "\"userInfo\"",
+        "\"previousModeApiProvider\"",
+        "\"previousModeModelId\"",
+        "\"previousModeThinkingBudgetTokens\"",
+        "\"previousModeVsCodeLmModelSelector\"",
+        "\"previousModeModelInfo\"",
+        "\"liteLlmBaseUrl\"",
+        "\"liteLlmModelId\"",
+        "\"qwenApiLine\"",
+        "\"requestyModelId\"",
+        "\"togetherModelId\"",
+        "\"mcpMarketplaceCatalog\"",
+        "\"telemetrySetting\"",
+        "\"asksageApiUrl\"",
+        "\"thinkingBudgetTokens\"",
+        "\"planActSeparateModelsSetting\""
+      ]
+    }
+  },
+  "functions": {},
+  "imports": [
+    {
+      "name": "Anthropic",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "axios",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "crypto",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "execa",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "fs",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "os",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "pWaitFor",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    },
+    {
+      "name": "buildApiHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "downloadTask",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "openFile",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "openImage",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "fetchOpenGraphData",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "isImageUrl",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "selectImages",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "getTheme",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "WorkspaceTracker",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineAccountService",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "McpHub",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "UserInfo",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiConfiguration",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiProvider",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ModelInfo",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "findLast",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "AutoApprovalSettings",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "DEFAULT_AUTO_APPROVAL_SETTINGS",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "BrowserSettings",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "DEFAULT_BROWSER_SETTINGS",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ChatContent",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ChatSettings",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "DEFAULT_CHAT_SETTINGS",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ExtensionMessage",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ExtensionState",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "Invoke",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "Platform",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "HistoryItem",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "McpDownloadResponse",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "McpMarketplaceCatalog",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "McpServer",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineCheckpointRestore",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "WebviewMessage",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "fileExistsAtPath",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "searchCommits",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "Cline",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "openMention",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "getNonce",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "getUri",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "telemetryService",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "TelemetrySetting",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "cleanupLegacyCheckpoints",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "CheckpointTracker",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "getTotalTasksSize",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "GlobalFileNames",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "setTimeout",
+      "alias": "setTimeoutPromise",
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "x": "unknown",
+    "{ apiConfiguration, customInstructions, autoApprovalSettings, browserSettings, chatSettings }": "unknown",
+    "stylesUri": "unknown",
+    "scriptUri": "unknown",
+    "codiconsUri": "unknown",
+    "nonce": "unknown",
+    "localPort": "25463",
+    "localServerUrl": "unknown",
+    "scriptEntrypoint": "\"src/main.tsx\"",
+    "reactRefresh": "unknown",
+    "csp": "unknown",
+    "{ apiConfiguration }": "unknown",
+    "{ telemetrySetting }": "unknown",
+    "isOptedIn": "unknown",
+    "images": "unknown",
+    "currentTaskId": "unknown",
+    "ollamaModels": "unknown",
+    "lmStudioModels": "unknown",
+    "vsCodeLmModels": "unknown",
+    "openAiModels": "unknown",
+    "uriScheme": "unknown",
+    "authUrl": "unknown",
+    "mcpSettingsFilePath": "unknown",
+    "{ chatSettings }": "unknown",
+    "mcpConfig": "unknown",
+    "cwd": "unknown",
+    "commits": "unknown",
+    "settingsFilter": "unknown",
+    "didSwitchToActMode": "unknown",
+    "{\n\t\t\tapiConfiguration,\n\t\t\tpreviousModeApiProvider: newApiProvider,\n\t\t\tpreviousModeModelId: newModelId,\n\t\t\tpreviousModeModelInfo: newModelInfo,\n\t\t\tpreviousModeVsCodeLmModelSelector: newVsCodeLmModelSelector,\n\t\t\tpreviousModeThinkingBudgetTokens: newThinkingBudgetTokens,\n\t\t\tplanActSeparateModelsSetting,\n\t\t}": "unknown",
+    "shouldSwitchModel": "unknown",
+    "{ apiConfiguration: updatedApiConfiguration }": "unknown",
+    "{ historyItem }": "unknown",
+    "{\n\t\t\tapiProvider,\n\t\t\tapiModelId,\n\t\t\tapiKey,\n\t\t\topenRouterApiKey,\n\t\t\tawsAccessKey,\n\t\t\tawsSecretKey,\n\t\t\tawsSessionToken,\n\t\t\tawsRegion,\n\t\t\tawsUseCrossRegionInference,\n\t\t\tawsBedrockUsePromptCache,\n\t\t\tawsBedrockEndpoint,\n\t\t\tawsProfile,\n\t\t\tawsUseProfile,\n\t\t\tvertexProjectId,\n\t\t\tvertexRegion,\n\t\t\topenAiBaseUrl,\n\t\t\topenAiApiKey,\n\t\t\topenAiModelId,\n\t\t\topenAiModelInfo,\n\t\t\tollamaModelId,\n\t\t\tollamaBaseUrl,\n\t\t\tollamaApiOptionsCtxNum,\n\t\t\tlmStudioModelId,\n\t\t\tlmStudioBaseUrl,\n\t\t\tanthropicBaseUrl,\n\t\t\tgeminiApiKey,\n\t\t\topenAiNativeApiKey,\n\t\t\tdeepSeekApiKey,\n\t\t\trequestyApiKey,\n\t\t\trequestyModelId,\n\t\t\ttogetherApiKey,\n\t\t\ttogetherModelId,\n\t\t\tqwenApiKey,\n\t\t\tmistralApiKey,\n\t\t\tazureApiVersion,\n\t\t\topenRouterModelId,\n\t\t\topenRouterModelInfo,\n\t\t\topenRouterProviderSorting,\n\t\t\tvsCodeLmModelSelector,\n\t\t\tliteLlmBaseUrl,\n\t\t\tliteLlmModelId,\n\t\t\tliteLlmApiKey,\n\t\t\tqwenApiLine,\n\t\t\tasksageApiKey,\n\t\t\tasksageApiUrl,\n\t\t\txaiApiKey,\n\t\t\tthinkingBudgetTokens,\n\t\t\tclineApiKey,\n\t\t\tsambanovaApiKey,\n\t\t}": "unknown",
+    "{ stdout: docsPath }": "unknown",
+    "trimmedPath": "unknown",
+    "{ stdout }": "unknown",
+    "userDocumentsPath": "unknown",
+    "mcpServersDir": "unknown",
+    "settingsDir": "unknown",
+    "models": "unknown",
+    "response": "unknown",
+    "modelsArray": "unknown",
+    "storedNonce": "unknown",
+    "clineProvider": "\"cline\"",
+    "updatedConfig": "unknown",
+    "catalog": "unknown",
+    "errorMessage": "unknown",
+    "cachedCatalog": "unknown",
+    "servers": "unknown",
+    "isInstalled": "unknown",
+    "mcpDetails": "unknown",
+    "task": "unknown",
+    "config": "unknown",
+    "openrouter": "\"openrouter\"",
+    "cacheDir": "unknown",
+    "openRouterModelsFilePath": "unknown",
+    "fileExists": "unknown",
+    "fileContents": "unknown",
+    "rawModels": "unknown",
+    "parsePrice": "unknown",
+    "modelInfo": "unknown",
+    "relativePath": "unknown",
+    "fileMention": "unknown",
+    "problemsString": "unknown",
+    "line": "unknown",
+    "source": "unknown",
+    "history": "unknown",
+    "historyItem": "unknown",
+    "taskDirPath": "unknown",
+    "apiConversationHistoryFilePath": "unknown",
+    "uiMessagesFilePath": "unknown",
+    "apiConversationHistory": "unknown",
+    "{ historyItem, apiConversationHistory }": "unknown",
+    "checkpointsDirPath": "unknown",
+    "{ taskDirPath, apiConversationHistoryFilePath, uiMessagesFilePath }": "unknown",
+    "updatedTaskHistory": "unknown",
+    "apiConversationHistoryFileExists": "unknown",
+    "uiMessagesFileExists": "unknown",
+    "legacyMessagesFilePath": "unknown",
+    "taskHistory": "unknown",
+    "state": "unknown",
+    "{\n\t\t\tapiConfiguration,\n\t\t\tlastShownAnnouncementId,\n\t\t\tcustomInstructions,\n\t\t\ttaskHistory,\n\t\t\tautoApprovalSettings,\n\t\t\tbrowserSettings,\n\t\t\tchatSettings,\n\t\t\tuserInfo,\n\t\t\tmcpMarketplaceEnabled,\n\t\t\ttelemetrySetting,\n\t\t\tplanActSeparateModelsSetting,\n\t\t}": "unknown",
+    "[\n\t\t\tstoredApiProvider,\n\t\t\tapiModelId,\n\t\t\tapiKey,\n\t\t\topenRouterApiKey,\n\t\t\tclineApiKey,\n\t\t\tawsAccessKey,\n\t\t\tawsSecretKey,\n\t\t\tawsSessionToken,\n\t\t\tawsRegion,\n\t\t\tawsUseCrossRegionInference,\n\t\t\tawsBedrockUsePromptCache,\n\t\t\tawsBedrockEndpoint,\n\t\t\tawsProfile,\n\t\t\tawsUseProfile,\n\t\t\tvertexProjectId,\n\t\t\tvertexRegion,\n\t\t\topenAiBaseUrl,\n\t\t\topenAiApiKey,\n\t\t\topenAiModelId,\n\t\t\topenAiModelInfo,\n\t\t\tollamaModelId,\n\t\t\tollamaBaseUrl,\n\t\t\tollamaApiOptionsCtxNum,\n\t\t\tlmStudioModelId,\n\t\t\tlmStudioBaseUrl,\n\t\t\tanthropicBaseUrl,\n\t\t\tgeminiApiKey,\n\t\t\topenAiNativeApiKey,\n\t\t\tdeepSeekApiKey,\n\t\t\trequestyApiKey,\n\t\t\trequestyModelId,\n\t\t\ttogetherApiKey,\n\t\t\ttogetherModelId,\n\t\t\tqwenApiKey,\n\t\t\tmistralApiKey,\n\t\t\tazureApiVersion,\n\t\t\topenRouterModelId,\n\t\t\topenRouterModelInfo,\n\t\t\topenRouterProviderSorting,\n\t\t\tlastShownAnnouncementId,\n\t\t\tcustomInstructions,\n\t\t\ttaskHistory,\n\t\t\tautoApprovalSettings,\n\t\t\tbrowserSettings,\n\t\t\tchatSettings,\n\t\t\tvsCodeLmModelSelector,\n\t\t\tliteLlmBaseUrl,\n\t\t\tliteLlmModelId,\n\t\t\tuserInfo,\n\t\t\tpreviousModeApiProvider,\n\t\t\tpreviousModeModelId,\n\t\t\tpreviousModeModelInfo,\n\t\t\tpreviousModeVsCodeLmModelSelector,\n\t\t\tpreviousModeThinkingBudgetTokens,\n\t\t\tqwenApiLine,\n\t\t\tliteLlmApiKey,\n\t\t\ttelemetrySetting,\n\t\t\tasksageApiKey,\n\t\t\tasksageApiUrl,\n\t\t\txaiApiKey,\n\t\t\tthinkingBudgetTokens,\n\t\t\tsambanovaApiKey,\n\t\t\tplanActSeparateModelsSettingRaw,\n\t\t]": "unknown",
+    "o3MiniReasoningEffort": "unknown",
+    "mcpMarketplaceEnabled": "unknown",
+    "existingItemIndex": "unknown",
+    "ogData": "unknown",
+    "isImage": "unknown",
+    "secretKeys": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 0,
+    "type_count": 2,
+    "function_count": 0,
+    "attribute_count": 11,
+    "method_count": 61,
+    "inner_class_count": 0
+  }
+}

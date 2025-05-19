@@ -1,0 +1,69 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/integrations/editor/detect-omission",
+  "file_path": "/Users/david/Projects/cline/src/integrations/editor/detect-omission.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "detectCodeOmission": {
+      "parameters": [
+        {
+          "name": "originalFileContent",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "newFileContent",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": "Detects potential AI-generated code omissions in the given file content.\n@param originalFileContent The original content of the file.\n@param newFileContent The new content of the file to check.\n@returns True if a potential omission is detected, false otherwise.",
+      "decorators": [],
+      "return_type": "boolean"
+    },
+    "showOmissionWarning": {
+      "parameters": [
+        {
+          "name": "originalFileContent",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "newFileContent",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": "Shows a warning in VSCode if a potential code omission is detected.\n@param originalFileContent The original content of the file.\n@param newFileContent The new content of the file to check.",
+      "decorators": [],
+      "return_type": "void"
+    }
+  },
+  "imports": [
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    }
+  ],
+  "constants": {
+    "originalLines": "unknown",
+    "newLines": "unknown",
+    "omissionKeywords": "unknown",
+    "commentPatterns": "unknown",
+    "words": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 2,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

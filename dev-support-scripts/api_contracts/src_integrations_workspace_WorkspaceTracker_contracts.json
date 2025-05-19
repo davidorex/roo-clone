@@ -1,0 +1,175 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/integrations/workspace/WorkspaceTracker",
+  "file_path": "/Users/david/Projects/cline/src/integrations/workspace/WorkspaceTracker.ts",
+  "classes": {
+    "WorkspaceTracker": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "provider",
+              "required": true,
+              "type": "ClineProvider"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "WorkspaceTracker"
+        },
+        "populateFilePaths": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "registerListeners": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "onFilesCreated": {
+          "parameters": [
+            {
+              "name": "event",
+              "required": true,
+              "type": "vscode.FileCreateEvent"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "onFilesDeleted": {
+          "parameters": [
+            {
+              "name": "event",
+              "required": true,
+              "type": "vscode.FileDeleteEvent"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "onFilesRenamed": {
+          "parameters": [
+            {
+              "name": "event",
+              "required": true,
+              "type": "vscode.FileRenameEvent"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "workspaceDidUpdate": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "normalizeFilePath": {
+          "parameters": [
+            {
+              "name": "filePath",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "string"
+        },
+        "addFilePath": {
+          "parameters": [
+            {
+              "name": "filePath",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<string>"
+        },
+        "removeFilePath": {
+          "parameters": [
+            {
+              "name": "filePath",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<boolean>"
+        },
+        "dispose": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        }
+      },
+      "attributes": {
+        "providerRef": "WeakRef<ClineProvider>",
+        "disposables": "vscode.Disposable[]",
+        "filePaths": "Set<string>"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/integrations/workspace/WorkspaceTracker.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {},
+  "types": {},
+  "functions": {},
+  "imports": [
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    },
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "listFiles",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineProvider",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "cwd": "unknown",
+    "[files, _]": "unknown",
+    "relativePath": "unknown",
+    "resolvedPath": "unknown",
+    "normalizedPath": "unknown",
+    "stat": "unknown",
+    "isDirectory": "unknown",
+    "pathWithSlash": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 3,
+    "method_count": 11,
+    "inner_class_count": 0
+  }
+}

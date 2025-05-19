@@ -1,0 +1,40 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/integrations/workspace/get-python-env",
+  "file_path": "/Users/david/Projects/cline/src/integrations/workspace/get-python-env.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "getPythonEnvPath": {
+      "parameters": [],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<string | undefined>"
+    }
+  },
+  "imports": [
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    }
+  ],
+  "constants": {
+    "pythonExtension": "unknown",
+    "pythonApi": "unknown",
+    "workspaceFolder": "unknown",
+    "pythonEnv": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 1,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

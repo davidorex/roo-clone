@@ -1,0 +1,110 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/integrations/misc/extract-text",
+  "file_path": "/Users/david/Projects/cline/src/integrations/misc/extract-text.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "extractTextFromFile": {
+      "parameters": [
+        {
+          "name": "filePath",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<string>"
+    },
+    "extractTextFromPDF": {
+      "parameters": [
+        {
+          "name": "filePath",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<string>"
+    },
+    "extractTextFromDOCX": {
+      "parameters": [
+        {
+          "name": "filePath",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<string>"
+    },
+    "extractTextFromIPYNB": {
+      "parameters": [
+        {
+          "name": "filePath",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<string>"
+    }
+  },
+  "imports": [
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "pdf",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "mammoth",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "fs",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "isBinaryFile",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "getFileSizeInKB",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "fileExtension": "unknown",
+    "isBinary": "unknown",
+    "fileSizeInKB": "unknown",
+    "dataBuffer": "unknown",
+    "data": "unknown",
+    "result": "unknown",
+    "notebook": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 4,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

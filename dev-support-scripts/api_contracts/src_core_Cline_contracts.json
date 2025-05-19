@@ -1,0 +1,1164 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/core/Cline",
+  "file_path": "/Users/david/Projects/cline/src/core/Cline.ts",
+  "classes": {
+    "Cline": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "provider",
+              "required": true,
+              "type": "ClineProvider"
+            },
+            {
+              "name": "apiConfiguration",
+              "required": true,
+              "type": "ApiConfiguration"
+            },
+            {
+              "name": "autoApprovalSettings",
+              "required": true,
+              "type": "AutoApprovalSettings"
+            },
+            {
+              "name": "browserSettings",
+              "required": true,
+              "type": "BrowserSettings"
+            },
+            {
+              "name": "chatSettings",
+              "required": true,
+              "type": "ChatSettings"
+            },
+            {
+              "name": "customInstructions",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "task",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "images",
+              "required": false,
+              "type": "string[]"
+            },
+            {
+              "name": "historyItem",
+              "required": false,
+              "type": "HistoryItem"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Cline"
+        },
+        "updateBrowserSettings": {
+          "parameters": [
+            {
+              "name": "browserSettings",
+              "required": true,
+              "type": "BrowserSettings"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "updateChatSettings": {
+          "parameters": [
+            {
+              "name": "chatSettings",
+              "required": true,
+              "type": "ChatSettings"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "ensureTaskDirectoryExists": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<string>"
+        },
+        "getSavedApiConversationHistory": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<Anthropic.MessageParam[]>"
+        },
+        "addToApiConversationHistory": {
+          "parameters": [
+            {
+              "name": "message",
+              "required": true,
+              "type": "Anthropic.MessageParam"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "overwriteApiConversationHistory": {
+          "parameters": [
+            {
+              "name": "newHistory",
+              "required": true,
+              "type": "Anthropic.MessageParam[]"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "saveApiConversationHistory": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "getSavedClineMessages": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<ClineMessage[]>"
+        },
+        "addToClineMessages": {
+          "parameters": [
+            {
+              "name": "message",
+              "required": true,
+              "type": "ClineMessage"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "overwriteClineMessages": {
+          "parameters": [
+            {
+              "name": "newMessages",
+              "required": true,
+              "type": "ClineMessage[]"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "saveClineMessages": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "restoreCheckpoint": {
+          "parameters": [
+            {
+              "name": "messageTs",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "restoreType",
+              "required": true,
+              "type": "ClineCheckpointRestore"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "presentMultifileDiff": {
+          "parameters": [
+            {
+              "name": "messageTs",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "seeNewChangesSinceLastTaskCompletion",
+              "required": true,
+              "type": "boolean"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "doesLatestTaskCompletionHaveNewChanges": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "ask": {
+          "parameters": [
+            {
+              "name": "type",
+              "required": true,
+              "type": "ClineAsk"
+            },
+            {
+              "name": "text",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "partial",
+              "required": false,
+              "type": "boolean"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<{\n\t\tresponse: ClineAskResponse\n\t\ttext?: string\n\t\timages?: string[]\n\t}>"
+        },
+        "handleWebviewAskResponse": {
+          "parameters": [
+            {
+              "name": "askResponse",
+              "required": true,
+              "type": "ClineAskResponse"
+            },
+            {
+              "name": "text",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "images",
+              "required": false,
+              "type": "string[]"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "say": {
+          "parameters": [
+            {
+              "name": "type",
+              "required": true,
+              "type": "ClineSay"
+            },
+            {
+              "name": "text",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "images",
+              "required": false,
+              "type": "string[]"
+            },
+            {
+              "name": "partial",
+              "required": false,
+              "type": "boolean"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<undefined>"
+        },
+        "sayAndCreateMissingParamError": {
+          "parameters": [
+            {
+              "name": "toolName",
+              "required": true,
+              "type": "ToolUseName"
+            },
+            {
+              "name": "paramName",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "relPath",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "removeLastPartialMessageIfExistsWithType": {
+          "parameters": [
+            {
+              "name": "type",
+              "required": true,
+              "type": "\"ask\" | \"say\""
+            },
+            {
+              "name": "askOrSay",
+              "required": true,
+              "type": "ClineAsk | ClineSay"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "startTask": {
+          "parameters": [
+            {
+              "name": "task",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "images",
+              "required": false,
+              "type": "string[]"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<void>"
+        },
+        "resumeTaskFromHistory": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "initiateTaskLoop": {
+          "parameters": [
+            {
+              "name": "userContent",
+              "required": true,
+              "type": "UserContent"
+            },
+            {
+              "name": "isNewTask",
+              "required": true,
+              "type": "boolean"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<void>"
+        },
+        "abortTask": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "saveCheckpoint": {
+          "parameters": [
+            {
+              "name": "isAttemptCompletionMessage",
+              "required": false,
+              "type": "boolean"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "executeCommandTool": {
+          "parameters": [
+            {
+              "name": "command",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<[boolean, ToolResponse]>"
+        },
+        "shouldAutoApproveTool": {
+          "parameters": [
+            {
+              "name": "toolName",
+              "required": true,
+              "type": "ToolUseName"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "boolean"
+        },
+        "formatErrorWithStatusCode": {
+          "parameters": [
+            {
+              "name": "error",
+              "required": true,
+              "type": "any"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "string"
+        },
+        "attemptApiRequest": {
+          "parameters": [
+            {
+              "name": "previousApiReqIndex",
+              "required": true,
+              "type": "number"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "ApiStream"
+        },
+        "presentAssistantMessage": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "recursivelyMakeClineRequests": {
+          "parameters": [
+            {
+              "name": "userContent",
+              "required": true,
+              "type": "UserContent"
+            },
+            {
+              "name": "includeFileDetails",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "isNewTask",
+              "required": false,
+              "type": "boolean"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<boolean>"
+        },
+        "loadContext": {
+          "parameters": [
+            {
+              "name": "userContent",
+              "required": true,
+              "type": "UserContent"
+            },
+            {
+              "name": "includeFileDetails",
+              "required": false,
+              "type": "boolean"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "getEnvironmentDetails": {
+          "parameters": [
+            {
+              "name": "includeFileDetails",
+              "required": false,
+              "type": "boolean"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        }
+      },
+      "attributes": {
+        "taskId": "string",
+        "apiProvider": "string",
+        "api": "ApiHandler",
+        "terminalManager": "TerminalManager",
+        "urlContentFetcher": "UrlContentFetcher",
+        "browserSession": "BrowserSession",
+        "contextManager": "ContextManager",
+        "didEditFile": "boolean",
+        "customInstructions": "string",
+        "autoApprovalSettings": "AutoApprovalSettings",
+        "browserSettings": "BrowserSettings",
+        "chatSettings": "ChatSettings",
+        "apiConversationHistory": "Anthropic.MessageParam[]",
+        "clineMessages": "ClineMessage[]",
+        "clineIgnoreController": "ClineIgnoreController",
+        "askResponse": "ClineAskResponse",
+        "askResponseText": "string",
+        "askResponseImages": "string[]",
+        "lastMessageTs": "number",
+        "consecutiveAutoApprovedRequestsCount": "number",
+        "consecutiveMistakeCount": "number",
+        "providerRef": "WeakRef<ClineProvider>",
+        "abort": "boolean",
+        "didFinishAbortingStream": "any",
+        "abandoned": "any",
+        "diffViewProvider": "DiffViewProvider",
+        "checkpointTracker": "CheckpointTracker",
+        "checkpointTrackerErrorMessage": "string",
+        "conversationHistoryDeletedRange": "[number, number]",
+        "isInitialized": "any",
+        "isAwaitingPlanResponse": "any",
+        "didRespondToPlanAskBySwitchingMode": "any",
+        "isWaitingForFirstChunk": "any",
+        "isStreaming": "any",
+        "currentStreamingContentIndex": "any",
+        "assistantMessageContent": "AssistantMessageContent[]",
+        "presentAssistantMessageLocked": "any",
+        "presentAssistantMessageHasPendingUpdates": "any",
+        "userMessageContent": "(Anthropic.TextBlockParam | Anthropic.ImageBlockParam)[]",
+        "userMessageContentReady": "any",
+        "didRejectTool": "any",
+        "didAlreadyUseTool": "any",
+        "didCompleteReadingStream": "any",
+        "didAutomaticallyRetryFailedApiRequest": "any"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/core/Cline.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {},
+  "types": {
+    "ToolResponse": {
+      "docstring": null,
+      "type": "union",
+      "values": [
+        "string",
+        "Array<Anthropic.TextBlockParam | Anthropic.ImageBlockParam>"
+      ]
+    },
+    "UserContent": {
+      "docstring": null,
+      "type": "Array<Anthropic.ContentBlockParam>"
+    }
+  },
+  "functions": {},
+  "imports": [
+    {
+      "name": "Anthropic",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "cloneDeep",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "setTimeout",
+      "alias": "setTimeoutPromise",
+      "from_import": true
+    },
+    {
+      "name": "fs",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "getFolderSize",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "os",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "pWaitFor",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "serializeError",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    },
+    {
+      "name": "ApiHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "buildApiHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "OpenRouterHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "CheckpointTracker",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "DIFF_VIEW_URI_SCHEME",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "DiffViewProvider",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "formatContentBlockToMarkdown",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "extractTextFromFile",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "showSystemNotification",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "TerminalManager",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "BrowserSession",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "UrlContentFetcher",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "listFiles",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "regexSearchFiles",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "parseSourceCodeForDefinitionsTopLevel",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiConfiguration",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "findLast",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "findLastIndex",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "parsePartialArrayString",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "AutoApprovalSettings",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "BrowserSettings",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ChatSettings",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "combineApiRequests",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "combineCommandSequences",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "COMMAND_REQ_APP_STRING",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "BrowserAction",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "BrowserActionResult",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "browserActions",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineApiReqCancelReason",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineApiReqInfo",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineAsk",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineAskQuestion",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineAskUseMcpServer",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineMessage",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClinePlanModeResponse",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineSay",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineSayBrowserAction",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineSayTool",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "COMPLETION_RESULT_CHANGES_FLAG",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "getApiMetrics",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "HistoryItem",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineAskResponse",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineCheckpointRestore",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "calculateApiCostAnthropic",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "fileExistsAtPath",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "isDirectory",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "arePathsEqual",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "getReadablePath",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "fixModelHtmlEscaping",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "removeInvalidChars",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "AssistantMessageContent",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "parseAssistantMessage",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ToolParamName",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ToolUseName",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "constructNewFileContent",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineIgnoreController",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "LOCK_TEXT_SYMBOL",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "parseMentions",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "formatResponse",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "addUserInstructions",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "SYSTEM_PROMPT",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ContextManager",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "OpenAiHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiStream",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineProvider",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "DEFAULT_LANGUAGE_SETTINGS",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "getLanguageKey",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "LanguageDisplay",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "LanguageKey",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "telemetryService",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "pTimeout",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "GlobalFileNames",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "checkIsAnthropicContextWindowError",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "checkIsOpenRouterContextWindowError",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "AnthropicHandler",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "cwd": "unknown",
+    "globalStoragePath": "unknown",
+    "taskDir": "unknown",
+    "filePath": "unknown",
+    "fileExists": "unknown",
+    "oldPath": "unknown",
+    "data": "unknown",
+    "apiMetrics": "unknown",
+    "taskMessage": "unknown",
+    "lastRelevantMessage": "unknown",
+    "messageIndex": "unknown",
+    "message": "unknown",
+    "errorMessage": "unknown",
+    "newConversationHistory": "unknown",
+    "deletedMessages": "unknown",
+    "deletedApiReqsMetrics": "unknown",
+    "newClineMessages": "unknown",
+    "checkpointMessages": "unknown",
+    "currentMessageIndex": "unknown",
+    "relinquishButton": "unknown",
+    "hash": "unknown",
+    "lastTaskCompletedMessageCheckpointHash": "unknown",
+    "firstCheckpointMessageCheckpointHash": "unknown",
+    "previousCheckpointHash": "unknown",
+    "lastTaskCompletedMessage": "unknown",
+    "changedFilesCount": "unknown",
+    "lastMessage": "unknown",
+    "isUpdatingPreviousPartial": "unknown",
+    "result": "unknown",
+    "sayTs": "unknown",
+    "modifiedClineMessages": "unknown",
+    "lastRelevantMessageIndex": "unknown",
+    "lastApiReqStartedIndex": "unknown",
+    "lastApiReqStarted": "unknown",
+    "{ cost, cancelReason }": "unknown",
+    "lastClineMessage": "unknown",
+    "{ response, text, images }": "unknown",
+    "existingApiConversationHistory": "unknown",
+    "content": "unknown",
+    "hasToolUse": "unknown",
+    "toolUseBlocks": "unknown",
+    "toolResponses": "unknown",
+    "previousAssistantMessage": "unknown",
+    "existingUserContent": "unknown",
+    "assistantContent": "unknown",
+    "existingToolResults": "unknown",
+    "missingToolResponses": "unknown",
+    "agoText": "unknown",
+    "timestamp": "unknown",
+    "now": "unknown",
+    "diff": "unknown",
+    "minutes": "unknown",
+    "hours": "unknown",
+    "days": "unknown",
+    "wasRecent": "unknown",
+    "didEndLoop": "unknown",
+    "lastCheckpointMessage": "unknown",
+    "commitHash": "unknown",
+    "lastCompletionResultMessage": "unknown",
+    "terminalInfo": "unknown",
+    "process": "unknown",
+    "sendCommandOutput": "unknown",
+    "statusCode": "unknown",
+    "mcpHub": "unknown",
+    "disableBrowserTool": "unknown",
+    "modelSupportsComputerUse": "unknown",
+    "supportsComputerUse": "unknown",
+    "preferredLanguage": "unknown",
+    "preferredLanguageInstructions": "unknown",
+    "clineRulesFilePath": "unknown",
+    "ruleFiles": "unknown",
+    "ruleFileContent": "unknown",
+    "ruleFilePath": "unknown",
+    "ruleFilePathRelative": "unknown",
+    "clineIgnoreContent": "unknown",
+    "contextManagementMetadata": "unknown",
+    "iterator": "unknown",
+    "firstChunk": "unknown",
+    "isOpenRouter": "unknown",
+    "isAnthropic": "unknown",
+    "isOpenRouterContextWindowError": "unknown",
+    "isAnthropicContextWindowError": "unknown",
+    "truncatedConversationHistory": "unknown",
+    "{ response }": "unknown",
+    "block": "unknown",
+    "lastOpenBracketIndex": "unknown",
+    "possibleTag": "unknown",
+    "hasCloseBracket": "unknown",
+    "isLikelyTagName": "unknown",
+    "isOpeningOrClosing": "unknown",
+    "match": "unknown",
+    "matchLength": "unknown",
+    "toolDescription": "unknown",
+    "pushToolResult": "unknown",
+    "pushAdditionalToolFeedback": "unknown",
+    "askApproval": "unknown",
+    "showNotificationForApprovalIfAutoApprovalEnabled": "unknown",
+    "handleError": "unknown",
+    "errorString": "unknown",
+    "removeClosingTag": "unknown",
+    "tagRegex": "unknown",
+    "relPath": "unknown",
+    "accessAllowed": "unknown",
+    "absolutePath": "unknown",
+    "errorType": "unknown",
+    "sharedMessageProps": "unknown",
+    "partialMessage": "unknown",
+    "completeMessage": "unknown",
+    "fileDeniedNote": "unknown",
+    "{ newProblemsMessage, userEdits, autoFormattingEdits, finalContent }": "unknown",
+    "didApprove": "unknown",
+    "relDirPath": "unknown",
+    "recursiveRaw": "unknown",
+    "recursive": "unknown",
+    "[files, didHitLimit]": "unknown",
+    "regex": "unknown",
+    "filePattern": "unknown",
+    "results": "unknown",
+    "action": "unknown",
+    "url": "unknown",
+    "coordinate": "unknown",
+    "text": "unknown",
+    "command": "unknown",
+    "requiresApprovalRaw": "unknown",
+    "requiresApproval": "unknown",
+    "ignoredFileAttemptedToAccess": "unknown",
+    "[userRejected, result]": "unknown",
+    "server_name": "unknown",
+    "tool_name": "unknown",
+    "mcp_arguments": "unknown",
+    "isToolAutoApproved": "unknown",
+    "toolResult": "unknown",
+    "toolResultPretty": "unknown",
+    "{ blob, ...rest }": "unknown",
+    "uri": "unknown",
+    "resourceResult": "unknown",
+    "resourceResultPretty": "unknown",
+    "question": "unknown",
+    "optionsRaw": "unknown",
+    "sharedMessage": "unknown",
+    "{ text, images }": "unknown",
+    "lastFollowupMessage": "unknown",
+    "response": "unknown",
+    "lastPlanMessage": "unknown",
+    "addNewChangesFlagToLastCompletionResultMessage": "unknown",
+    "hasNewChanges": "unknown",
+    "[userRejected, execCommandResult]": "unknown",
+    "toolResults": "unknown",
+    "previousApiReqIndex": "unknown",
+    "isFirstRequest": "unknown",
+    "[parsedUserContent, environmentDetails]": "unknown",
+    "lastApiReqIndex": "unknown",
+    "updateApiReqMsg": "unknown",
+    "abortStream": "unknown",
+    "stream": "unknown",
+    "prevLength": "unknown",
+    "history": "unknown",
+    "partialBlocks": "unknown",
+    "didToolUse": "unknown",
+    "recDidEndLoop": "unknown",
+    "visibleFilePaths": "unknown",
+    "allowedVisibleFiles": "unknown",
+    "openTabPaths": "unknown",
+    "allowedOpenTabs": "unknown",
+    "busyTerminals": "unknown",
+    "inactiveTerminals": "unknown",
+    "newOutput": "unknown",
+    "inactiveTerminalOutputs": "unknown",
+    "inactiveTerminal": "unknown",
+    "formatter": "unknown",
+    "timeZone": "unknown",
+    "timeZoneOffset": "unknown",
+    "timeZoneOffsetStr": "unknown",
+    "isDesktop": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 0,
+    "type_count": 2,
+    "function_count": 0,
+    "attribute_count": 44,
+    "method_count": 33,
+    "inner_class_count": 0
+  }
+}

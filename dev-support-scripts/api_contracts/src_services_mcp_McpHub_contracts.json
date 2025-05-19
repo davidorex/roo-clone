@@ -1,0 +1,571 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/services/mcp/McpHub",
+  "file_path": "/Users/david/Projects/cline/src/services/mcp/McpHub.ts",
+  "classes": {
+    "McpHub": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "provider",
+              "required": true,
+              "type": "ClineProvider"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "McpHub"
+        },
+        "getServers": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "McpServer[]"
+        },
+        "getMode": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "McpMode"
+        },
+        "getMcpServersPath": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<string>"
+        },
+        "getMcpSettingsFilePath": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<string>"
+        },
+        "readAndValidateMcpSettingsFile": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<z.infer<typeof McpSettingsSchema> | undefined>"
+        },
+        "watchMcpSettingsFile": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<void>"
+        },
+        "initializeMcpServers": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<void>"
+        },
+        "connectToServer": {
+          "parameters": [
+            {
+              "name": "name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "config",
+              "required": true,
+              "type": "z.infer<typeof StdioConfigSchema> | z.infer<typeof SseConfigSchema>"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<void>"
+        },
+        "appendErrorMessage": {
+          "parameters": [
+            {
+              "name": "connection",
+              "required": true,
+              "type": "McpConnection"
+            },
+            {
+              "name": "error",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "fetchToolsList": {
+          "parameters": [
+            {
+              "name": "serverName",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<McpTool[]>"
+        },
+        "fetchResourcesList": {
+          "parameters": [
+            {
+              "name": "serverName",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<McpResource[]>"
+        },
+        "fetchResourceTemplatesList": {
+          "parameters": [
+            {
+              "name": "serverName",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<McpResourceTemplate[]>"
+        },
+        "deleteConnection": {
+          "parameters": [
+            {
+              "name": "name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<void>"
+        },
+        "updateServerConnections": {
+          "parameters": [
+            {
+              "name": "newServers",
+              "required": true,
+              "type": "Record<string, McpServerConfig>"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<void>"
+        },
+        "setupFileWatcher": {
+          "parameters": [
+            {
+              "name": "name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "config",
+              "required": true,
+              "type": "any"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "removeAllFileWatchers": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "restartConnection": {
+          "parameters": [
+            {
+              "name": "serverName",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<void>"
+        },
+        "notifyWebviewOfServerChanges": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<void>"
+        },
+        "sendLatestMcpServers": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "toggleServerDisabled": {
+          "parameters": [
+            {
+              "name": "serverName",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "disabled",
+              "required": true,
+              "type": "boolean"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<void>"
+        },
+        "readResource": {
+          "parameters": [
+            {
+              "name": "serverName",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "uri",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<McpResourceResponse>"
+        },
+        "callTool": {
+          "parameters": [
+            {
+              "name": "serverName",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "toolName",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "toolArguments",
+              "required": false,
+              "type": "Record<string, unknown>"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<McpToolCallResponse>"
+        },
+        "toggleToolAutoApprove": {
+          "parameters": [
+            {
+              "name": "serverName",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "toolNames",
+              "required": true,
+              "type": "string[]"
+            },
+            {
+              "name": "shouldAllow",
+              "required": true,
+              "type": "boolean"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<void>"
+        },
+        "deleteServer": {
+          "parameters": [
+            {
+              "name": "serverName",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "updateServerTimeout": {
+          "parameters": [
+            {
+              "name": "serverName",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "timeout",
+              "required": true,
+              "type": "number"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<void>"
+        },
+        "dispose": {
+          "parameters": [],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Promise<void>"
+        }
+      },
+      "attributes": {
+        "providerRef": "WeakRef<ClineProvider>",
+        "disposables": "vscode.Disposable[]",
+        "settingsWatcher": "vscode.FileSystemWatcher",
+        "fileWatchers": "Map<string, FSWatcher>",
+        "connections": "McpConnection[]",
+        "isConnecting": "boolean"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/services/mcp/McpHub.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {},
+  "types": {
+    "McpConnection": {
+      "docstring": null,
+      "type": "object",
+      "properties": {
+        "server": {
+          "type": "McpServer",
+          "required": true,
+          "docstring": null
+        },
+        "client": {
+          "type": "Client",
+          "required": true,
+          "docstring": null
+        },
+        "transport": {
+          "type": "StdioClientTransport | SSEClientTransport",
+          "required": true,
+          "docstring": null
+        }
+      }
+    },
+    "McpTransportType": {
+      "docstring": null,
+      "type": "union",
+      "values": [
+        "\"stdio\"",
+        "\"sse\""
+      ]
+    },
+    "McpServerConfig": {
+      "docstring": null,
+      "type": "z.infer<typeof ServerConfigSchema>"
+    }
+  },
+  "functions": {},
+  "imports": [
+    {
+      "name": "Client",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "StdioClientTransport",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "CallToolResultSchema",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ListResourcesResultSchema",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ListResourceTemplatesResultSchema",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ListToolsResultSchema",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ReadResourceResultSchema",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "chokidar",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "FSWatcher",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "setTimeout",
+      "alias": "setTimeoutPromise",
+      "from_import": true
+    },
+    {
+      "name": "deepEqual",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "fs/promises",
+      "alias": "fs",
+      "from_import": false
+    },
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    },
+    {
+      "name": "z",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineProvider",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "DEFAULT_MCP_TIMEOUT_SECONDS",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "McpMode",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "McpResource",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "McpResourceResponse",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "McpResourceTemplate",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "McpServer",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "McpTool",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "McpToolCallResponse",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "MIN_MCP_TIMEOUT_SECONDS",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "fileExistsAtPath",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "arePathsEqual",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "secondsToMs",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "GlobalFileNames",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "SSEClientTransport",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "AutoApproveSchema": "unknown",
+    "BaseConfigSchema": "unknown",
+    "SseConfigSchema": "unknown",
+    "StdioConfigSchema": "unknown",
+    "ServerConfigSchema": "unknown",
+    "McpSettingsSchema": "unknown",
+    "provider": "unknown",
+    "mcpServersPath": "unknown",
+    "mcpSettingsFilePath": "unknown",
+    "fileExists": "unknown",
+    "settingsPath": "unknown",
+    "content": "unknown",
+    "result": "unknown",
+    "settings": "unknown",
+    "client": "unknown",
+    "connection": "unknown",
+    "stderrStream": "unknown",
+    "errorOutput": "unknown",
+    "newError": "unknown",
+    "response": "unknown",
+    "config": "unknown",
+    "autoApproveConfig": "unknown",
+    "tools": "unknown",
+    "currentNames": "unknown",
+    "newNames": "unknown",
+    "currentConnection": "unknown",
+    "filePath": "unknown",
+    "watcher": "unknown",
+    "serverOrder": "unknown",
+    "indexA": "unknown",
+    "indexB": "unknown",
+    "serverConfig": "unknown",
+    "updatedConfig": "unknown",
+    "parsedConfig": "unknown",
+    "autoApprove": "unknown",
+    "toolIndex": "unknown",
+    "setConfigResult": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 0,
+    "type_count": 3,
+    "function_count": 0,
+    "attribute_count": 6,
+    "method_count": 27,
+    "inner_class_count": 0
+  }
+}

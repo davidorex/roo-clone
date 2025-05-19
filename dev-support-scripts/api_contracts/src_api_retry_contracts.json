@@ -1,0 +1,70 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/api/retry",
+  "file_path": "/Users/david/Projects/cline/src/api/retry.ts",
+  "classes": {},
+  "interfaces": {
+    "RetryOptions": {
+      "properties": {
+        "maxRetries": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "baseDelay": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "maxDelay": {
+          "type": "number",
+          "required": false,
+          "docstring": null
+        },
+        "retryAllErrors": {
+          "type": "boolean",
+          "required": false,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {},
+  "functions": {
+    "withRetry": {
+      "parameters": [
+        {
+          "name": "options",
+          "required": false,
+          "type": "RetryOptions"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "any"
+    }
+  },
+  "imports": [],
+  "constants": {
+    "DEFAULT_OPTIONS": "unknown",
+    "{ maxRetries, baseDelay, maxDelay, retryAllErrors }": "unknown",
+    "originalMethod": "unknown",
+    "isRateLimit": "unknown",
+    "isLastAttempt": "unknown",
+    "retryAfter": "unknown",
+    "retryValue": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 1,
+    "type_count": 0,
+    "function_count": 1,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

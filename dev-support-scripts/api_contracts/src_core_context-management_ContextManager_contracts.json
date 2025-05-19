@@ -1,0 +1,139 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/core/context-management/ContextManager",
+  "file_path": "/Users/david/Projects/cline/src/core/context-management/ContextManager.ts",
+  "classes": {
+    "ContextManager": {
+      "methods": {
+        "getNewContextMessagesAndMetadata": {
+          "parameters": [
+            {
+              "name": "apiConversationHistory",
+              "required": true,
+              "type": "Anthropic.Messages.MessageParam[]"
+            },
+            {
+              "name": "clineMessages",
+              "required": true,
+              "type": "ClineMessage[]"
+            },
+            {
+              "name": "api",
+              "required": true,
+              "type": "ApiHandler"
+            },
+            {
+              "name": "conversationHistoryDeletedRange",
+              "required": true,
+              "type": "[number, number] | undefined"
+            },
+            {
+              "name": "previousApiReqIndex",
+              "required": true,
+              "type": "number"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "any"
+        },
+        "getNextTruncationRange": {
+          "parameters": [
+            {
+              "name": "apiMessages",
+              "required": true,
+              "type": "Anthropic.Messages.MessageParam[]"
+            },
+            {
+              "name": "currentDeletedRange",
+              "required": true,
+              "type": "[number, number] | undefined"
+            },
+            {
+              "name": "keep",
+              "required": true,
+              "type": "\"half\" | \"quarter\""
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "[number, number]"
+        },
+        "getTruncatedMessages": {
+          "parameters": [
+            {
+              "name": "messages",
+              "required": true,
+              "type": "Anthropic.Messages.MessageParam[]"
+            },
+            {
+              "name": "deletedRange",
+              "required": true,
+              "type": "[number, number] | undefined"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "Anthropic.Messages.MessageParam[]"
+        }
+      },
+      "attributes": {},
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/core/context-management/ContextManager.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {},
+  "types": {},
+  "functions": {},
+  "imports": [
+    {
+      "name": "Anthropic",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineApiReqInfo",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineMessage",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ApiHandler",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "OpenAiHandler",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "previousRequest": "unknown",
+    "{ tokensIn, tokensOut, cacheWrites, cacheReads }": "unknown",
+    "totalTokens": "unknown",
+    "keep": "unknown",
+    "truncatedConversationHistory": "unknown",
+    "rangeStartIndex": "1",
+    "startOfRest": "unknown",
+    "[start, end]": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 0,
+    "method_count": 3,
+    "inner_class_count": 0
+  }
+}

@@ -1,0 +1,66 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/core/prompts/responses",
+  "file_path": "/Users/david/Projects/cline/src/core/prompts/responses.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {},
+  "imports": [
+    {
+      "name": "Anthropic",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "diff",
+      "alias": "diff",
+      "from_import": false
+    },
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "ClineIgnoreController",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "LOCK_TEXT_SYMBOL",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "formatResponse": "unknown",
+    "textBlock": "unknown",
+    "imageBlocks": "unknown",
+    "sorted": "unknown",
+    "relativePath": "unknown",
+    "aParts": "unknown",
+    "bParts": "unknown",
+    "clineIgnoreParsed": "unknown",
+    "absoluteFilePath": "unknown",
+    "isIgnored": "unknown",
+    "patch": "unknown",
+    "lines": "unknown",
+    "prettyPatchLines": "unknown",
+    "formatImagesIntoBlocks": "unknown",
+    "[rest, base64]": "unknown",
+    "mimeType": "unknown",
+    "toolUseInstructionsReminder": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

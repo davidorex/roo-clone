@@ -1,0 +1,187 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/services/ripgrep/index",
+  "file_path": "/Users/david/Projects/cline/src/services/ripgrep/index.ts",
+  "classes": {},
+  "interfaces": {
+    "SearchResult": {
+      "properties": {
+        "filePath": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "line": {
+          "type": "number",
+          "required": true,
+          "docstring": null
+        },
+        "column": {
+          "type": "number",
+          "required": true,
+          "docstring": null
+        },
+        "match": {
+          "type": "string",
+          "required": true,
+          "docstring": null
+        },
+        "beforeContext": {
+          "type": "string[]",
+          "required": true,
+          "docstring": null
+        },
+        "afterContext": {
+          "type": "string[]",
+          "required": true,
+          "docstring": null
+        }
+      },
+      "extends": [],
+      "docstring": null
+    }
+  },
+  "types": {},
+  "functions": {
+    "getBinPath": {
+      "parameters": [
+        {
+          "name": "vscodeAppRoot",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<string | undefined>"
+    },
+    "execRipgrep": {
+      "parameters": [
+        {
+          "name": "bin",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "required": true,
+          "type": "string[]"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<string>"
+    },
+    "regexSearchFiles": {
+      "parameters": [
+        {
+          "name": "cwd",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "directoryPath",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "regex",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "filePattern",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "clineIgnoreController",
+          "required": false,
+          "type": "ClineIgnoreController"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Promise<string>"
+    },
+    "formatResults": {
+      "parameters": [
+        {
+          "name": "results",
+          "required": true,
+          "type": "SearchResult[]"
+        },
+        {
+          "name": "cwd",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "string"
+    }
+  },
+  "imports": [
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    },
+    {
+      "name": "child_process",
+      "alias": "childProcess",
+      "from_import": false
+    },
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "readline",
+      "alias": "readline",
+      "from_import": false
+    },
+    {
+      "name": "fileExistsAtPath",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineIgnoreController",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "isWindows": "unknown",
+    "binName": "unknown",
+    "MAX_RESULTS": "300",
+    "checkPath": "unknown",
+    "fullPath": "unknown",
+    "rgProcess": "unknown",
+    "rl": "unknown",
+    "maxLines": "unknown",
+    "vscodeAppRoot": "unknown",
+    "rgPath": "unknown",
+    "args": "unknown",
+    "results": "unknown",
+    "parsed": "unknown",
+    "filteredResults": "unknown",
+    "groupedResults": "unknown",
+    "relativeFilePath": "unknown",
+    "allLines": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 1,
+    "type_count": 0,
+    "function_count": 4,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

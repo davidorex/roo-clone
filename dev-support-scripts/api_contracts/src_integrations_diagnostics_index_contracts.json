@@ -1,0 +1,86 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/integrations/diagnostics/index",
+  "file_path": "/Users/david/Projects/cline/src/integrations/diagnostics/index.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "getNewDiagnostics": {
+      "parameters": [
+        {
+          "name": "oldDiagnostics",
+          "required": true,
+          "type": "[vscode.Uri, vscode.Diagnostic[]][]"
+        },
+        {
+          "name": "newDiagnostics",
+          "required": true,
+          "type": "[vscode.Uri, vscode.Diagnostic[]][]"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "[vscode.Uri, vscode.Diagnostic[]][]"
+    },
+    "diagnosticsToProblemsString": {
+      "parameters": [
+        {
+          "name": "diagnostics",
+          "required": true,
+          "type": "[vscode.Uri, vscode.Diagnostic[]][]"
+        },
+        {
+          "name": "severities",
+          "required": true,
+          "type": "vscode.DiagnosticSeverity[]"
+        },
+        {
+          "name": "cwd",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "string"
+    }
+  },
+  "imports": [
+    {
+      "name": "vscode",
+      "alias": "vscode",
+      "from_import": false
+    },
+    {
+      "name": "path",
+      "alias": "path",
+      "from_import": false
+    },
+    {
+      "name": "deepEqual",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "newProblems": "unknown",
+    "oldMap": "unknown",
+    "oldDiags": "unknown",
+    "newProblemsForUri": "unknown",
+    "problems": "unknown",
+    "line": "unknown",
+    "source": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 2,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

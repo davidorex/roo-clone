@@ -1,0 +1,55 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/api/transform/r1-format",
+  "file_path": "/Users/david/Projects/cline/src/api/transform/r1-format.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "convertToR1Format": {
+      "parameters": [
+        {
+          "name": "messages",
+          "required": true,
+          "type": "Anthropic.Messages.MessageParam[]"
+        }
+      ],
+      "docstring": "Converts Anthropic messages to OpenAI format and merges consecutive messages with the same role.\nThis is required for DeepSeek Reasoner which does not support successive messages with the same role.\nDeepSeek highly recommends using 'user' role instead of 'system' role for optimal performance.\n\n@param messages Array of Anthropic messages\n@returns Array of OpenAI messages where consecutive messages with the same role are merged together",
+      "decorators": [],
+      "return_type": "OpenAI.Chat.ChatCompletionMessageParam[]"
+    }
+  },
+  "imports": [
+    {
+      "name": "Anthropic",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "OpenAI",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "lastMessage": "unknown",
+    "textParts": "unknown",
+    "imageParts": "unknown",
+    "parts": "unknown",
+    "lastContent": "unknown",
+    "newContent": "unknown",
+    "mergedContent": "unknown",
+    "newMessage": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 1,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

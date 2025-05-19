@@ -1,0 +1,63 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/api/transform/openai-format",
+  "file_path": "/Users/david/Projects/cline/src/api/transform/openai-format.ts",
+  "classes": {},
+  "interfaces": {},
+  "types": {},
+  "functions": {
+    "convertToOpenAiMessages": {
+      "parameters": [
+        {
+          "name": "anthropicMessages",
+          "required": true,
+          "type": "Anthropic.Messages.MessageParam[]"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "OpenAI.Chat.ChatCompletionMessageParam[]"
+    },
+    "convertToAnthropicMessage": {
+      "parameters": [
+        {
+          "name": "completion",
+          "required": true,
+          "type": "OpenAI.Chat.Completions.ChatCompletion"
+        }
+      ],
+      "docstring": null,
+      "decorators": [],
+      "return_type": "Anthropic.Messages.Message"
+    }
+  },
+  "imports": [
+    {
+      "name": "Anthropic",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "OpenAI",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "openAiMessages": "unknown",
+    "{ nonToolMessages, toolMessages }": "unknown",
+    "openAiMessage": "unknown",
+    "anthropicMessage": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 0,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 2,
+    "attribute_count": 0,
+    "method_count": 0,
+    "inner_class_count": 0
+  }
+}

@@ -1,0 +1,133 @@
+// Generated on: 2025-05-20 05:59:23
+// Command: /opt/homebrew/Cellar/node/23.7.0/bin/node /Users/david/Projects/cline/dev-support-scripts/api_contract_analyzer_ts.js
+{
+  "module_name": "src/services/account/ClineAccountService",
+  "file_path": "/Users/david/Projects/cline/src/services/account/ClineAccountService.ts",
+  "classes": {
+    "ClineAccountService": {
+      "methods": {
+        "constructor": {
+          "parameters": [
+            {
+              "name": "provider",
+              "required": true,
+              "type": "ClineProvider"
+            }
+          ],
+          "docstring": null,
+          "decorators": [],
+          "return_type": "ClineAccountService"
+        },
+        "getClineApiKey": {
+          "parameters": [],
+          "docstring": "Get the user's Cline Account key from the apiConfiguration",
+          "decorators": [],
+          "return_type": "Promise<string | undefined>"
+        },
+        "authenticatedRequest": {
+          "parameters": [
+            {
+              "name": "endpoint",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "config",
+              "required": false,
+              "type": "AxiosRequestConfig"
+            }
+          ],
+          "docstring": "Helper function to make authenticated requests to the Cline API\n@param endpoint The API endpoint to call (without the base URL)\n@param config Additional axios request configuration\n@returns The API response data\n@throws Error if the API key is not found or the request fails",
+          "decorators": [],
+          "return_type": "Promise<T>"
+        },
+        "fetchBalance": {
+          "parameters": [],
+          "docstring": "Fetches the user's current credit balance",
+          "decorators": [],
+          "return_type": "Promise<BalanceResponse | undefined>"
+        },
+        "fetchUsageTransactions": {
+          "parameters": [],
+          "docstring": "Fetches the user's usage transactions",
+          "decorators": [],
+          "return_type": "Promise<UsageTransaction[] | undefined>"
+        },
+        "fetchPaymentTransactions": {
+          "parameters": [],
+          "docstring": "Fetches the user's payment transactions",
+          "decorators": [],
+          "return_type": "Promise<PaymentTransaction[] | undefined>"
+        }
+      },
+      "attributes": {
+        "baseUrl": "any",
+        "providerRef": "WeakRef<ClineProvider>"
+      },
+      "inner_classes": {},
+      "bases": [],
+      "docstring": null,
+      "file_path": "/Users/david/Projects/cline/src/services/account/ClineAccountService.ts",
+      "decorators": []
+    }
+  },
+  "interfaces": {},
+  "types": {},
+  "functions": {},
+  "imports": [
+    {
+      "name": "axios",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "AxiosRequestConfig",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "AxiosResponse",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "ClineProvider",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "BalanceResponse",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "PaymentTransaction",
+      "alias": null,
+      "from_import": true
+    },
+    {
+      "name": "UsageTransaction",
+      "alias": null,
+      "from_import": true
+    }
+  ],
+  "constants": {
+    "provider": "unknown",
+    "{ apiConfiguration }": "unknown",
+    "clineApiKey": "unknown",
+    "url": "unknown",
+    "requestConfig": "unknown",
+    "response": "unknown",
+    "data": "unknown"
+  },
+  "env_vars": [],
+  "api_summary": {
+    "class_count": 1,
+    "interface_count": 0,
+    "type_count": 0,
+    "function_count": 0,
+    "attribute_count": 2,
+    "method_count": 6,
+    "inner_class_count": 0
+  }
+}
