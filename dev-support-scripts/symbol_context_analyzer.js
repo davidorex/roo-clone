@@ -212,14 +212,13 @@ async function generateDossierForSymbol(fqnDetails, safeMutationsReport, circula
         }
     }
     
-    if (depIndex?.modules) {
-        depIndex.modules.forEach(mod => {
-            if (mod.dependencies?.includes(modulePath)) {
-                dossier.used_by_modules_heuristic.push(mod.name);
-            }
-        });
+    // Corrected logic for used_by_modules_heuristic
+    const moduleDepFile = path.join(DEPENDENCY_GRAPH_DIR, `${sanitizedModuleName}_dependencies.json`);
+    const moduleDepData = utils.readJsonFile(moduleDepFile);
+
+    if (moduleDepData?.imported_by) {
+        dossier.used_by_modules_heuristic = [...moduleDepData.imported_by].slice(0,10);
     }
-    dossier.used_by_modules_heuristic = dossier.used_by_modules_heuristic.slice(0,10);
 
     if (dossier.used_by_modules_heuristic.length > 0) {
         // Only search if the symbol is likely exported (heuristic: top-level or class method)
@@ -230,8 +229,7 @@ async function generateDossierForSymbol(fqnDetails, safeMutationsReport, circula
         }
     }
 
-    const moduleDepFile = path.join(DEPENDENCY_GRAPH_DIR, `${sanitizedModuleName}_dependencies.json`);
-    const moduleDepData = utils.readJsonFile(moduleDepFile);
+    // uses_symbols_heuristic logic was already correct, just ensure moduleDepData is loaded once
     if (moduleDepData?.imports) {
         dossier.uses_symbols_heuristic = moduleDepData.imports.map(imp => imp.module).slice(0,10);
     }
@@ -286,21 +284,49 @@ async function main() {
         const apiContractsIndexFile = path.join(API_CONTRACTS_DIR, "___analysis.json");
         const apiContractsIndex = utils.readJsonFile(apiContractsIndexFile);
 
-        if (!apiContractsIndex || !apiContractsIndex.modules) {
-            console.error("Could not read API contracts index file or it's improperly formatted.");
+        if (!apiContractsIndex) {
+            console.error("Could not read or parse API contracts index file (___analysis.json). Exiting.");
             process.exit(1);
         }
 
         /** @type {{modulePath: string, className: string|null, symbolName: string}[]} */
         let allFqnDetails = [];
+        const uniqueModulePaths = new Set();
 
-        for (const moduleEntry of apiContractsIndex.modules) {
-            const modulePath = moduleEntry.name; // Assuming name is the relative module path
+        // 1. Extract module paths from 'key_interfaces'
+        (apiContractsIndex.key_interfaces || []).forEach(item => {
+            if (item && typeof item.module === 'string') {
+                uniqueModulePaths.add(item.module);
+            }
+        });
+
+        // 2. Extract module paths from 'central_modules'
+        (apiContractsIndex.central_modules || []).forEach(item => {
+            if (item && typeof item.name === 'string') { // Note: property is 'name' here
+                uniqueModulePaths.add(item.name);
+            }
+        });
+
+        // 3. Extract module paths from keys of 'type_definitions.by_module'
+        Object.keys(apiContractsIndex.type_definitions?.by_module || {}).forEach(modulePath => {
+            uniqueModulePaths.add(modulePath);
+        });
+        
+        if (uniqueModulePaths.size === 0) {
+            console.warn("No module paths found in ___analysis.json from key_interfaces, central_modules, or type_definitions.by_module. Cannot proceed to gather symbols.");
+            // process.exit(1); // Or handle as an error if this is unexpected and critical
+        }
+
+        // Now iterate over the collected unique module paths
+        for (const modulePath of uniqueModulePaths) {
             const sanitizedModuleName = modulePath.replace(/\//g, "_").replace(/\./g, "_");
             const apiContractFile = path.join(API_CONTRACTS_DIR, `${sanitizedModuleName}_contracts.json`);
             const apiContractData = utils.readJsonFile(apiContractFile);
 
-            if (!apiContractData) continue;
+            if (!apiContractData) {
+                // console.warn(`Skipping module ${modulePath}: Could not read its contract file at ${apiContractFile}`);
+                continue; 
+            }
 
             // Top-level functions, interfaces, types, classes
             Object.keys(apiContractData.functions || {}).forEach(funcName => allFqnDetails.push({ modulePath, className: null, symbolName: funcName }));
@@ -308,9 +334,13 @@ async function main() {
             Object.keys(apiContractData.types || {}).forEach(typeName => allFqnDetails.push({ modulePath, className: null, symbolName: typeName }));
             Object.keys(apiContractData.classes || {}).forEach(className => {
                 allFqnDetails.push({ modulePath, className: null, symbolName: className }); // The class itself
-                const classData = apiContractData.classes[className];
-                Object.keys(classData.methods || {}).forEach(methodName => allFqnDetails.push({ modulePath, className, symbolName: methodName }));
-                Object.keys(classData.attributes || {}).forEach(propName => allFqnDetails.push({ modulePath, className, symbolName: propName }));
+                const classData = apiContractData.classes[className]; 
+                if (classData) { 
+                    Object.keys(classData.methods || {}).forEach(methodName => allFqnDetails.push({ modulePath, className, symbolName: methodName }));
+                    Object.keys(classData.attributes || {}).forEach(propName => allFqnDetails.push({ modulePath, className, symbolName: propName }));
+                } else {
+                    // console.warn(`Class data for ${className} in module ${modulePath} not found in API contract.`);
+                }
             });
         }
         
@@ -381,12 +411,11 @@ async function main() {
         // Create an index file
         const indexFilePath = path.join(SYMBOL_CONTEXT_OUTPUT_DIR, "___symbol_dossiers_index.json");
         const indexContent = {
-            generated_on: utils.getTimestamp(),
             command: process.argv.map(arg => arg.includes(" ") ? `"${arg}"` : arg).join(" "),
             total_symbols_processed: totalProcessed,
             // Could list all FQNs and their filenames here if needed, but might be very large
         };
-        utils.writeJsonFile(indexFilePath, indexContent, 2);
+        utils.writeJsonFile(indexFilePath, indexContent, 2); // The 'true' for addHeader is default in utils.writeJsonFile
 
 
         console.log(`Symbol context analysis complete. ${totalProcessed} dossiers generated in: ${SYMBOL_CONTEXT_OUTPUT_DIR}`);
