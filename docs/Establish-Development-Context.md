@@ -60,7 +60,7 @@ We will use "Git-Commit-Viewer" as the example target repository. Remember to re
         fc.path ASC
     LIMIT 20; -- Adjust limit as needed
     ```
-*   **Insights:** This query provides a list of recently changed Markdown files. Review the paths and commit messages to identify relevant planning or documentation. This can help contextualize the code changes found in subsequent steps.
+*   **Insights:** This query provides a list of recent *change events* for Markdown files, showing the `git_status` (e.g., Added, Deleted, Modified) of each file *within that specific commit event*. Review the paths and commit messages to identify relevant planning or documentation. Note that this shows individual historical changes; to determine if a file is currently present at the branch tip, one would need to consider the sequence of all changes to that file path on the branch. This can help contextualize the code changes found in subsequent steps.
 
 ### Step 1b: Overview of All Recent Changes (Branch-Aware)
 
@@ -92,7 +92,7 @@ We will use "Git-Commit-Viewer" as the example target repository. Remember to re
         fc.path ASC
     LIMIT 20; -- Adjust limit as needed
     ```
-*   **Insights:** Provides a chronological list of the latest 20 file changes of all types on the specified branch. This helps identify concurrent work on planning (seen in Step 1a) and actual code or other file modifications.
+*   **Insights:** Provides a chronological list of the latest 20 *file change events* of all types on the specified branch, indicating the `git_status` of each file *within that specific commit event*. This helps identify concurrent work on planning (seen in Step 1a) and actual code or other file modifications. Remember that `fc.git_status` reflects the change in that commit, not necessarily the file's final state at the branch tip if subsequent commits altered the same file.
 
 ### Step 2: Focus on Recent Code Changes (Branch-Aware)
 
@@ -125,7 +125,7 @@ We will use "Git-Commit-Viewer" as the example target repository. Remember to re
         fc.path ASC
     LIMIT 20; -- Adjust limit as needed
     ```
-*   **Insights:** Yields a list of recent changes to non-Markdown files on the specified branch.
+*   **Insights:** Yields a list of recent *change events* for non-Markdown files on the specified branch, showing the `git_status` of each file *within that specific commit event*. This helps pinpoint active areas of software development. Keep in mind this reflects individual historical changes; the cumulative state of a file at the branch tip would depend on the sequence of all its changes.
 
 ### Step 3: Deep Dive into Specific Code Modifications (Full Diffs - Branch Context)
 
