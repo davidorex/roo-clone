@@ -56,6 +56,6 @@ To add a feature to `cline` that mirrors what is *documented for `dafu`* would r
     *   The contracts show these methods handle the execution and result processing of tools. Conditional calls to the new `this.pauseForUserAcknowledgment(...)` would be inserted *after* the successful completion of state-changing operations (e.g., after file writes are confirmed saved, after non-interactive commands complete) but *before* the result is finalized for the AI's next reasoning step. This insertion would be conditional on `this.pauseAfterProductiveOperationEnabled`.
 
 3.  **Webview Implementation (Implied, not in backend contracts)**:
-    *   The webview would need to be updated to handle the new `ask` type (`"acknowledge_operation"`) and present an appropriate UI (e.g., a message "Operation X completed on file Y" with a "Continue" or "Acknowledged" button).
+    *   The webview would need to be updated to handle the new `ask` type (`"acknowledge_operation"`) and present an appropriate UI (e.g., a message "Operation X completed on file Y" with a "Continue" button).
 
 This implementation would introduce a configurable behavior in `cline` where the AI's execution loop pauses for explicit user acknowledgment after specific state-changing tool uses, mirroring the functionality described for `dafu`.
