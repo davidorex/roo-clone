@@ -1235,7 +1235,9 @@ async function main() {
 		let results = []
 
 		// Use parallel processing only if there are enough files and multiple cores
-		const useParallel = files.length > 10 && maxWorkers > 1
+		// const useParallel = files.length > 10 && maxWorkers > 1; // Original logic
+		const useParallel = false // Force sequential processing for testing
+		console.log(`[DEBUG] Forcing sequential processing. useParallel = ${useParallel}`)
 
 		if (useParallel) {
 			console.log(`Using ${maxWorkers} worker threads for parallel processing`)

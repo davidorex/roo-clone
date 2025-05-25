@@ -1450,7 +1450,8 @@ async function main() {
 		console.log(`Using ${numWorkers} worker threads for parallel processing`)
 
 		// Disable workers for small file counts
-		const useWorkers = files.length > numWorkers * 5 && numWorkers > 1
+		// const useWorkers = files.length > numWorkers * 5 && numWorkers > 1; // Original logic
+		const useWorkers = false // Force sequential processing
 
 		if (useWorkers) {
 			// Split files into chunks for each worker

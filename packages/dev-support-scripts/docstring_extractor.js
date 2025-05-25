@@ -296,7 +296,8 @@ async function main() {
 		/** @type {(ModuleDocstrings | null)[]} */
 		let analysisResults = []
 
-		const useParallel = files.length > 10 && maxWorkers > 1
+		// const useParallel = files.length > 10 && maxWorkers > 1; // Original logic
+		const useParallel = false // Force sequential processing
 
 		if (useParallel) {
 			console.log(`Using ${maxWorkers} worker threads for docstring extraction.`)

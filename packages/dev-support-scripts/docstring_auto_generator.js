@@ -647,7 +647,8 @@ async function main() {
 
 		/** @type {(ModuleGeneratedDocstrings | null)[]} */
 		let generationResults = []
-		const useParallel = fileTuplesToProcess.length > 10 && maxWorkers > 1
+		// const useParallel = fileTuplesToProcess.length > 10 && maxWorkers > 1; // Original logic
+		const useParallel = false // Force sequential processing
 
 		if (useParallel) {
 			console.log(`Using ${maxWorkers} worker threads for auto-generating docstrings.`)

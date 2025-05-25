@@ -309,7 +309,8 @@ async function main() {
 
 		/** @type {(ModuleCard | null)[]} */
 		let analysisResults = []
-		const useParallel = moduleList.length > 10 && maxWorkers > 1
+		// const useParallel = moduleList.length > 10 && maxWorkers > 1; // Original logic
+		const useParallel = false // Force sequential processing
 
 		if (useParallel) {
 			console.log(`Using ${maxWorkers} worker threads for safe mutations analysis.`)
