@@ -1,0 +1,26 @@
+# 5. Key Imports and Dependencies
+
+**Parent Report:** [Technical Report: `src/core/prompts/system.ts`](./00_src_core_prompts_system_report_overview.md)
+
+The `src/core/prompts/system.ts` module integrates various components from across the application to assemble the system prompt. Its key dependencies are:
+
+| Imported Symbol/Module                                                                                                    | Path                                                      | Role                                                                                                                                                             |
+| ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Mode`, `modes`, `CustomModePrompts`, `PromptComponent`, `defaultModeSlug`, `ModeConfig`, `getModeBySlug`, `getGroupName` | `../../shared/modes`                                      | Core types and utility functions for handling AI operational modes, their configurations, and extracting mode-specific prompt components.                        |
+| `PromptVariables`, `loadSystemPromptFile`                                                                                 | `./sections/custom-system-prompt`                         | Types and functions related to loading and processing file-based custom system prompts and their variables.                                                      |
+| `DiffStrategy`                                                                                                            | `../../shared/tools`                                      | Type definition for diffing strategies, used when generating tool descriptions and MCP server sections.                                                          |
+| `McpHub`                                                                                                                  | `../../services/mcp/McpHub`                               | Type for the MCP Hub, used for context in tool descriptions and MCP server sections.                                                                             |
+| `getToolDescriptionsForMode`                                                                                              | `./tools` (i.e., `src/core/prompts/tools/index.ts`)       | The primary function for generating the entire block of tool descriptions based on the current context.                                                          |
+| `vscode`                                                                                                                  | `vscode` (Node.js module)                                 | VS Code API, used for accessing extension context (`vscode.ExtensionContext`) and environment variables like `vscode.env.language` and `vscode.env.shell`.       |
+| `os`                                                                                                                      | `os` (Node.js module)                                     | Node.js OS module, used for getting operating system type (`os.type()`).                                                                                         |
+| Various `get<SectionName>Section` and `addCustomInstructions`, `markdownFormattingSection` functions                      | `./sections` (i.e., `src/core/prompts/sections/index.ts`) | The collection of functions and constants that provide the content for individual sections of the system prompt (e.g., rules, system info, objective).           |
+| `formatLanguage`                                                                                                          | `../../shared/language`                                   | Utility function for formatting language codes.                                                                                                                  |
+| `CodeIndexManager`                                                                                                        | `../../services/code-index/manager`                       | Service for managing codebase indexing, its instance and status are used to conditionally include the `codebase_search` tool and inform capability descriptions. |
+
+**Dependency Graph Insights (from `packages/dev-support-scripts/dependency_graph/src_core_prompts_system_dependencies.json`):**
+
+- **Fanout:** 10. This module directly imports from 10 other distinct modules/files.
+- **Centrality:** 2. This indicates that two other modules (`src/core/task/Task` and `src/core/webview/generateSystemPrompt`) directly import `SYSTEM_PROMPT` from this module, highlighting its role as a provider of the assembled system prompt.
+- **Dependency Depth:** 16. This reflects its position within the overall project structure, relying on several layers of other modules.
+
+The dependencies clearly show that `system.ts` acts as an orchestrator, pulling together shared configurations, service states, and content-generating functions from various parts of the `core`, `shared`, and `services` layers to produce the final system prompt.
