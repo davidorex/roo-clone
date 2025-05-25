@@ -1,21 +1,71 @@
-import * as utils from "../utils"
-import Parser from "web-tree-sitter"
+import * as utils from "../utils" // Keep for other utils functions if needed
+import RealParser from "web-tree-sitter" // Rename to avoid conflict if Parser is defined locally
+const path = require("path") // For path.resolve and path.join
+const fs = require("fs") // For fs.existsSync
 
 /**
  * Tests for Tree-sitter query functionality
  * These tests validate the tree-sitter query creation and handling
  */
 describe("createTypeScriptQuery", () => {
-	let parser: Parser | null = null
+	let parser: RealParser | null = null // Use renamed RealParser type
+	let testInitializedParser = false // Flag for local init
 
 	// Initialize parser once for all tests
 	beforeAll(async () => {
+		// --- Start of inlined monorepo-aware Tree-sitter initialization ---
+		const TEST_PROJECT_ROOT = path.resolve(__dirname, "..", "..", "..") // From tests/ -> dev-support-scripts -> packages -> monorepo root
+		console.log(`[Test BeforeAll] Calculated TEST_PROJECT_ROOT: ${TEST_PROJECT_ROOT}`)
+
+		const treeSitterWasmPath = path.join(TEST_PROJECT_ROOT, "src", "dist", "tree-sitter.wasm")
+		console.log(
+			`[Test BeforeAll] Expected tree-sitter.wasm path: ${treeSitterWasmPath}, Exists: ${fs.existsSync(treeSitterWasmPath)}`,
+		)
+
 		try {
-			await utils.initTreeSitter()
-			parser = await utils.createTypeScriptParser()
+			console.log(`[Test BeforeAll] Calling RealParser.init({ locateFile: ... })`)
+			await RealParser.init({
+				locateFile(scriptName, scriptDirectory) {
+					if (scriptName === "tree-sitter.wasm") {
+						console.log(
+							`[Test BeforeAll - locateFile] Providing path for tree-sitter.wasm: ${treeSitterWasmPath}`,
+						)
+						return treeSitterWasmPath
+					}
+					const defaultPath = path.join(scriptDirectory, scriptName)
+					console.log(
+						`[Test BeforeAll - locateFile] Providing default path for ${scriptName}: ${defaultPath}`,
+					)
+					return defaultPath
+				},
+			})
+			console.log(`[Test BeforeAll] RealParser.init() COMPLETED.`)
+			testInitializedParser = true
+
+			const languageWasmPath = path.join(TEST_PROJECT_ROOT, "src", "dist", "tree-sitter-tsx.wasm")
+			console.log(
+				`[Test BeforeAll] Expected language WASM path (tree-sitter-tsx.wasm): ${languageWasmPath}, Exists: ${fs.existsSync(languageWasmPath)}`,
+			)
+
+			if (!fs.existsSync(languageWasmPath)) {
+				console.error(`[Test BeforeAll] Language WASM file NOT FOUND at ${languageWasmPath}`)
+				parser = null // Ensure parser is null if language WASM is missing
+				return
+			}
+
+			console.log(`[Test BeforeAll] Calling RealParser.Language.load('${languageWasmPath}')`)
+			const language = await RealParser.Language.load(languageWasmPath)
+			console.log(`[Test BeforeAll] RealParser.Language.load() COMPLETED.`)
+
+			parser = new RealParser()
+			console.log(`[Test BeforeAll] Setting language on parser.`)
+			parser.setLanguage(language)
+			console.log(`[Test BeforeAll] Language set. Parser ready.`)
 		} catch (error) {
-			console.error("Tree-sitter initialization error:", error)
+			console.error("[Test BeforeAll] Tree-sitter initialization error:", error)
+			parser = null // Ensure parser is null on error
 		}
+		// --- End of inlined monorepo-aware Tree-sitter initialization ---
 	})
 
 	test("returns null when parser is invalid or uninitialized", () => {
