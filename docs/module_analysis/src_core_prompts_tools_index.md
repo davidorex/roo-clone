@@ -1,4 +1,4 @@
-# Technical Report: src/core/prompts/tools/index.ts
+w# Technical Report: src/core/prompts/tools/index.ts
 
 **Date:** 2025-05-25
 **Author:** DàFú (AI Assistant)

@@ -2,7 +2,7 @@
 
 **Parent Report:** [Technical Report: `src/core/prompts/tools/index.ts`](./00_src_core_prompts_tools_index_report_overview.md)
 
-For backward compatibility or more granular usage elsewhere, the module also re-exports many of the individual tool description getter functions:
+The module also re-exports many of the individual tool description getter functions:
 
 ```typescript
 export {
