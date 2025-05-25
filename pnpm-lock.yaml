@@ -153,6 +153,15 @@ importers:
 
   packages/config-typescript: {}
 
+  packages/dev-support-scripts:
+    dependencies:
+      typescript:
+        specifier: ^5.4.5
+        version: 5.8.3
+      web-tree-sitter:
+        specifier: ^0.22.6
+        version: 0.22.6
+
   src:
     dependencies:
       '@anthropic-ai/bedrock-sdk':
