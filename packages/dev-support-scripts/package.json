@@ -1,0 +1,19 @@
+{
+	"name": "@roo-clone/dev-support-scripts",
+	"version": "0.1.0",
+	"private": true,
+	"description": "Developer support scripts for the roo-clone project.",
+	"scripts": {
+		"analyze-api-contracts": "node ./api_contract_analyzer_ts.js",
+		"generate-dep-graph": "node ./dependency_graph_generator_ts.js",
+		"extract-docstrings": "node ./docstring_extractor.js",
+		"generate-docstrings": "node ./docstring_auto_generator.js",
+		"analyze-safe-mutations": "node ./safe_mutations_analyzer.js"
+	},
+	"dependencies": {
+		"typescript": "^5.4.5",
+		"web-tree-sitter": "^0.22.6"
+	},
+	"devDependencies": {},
+	"license": "NONE"
+}
