@@ -23,8 +23,8 @@ const Parser = require("web-tree-sitter")
 // CONSTANTS
 // ==========================================
 
-// Path constants (these assume script is run from project root)
-const PROJECT_ROOT = path.join(process.cwd(), "..")
+// Path constants
+const PROJECT_ROOT = path.resolve(__dirname, "..", "..") // Resolves to the monorepo root
 const SCRIPT_DIR = __dirname
 const OUTPUT_DIR = path.join(SCRIPT_DIR, "Output")
 const API_CONTRACTS_DIR = path.join(SCRIPT_DIR, "api_contracts")
@@ -662,7 +662,15 @@ let parserInitialized = false
  */
 async function initTreeSitter() {
 	if (!parserInitialized) {
-		await Parser.init()
+		await Parser.init({
+			locateFile(scriptName, scriptDirectory) {
+				if (scriptName === "tree-sitter.wasm") {
+					// PROJECT_ROOT is the resolved monorepo root
+					return path.join(PROJECT_ROOT, "src", "dist", "tree-sitter.wasm")
+				}
+				return path.join(scriptDirectory, scriptName)
+			},
+		})
 		parserInitialized = true
 	}
 }
@@ -673,39 +681,28 @@ async function initTreeSitter() {
  * @returns {string|null} Path to the WASM file or null if not found
  */
 function findTreeSitterWasmPath() {
-	// For reliable path resolution in both regular execution and tests
-	const scriptDir = path.dirname(__filename) // Directory containing this file
+	// PROJECT_ROOT is correctly defined to the monorepo root.
+	// The main application build places tree-sitter-tsx.wasm (which handles TS and TSX)
+	// in PROJECT_ROOT/src/dist/. We have confirmed its existence there.
 
-	// Possible locations for the TypeScript WASM file
-	const possibleLocations = [
-		// From src directory tree-sitter-typescript package (actual location)
-		path.join(PROJECT_ROOT, "src", "node_modules", "tree-sitter-typescript", "tree-sitter-typescript.wasm"),
-		path.join(PROJECT_ROOT, "src", "node_modules", "tree-sitter-typescript", "tree-sitter-tsx.wasm"),
-
-		// From project root - standard case
-		path.join(PROJECT_ROOT, "node_modules", "tree-sitter-wasms", "out", "tree-sitter-typescript.wasm"),
-		path.join(PROJECT_ROOT, "node_modules", "tree-sitter-wasms", "out", "tree-sitter-tsx.wasm"),
-
-		// From src directory (where dependencies are actually installed)
-		path.join(PROJECT_ROOT, "src", "node_modules", "tree-sitter-wasms", "out", "tree-sitter-typescript.wasm"),
-		path.join(PROJECT_ROOT, "src", "node_modules", "tree-sitter-wasms", "out", "tree-sitter-tsx.wasm"),
-
-		// From script directory - works when running from different CWD
-		path.join(scriptDir, "..", "..", "node_modules", "tree-sitter-wasms", "out", "tree-sitter-typescript.wasm"),
-		path.join(scriptDir, "..", "..", "node_modules", "tree-sitter-wasms", "out", "tree-sitter-tsx.wasm"),
-
-		// Fallbacks
-		path.join(PROJECT_ROOT, "dist", "tree-sitter-typescript.wasm"),
-		path.join(PROJECT_ROOT, "vendor", "tree-sitter-typescript.wasm"),
-	]
-
-	for (const location of possibleLocations) {
-		if (fs.existsSync(location)) {
-			return location
-		}
+	const tsxWasmPath = path.join(PROJECT_ROOT, "src", "dist", "tree-sitter-tsx.wasm")
+	// Including an existence check for robustness, though we've confirmed it's present.
+	if (fs.existsSync(tsxWasmPath)) {
+		return tsxWasmPath
 	}
 
-	return null
+	// Fallback to typescript.wasm if tsx.wasm is somehow not found, though both should be present.
+	const tsWasmPath = path.join(PROJECT_ROOT, "src", "dist", "tree-sitter-typescript.wasm")
+	if (fs.existsSync(tsWasmPath)) {
+		console.warn("Tree-sitter TSX WASM not found, falling back to TypeScript WASM.")
+		return tsWasmPath
+	}
+
+	console.warn(
+		"Tree-sitter TypeScript/TSX WASM file not found in expected location: " +
+			path.join(PROJECT_ROOT, "src", "dist/"),
+	)
+	return null // Or throw an error if it's critical
 }
 
 /**
