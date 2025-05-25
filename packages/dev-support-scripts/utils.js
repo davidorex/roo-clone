@@ -713,8 +713,8 @@ function findTreeSitterWasmPath() {
  */
 async function createTypeScriptParser() {
 	try {
-		// Initialize the parser
-		await Parser.init()
+		// Ensure correct, idempotent initialization of the Tree-sitter environment
+		await initTreeSitter()
 
 		// Use the finder function to locate the WASM file
 		const wasmPath = findTreeSitterWasmPath()
