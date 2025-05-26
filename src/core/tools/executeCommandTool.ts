@@ -72,8 +72,61 @@ export async function executeCommandTool(
 				const [rejected, result] = await executeCommand(cline, options)
 
 				if (rejected) {
+					// This flag indicates user interjected during command output streaming.
+					// The pause after state change might still be desired by the user
+					// to acknowledge the overall command completion.
 					cline.didRejectTool = true
 				}
+
+				// --- BEGIN PAUSE AFTER STATE CHANGE LOGIC ---
+				if (cline.pauseAfterProductiveOperation) {
+					const operationPayload = JSON.stringify({
+						operation: "command",
+						command: options.command,
+						// Potentially include a summary of 'result' or exit status if concise.
+						// For now, the UI message will refer to the preceding command output.
+					})
+					// It's important that the 'result' (command output) is pushed to clineMessages
+					// by the 'executeCommand' helper (via its internal cline.say calls) BEFORE this point,
+					// or that this 'say' message itself contains the summary.
+					// The original technical report implies the pause happens *after* results are available.
+					await cline.say("operation_completed", operationPayload)
+
+					const ack = await cline.ask(
+						"operation_acknowledgment",
+						`Command '${options.command}' finished. Review output above. Continue?`,
+					)
+
+					if (ack.response === "noButtonClicked") {
+						// If user cancels at this stage, we still push the original command result,
+						// but signal that the user paused further operations.
+						let commandOutputSummary: string
+						if (typeof result === "string") {
+							commandOutputSummary = result
+						} else if (
+							Array.isArray(result) &&
+							result.length > 0 &&
+							"text" in result[0] &&
+							typeof result[0].text === "string"
+						) {
+							// Assuming the first block is a TextBlockParam if result is an array
+							commandOutputSummary = result[0].text
+						} else {
+							commandOutputSummary = "[Non-textual or complex command output]"
+						}
+						pushToolResult(
+							formatResponse.toolError(
+								`User paused after command execution. Original command result:\n${commandOutputSummary}`,
+							),
+						)
+						return // Stop further processing in this tool handler
+					}
+
+					if (ack.text) {
+						await cline.say("user_feedback", `[User acknowledged command '${options.command}'] ${ack.text}`)
+					}
+				}
+				// --- END PAUSE AFTER STATE CHANGE LOGIC ---
 
 				pushToolResult(result)
 			} catch (error: unknown) {
