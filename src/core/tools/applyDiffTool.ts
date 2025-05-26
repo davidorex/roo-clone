@@ -171,36 +171,6 @@ export async function applyDiffTool(
 
 			// Used to determine if we should wait for busy terminal to update before sending api request
 			cline.didEditFile = true
-
-			// --- BEGIN PAUSE AFTER STATE CHANGE LOGIC ---
-			// Ensure cline.pauseAfterProductiveOperation is accessed correctly
-			if (cline.pauseAfterProductiveOperation) {
-				const operationPayload = JSON.stringify({
-					operation: "apply_diff",
-					path: getReadablePath(cline.cwd, relPath), // relPath is available
-				})
-				await cline.say("operation_completed", operationPayload)
-
-				const ack = await cline.ask(
-					"operation_acknowledgment",
-					`Diff successfully applied to '${getReadablePath(cline.cwd, relPath)}'. Continue?`,
-				)
-
-				if (ack.response === "noButtonClicked") {
-					pushToolResult(formatResponse.toolError("Operation acknowledged and paused by user."))
-					await cline.diffViewProvider.reset()
-					return
-				}
-
-				if (ack.text) {
-					await cline.say(
-						"user_feedback",
-						`[User acknowledged diff to '${getReadablePath(cline.cwd, relPath)}'] ${ack.text}`,
-					)
-				}
-			}
-			// --- END PAUSE AFTER STATE CHANGE LOGIC ---
-
 			let partFailHint = ""
 
 			if (diffResult.failParts && diffResult.failParts.length > 0) {

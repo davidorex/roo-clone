@@ -158,62 +158,6 @@ export async function browserActionTool(
 				case "resize":
 					await cline.say("browser_action_result", JSON.stringify(browserActionResult))
 
-					// --- BEGIN PAUSE AFTER STATE CHANGE LOGIC ---
-					if (cline.pauseAfterProductiveOperation) {
-						const operationPayload = JSON.stringify({
-							operation: "browser_action",
-							action: action,
-							url: browserActionResult?.currentUrl,
-						})
-						await cline.say("operation_completed", operationPayload)
-
-						const ack = await cline.ask(
-							"operation_acknowledgment",
-							`Browser action '${action}' completed. Review output above. Continue?`,
-						)
-
-						if (ack.response === "noButtonClicked") {
-							const originalResultText = `The browser action has been executed. The console logs and screenshot have been captured for your analysis.\n\nConsole logs:\n${
-								browserActionResult?.logs || "(No new logs)"
-							}\n\n(REMEMBER: if you need to proceed to using non-\`browser_action\` tools or launch a new browser, you MUST first close cline browser. For example, if after analyzing the logs and screenshot you need to edit a file, you must first close the browser before you can use the write_to_file tool.)`
-							const originalScreenshot = browserActionResult?.screenshot
-								? [browserActionResult.screenshot]
-								: []
-							const originalFormattedResult = formatResponse.toolResult(
-								originalResultText,
-								originalScreenshot,
-							)
-
-							let summaryText: string
-							if (typeof originalFormattedResult === "string") {
-								summaryText = originalFormattedResult
-							} else if (
-								Array.isArray(originalFormattedResult) &&
-								originalFormattedResult.length > 0 &&
-								"text" in originalFormattedResult[0] &&
-								typeof originalFormattedResult[0].text === "string"
-							) {
-								summaryText = originalFormattedResult[0].text
-							} else {
-								summaryText = "(Complex or non-textual result)"
-							}
-							pushToolResult(
-								formatResponse.toolError(
-									`User paused after browser action. Original action result:\n${summaryText}`,
-								),
-							)
-							return
-						}
-
-						if (ack.text) {
-							await cline.say(
-								"user_feedback",
-								`[User acknowledged browser action '${action}'] ${ack.text}`,
-							)
-						}
-					}
-					// --- END PAUSE AFTER STATE CHANGE LOGIC ---
-
 					pushToolResult(
 						formatResponse.toolResult(
 							`The browser action has been executed. The console logs and screenshot have been captured for your analysis.\n\nConsole logs:\n${

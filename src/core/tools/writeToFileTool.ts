@@ -217,36 +217,6 @@ export async function writeToFileTool(
 
 			cline.didEditFile = true // used to determine if we should wait for busy terminal to update before sending api request
 
-			// --- BEGIN PAUSE AFTER STATE CHANGE LOGIC ---
-			// Ensure cline.pauseAfterProductiveOperation is accessed correctly (it was added to Task class properties)
-			if (cline.pauseAfterProductiveOperation) {
-				const operationPayload = JSON.stringify({
-					operation: "write",
-					path: getReadablePath(cline.cwd, relPath), // relPath is available in this scope
-				})
-				await cline.say("operation_completed", operationPayload)
-
-				const ack = await cline.ask(
-					"operation_acknowledgment",
-					`File '${getReadablePath(cline.cwd, relPath)}' was successfully written. Continue?`,
-				)
-
-				// Handle user's acknowledgment response
-				if (ack.response === "noButtonClicked") {
-					pushToolResult(formatResponse.toolError("Operation acknowledged and paused by user."))
-					await cline.diffViewProvider.reset() // Reset diff view if operation is stopped here
-					return // Stop further processing in this tool
-				}
-
-				if (ack.text) {
-					await cline.say(
-						"user_feedback",
-						`[User acknowledged write to '${getReadablePath(cline.cwd, relPath)}'] ${ack.text}`,
-					)
-				}
-			}
-			// --- END PAUSE AFTER STATE CHANGE LOGIC ---
-
 			if (userEdits) {
 				await cline.say(
 					"user_feedback_diff",

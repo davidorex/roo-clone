@@ -99,40 +99,6 @@ export async function useMcpToolTool(
 						.join("\n\n") || "(No response)"
 
 			await cline.say("mcp_server_response", toolResultPretty)
-
-			// --- BEGIN PAUSE AFTER STATE CHANGE LOGIC ---
-			if (cline.pauseAfterProductiveOperation) {
-				const operationPayload = JSON.stringify({
-					operation: "use_mcp_tool",
-					server_name: server_name,
-					tool_name: tool_name,
-					arguments: mcp_arguments,
-				})
-				await cline.say("operation_completed", operationPayload)
-
-				const ack = await cline.ask(
-					"operation_acknowledgment",
-					`MCP tool '${server_name}/${tool_name}' execution completed. Review output above. Continue?`,
-				)
-
-				if (ack.response === "noButtonClicked") {
-					pushToolResult(
-						formatResponse.toolError(
-							`User paused after MCP tool execution. Original tool result:\n${toolResultPretty}`,
-						),
-					)
-					return
-				}
-
-				if (ack.text) {
-					await cline.say(
-						"user_feedback",
-						`[User acknowledged MCP tool '${server_name}/${tool_name}'] ${ack.text}`,
-					)
-				}
-			}
-			// --- END PAUSE AFTER STATE CHANGE LOGIC ---
-
 			pushToolResult(formatResponse.toolResult(toolResultPretty))
 
 			return
