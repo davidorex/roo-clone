@@ -658,6 +658,19 @@ export const ChatRowContent = ({
 	switch (message.type) {
 		case "say":
 			switch (message.say) {
+				case "operation_completed": // For Pause After State Change
+					return (
+						<div className="operation-completed-message p-2 my-1 rounded flex items-center gap-2 bg-[var(--vscode-editorWidget-background)] border border-[var(--vscode-editorWidget-border)] text-[var(--vscode-editor-foreground)]">
+							<span
+								className="codicon codicon-check text-[var(--vscode-testing-iconPassed)]"
+								style={{ fontSize: "16px" }}></span>
+							<div>
+								<span className="font-medium">
+									{t("chat:operationCompleted.generic", "Operation completed.")}
+								</span>
+							</div>
+						</div>
+					)
 				case "diff_error":
 					return (
 						<div>

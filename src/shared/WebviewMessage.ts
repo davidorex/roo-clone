@@ -112,6 +112,7 @@ export interface WebviewMessage {
 		| "enhancementApiConfigId"
 		| "updateExperimental"
 		| "autoApprovalEnabled"
+		| "pauseAfterProductiveOperation" // Added for Pause After State Change
 		| "updateCustomMode"
 		| "deleteCustomMode"
 		| "setopenAiCustomModelInfo"

@@ -17,6 +17,7 @@ import { convertTextMateToHljs } from "@src/utils/textMateToHljs"
 
 export interface ExtensionStateContextType extends ExtensionState {
 	historyPreviewCollapsed?: boolean // Add the new state property
+	pauseAfterProductiveOperation?: boolean // Added for Pause After State Change
 	didHydrateState: boolean
 	showWelcome: boolean
 	theme: any

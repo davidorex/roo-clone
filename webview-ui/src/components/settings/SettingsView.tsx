@@ -129,6 +129,7 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 		alwaysAllowWrite,
 		alwaysAllowWriteOutsideWorkspace,
 		alwaysApproveResubmit,
+		pauseAfterProductiveOperation, // Added for Pause After State Change
 		autoCondenseContextPercent,
 		browserToolEnabled,
 		browserViewportSize,
@@ -279,6 +280,7 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 			vscode.postMessage({ type: "terminalCompressProgressBar", bool: terminalCompressProgressBar })
 			vscode.postMessage({ type: "mcpEnabled", bool: mcpEnabled })
 			vscode.postMessage({ type: "alwaysApproveResubmit", bool: alwaysApproveResubmit })
+			vscode.postMessage({ type: "pauseAfterProductiveOperation", bool: pauseAfterProductiveOperation }) // Added for Pause After State Change
 			vscode.postMessage({ type: "requestDelaySeconds", value: requestDelaySeconds })
 			vscode.postMessage({ type: "maxOpenTabsContext", value: maxOpenTabsContext })
 			vscode.postMessage({ type: "maxWorkspaceFiles", value: maxWorkspaceFiles ?? 200 })
@@ -652,6 +654,7 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 							apiConfiguration={apiConfiguration}
 							setApiConfigurationField={setApiConfigurationField}
 							areSettingsCommitted={!isChangeDetected}
+							pauseAfterProductiveOperation={pauseAfterProductiveOperation} // Added for Pause After State Change
 						/>
 					)}
 

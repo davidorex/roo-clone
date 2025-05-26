@@ -12,7 +12,7 @@ import { SectionHeader } from "./SectionHeader"
 import { Section } from "./Section"
 import { ExperimentalFeature } from "./ExperimentalFeature"
 import { Button, Select, SelectContent, SelectItem, SelectTrigger, SelectValue, Slider } from "@/components/ui/"
-import { VSCodeTextArea } from "@vscode/webview-ui-toolkit/react"
+import { VSCodeCheckbox, VSCodeTextArea } from "@vscode/webview-ui-toolkit/react" // Added VSCodeCheckbox
 import { CodebaseIndexConfig, CodebaseIndexModels, ProviderSettings } from "../../../../src/schemas"
 import { CodeIndexSettings } from "./CodeIndexSettings"
 import { ExtensionStateContextType } from "../../context/ExtensionStateContext"
@@ -61,7 +61,7 @@ type ExperimentalSettingsProps = HTMLAttributes<HTMLDivElement> & {
 	experiments: Record<ExperimentId, boolean>
 	setExperimentEnabled: SetExperimentEnabled
 	autoCondenseContextPercent: number
-	setCachedStateField: SetCachedStateField<"autoCondenseContextPercent" | "codebaseIndexConfig">
+	setCachedStateField: SetCachedStateField<keyof ExtensionStateContextType> // Broaden type
 	condensingApiConfigId?: string
 	setCondensingApiConfigId: (value: string) => void
 	customCondensingPrompt?: string
@@ -73,6 +73,7 @@ type ExperimentalSettingsProps = HTMLAttributes<HTMLDivElement> & {
 	apiConfiguration: ProviderSettings
 	setApiConfigurationField: <K extends keyof ProviderSettings>(field: K, value: ProviderSettings[K]) => void
 	areSettingsCommitted: boolean
+	pauseAfterProductiveOperation?: boolean // Added for Pause After State Change
 }
 
 export const ExperimentalSettings = ({
@@ -90,6 +91,7 @@ export const ExperimentalSettings = ({
 	apiConfiguration,
 	setApiConfigurationField,
 	areSettingsCommitted,
+	pauseAfterProductiveOperation, // Added for Pause After State Change
 	className,
 	...props
 }: ExperimentalSettingsProps) => {
@@ -117,6 +119,30 @@ export const ExperimentalSettings = ({
 							}
 						/>
 					))}
+
+				{/* Pause After Productive Operation Setting */}
+				<div className="flex flex-col gap-1 py-2">
+					<label
+						htmlFor="pauseAfterProductiveOperationCheckbox"
+						className="font-medium text-vscode-settings-headerForeground">
+						{t(
+							"settings:experimental.pauseAfterProductiveOperation.label",
+							"Pause After Productive Operation",
+						)}
+					</label>
+					<VSCodeCheckbox
+						id="pauseAfterProductiveOperationCheckbox"
+						checked={pauseAfterProductiveOperation ?? false}
+						onChange={(e: any) => {
+							setCachedStateField("pauseAfterProductiveOperation", e.target.checked)
+						}}>
+						{t(
+							"settings:experimental.pauseAfterProductiveOperation.description",
+							"Pause the AI after it performs a file modification or other productive action, awaiting your explicit 'Continue' command.",
+						)}
+					</VSCodeCheckbox>
+				</div>
+
 				{experiments[EXPERIMENT_IDS.AUTO_CONDENSE_CONTEXT] && (
 					<div className="flex flex-col gap-3 pl-3 border-l-2 border-vscode-button-background">
 						<div className="flex items-center gap-4 font-bold">
