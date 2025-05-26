@@ -217,6 +217,8 @@ export async function writeToFileTool(
 
 			cline.didEditFile = true // used to determine if we should wait for busy terminal to update before sending api request
 
+			await cline.checkForPauseAfterProductiveOperation("write_to_file")
+
 			if (userEdits) {
 				await cline.say(
 					"user_feedback_diff",
