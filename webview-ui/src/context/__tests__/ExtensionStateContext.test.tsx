@@ -203,6 +203,7 @@ describe("mergeExtensionState", () => {
 			renderContext: "sidebar",
 			maxReadFileLine: 500,
 			autoCondenseContextPercent: 100,
+			pauseAfterProductiveOperation: false, // Added missing property
 		}
 
 		const prevState: ExtensionState = {

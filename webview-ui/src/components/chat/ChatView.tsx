@@ -327,7 +327,7 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 							setSendingDisabled(false) // Enable input for optional feedback
 							setClineAsk("operation_acknowledgment")
 							setEnableButtons(true)
-							setPrimaryButtonText(t("chat:continue.title", "Continue"))
+							setPrimaryButtonText(t("chat:continue.title", { defaultValue: "Continue" }))
 							setSecondaryButtonText(undefined) // Or "Cancel"
 							textAreaRef.current?.focus() // Focus input for feedback
 							break
@@ -342,7 +342,7 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 							setSendingDisabled(true) // Keep input disabled while waiting for ack
 							setClineAsk("operation_acknowledgment") // Set UI to acknowledgment mode
 							setEnableButtons(true)
-							setPrimaryButtonText(t("chat:continue.title", "Continue")) // Ensure i18n key exists or use default
+							setPrimaryButtonText(t("chat:continue.title", { defaultValue: "Continue" })) // Ensure i18n key exists or use default
 							setSecondaryButtonText(undefined) // Or a "Cancel" option if desired
 							break
 						case "api_req_retry_delayed":

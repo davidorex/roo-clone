@@ -125,10 +125,9 @@ export const ExperimentalSettings = ({
 					<label
 						htmlFor="pauseAfterProductiveOperationCheckbox"
 						className="font-medium text-vscode-settings-headerForeground">
-						{t(
-							"settings:experimental.pauseAfterProductiveOperation.label",
-							"Pause After Productive Operation",
-						)}
+						{t("settings:experimental.pauseAfterProductiveOperation.label", {
+							defaultValue: "Pause After Productive Operation",
+						})}
 					</label>
 					<VSCodeCheckbox
 						id="pauseAfterProductiveOperationCheckbox"
@@ -136,10 +135,10 @@ export const ExperimentalSettings = ({
 						onChange={(e: any) => {
 							setCachedStateField("pauseAfterProductiveOperation", e.target.checked)
 						}}>
-						{t(
-							"settings:experimental.pauseAfterProductiveOperation.description",
-							"Pause the AI after it performs a file modification or other productive action, awaiting your explicit 'Continue' command.",
-						)}
+						{t("settings:experimental.pauseAfterProductiveOperation.description", {
+							defaultValue:
+								"Pause the AI after it performs a file modification or other productive action, awaiting your explicit 'Continue' command.",
+						})}
 					</VSCodeCheckbox>
 				</div>
 
