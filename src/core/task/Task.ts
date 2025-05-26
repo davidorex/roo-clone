@@ -99,6 +99,7 @@ export type TaskOptions = {
 	apiConfiguration: ProviderSettings
 	enableDiff?: boolean
 	enableCheckpoints?: boolean
+	pauseAfterProductiveOperation?: boolean // Added for Pause After State Change
 	fuzzyMatchThreshold?: number
 	consecutiveMistakeLimit?: number
 	task?: string
@@ -171,6 +172,7 @@ export class Task extends EventEmitter<ClineEvents> {
 
 	// Checkpoints
 	enableCheckpoints: boolean
+	readonly pauseAfterProductiveOperation: boolean // Added for Pause After State Change
 	checkpointService?: RepoPerTaskCheckpointService
 	checkpointServiceInitializing = false
 
@@ -192,6 +194,7 @@ export class Task extends EventEmitter<ClineEvents> {
 		apiConfiguration,
 		enableDiff = false,
 		enableCheckpoints = true,
+		pauseAfterProductiveOperation = false, // Default to false if not provided
 		fuzzyMatchThreshold = 1.0,
 		consecutiveMistakeLimit = 3,
 		task,
@@ -236,6 +239,7 @@ export class Task extends EventEmitter<ClineEvents> {
 		this.globalStoragePath = provider.context.globalStorageUri.fsPath
 		this.diffViewProvider = new DiffViewProvider(this.cwd)
 		this.enableCheckpoints = enableCheckpoints
+		this.pauseAfterProductiveOperation = pauseAfterProductiveOperation // Added for Pause After State Change
 
 		this.rootTask = rootTask
 		this.parentTask = parentTask
