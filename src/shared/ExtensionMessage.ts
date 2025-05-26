@@ -123,6 +123,7 @@ export type ExtensionState = Pick<
 	| "customInstructions"
 	// | "taskHistory" // Optional in GlobalSettings, required here.
 	| "autoApprovalEnabled"
+	| "pauseAfterProductiveOperation"
 	| "alwaysAllowReadOnly"
 	| "alwaysAllowReadOnlyOutsideWorkspace"
 	| "alwaysAllowWrite"
@@ -215,6 +216,7 @@ export type ExtensionState = Pick<
 	settingsImportedAt?: number
 	historyPreviewCollapsed?: boolean
 	autoCondenseContextPercent: number
+	pauseAfterProductiveOperation: boolean
 }
 
 export type { ClineMessage, ClineAsk, ClineSay }

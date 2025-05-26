@@ -1264,6 +1264,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			condensingApiConfigId,
 			customCondensingPrompt,
 			codebaseIndexConfig,
+			pauseAfterProductiveOperation,
 			codebaseIndexModels,
 		} = await this.getState()
 
@@ -1336,6 +1337,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			customSupportPrompts: customSupportPrompts ?? {},
 			enhancementApiConfigId,
 			autoApprovalEnabled: autoApprovalEnabled ?? false,
+			pauseAfterProductiveOperation: pauseAfterProductiveOperation ?? false,
 			customModes,
 			experiments: experiments ?? experimentDefault,
 			mcpServers: this.mcpHub?.getAllServers() ?? [],
@@ -1446,6 +1448,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			enhancementApiConfigId: stateValues.enhancementApiConfigId,
 			experiments: stateValues.experiments ?? experimentDefault,
 			autoApprovalEnabled: stateValues.autoApprovalEnabled ?? false,
+			pauseAfterProductiveOperation: stateValues.pauseAfterProductiveOperation ?? false,
 			customModes,
 			maxOpenTabsContext: stateValues.maxOpenTabsContext ?? 20,
 			maxWorkspaceFiles: stateValues.maxWorkspaceFiles ?? 200,

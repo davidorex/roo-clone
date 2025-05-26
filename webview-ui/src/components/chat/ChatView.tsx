@@ -320,12 +320,31 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 							setSecondaryButtonText(undefined)
 							setDidClickCancel(false)
 							break
+						case "operation_acknowledgment": // Added for Pause After State Change
+							// This case primarily ensures the UI is set up correctly if the 'ask'
+							// itself is the last message that triggers this useEffect.
+							playSound("notification") // Optional: sound when ack is requested
+							setSendingDisabled(false) // Enable input for optional feedback
+							setClineAsk("operation_acknowledgment")
+							setEnableButtons(true)
+							setPrimaryButtonText(t("chat:continue.title", "Continue"))
+							setSecondaryButtonText(undefined) // Or "Cancel"
+							textAreaRef.current?.focus() // Focus input for feedback
+							break
 					}
 					break
 				case "say":
 					// Don't want to reset since there could be a "say" after
 					// an "ask" while ask is waiting for response.
 					switch (lastMessage.say) {
+						case "operation_completed": // Added for Pause After State Change
+							playSound("notification")
+							setSendingDisabled(true) // Keep input disabled while waiting for ack
+							setClineAsk("operation_acknowledgment") // Set UI to acknowledgment mode
+							setEnableButtons(true)
+							setPrimaryButtonText(t("chat:continue.title", "Continue")) // Ensure i18n key exists or use default
+							setSecondaryButtonText(undefined) // Or a "Cancel" option if desired
+							break
 						case "api_req_retry_delayed":
 							setSendingDisabled(true)
 							break
@@ -512,6 +531,16 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 					break
 				case "command_output":
 					vscode.postMessage({ type: "terminalOperation", terminalOperation: "continue" })
+					break
+				case "operation_acknowledgment": // Added for Pause After State Change
+					vscode.postMessage({
+						type: "askResponse",
+						askResponse: "yesButtonClicked", // Or a more specific response type if needed
+						text: trimmedInput, // Send user's optional feedback
+						images: images, // Though images are unlikely here
+					})
+					setInputValue("") // Clear input after sending
+					setSelectedImages([])
 					break
 			}
 
