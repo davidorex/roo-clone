@@ -220,6 +220,37 @@ export async function searchAndReplaceTool(
 
 		cline.didEditFile = true
 
+		// --- BEGIN PAUSE AFTER STATE CHANGE LOGIC ---
+		if (cline.pauseAfterProductiveOperation) {
+			const operationPayload = JSON.stringify({
+				operation: "search_and_replace",
+				path: getReadablePath(cline.cwd, validRelPath),
+				search: validSearch,
+				replace: validReplace,
+				use_regex: useRegex,
+				ignore_case: ignoreCase,
+			})
+			await cline.say("operation_completed", operationPayload)
+
+			const ack = await cline.ask(
+				"operation_acknowledgment",
+				`Search and replace completed in '${getReadablePath(cline.cwd, validRelPath)}'. Continue?`,
+			)
+
+			if (ack.response === "noButtonClicked") {
+				pushToolResult(formatResponse.toolError("Operation acknowledged and paused by user."))
+				return
+			}
+
+			if (ack.text) {
+				await cline.say(
+					"user_feedback",
+					`[User acknowledged search and replace in '${getReadablePath(cline.cwd, validRelPath)}'] ${ack.text}`,
+				)
+			}
+		}
+		// --- END PAUSE AFTER STATE CHANGE LOGIC ---
+
 		if (!userEdits) {
 			pushToolResult(`The content was successfully replaced in ${relPath}.${newProblemsMessage}`)
 			await cline.diffViewProvider.reset()
