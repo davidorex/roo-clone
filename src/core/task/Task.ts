@@ -1715,34 +1715,80 @@ export class Task extends EventEmitter<ClineEvents> {
 	}
 
 	public async checkForPauseAfterProductiveOperation(toolName: ToolName): Promise<void> {
-		if (this.pauseAfterProductiveOperation) {
-			// Finalize any previous partial message to ensure clean UI state before pausing.
+		if (!this.pauseAfterProductiveOperation) {
+			return
+		}
+
+		console.log(`[PauseAfterOp] Pausing task after ${toolName} operation`)
+
+		try {
+			// Finalize any previous partial message
 			const lastMessage = this.clineMessages.at(-1)
 			if (lastMessage?.partial) {
 				lastMessage.partial = false
-				// Assuming subsequent .say or .ask will trigger necessary saves/updates
-				// or that their internal logic handles finalizing previous partials if necessary.
+				await this.saveClineMessages()
+				console.log("[PauseAfterOp] Finalized partial message before pausing")
 			}
 
-			await this.say("operation_completed", "Operation complete.")
-			// Pass an empty string for the ask prompt text, as the UI for "operation_acknowledgment"
-			// should provide the standard input field and "Continue" bar.
-			// The preceding "say" message gives the main context.
-			const { response, text } = await this.ask("operation_acknowledgment", "")
+			// Set pause state
+			this.isPaused = true
+			this.emit("taskPaused")
+			console.log("[PauseAfterOp] Task paused - emitted taskPaused event")
 
+			// Show operation complete message
+			await this.say("operation_completed", "Operation complete.")
+			console.log("[PauseAfterOp] Displayed 'Operation complete' message")
+
+			// Wait for user response
+			console.log("[PauseAfterOp] Waiting for user response via operation_acknowledgment...")
+			const { response, text } = await this.ask("operation_acknowledgment", "")
+			console.log(`[PauseAfterOp] Received response type: ${response}, with text: "${text || ""}"`)
+
+			// Process user response
 			if (response === "messageResponse" && text && text.trim().length > 0) {
-				// Display feedback in UI
+				console.log(`[PauseAfterOp] User provided feedback: "${text}"`)
+
+				// Add feedback to UI
 				await this.say("user_feedback", text)
 
-				// Add feedback to API conversation history for the LLM
+				// Add to API conversation
 				await this.addToApiConversationHistory({
 					role: "user",
 					content: [{ type: "text", text }],
 				})
+
+				// Add to user message content for next request
+				this.userMessageContent = [...this.userMessageContent, { type: "text", text: `User feedback: ${text}` }]
+
 				telemetryService.captureConversationMessage(this.taskId, "user")
+				console.log("[PauseAfterOp] Added user feedback to conversation history and userMessageContent")
+			} else {
+				console.log("[PauseAfterOp] User clicked Continue without providing feedback")
+
+				// Add a simple acknowledgment to ensure loop continues
+				this.userMessageContent = [
+					...this.userMessageContent,
+					{ type: "text", text: "User acknowledged operation and continued." },
+				]
 			}
-			// If response is 'yesButtonClicked' (Continue with no text), no new message is added to apiConversationHistory.
-			// The task loop will then proceed, and the result of the 'toolName' operation will form part of the next user message to the LLM.
+
+			// Always trigger continuation
+			this.userMessageContentReady = true
+			console.log("[PauseAfterOp] Set userMessageContentReady=true to continue task loop")
+
+			// Save state
+			await this.saveClineMessages()
+
+			// Unpause *after* all processing is complete
+			this.isPaused = false
+			this.emit("taskUnpaused")
+			console.log("[PauseAfterOp] Task unpaused - emitted taskUnpaused event")
+		} catch (error) {
+			// Ensure we don't leave the task in a paused state if something goes wrong
+			console.error("[PauseAfterOp] Error in pause handling:", error)
+			this.isPaused = false
+			this.emit("taskUnpaused")
+			this.userMessageContentReady = true
 		}
 	}
 
