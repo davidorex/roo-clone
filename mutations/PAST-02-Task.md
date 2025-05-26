@@ -1,6 +1,6 @@
 # Mutations for src/core/task/Task.ts
 
-This file adds the `checkForPauseAfterProductiveOperation` method to the `Task` class. This method uses the existing `formatResponse.imageBlocks` utility for handling images in user feedback.
+This file adds the `checkForPauseAfterProductiveOperation` method to the `Task` class.
 
 ```diff
 --- a/src/core/task/Task.ts
@@ -23,20 +23,16 @@ This file adds the `checkForPauseAfterProductiveOperation` method to the `Task` 
 +			// Pass an empty string for the ask prompt text, as the UI for "operation_acknowledgment"
 +			// should provide the standard input field and "Continue" bar.
 +			// The preceding "say" message gives the main context.
-+			const { response, text, images } = await this.ask("operation_acknowledgment", "");
++			const { response, text } = await this.ask("operation_acknowledgment", "");
 +
 +			if (response === "messageResponse" && text && text.trim().length > 0) {
 +				// Display feedback in UI
-+				await this.say("user_feedback", text, images);
++				await this.say("user_feedback", text);
 +
 +				// Add feedback to API conversation history for the LLM
-+				const userFeedbackContent: Anthropic.Messages.ContentBlock[] = [{ type: "text", text }];
-+				if (images && images.length > 0) {
-+					userFeedbackContent.push(...formatResponse.imageBlocks(images));
-+				}
 +				await this.addToApiConversationHistory({
 +					role: "user",
-+					content: userFeedbackContent,
++					content: [{ type: "text", text }],
 +				});
 +				telemetryService.captureConversationMessage(this.taskId, "user");
 +			}
