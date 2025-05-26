@@ -485,6 +485,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			apiConfiguration,
 			diffEnabled: enableDiff,
 			enableCheckpoints,
+			pauseAfterProductiveOperation, // Added
 			fuzzyMatchThreshold,
 			experiments,
 		} = await this.getState()
@@ -494,6 +495,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			apiConfiguration,
 			enableDiff,
 			enableCheckpoints,
+			pauseAfterProductiveOperation, // Added
 			fuzzyMatchThreshold,
 			task,
 			images,
@@ -521,6 +523,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			apiConfiguration,
 			diffEnabled: enableDiff,
 			enableCheckpoints,
+			pauseAfterProductiveOperation, // Added
 			fuzzyMatchThreshold,
 			experiments,
 		} = await this.getState()
@@ -530,6 +533,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			apiConfiguration,
 			enableDiff,
 			enableCheckpoints,
+			pauseAfterProductiveOperation, // Added
 			fuzzyMatchThreshold,
 			historyItem,
 			experiments,

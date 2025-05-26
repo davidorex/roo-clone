@@ -1715,7 +1715,12 @@ export class Task extends EventEmitter<ClineEvents> {
 	}
 
 	public async checkForPauseAfterProductiveOperation(toolName: ToolName): Promise<void> {
+		await this.say(
+			"text",
+			`[DEBUG] checkForPauseAfterProductiveOperation called for tool: ${toolName}. Pause setting is: ${this.pauseAfterProductiveOperation}`,
+		)
 		if (this.pauseAfterProductiveOperation) {
+			await this.say("text", `[DEBUG] Pausing after productive operation: ${toolName}`)
 			// Finalize any previous partial message to ensure clean UI state before pausing.
 			const lastMessage = this.clineMessages.at(-1)
 			if (lastMessage?.partial) {

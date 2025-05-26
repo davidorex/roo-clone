@@ -339,11 +339,7 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 					switch (lastMessage.say) {
 						case "operation_completed": // Added for Pause After State Change
 							playSound("notification")
-							setSendingDisabled(true) // Keep input disabled while waiting for ack
-							setClineAsk("operation_acknowledgment") // Set UI to acknowledgment mode
-							setEnableButtons(true)
-							setPrimaryButtonText(t("chat:continue.title", { defaultValue: "Continue" })) // Ensure i18n key exists or use default
-							setSecondaryButtonText(undefined) // Or a "Cancel" option if desired
+							// UI setup is handled by the subsequent ask("operation_acknowledgment")
 							break
 						case "api_req_retry_delayed":
 							setSendingDisabled(true)

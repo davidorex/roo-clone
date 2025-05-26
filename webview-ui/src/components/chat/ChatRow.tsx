@@ -1167,28 +1167,13 @@ export const ChatRowContent = ({
 				}
 				case "operation_acknowledgment":
 					// The main prompt "Operation complete." is shown by a preceding "say" message.
-					// This UI provides the "Continue" button.
-					// Optional user feedback would be typed into the main chat input,
-					// and ChatView would need to handle sending that as a "messageResponse"
-					// when this "Continue" is clicked or when the main input is submitted
-					// while this acknowledgment is pending.
-					// For this ChatRow, we just provide the Continue button.
+					// We don't render a button here - the standard button at the bottom of ChatView will handle this
 					return (
 						<div className="mt-2 flex flex-col items-start">
 							{/* message.text from the ask can be displayed if it contains relevant info,
 							    but current plan is for it to be minimal/empty. */}
 							{message.text && message.text.trim().length > 0 && <p style={pStyle}>{message.text}</p>}
-							<VSCodeButton
-								onClick={() => {
-									vscode.postMessage({
-										type: "askResponse",
-										askResponse: "yesButtonClicked",
-										value: message.ts,
-									})
-								}}
-								className="mt-2">
-								{t("common:buttons.continue", "Continue")}
-							</VSCodeButton>
+							{/* No button here - using standard bottom button only */}
 						</div>
 					)
 				default:
