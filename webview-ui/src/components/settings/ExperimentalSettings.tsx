@@ -121,25 +121,26 @@ export const ExperimentalSettings = ({
 					))}
 
 				{/* Pause After Productive Operation Setting */}
-				<div className="flex flex-col gap-1 py-2">
-					<label
-						htmlFor="pauseAfterProductiveOperationCheckbox"
-						className="font-medium text-vscode-settings-headerForeground">
-						{t("settings:experimental.pauseAfterProductiveOperation.label", {
-							defaultValue: "Pause After Productive Operation",
-						})}
-					</label>
-					<VSCodeCheckbox
-						id="pauseAfterProductiveOperationCheckbox"
-						checked={pauseAfterProductiveOperation ?? false}
-						onChange={(e: any) => {
-							setCachedStateField("pauseAfterProductiveOperation", e.target.checked)
-						}}>
+				<div>
+					<div className="flex items-center gap-2">
+						<VSCodeCheckbox
+							checked={pauseAfterProductiveOperation ?? false}
+							onChange={(e: any) =>
+								setCachedStateField("pauseAfterProductiveOperation", e.target.checked)
+							}>
+							<span className="font-medium">
+								{t("settings:experimental.pauseAfterProductiveOperation.label", {
+									defaultValue: "Pause After Productive Operation",
+								})}
+							</span>
+						</VSCodeCheckbox>
+					</div>
+					<p className="text-vscode-descriptionForeground text-sm mt-0">
 						{t("settings:experimental.pauseAfterProductiveOperation.description", {
 							defaultValue:
 								"Pause the AI after it performs a file modification or other productive action, awaiting your explicit 'Continue' command.",
 						})}
-					</VSCodeCheckbox>
+					</p>
 				</div>
 
 				{experiments[EXPERIMENT_IDS.AUTO_CONDENSE_CONTEXT] && (
