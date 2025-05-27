@@ -461,6 +461,7 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 						case "resume_task":
 						case "resume_completed_task":
 						case "mistake_limit_reached":
+						case "operation_acknowledgment": // Added for Pause After State Change
 							vscode.postMessage({ type: "askResponse", askResponse: "messageResponse", text, images })
 							break
 						// There is no other case that a textfield should be enabled.

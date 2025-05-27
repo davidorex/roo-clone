@@ -1770,6 +1770,10 @@ export class Task extends EventEmitter<ClineEvents> {
 					...this.userMessageContent,
 					{ type: "text", text: "User acknowledged operation and continued." },
 				]
+
+				// Ensure userMessageContentReady is set to true to continue the task loop for pause after state change
+				console.log("[PauseAfterOp] Setting userMessageContentReady=true to continue task loop")
+				this.userMessageContentReady = true
 			}
 
 			// Always trigger continuation
