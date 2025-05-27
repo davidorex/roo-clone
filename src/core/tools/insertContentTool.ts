@@ -139,7 +139,11 @@ export async function insertContentTool(
 
 		if (!userEdits) {
 			pushToolResult(
-				`The content was successfully inserted in ${relPath.toPosix()} at line ${lineNumber}.${newProblemsMessage}`,
+				`The content was successfully inserted in ${relPath.toPosix()} at line ${lineNumber}.${newProblemsMessage}
+
+For each file creation or edit: add and commit with detailed, specific, measured, descriptive commit messages that leave meticulous forensic evidence for future ai's to know and understand every action and intention. When following an implementation plan document, clearly reference the step in the implementation plan the commit corresponds to. Future ai's must be able to understand complete thinking and actions in code from commit messages. Be accurate and factual and do not claim fixes to errors if you haven't confirmed they work. Speak of intentions, not certainties that could be misleading.
+
+You must re-read the file after editing before applying the next edit. Line numbers will likely have changed.`,
 			)
 			await cline.diffViewProvider.reset()
 			return
