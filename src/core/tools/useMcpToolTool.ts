@@ -81,6 +81,8 @@ export async function useMcpToolTool(
 				?.getMcpHub()
 				?.callTool(server_name, tool_name, parsedArguments)
 
+			await cline.checkForPauseAfterProductiveOperation("use_mcp_tool")
+
 			// TODO: add progress indicator and ability to parse images and non-text responses
 			const toolResultPretty =
 				(toolResult?.isError ? "Error:\n" : "") +
