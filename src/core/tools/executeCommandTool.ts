@@ -75,6 +75,8 @@ export async function executeCommandTool(
 					cline.didRejectTool = true
 				}
 
+				await cline.checkForPauseAfterProductiveOperation("execute_command")
+
 				pushToolResult(result)
 			} catch (error: unknown) {
 				const status: CommandExecutionStatus = { executionId, status: "fallback" }
