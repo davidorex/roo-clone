@@ -1745,27 +1745,27 @@ export class Task extends EventEmitter<ClineEvents> {
 			console.log(`[PauseAfterOp] Received response type: ${response}, with text: "${text || ""}"`)
 
 			// Process user response
-			if (response === "messageResponse" && text && text.trim().length > 0) {
-				console.log(`[PauseAfterOp] User provided feedback: "${text}"`)
+			if (response === "messageResponse") {
+				// Add feedback to UI if provided
+				if (text && text.trim().length > 0) {
+					console.log(`[PauseAfterOp] User provided feedback: "${text}"`)
 
-				// Add feedback to UI
-				await this.say("user_feedback", text)
+					// Add feedback to UI
+					await this.say("user_feedback", text)
 
-				// Add to API conversation
-				await this.addToApiConversationHistory({
-					role: "user",
-					content: [{ type: "text", text }],
-				})
+					// Add to API conversation
+					await this.addToApiConversationHistory({
+						role: "user",
+						content: [{ type: "text", text }],
+					})
 
-				// Add to user message content for next request
-				this.userMessageContent = [...this.userMessageContent, { type: "text", text: `User feedback: ${text}` }]
+					telemetryService.captureConversationMessage(this.taskId, "user")
+					console.log("[PauseAfterOp] Added user feedback to conversation history")
+				} else {
+					console.log("[PauseAfterOp] User clicked Continue without providing feedback")
+				}
 
-				telemetryService.captureConversationMessage(this.taskId, "user")
-				console.log("[PauseAfterOp] Added user feedback to conversation history and userMessageContent")
-			} else {
-				console.log("[PauseAfterOp] User clicked Continue without providing feedback")
-
-				// Add a simple acknowledgment to ensure loop continues
+				// Always use the same format for userMessageContent regardless of whether feedback was provided
 				this.userMessageContent = [
 					...this.userMessageContent,
 					{ type: "text", text: "User acknowledged operation and continued." },
