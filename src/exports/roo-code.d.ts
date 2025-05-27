@@ -59,6 +59,7 @@ type GlobalSettings = {
 	condensingApiConfigId?: string | undefined
 	customCondensingPrompt?: string | undefined
 	autoApprovalEnabled?: boolean | undefined
+	pauseAfterProductiveOperation?: boolean | undefined
 	alwaysAllowReadOnly?: boolean | undefined
 	alwaysAllowReadOnlyOutsideWorkspace?: boolean | undefined
 	codebaseIndexModels?:
@@ -417,6 +418,7 @@ type ClineMessage = {
 				| "browser_action_launch"
 				| "use_mcp_server"
 				| "auto_approval_max_req_reached"
+				| "operation_acknowledgment"
 		  )
 		| undefined
 	say?:
@@ -444,6 +446,7 @@ type ClineMessage = {
 				| "diff_error"
 				| "condense_context"
 				| "codebase_search_result"
+				| "operation_completed"
 		  )
 		| undefined
 	text?: string | undefined
@@ -503,6 +506,7 @@ type RooCodeEvents = {
 							| "browser_action_launch"
 							| "use_mcp_server"
 							| "auto_approval_max_req_reached"
+							| "operation_acknowledgment"
 					  )
 					| undefined
 				say?:
@@ -530,6 +534,7 @@ type RooCodeEvents = {
 							| "diff_error"
 							| "condense_context"
 							| "codebase_search_result"
+							| "operation_completed"
 					  )
 					| undefined
 				text?: string | undefined
@@ -838,6 +843,7 @@ type IpcMessage =
 								condensingApiConfigId?: string | undefined
 								customCondensingPrompt?: string | undefined
 								autoApprovalEnabled?: boolean | undefined
+								pauseAfterProductiveOperation?: boolean | undefined
 								alwaysAllowReadOnly?: boolean | undefined
 								alwaysAllowReadOnlyOutsideWorkspace?: boolean | undefined
 								codebaseIndexModels?:
@@ -1022,6 +1028,7 @@ type IpcMessage =
 												| "browser_action_launch"
 												| "use_mcp_server"
 												| "auto_approval_max_req_reached"
+												| "operation_acknowledgment"
 										  )
 										| undefined
 									say?:
@@ -1049,6 +1056,7 @@ type IpcMessage =
 												| "diff_error"
 												| "condense_context"
 												| "codebase_search_result"
+												| "operation_completed"
 										  )
 										| undefined
 									text?: string | undefined
@@ -1350,6 +1358,7 @@ type TaskCommand =
 					condensingApiConfigId?: string | undefined
 					customCondensingPrompt?: string | undefined
 					autoApprovalEnabled?: boolean | undefined
+					pauseAfterProductiveOperation?: boolean | undefined
 					alwaysAllowReadOnly?: boolean | undefined
 					alwaysAllowReadOnlyOutsideWorkspace?: boolean | undefined
 					codebaseIndexModels?:
@@ -1530,6 +1539,7 @@ type TaskEvent =
 									| "browser_action_launch"
 									| "use_mcp_server"
 									| "auto_approval_max_req_reached"
+									| "operation_acknowledgment"
 							  )
 							| undefined
 						say?:
@@ -1557,6 +1567,7 @@ type TaskEvent =
 									| "diff_error"
 									| "condense_context"
 									| "codebase_search_result"
+									| "operation_completed"
 							  )
 							| undefined
 						text?: string | undefined

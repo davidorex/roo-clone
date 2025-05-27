@@ -244,7 +244,7 @@ export const codebaseIndexModelsSchema = z.object({
 export type CodebaseIndexModels = z.infer<typeof codebaseIndexModelsSchema>
 
 export const codebaseIndexProviderSchema = z.object({
-  codeIndexOpenAiKey: z.string().optional(),
+	codeIndexOpenAiKey: z.string().optional(),
 	codeIndexQdrantApiKey: z.string().optional(),
 })
 
@@ -661,7 +661,7 @@ export const providerSettingsSchema = z.object({
 	...groqSchema.shape,
 	...chutesSchema.shape,
 	...litellmSchema.shape,
-  ...codebaseIndexProviderSchema.shape
+	...codebaseIndexProviderSchema.shape,
 })
 
 export type ProviderSettings = z.infer<typeof providerSettingsSchema>
@@ -785,6 +785,7 @@ export const globalSettingsSchema = z.object({
 	customCondensingPrompt: z.string().optional(),
 
 	autoApprovalEnabled: z.boolean().optional(),
+	pauseAfterProductiveOperation: z.boolean().optional(), // Added for Pause After State Change
 	alwaysAllowReadOnly: z.boolean().optional(),
 	alwaysAllowReadOnlyOutsideWorkspace: z.boolean().optional(),
 	codebaseIndexModels: codebaseIndexModelsSchema.optional(),
@@ -873,6 +874,7 @@ const globalSettingsRecord: GlobalSettingsRecord = {
 	customCondensingPrompt: undefined,
 
 	autoApprovalEnabled: undefined,
+	pauseAfterProductiveOperation: undefined, // Added for Pause After State Change
 	alwaysAllowReadOnly: undefined,
 	alwaysAllowReadOnlyOutsideWorkspace: undefined,
 	alwaysAllowWrite: undefined,
@@ -1038,6 +1040,7 @@ export const clineAsks = [
 	"browser_action_launch",
 	"use_mcp_server",
 	"auto_approval_max_req_reached",
+	"operation_acknowledgment", // Added for Pause After State Change
 ] as const
 
 export const clineAskSchema = z.enum(clineAsks)
@@ -1070,6 +1073,7 @@ export const clineSays = [
 	"diff_error",
 	"condense_context",
 	"codebase_search_result",
+	"operation_completed", // Added for Pause After State Change
 ] as const
 
 export const clineSaySchema = z.enum(clineSays)

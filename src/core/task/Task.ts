@@ -99,6 +99,7 @@ export type TaskOptions = {
 	apiConfiguration: ProviderSettings
 	enableDiff?: boolean
 	enableCheckpoints?: boolean
+	pauseAfterProductiveOperation?: boolean // Added for Pause After State Change
 	fuzzyMatchThreshold?: number
 	consecutiveMistakeLimit?: number
 	task?: string
@@ -171,6 +172,7 @@ export class Task extends EventEmitter<ClineEvents> {
 
 	// Checkpoints
 	enableCheckpoints: boolean
+	readonly pauseAfterProductiveOperation: boolean // Added for Pause After State Change
 	checkpointService?: RepoPerTaskCheckpointService
 	checkpointServiceInitializing = false
 
@@ -192,6 +194,7 @@ export class Task extends EventEmitter<ClineEvents> {
 		apiConfiguration,
 		enableDiff = false,
 		enableCheckpoints = true,
+		pauseAfterProductiveOperation = false, // Default to false if not provided
 		fuzzyMatchThreshold = 1.0,
 		consecutiveMistakeLimit = 3,
 		task,
@@ -236,6 +239,7 @@ export class Task extends EventEmitter<ClineEvents> {
 		this.globalStoragePath = provider.context.globalStorageUri.fsPath
 		this.diffViewProvider = new DiffViewProvider(this.cwd)
 		this.enableCheckpoints = enableCheckpoints
+		this.pauseAfterProductiveOperation = pauseAfterProductiveOperation // Added for Pause After State Change
 
 		this.rootTask = rootTask
 		this.parentTask = parentTask
@@ -1708,6 +1712,84 @@ export class Task extends EventEmitter<ClineEvents> {
 		// effectively passes along all subsequent chunks from the original
 		// stream.
 		yield* iterator
+	}
+
+	public async checkForPauseAfterProductiveOperation(toolName: ToolName): Promise<void> {
+		if (!this.pauseAfterProductiveOperation) {
+			return
+		}
+
+		console.log(`[PauseAfterOp] Pausing task after ${toolName} operation`)
+
+		try {
+			// Finalize any previous partial message
+			const lastMessage = this.clineMessages.at(-1)
+			if (lastMessage?.partial) {
+				lastMessage.partial = false
+				await this.saveClineMessages()
+				console.log("[PauseAfterOp] Finalized partial message before pausing")
+			}
+
+			// Set pause state
+			this.isPaused = true
+			this.emit("taskPaused")
+			console.log("[PauseAfterOp] Task paused - emitted taskPaused event")
+
+			// Show operation complete message
+			await this.say("operation_completed", "Operation complete.")
+			console.log("[PauseAfterOp] Displayed 'Operation complete' message")
+
+			// Wait for user response
+			console.log("[PauseAfterOp] Waiting for user response via operation_acknowledgment...")
+			const { response, text } = await this.ask("operation_acknowledgment", "")
+			console.log(`[PauseAfterOp] Received response type: ${response}, with text: "${text || ""}"`)
+
+			// Process user response
+			if (response === "messageResponse" && text && text.trim().length > 0) {
+				console.log(`[PauseAfterOp] User provided feedback: "${text}"`)
+
+				// Add feedback to UI
+				await this.say("user_feedback", text)
+
+				// Add to API conversation
+				await this.addToApiConversationHistory({
+					role: "user",
+					content: [{ type: "text", text }],
+				})
+
+				// Add to user message content for next request
+				this.userMessageContent = [...this.userMessageContent, { type: "text", text: `User feedback: ${text}` }]
+
+				telemetryService.captureConversationMessage(this.taskId, "user")
+				console.log("[PauseAfterOp] Added user feedback to conversation history and userMessageContent")
+			} else {
+				console.log("[PauseAfterOp] User clicked Continue without providing feedback")
+
+				// Add a simple acknowledgment to ensure loop continues
+				this.userMessageContent = [
+					...this.userMessageContent,
+					{ type: "text", text: "User acknowledged operation and continued." },
+				]
+			}
+
+			// Always trigger continuation
+			this.userMessageContentReady = true
+			console.log("[PauseAfterOp] Set userMessageContentReady=true to continue task loop")
+
+			// Save state
+			await this.saveClineMessages()
+
+			// Unpause *after* all processing is complete
+			this.isPaused = false
+			this.emit("taskUnpaused")
+			console.log("[PauseAfterOp] Task unpaused - emitted taskUnpaused event")
+		} catch (error) {
+			// Ensure we don't leave the task in a paused state if something goes wrong
+			console.error("[PauseAfterOp] Error in pause handling:", error)
+			this.isPaused = false
+			this.emit("taskUnpaused")
+			this.userMessageContentReady = true
+		}
 	}
 
 	// Checkpoints

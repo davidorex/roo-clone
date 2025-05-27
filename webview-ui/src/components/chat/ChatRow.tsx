@@ -658,6 +658,19 @@ export const ChatRowContent = ({
 	switch (message.type) {
 		case "say":
 			switch (message.say) {
+				case "operation_completed": // For Pause After State Change
+					return (
+						<div className="operation-completed-message p-2 my-1 rounded flex items-center gap-2 bg-[var(--vscode-editorWidget-background)] border border-[var(--vscode-editorWidget-border)] text-[var(--vscode-editor-foreground)]">
+							<span
+								className="codicon codicon-check text-[var(--vscode-testing-iconPassed)]"
+								style={{ fontSize: "16px" }}></span>
+							<div>
+								<span className="font-medium">
+									{t("chat:operationCompleted.generic", "Operation completed.")}
+								</span>
+							</div>
+						</div>
+					)
 				case "diff_error":
 					return (
 						<div>
@@ -1152,6 +1165,17 @@ export const ChatRowContent = ({
 				case "auto_approval_max_req_reached": {
 					return <AutoApprovedRequestLimitWarning message={message} />
 				}
+				case "operation_acknowledgment":
+					// The main prompt "Operation complete." is shown by a preceding "say" message.
+					// We don't render a button here - the standard button at the bottom of ChatView will handle this
+					return (
+						<div className="mt-2 flex flex-col items-start">
+							{/* message.text from the ask can be displayed if it contains relevant info,
+							    but current plan is for it to be minimal/empty. */}
+							{message.text && message.text.trim().length > 0 && <p style={pStyle}>{message.text}</p>}
+							{/* No button here - using standard bottom button only */}
+						</div>
+					)
 				default:
 					return null
 			}

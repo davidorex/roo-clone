@@ -320,12 +320,27 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 							setSecondaryButtonText(undefined)
 							setDidClickCancel(false)
 							break
+						case "operation_acknowledgment": // Added for Pause After State Change
+							// This case primarily ensures the UI is set up correctly if the 'ask'
+							// itself is the last message that triggers this useEffect.
+							playSound("notification") // Optional: sound when ack is requested
+							setSendingDisabled(false) // Enable input for optional feedback
+							setClineAsk("operation_acknowledgment")
+							setEnableButtons(true)
+							setPrimaryButtonText(t("chat:continue.title", { defaultValue: "Continue" }))
+							setSecondaryButtonText(undefined) // Or "Cancel"
+							textAreaRef.current?.focus() // Focus input for feedback
+							break
 					}
 					break
 				case "say":
 					// Don't want to reset since there could be a "say" after
 					// an "ask" while ask is waiting for response.
 					switch (lastMessage.say) {
+						case "operation_completed": // Added for Pause After State Change
+							playSound("notification")
+							// UI setup is handled by the subsequent ask("operation_acknowledgment")
+							break
 						case "api_req_retry_delayed":
 							setSendingDisabled(true)
 							break
@@ -512,6 +527,16 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 					break
 				case "command_output":
 					vscode.postMessage({ type: "terminalOperation", terminalOperation: "continue" })
+					break
+				case "operation_acknowledgment": // Added for Pause After State Change
+					vscode.postMessage({
+						type: "askResponse",
+						askResponse: "messageResponse",
+						text: trimmedInput, // Send user's optional feedback
+						images: images, // Though images are unlikely here
+					})
+					setInputValue("") // Clear input after sending
+					setSelectedImages([])
 					break
 			}
 

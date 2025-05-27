@@ -17,6 +17,7 @@ import { convertTextMateToHljs } from "@src/utils/textMateToHljs"
 
 export interface ExtensionStateContextType extends ExtensionState {
 	historyPreviewCollapsed?: boolean // Add the new state property
+	pauseAfterProductiveOperation: boolean // Added for Pause After State Change
 	didHydrateState: boolean
 	showWelcome: boolean
 	theme: any
@@ -185,6 +186,7 @@ export const ExtensionStateContextProvider: React.FC<{ children: React.ReactNode
 		terminalCompressProgressBar: true, // Default to compress progress bar output
 		historyPreviewCollapsed: false, // Initialize the new state (default to expanded)
 		autoCondenseContextPercent: 100,
+		pauseAfterProductiveOperation: false,
 		codebaseIndexConfig: {
 			codebaseIndexEnabled: false,
 			codebaseIndexQdrantUrl: "http://localhost:6333",
