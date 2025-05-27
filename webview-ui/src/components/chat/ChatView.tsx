@@ -531,7 +531,7 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 				case "operation_acknowledgment": // Added for Pause After State Change
 					vscode.postMessage({
 						type: "askResponse",
-						askResponse: "yesButtonClicked", // Or a more specific response type if needed
+						askResponse: "messageResponse",
 						text: trimmedInput, // Send user's optional feedback
 						images: images, // Though images are unlikely here
 					})
