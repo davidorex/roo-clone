@@ -171,6 +171,9 @@ export async function applyDiffTool(
 
 			// Used to determine if we should wait for busy terminal to update before sending api request
 			cline.didEditFile = true
+
+			await cline.checkForPauseAfterProductiveOperation("apply_diff")
+
 			let partFailHint = ""
 
 			if (diffResult.failParts && diffResult.failParts.length > 0) {
