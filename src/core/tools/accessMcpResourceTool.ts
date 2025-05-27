@@ -68,6 +68,8 @@ export async function accessMcpResourceTool(
 					.filter(Boolean)
 					.join("\n\n") || "(Empty response)"
 
+			await cline.checkForPauseAfterProductiveOperation("access_mcp_resource")
+
 			// Handle images (image must contain mimetype and blob)
 			let images: string[] = []
 
