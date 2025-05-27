@@ -171,9 +171,6 @@ export async function applyDiffTool(
 
 			// Used to determine if we should wait for busy terminal to update before sending api request
 			cline.didEditFile = true
-
-			await cline.checkForPauseAfterProductiveOperation("apply_diff")
-
 			let partFailHint = ""
 
 			if (diffResult.failParts && diffResult.failParts.length > 0) {
@@ -205,11 +202,7 @@ export async function applyDiffTool(
 				)
 			} else {
 				pushToolResult(
-					`Changes successfully applied to ${relPath.toPosix()}:\n\n${newProblemsMessage}\n${partFailHint}
-
-For each file creation or edit: add and commit with detailed, specific, measured, descriptive commit messages that leave meticulous forensic evidence for future ai's to know and understand every action and intention. When following an implementation plan document, clearly reference the step in the implementation plan the commit corresponds to. Future ai's must be able to understand complete thinking and actions in code from commit messages. Be accurate and factual and do not claim fixes to errors if you haven't confirmed they work. Speak of intentions, not certainties that could be misleading.
-
-You must re-read the file after editing before applying the next edit. Line numbers will likely have changed.`,
+					`Changes successfully applied to ${relPath.toPosix()}:\n\n${newProblemsMessage}\n` + partFailHint,
 				)
 			}
 
