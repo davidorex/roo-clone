@@ -2,9 +2,31 @@
 
 This document outlines the exact mutations needed to implement a feature that inserts current repository information, branch information, and the last 10 commits into the environment details.
 
-## 1. Extend Git Utility Module
+## 1. Export Helper Functions and Add New Functions to Git Utility Module
 
-First, we need to add new functions to the `src/utils/git.ts` file to retrieve the current repository name, branch information, and recent commits.
+First, we need to export the existing helper functions and add new functions to the `src/utils/git.ts` file to retrieve the current repository name, branch information, and recent commits.
+
+### 1.1 Export Existing Helper Functions
+
+Change the existing helper functions from private to exported:
+
+```typescript
+// CHANGE this line (around line 16):
+async function checkGitRepo(cwd: string): Promise<boolean> {
+
+// TO:
+export async function checkGitRepo(cwd: string): Promise<boolean> {
+
+// CHANGE this line (around line 25):
+async function checkGitInstalled(): Promise<boolean> {
+
+// TO:
+export async function checkGitInstalled(): Promise<boolean> {
+```
+
+### 1.2 Add New Functions
+
+Add these new functions to the end of `src/utils/git.ts`:
 
 ```typescript
 // Add these new functions to src/utils/git.ts
@@ -136,15 +158,17 @@ export async function getRecentCommits(cwd: string, count: number = 10): Promise
 }
 ```
 
+**Note**: The `GitCommit` interface is already defined in `src/utils/git.ts` (lines 8-14), so no additional type definition is needed.
+
 ## 2. Modify getEnvironmentDetails Function
 
 Next, we need to modify the `getEnvironmentDetails` function in `src/core/environment/getEnvironmentDetails.ts` to include the Git repository information.
 
-First, add the import for the new Git utility functions:
+First, add the import for the new Git utility functions and the GitCommit type:
 
 ```typescript
-// Add this import to src/core/environment/getEnvironmentDetails.ts
-import { getRepositoryName, getCurrentBranch, getRecentCommits } from "../../utils/git"
+// Add this import to src/core/environment/getEnvironmentDetails.ts after line 15 (after utils imports)
+import { getRepositoryName, getCurrentBranch, getRecentCommits, GitCommit } from "../../utils/git"
 ```
 
 Then, add the Git repository information section to the `getEnvironmentDetails` function. Insert this code before the final return statement:
@@ -183,17 +207,19 @@ Here's the complete mutation plan with exact file changes:
 
 ### File: src/utils/git.ts
 
-Add the three new functions (`getRepositoryName`, `getCurrentBranch`, and `getRecentCommits`) at the end of the file, just before the closing brace.
+1. **Export existing helper functions**: Change `async function checkGitRepo` and `async function checkGitInstalled` to `export async function` (around lines 16 and 25)
+
+2. **Add new functions**: Add the three new functions (`getRepositoryName`, `getCurrentBranch`, and `getRecentCommits`) at the end of the file
 
 ### File: src/core/environment/getEnvironmentDetails.ts
 
-1. Add the import statement at the top of the file with the other imports:
+1. **Add import statement**: Add the import after line 15 (after utils imports) and before line 18 (before core imports):
 
 ```typescript
-import { getRepositoryName, getCurrentBranch, getRecentCommits } from "../../utils/git"
+import { getRepositoryName, getCurrentBranch, getRecentCommits, GitCommit } from "../../utils/git"
 ```
 
-2. Add the Git repository information section before the final return statement (after the workspace directory files section).
+2. **Add Git repository information section**: Add the Git repository information section before the final return statement (after the workspace directory files section).
 
 ## 4. Testing the Changes
 
@@ -203,17 +229,33 @@ After implementing these changes, you can test them by:
 2. Sending a message to the AI assistant in the Roo-Clone extension, which automatically generates environment details for each user message
 3. Verifying that the Git repository information appears in the environment details section of the AI's context
 
-## 5. Error Handling and Edge Cases
+## 5. Type Safety
+
+The implementation leverages the existing `GitCommit` interface already defined in `src/utils/git.ts` (lines 8-14):
+
+```typescript
+export interface GitCommit {
+	hash: string
+	shortHash: string
+	subject: string
+	author: string
+	date: string
+}
+```
+
+This ensures type safety throughout the implementation and maintains consistency with existing git-related functions.
+
+## 6. Error Handling and Edge Cases
 
 The implementation includes robust error handling:
 
-1. Checks if Git is installed
-2. Checks if the current directory is a Git repository
+1. Checks if Git is installed using the existing `checkGitInstalled()` function
+2. Checks if the current directory is a Git repository using the existing `checkGitRepo()` function
 3. Handles different remote URL formats (HTTPS and SSH)
 4. Gracefully handles missing information (no remote, no commits, etc.)
 5. Provides meaningful error messages in the console for debugging
 
-## 6. Performance Considerations
+## 7. Performance Considerations
 
 The Git operations are relatively lightweight, but they do involve spawning child processes. To optimize performance:
 
