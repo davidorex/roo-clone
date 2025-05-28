@@ -198,11 +198,14 @@ export async function applyDiffTool(
 						`1. You do not need to re-write the file with these changes, as they have already been applied.\n` +
 						`2. Proceed with the task using this updated file content as the new baseline.\n` +
 						`3. The user may have made additional edits to the file. Adjust your approach accordingly.` +
-						`${newProblemsMessage}`,
+						`${newProblemsMessage}` +
+						formatResponse.commitMessageInstructions(),
 				)
 			} else {
 				pushToolResult(
-					`Changes successfully applied to ${relPath.toPosix()}:\n\n${newProblemsMessage}\n` + partFailHint,
+					`Changes successfully applied to ${relPath.toPosix()}:\n\n${newProblemsMessage}\n` +
+						partFailHint +
+						formatResponse.commitMessageInstructions(),
 				)
 			}
 

@@ -239,10 +239,14 @@ export async function writeToFileTool(
 						`1. You do not need to re-write the file with these changes, as they have already been applied.\n` +
 						`2. Proceed responding to the user's directive using this updated file content as the new baseline.\n` +
 						`3. If the user's edits have addressed part of the directive or changed the requirements, adjust your approach accordingly.` +
-						`${newProblemsMessage}`,
+						`${newProblemsMessage}` +
+						formatResponse.commitMessageInstructions(),
 				)
 			} else {
-				pushToolResult(`The content was successfully saved to ${relPath.toPosix()}.${newProblemsMessage}`)
+				pushToolResult(
+					`The content was successfully saved to ${relPath.toPosix()}.${newProblemsMessage}` +
+						formatResponse.commitMessageInstructions(),
+				)
 			}
 
 			await cline.diffViewProvider.reset()
