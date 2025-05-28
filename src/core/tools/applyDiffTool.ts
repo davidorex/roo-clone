@@ -188,7 +188,7 @@ export async function applyDiffTool(
 				)
 
 				pushToolResult(
-					`The user made the following updates to your content:\n\n${userEdits}\n\n` +
+					`The user made the following additional edits to the file:\n\n${userEdits}\n\n` +
 						partFailHint +
 						`The updated content, which includes both your original modifications and the user's edits, has been successfully saved to ${relPath.toPosix()}. Here is the full, updated content of the file, including line numbers:\n\n` +
 						`<final_file_content path="${relPath.toPosix()}">\n${addLineNumbers(
@@ -197,7 +197,7 @@ export async function applyDiffTool(
 						`Please note:\n` +
 						`1. You do not need to re-write the file with these changes, as they have already been applied.\n` +
 						`2. Proceed with the task using this updated file content as the new baseline.\n` +
-						`3. If the user's edits have addressed part of the task or changed the requirements, adjust your approach accordingly.` +
+						`3. The user may have made additional edits to the file. Adjust your approach accordingly.` +
 						`${newProblemsMessage}`,
 				)
 			} else {
