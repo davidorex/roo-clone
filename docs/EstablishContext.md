@@ -15,6 +15,18 @@ WHERE r.name = 'Roo-Clone'
 AND b.name = 'feature/pause-after-state-change';
 ```
 
+-- List all branches with their latest commit dates to determine recency
+SELECT b.id, b.name, MAX(c.commit_date) as latest_commit_date
+FROM viewer_branch b
+JOIN viewer_repository r ON b.repository_id = r.id
+JOIN viewer_commit_branches cb ON b.id = cb.branch_id
+JOIN viewer_commit c ON cb.commit_id = c.hash
+WHERE r.name = 'Roo-Clone'
+GROUP BY b.id, b.name
+ORDER BY latest_commit_date DESC;
+
+In general, while executing the queries in order listed in this document, use the most recent branch unless the user directs otherwise.
+
 ## 2. Get Recent Feature Development History (Chronological Order)
 
 ```sql
