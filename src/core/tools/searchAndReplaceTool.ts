@@ -220,6 +220,9 @@ export async function searchAndReplaceTool(
 
 		cline.didEditFile = true
 
+		// Pause after productive operation to allow user feedback
+		await cline.checkForPauseAfterProductiveOperation("search_and_replace")
+
 		if (!userEdits) {
 			pushToolResult(
 				`The content was successfully replaced in ${relPath}.${newProblemsMessage}` +
