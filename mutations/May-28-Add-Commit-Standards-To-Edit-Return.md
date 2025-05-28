@@ -7,7 +7,7 @@ This document outlines the exact mutations needed to inject commit message stand
 The following text will be added to all file editing tool responses:
 
 ```
-For each file creation or edits: create a detailed, specific, measured, descriptive commit messages that leaves meticulous forensic evidence for future ai's to know and understand every action and intention. Make sure not to be unjustifiably definitive in your claims. Do not use language like "this ensures…." or "this fixes…." Future ai's must be able to understand the true state of functionality and the complete thinking and actions in code from commit messages. Speak to aims and intentions.
+For each file creation or edits: create a detailed, specific, measured, descriptive commit messages that leaves meticulous forensic evidence for future ai's to know and understand every action and intention. Make sure not to be unjustifiably definitive in your claims. Do not use unwarranted maximalist language like "this ensures…." or "this fixes…." Future ai's must be able to understand the true state of functionality and the complete thinking and actions in code from commit messages. Speak to aims and intentions.
 ```
 
 ## Implementation Strategy
@@ -20,7 +20,7 @@ We'll define a constant at the top of each file editing tool file and append it 
 
 ```typescript
 // Add at the top of the file, after imports
-const COMMIT_MESSAGE_INSTRUCTIONS = `\n\nFor each file creation or edits: create a detailed, specific, measured, descriptive commit messages that leaves meticulous forensic evidence for future ai's to know and understand every action and intention. Make sure not to be unjustifiably definitive in your claims. Do not use language like "this ensures…." or "this fixes…." Future ai's must be able to understand the true state of functionality and the complete thinking and actions in code from commit messages. Speak to aims and intentions.`
+const COMMIT_MESSAGE_INSTRUCTIONS = `\n\nFor each file creation or edits: create a detailed, specific, measured, descriptive commit messages that leaves meticulous forensic evidence for future ai's to know and understand every action and intention. Make sure not to be unjustifiably definitive in your claims. Do not use unwarranted maximalist language like "this ensures…." or "this fixes…." Future ai's must be able to understand the true state of functionality and the complete thinking and actions in code from commit messages. Speak to aims and intentions.`
 
 // Then modify all pushToolResult calls:
 
@@ -91,7 +91,7 @@ pushToolResult(
 
 ```typescript
 // Add at the top of the file, after imports
-const COMMIT_MESSAGE_INSTRUCTIONS = `\n\nFor each file creation or edits: create a detailed, specific, measured, descriptive commit messages that leaves meticulous forensic evidence for future ai's to know and understand every action and intention. Make sure not to be unjustifiably definitive in your claims. Do not use language like "this ensures…." or "this fixes…." Future ai's must be able to understand the true state of functionality and the complete thinking and actions in code from commit messages. Speak to aims and intentions.`
+const COMMIT_MESSAGE_INSTRUCTIONS = `\n\nFor each file creation or edits: create a detailed, specific, measured, descriptive commit messages that leaves meticulous forensic evidence for future ai's to know and understand every action and intention. Make sure not to be unjustifiably definitive in your claims. Do not use unwarranted maximalist language like "this ensures…." or "this fixes…." Future ai's must be able to understand the true state of functionality and the complete thinking and actions in code from commit messages. Speak to aims and intentions.`
 
 // Then modify all pushToolResult calls:
 
@@ -141,7 +141,7 @@ pushToolResult(
 
 ```typescript
 // Add at the top of the file, after imports
-const COMMIT_MESSAGE_INSTRUCTIONS = `\n\nFor each file creation or edits: create a detailed, specific, measured, descriptive commit messages that leaves meticulous forensic evidence for future ai's to know and understand every action and intention. Make sure not to be unjustifiably definitive in your claims. Do not use language like "this ensures…." or "this fixes…." Future ai's must be able to understand the true state of functionality and the complete thinking and actions in code from commit messages. Speak to aims and intentions.`
+const COMMIT_MESSAGE_INSTRUCTIONS = `\n\nFor each file creation or edits: create a detailed, specific, measured, descriptive commit messages that leaves meticulous forensic evidence for future ai's to know and understand every action and intention. Make sure not to be unjustifiably definitive in your claims. Do not use unwarranted maximalist language like "this ensures…." or "this fixes…." Future ai's must be able to understand the true state of functionality and the complete thinking and actions in code from commit messages. Speak to aims and intentions.`
 
 // Then modify all pushToolResult calls:
 
@@ -188,7 +188,7 @@ pushToolResult(
 
 ```typescript
 // Add at the top of the file, after imports
-const COMMIT_MESSAGE_INSTRUCTIONS = `\n\nFor each file creation or edits: create a detailed, specific, measured, descriptive commit messages that leaves meticulous forensic evidence for future ai's to know and understand every action and intention. Make sure not to be unjustifiably definitive in your claims. Do not use language like "this ensures…." or "this fixes…." Future ai's must be able to understand the true state of functionality and the complete thinking and actions in code from commit messages. Speak to aims and intentions.`
+const COMMIT_MESSAGE_INSTRUCTIONS = `\n\nFor each file creation or edits: create a detailed, specific, measured, descriptive commit messages that leaves meticulous forensic evidence for future ai's to know and understand every action and intention. Make sure not to be unjustifiably definitive in your claims. Do not use unwarranted maximalist language like "this ensures…." or "this fixes…." Future ai's must be able to understand the true state of functionality and the complete thinking and actions in code from commit messages. Speak to aims and intentions.`
 
 // Then modify all pushToolResult calls:
 
