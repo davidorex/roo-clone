@@ -112,3 +112,93 @@ These queries provide a comprehensive view of a feature's implementation history
     - A specific branch directed by the user
 3. Replace `:branch_name` in the queries with your chosen branch name
 4. Adjust other search patterns as needed based on the specific feature being analyzed
+
+## 6. Advanced Context Establishment Queries
+
+The following queries provide more sophisticated approaches to establishing development context, particularly useful for complex repositories with multiple branches and features.
+
+### 6.1 Branch Creation Dates and First Commits
+
+This query helps identify when branches were created and what their first commits were about, which can provide insights into the original purpose of the branch:
+
+```sql
+SELECT b.id, b.name, MIN(c.commit_date) AS first_commit_date,
+  (SELECT c2.short_message
+   FROM viewer_commit c2
+   JOIN viewer_commit_branches vcb2 ON c2.hash = vcb2.commit_id
+   WHERE vcb2.branch_id = b.id
+   ORDER BY c2.commit_date ASC LIMIT 1) AS first_commit_message
+FROM viewer_branch b
+JOIN viewer_repository r ON b.repository_id = r.id
+JOIN viewer_commit_branches vcb ON b.id = vcb.branch_id
+JOIN viewer_commit c ON vcb.commit_id = c.hash
+WHERE r.name = 'Roo-Clone'
+GROUP BY b.id, b.name
+ORDER BY first_commit_date DESC;
+```
+
+### 6.2 Merge Commit Identification
+
+This query identifies merge commits, which are critical integration points between branches. These often represent significant milestones in feature development:
+
+```sql
+SELECT c.commit_date, c.hash, c.short_message, vb.name AS branch_name
+FROM viewer_commit c
+JOIN viewer_commit_branches vcb ON c.hash = vcb.commit_id
+JOIN viewer_branch vb ON vcb.branch_id = vb.id
+JOIN viewer_repository vr ON vb.repository_id = vr.id
+WHERE vr.name = 'Roo-Clone'
+AND (c.short_message LIKE 'merge%' OR c.short_message LIKE 'Merge%')
+ORDER BY c.commit_date DESC LIMIT 15;
+```
+
+### 6.3 Branch-Specific Commits (Excluding Shared History)
+
+This more complex query identifies commits that are unique to a specific branch, filtering out commits that are shared with other branches (such as those inherited from parent branches):
+
+```sql
+WITH branch_commits AS (
+  SELECT vb.name AS branch_name, c.hash, c.commit_date, c.short_message,
+    COUNT(DISTINCT vcb2.branch_id) AS branch_count
+  FROM viewer_commit c
+  JOIN viewer_commit_branches vcb ON c.hash = vcb.commit_id
+  JOIN viewer_branch vb ON vcb.branch_id = vb.id
+  JOIN viewer_repository vr ON vb.repository_id = vr.id
+  LEFT JOIN viewer_commit_branches vcb2 ON c.hash = vcb2.commit_id
+  WHERE vr.name = 'Roo-Clone'
+  GROUP BY vb.name, c.hash, c.commit_date, c.short_message
+)
+SELECT branch_name, hash, commit_date, short_message
+FROM branch_commits
+WHERE branch_count = 1 AND branch_name = :branch_name
+ORDER BY commit_date DESC LIMIT 20;
+```
+
+### 6.4 Feature-Specific Commits with Date and Keyword Filtering
+
+This query combines date filtering and keyword searching to focus on commits related to a specific feature after a certain date (such as after a merge):
+
+```sql
+SELECT c.commit_date, c.hash, c.short_message
+FROM viewer_commit c
+JOIN viewer_commit_branches vcb ON c.hash = vcb.commit_id
+JOIN viewer_branch vb ON vcb.branch_id = vb.id
+JOIN viewer_repository vr ON vb.repository_id = vr.id
+WHERE vr.name = 'Roo-Clone'
+AND vb.name = :branch_name
+AND c.commit_date > :start_date -- e.g., '2025-05-27T12:00:00.000Z'
+AND (c.short_message LIKE :keyword1 OR c.short_message LIKE :keyword2)
+ORDER BY c.commit_date ASC;
+```
+
+### 6.5 Recommended Query Sequence
+
+For optimal context establishment:
+
+1. First, identify repositories and list all branches with their latest activity (Sections 1 and 6.1)
+2. Identify merge commits to understand integration points (Section 6.2)
+3. Query for branch-specific commits to focus on unique work (Section 6.3)
+4. Use date and keyword filtering to narrow down to specific feature work (Section 6.4)
+5. Examine file changes in key commits to understand implementation details (Sections 3-5)
+
+This progressive approach helps filter out noise and focus on the most relevant development context.
