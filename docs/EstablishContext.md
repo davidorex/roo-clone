@@ -113,7 +113,173 @@ These queries provide a comprehensive view of a feature's implementation history
 3. Replace `:branch_name` in the queries with your chosen branch name
 4. Adjust other search patterns as needed based on the specific feature being analyzed
 
-## 6. Advanced Context Establishment Queries
+## 6. File-Focused Analysis Queries
+
+The following queries focus on analyzing changes to specific files or file types, providing insights into how code and documentation evolve over time.
+
+### 6.1 Identify Recent Documentation Changes
+
+This query identifies recent changes to Markdown files, which often represent documentation, planning, or architecture decisions:
+
+```sql
+SELECT
+    c.commit_date,
+    fc.path AS file_path,
+    fc.git_status,
+    c.hash AS commit_hash,
+    c.short_message
+FROM
+    viewer_commit c
+JOIN
+    viewer_filechange fc ON c.hash = fc.commit_id
+JOIN
+    viewer_commit_branches vcb ON c.hash = vcb.commit_id
+JOIN
+    viewer_branch vb ON vcb.branch_id = vb.id
+JOIN
+    viewer_repository vr ON vb.repository_id = vr.id
+WHERE
+    vr.name = 'Roo-Clone'
+    AND vb.name = :branch_name
+    AND fc.path ILIKE '%.md'
+ORDER BY
+    c.commit_date DESC
+LIMIT 20;
+```
+
+### 6.2 Overview of Recent File Changes
+
+This query provides a broad view of all recent file changes on a specific branch:
+
+```sql
+SELECT
+    c.commit_date,
+    fc.path AS file_path,
+    fc.git_status,
+    c.hash AS commit_hash,
+    c.short_message
+FROM
+    viewer_commit c
+JOIN
+    viewer_filechange fc ON c.hash = fc.commit_id
+JOIN
+    viewer_commit_branches vcb ON c.hash = vcb.commit_id
+JOIN
+    viewer_branch vb ON vcb.branch_id = vb.id
+JOIN
+    viewer_repository vr ON vb.repository_id = vr.id
+WHERE
+    vr.name = 'Roo-Clone'
+    AND vb.name = :branch_name
+    -- Optional date filter
+    -- AND c.commit_date >= :start_date
+ORDER BY
+    c.commit_date DESC
+LIMIT 30;
+```
+
+### 6.3 Focus on Code Changes in Specific Directories
+
+This query targets code changes in specific directories, filtering out documentation or other non-code files:
+
+```sql
+SELECT
+    c.commit_date,
+    fc.path AS file_path,
+    fc.git_status,
+    c.hash AS commit_hash,
+    c.short_message
+FROM
+    viewer_commit c
+JOIN
+    viewer_filechange fc ON c.hash = fc.commit_id
+JOIN
+    viewer_commit_branches vcb ON c.hash = vcb.commit_id
+JOIN
+    viewer_branch vb ON vcb.branch_id = vb.id
+JOIN
+    viewer_repository vr ON vb.repository_id = vr.id
+WHERE
+    vr.name = 'Roo-Clone'
+    AND vb.name = :branch_name
+    AND fc.path LIKE 'src/%'  -- Focus on source code
+    AND fc.path NOT ILIKE '%.md'  -- Exclude documentation
+ORDER BY
+    c.commit_date DESC
+LIMIT 20;
+```
+
+### 6.4 Trace File Evolution Over Time
+
+This query traces the complete evolution of a specific file across all commits that modified it, showing how the file changed over time:
+
+```sql
+SELECT
+    c.commit_date,
+    c.hash,
+    c.short_message,
+    vb.name AS branch_name,
+    fc.git_status,
+    fc.diff_content
+FROM
+    viewer_filechange fc
+JOIN
+    viewer_commit c ON fc.commit_id = c.hash
+JOIN
+    viewer_commit_branches vcb ON c.hash = vcb.commit_id
+JOIN
+    viewer_branch vb ON vcb.branch_id = vb.id
+JOIN
+    viewer_repository vr ON vb.repository_id = vr.id
+WHERE
+    vr.name = 'Roo-Clone'
+    AND fc.path = :file_path  -- e.g., 'src/core/tools/writeToFileTool.ts'
+    -- Optional filters
+    -- AND vb.name = :branch_name  -- Limit to specific branch
+    -- AND c.commit_date >= :start_date  -- Limit to recent changes
+    AND fc.diff_content IS NOT NULL
+    AND fc.diff_content != ''
+ORDER BY
+    c.commit_date ASC;
+```
+
+### 6.5 Get Latest Change to a Specific File
+
+This query retrieves the most recent change made to a particular file:
+
+```sql
+SELECT
+    fc.id,
+    c.hash AS commit_hash,
+    c.short_message,
+    c.commit_date,
+    vb.name AS branch_name,
+    fc.path AS file_path,
+    fc.git_status,
+    fc.diff_content
+FROM
+    viewer_filechange fc
+JOIN
+    viewer_commit c ON fc.commit_id = c.hash
+JOIN
+    viewer_commit_branches vcb ON c.hash = vcb.commit_id
+JOIN
+    viewer_branch vb ON vcb.branch_id = vb.id
+JOIN
+    viewer_repository vr ON vb.repository_id = vr.id
+WHERE
+    fc.path = :file_path  -- Specify the file path
+    AND vr.name = 'Roo-Clone'
+    -- Optional branch filter
+    -- AND vb.name = :branch_name
+    AND fc.diff_content IS NOT NULL
+    AND fc.diff_content != ''
+ORDER BY
+    c.commit_date DESC, fc.id DESC
+LIMIT 1;
+```
+
+## 7. Advanced Context Establishment Queries
 
 The following queries provide more sophisticated approaches to establishing development context, particularly useful for complex repositories with multiple branches and features.
 
