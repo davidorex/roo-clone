@@ -1,6 +1,6 @@
 # PostgreSQL Queries for Establishing Feature Development Context
 
-The following SQL queries can be executed using the PostgreSQL MCP tool to establish immediate context of the recent "Pause After Productive Operation" feature development and trace changes to relevant files:
+The following SQL queries can be executed using the PostgreSQL MCP tool to establish immediate context of feature development and trace changes to relevant files:
 
 ## 1. Identify Repository and Feature Branch
 
@@ -11,8 +11,7 @@ WHERE name = 'Roo-Clone';
 SELECT b.id, b.name
 FROM viewer_branch b
 JOIN viewer_repository r ON b.repository_id = r.id
-WHERE r.name = 'Roo-Clone'
-AND b.name = 'feature/pause-after-state-change';
+WHERE r.name = 'Roo-Clone';
 ```
 
 -- List all branches with their latest commit dates to determine recency
@@ -36,7 +35,7 @@ JOIN viewer_commit_branches vcb ON c.hash = vcb.commit_id
 JOIN viewer_branch vb ON vcb.branch_id = vb.id
 JOIN viewer_repository vr ON vb.repository_id = vr.id
 WHERE vr.name = 'Roo-Clone'
-AND vb.name = 'feature/pause-after-state-change'
+AND vb.name = :branch_name -- Replace with the branch name of interest
 ORDER BY c.commit_date ASC
 LIMIT 15;
 ```
@@ -79,7 +78,7 @@ FROM viewer_filechange fc
 JOIN viewer_commit c ON fc.commit_id = c.hash
 JOIN viewer_commit_branches vcb ON c.hash = vcb.commit_id
 JOIN viewer_branch vb ON vcb.branch_id = vb.id
-WHERE vb.name = 'feature/pause-after-state-change'
+WHERE vb.name = :branch_name -- Replace with the branch name of interest
 AND fc.path LIKE '%Tool.ts%'
 AND fc.diff_content LIKE '%checkForPauseAfterProductiveOperation%'
 ORDER BY c.commit_date ASC;
@@ -99,8 +98,17 @@ AND fc.path LIKE '%ChatRow.tsx%';
 SELECT fc.path, fc.diff_content
 FROM viewer_filechange fc
 JOIN viewer_commit c ON fc.commit_id = c.hash
-WHERE c.short_message LIKE '%Implement UI for Pause After Productive Operation%'
+WHERE c.short_message LIKE '%Implement UI for%' -- Adjust search pattern based on feature of interest
 AND fc.path LIKE '%ExperimentalSettings.tsx%';
 ```
 
-These queries provide a comprehensive view of the feature's implementation history, from initial development through bugfix, across both backend functionality and UI components.
+These queries provide a comprehensive view of a feature's implementation history, from initial development through bugfix, across both backend functionality and UI components.
+
+## Usage Notes
+
+1. First identify the repository and list all branches with their recency information
+2. Choose a branch to analyze based on:
+    - The most recent branch (default)
+    - A specific branch directed by the user
+3. Replace `:branch_name` in the queries with your chosen branch name
+4. Adjust other search patterns as needed based on the specific feature being analyzed
