@@ -137,6 +137,9 @@ export async function insertContentTool(
 
 		cline.didEditFile = true
 
+		// Pause after productive operation to allow user feedback
+		await cline.checkForPauseAfterProductiveOperation("insert_content")
+
 		if (!userEdits) {
 			pushToolResult(
 				`The content was successfully inserted in ${relPath.toPosix()} at line ${lineNumber}.${newProblemsMessage}` +
