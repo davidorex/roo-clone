@@ -92,3 +92,199 @@ In the future, this method could be extended to:
 3. Track turn duration or token usage per turn
 
 These enhancements would maintain the same interface while providing more detailed analytics.
+
+## Test Implementation
+
+The following tests should be added to `src/core/task/__tests__/Task.test.ts` to ensure proper coverage of the new method. These tests follow the existing patterns in the test file and use the same mocking infrastructure.
+
+```typescript
+describe("getInteractionTurnCount", () => {
+	it("should return 0 for empty conversation history", () => {
+		// Create Task instance with standard mocks
+		const cline = new Task({
+			provider: mockProvider,
+			apiConfiguration: mockApiConfig,
+			task: "test task",
+			startTask: false,
+		})
+
+		// Set up test condition
+		cline.apiConversationHistory = []
+
+		// Assert expected result
+		expect(cline.getInteractionTurnCount()).toBe(0)
+	})
+
+	it("should return 0 for conversation with only user messages", () => {
+		const cline = new Task({
+			provider: mockProvider,
+			apiConfiguration: mockApiConfig,
+			task: "test task",
+			startTask: false,
+		})
+
+		cline.apiConversationHistory = [
+			{
+				role: "user",
+				content: [{ type: "text", text: "message 1" }],
+				ts: Date.now(),
+			},
+			{
+				role: "user",
+				content: [{ type: "text", text: "message 2" }],
+				ts: Date.now(),
+			},
+		]
+
+		expect(cline.getInteractionTurnCount()).toBe(0)
+	})
+
+	it("should return correct count for alternating user-assistant messages", () => {
+		const cline = new Task({
+			provider: mockProvider,
+			apiConfiguration: mockApiConfig,
+			task: "test task",
+			startTask: false,
+		})
+
+		cline.apiConversationHistory = [
+			{
+				role: "user",
+				content: [{ type: "text", text: "message 1" }],
+				ts: Date.now(),
+			},
+			{
+				role: "assistant",
+				content: [{ type: "text", text: "response 1" }],
+				ts: Date.now(),
+			},
+			{
+				role: "user",
+				content: [{ type: "text", text: "message 2" }],
+				ts: Date.now(),
+			},
+			{
+				role: "assistant",
+				content: [{ type: "text", text: "response 2" }],
+				ts: Date.now(),
+			},
+		]
+
+		expect(cline.getInteractionTurnCount()).toBe(2)
+	})
+
+	it("should ignore system messages when counting turns", () => {
+		const cline = new Task({
+			provider: mockProvider,
+			apiConfiguration: mockApiConfig,
+			task: "test task",
+			startTask: false,
+		})
+
+		cline.apiConversationHistory = [
+			{
+				role: "system",
+				content: [{ type: "text", text: "system prompt" }],
+				ts: Date.now(),
+			},
+			{
+				role: "user",
+				content: [{ type: "text", text: "message 1" }],
+				ts: Date.now(),
+			},
+			{
+				role: "assistant",
+				content: [{ type: "text", text: "response 1" }],
+				ts: Date.now(),
+			},
+		]
+
+		expect(cline.getInteractionTurnCount()).toBe(1)
+	})
+
+	it("should handle non-alternating message sequences correctly", () => {
+		const cline = new Task({
+			provider: mockProvider,
+			apiConfiguration: mockApiConfig,
+			task: "test task",
+			startTask: false,
+		})
+
+		cline.apiConversationHistory = [
+			{
+				role: "user",
+				content: [{ type: "text", text: "message 1" }],
+				ts: Date.now(),
+			},
+			{
+				role: "user",
+				content: [{ type: "text", text: "message 2" }],
+				ts: Date.now(),
+			},
+			{
+				role: "assistant",
+				content: [{ type: "text", text: "response 1" }],
+				ts: Date.now(),
+			},
+			{
+				role: "assistant",
+				content: [{ type: "text", text: "response 2" }],
+				ts: Date.now(),
+			},
+			{
+				role: "user",
+				content: [{ type: "text", text: "message 3" }],
+				ts: Date.now(),
+			},
+		]
+
+		// Should count 1 turn (the second user message paired with the first assistant response)
+		expect(cline.getInteractionTurnCount()).toBe(1)
+	})
+
+	it("should handle incomplete conversation (ending with user message)", () => {
+		const cline = new Task({
+			provider: mockProvider,
+			apiConfiguration: mockApiConfig,
+			task: "test task",
+			startTask: false,
+		})
+
+		cline.apiConversationHistory = [
+			{
+				role: "user",
+				content: [{ type: "text", text: "message 1" }],
+				ts: Date.now(),
+			},
+			{
+				role: "assistant",
+				content: [{ type: "text", text: "response 1" }],
+				ts: Date.now(),
+			},
+			{
+				role: "user",
+				content: [{ type: "text", text: "message 2" }],
+				ts: Date.now(),
+			},
+		]
+
+		// Should count only the completed turn
+		expect(cline.getInteractionTurnCount()).toBe(1)
+	})
+})
+```
+
+These tests ensure that the `getInteractionTurnCount()` method correctly handles various conversation scenarios, including:
+
+1. Empty conversations
+2. Conversations with only user messages
+3. Alternating user-assistant message pairs
+4. Conversations with system messages
+5. Non-alternating message sequences
+6. Incomplete conversations ending with a user message
+
+The test structure follows the existing patterns in the Task test file, with each test:
+
+- Creating a Task instance with the standard mock setup
+- Setting up specific test conditions by manipulating the apiConversationHistory
+- Asserting the expected result from the getInteractionTurnCount() method
