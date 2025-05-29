@@ -165,6 +165,9 @@ Otherwise, if you have not completed the task and do not need additional informa
 		const prettyPatchLines = lines.slice(4)
 		return prettyPatchLines.join("\n")
 	},
+
+	commitMessageInstructions: () =>
+		`\n\nFor each file creation or edits: create a detailed, specific, measured, descriptive commit messages that leaves meticulous forensic evidence for future ai's to know and understand every action and intention. \n\nMake sure not to be unjustifiably definitive in your claims. Do not use unwarranted maximalist language like "this ensures…." or "this fixes…." Future ai's must be able to understand the true state of functionality and the complete thinking and actions in code from commit messages. Speak to aims and intentions of your changes. \n\nIf implementing steps in an implementation plan, make exact reference to the step(s) the commit accomplishes.\n\nStructure your commit message into logical sections. Format your commit message cleanly so as not to accidently invoke additional commands.`,
 }
 
 // to avoid circular dependency

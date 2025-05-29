@@ -220,8 +220,14 @@ export async function searchAndReplaceTool(
 
 		cline.didEditFile = true
 
+		// Pause after productive operation to allow user feedback
+		await cline.checkForPauseAfterProductiveOperation("search_and_replace")
+
 		if (!userEdits) {
-			pushToolResult(`The content was successfully replaced in ${relPath}.${newProblemsMessage}`)
+			pushToolResult(
+				`The content was successfully replaced in ${relPath}.${newProblemsMessage}` +
+					formatResponse.commitMessageInstructions(),
+			)
 			await cline.diffViewProvider.reset()
 			return
 		}
@@ -245,6 +251,7 @@ export async function searchAndReplaceTool(
 			`2. Proceed with the task using the updated file content as the new baseline.\n`,
 			`3. If the user's edits have addressed part of the task or changed the requirements, adjust your approach accordingly.`,
 			newProblemsMessage,
+			formatResponse.commitMessageInstructions(),
 		].join("")
 
 		pushToolResult(resultMessage)

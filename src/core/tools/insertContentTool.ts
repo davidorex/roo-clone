@@ -137,9 +137,13 @@ export async function insertContentTool(
 
 		cline.didEditFile = true
 
+		// Pause after productive operation to allow user feedback
+		await cline.checkForPauseAfterProductiveOperation("insert_content")
+
 		if (!userEdits) {
 			pushToolResult(
-				`The content was successfully inserted in ${relPath.toPosix()} at line ${lineNumber}.${newProblemsMessage}`,
+				`The content was successfully inserted in ${relPath.toPosix()} at line ${lineNumber}.${newProblemsMessage}` +
+					formatResponse.commitMessageInstructions(),
 			)
 			await cline.diffViewProvider.reset()
 			return
@@ -163,7 +167,8 @@ export async function insertContentTool(
 				`1. You do not need to re-write the file with these changes, as they have already been applied.\n` +
 				`2. Proceed with the task using this updated file content as the new baseline.\n` +
 				`3. If the user's edits have addressed part of the task or changed the requirements, adjust your approach accordingly.` +
-				`${newProblemsMessage}`,
+				`${newProblemsMessage}` +
+				formatResponse.commitMessageInstructions(),
 		)
 
 		await cline.diffViewProvider.reset()
