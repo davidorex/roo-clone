@@ -264,3 +264,461 @@ The Git operations are relatively lightweight, but they do involve spawning chil
 3. The implementation reuses the existing `checkGitRepo` and `checkGitInstalled` functions to avoid redundant checks
 
 This implementation follows the existing patterns in the codebase and extends the functionality in a way that is consistent with the current architecture.
+
+## 8. Test Mutations
+
+To ensure proper test coverage for the new functionality, we need to add tests that follow the existing patterns in the codebase. Here are the exact test mutations required:
+
+### File: src/utils/**tests**/git.test.ts
+
+Add the following test cases for the new Git utility functions:
+
+```typescript
+describe("getRepositoryName", () => {
+	it("should return repository name when git is installed and repo exists with HTTPS URL", async () => {
+		// Set up mock responses
+		const responses = new Map([
+			["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+			["git rev-parse --git-dir", { stdout: ".git", stderr: "" }],
+			["git remote get-url origin", { stdout: "https://github.com/username/repo-name.git", stderr: "" }],
+		])
+
+		exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+			// Find matching response
+			for (const [cmd, response] of responses) {
+				if (command === cmd) {
+					callback(null, response)
+					return
+				}
+			}
+			callback(new Error(`Unexpected command: ${command}`))
+		})
+
+		const result = await getRepositoryName(cwd)
+
+		// Verify the result is correct
+		expect(result).toBe("username/repo-name")
+
+		// Verify all commands were called correctly
+		expect(exec).toHaveBeenCalledWith("git --version", {}, expect.any(Function))
+		expect(exec).toHaveBeenCalledWith("git rev-parse --git-dir", { cwd }, expect.any(Function))
+		expect(exec).toHaveBeenCalledWith("git remote get-url origin", { cwd }, expect.any(Function))
+	})
+
+	it("should return repository name when git is installed and repo exists with SSH URL", async () => {
+		// Set up mock responses
+		const responses = new Map([
+			["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+			["git rev-parse --git-dir", { stdout: ".git", stderr: "" }],
+			["git remote get-url origin", { stdout: "git@github.com:username/repo-name.git", stderr: "" }],
+		])
+
+		exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+			// Find matching response
+			for (const [cmd, response] of responses) {
+				if (command === cmd) {
+					callback(null, response)
+					return
+				}
+			}
+			callback(new Error(`Unexpected command: ${command}`))
+		})
+
+		const result = await getRepositoryName(cwd)
+
+		// Verify the result is correct
+		expect(result).toBe("username/repo-name")
+
+		// Verify all commands were called correctly
+		expect(exec).toHaveBeenCalledWith("git --version", {}, expect.any(Function))
+		expect(exec).toHaveBeenCalledWith("git rev-parse --git-dir", { cwd }, expect.any(Function))
+		expect(exec).toHaveBeenCalledWith("git remote get-url origin", { cwd }, expect.any(Function))
+	})
+
+	it("should return repository name for non-GitHub URLs", async () => {
+		// Set up mock responses
+		const responses = new Map([
+			["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+			["git rev-parse --git-dir", { stdout: ".git", stderr: "" }],
+			["git remote get-url origin", { stdout: "https://gitlab.com/username/repo-name.git", stderr: "" }],
+		])
+
+		exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+			// Find matching response
+			for (const [cmd, response] of responses) {
+				if (command === cmd) {
+					callback(null, response)
+					return
+				}
+			}
+			callback(new Error(`Unexpected command: ${command}`))
+		})
+
+		const result = await getRepositoryName(cwd)
+
+		// Verify the result is correct
+		expect(result).toBe("repo-name")
+	})
+
+	it("should return null when git is not installed", async () => {
+		exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+			if (command === "git --version") {
+				callback(new Error("git not found"))
+				return
+			}
+			callback(new Error("Unexpected command"))
+		})
+
+		const result = await getRepositoryName(cwd)
+		expect(result).toBeNull()
+		expect(exec).toHaveBeenCalledWith("git --version", {}, expect.any(Function))
+	})
+
+	it("should return null when not in a git repository", async () => {
+		const responses = new Map([
+			["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+			["git rev-parse --git-dir", null], // null indicates error should be called
+		])
+
+		exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+			const response = responses.get(command)
+			if (response === null) {
+				callback(new Error("not a git repository"))
+			} else if (response) {
+				callback(null, response)
+			} else {
+				callback(new Error("Unexpected command"))
+			}
+		})
+
+		const result = await getRepositoryName(cwd)
+		expect(result).toBeNull()
+		expect(exec).toHaveBeenCalledWith("git --version", {}, expect.any(Function))
+		expect(exec).toHaveBeenCalledWith("git rev-parse --git-dir", { cwd }, expect.any(Function))
+	})
+
+	it("should return null when no remote URL is available", async () => {
+		const responses = new Map([
+			["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+			["git rev-parse --git-dir", { stdout: ".git", stderr: "" }],
+			["git remote get-url origin", null], // null indicates error should be called
+		])
+
+		exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+			const response = responses.get(command)
+			if (response === null) {
+				callback(new Error("no remote named 'origin'"))
+			} else if (response) {
+				callback(null, response)
+			} else {
+				callback(new Error("Unexpected command"))
+			}
+		})
+
+		const result = await getRepositoryName(cwd)
+		expect(result).toBeNull()
+	})
+})
+
+describe("getCurrentBranch", () => {
+	it("should return branch name when git is installed and repo exists", async () => {
+		// Set up mock responses
+		const responses = new Map([
+			["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+			["git rev-parse --git-dir", { stdout: ".git", stderr: "" }],
+			["git rev-parse --abbrev-ref HEAD", { stdout: "main", stderr: "" }],
+		])
+
+		exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+			// Find matching response
+			for (const [cmd, response] of responses) {
+				if (command === cmd) {
+					callback(null, response)
+					return
+				}
+			}
+			callback(new Error(`Unexpected command: ${command}`))
+		})
+
+		const result = await getCurrentBranch(cwd)
+
+		// Verify the result is correct
+		expect(result).toBe("main")
+
+		// Verify all commands were called correctly
+		expect(exec).toHaveBeenCalledWith("git --version", {}, expect.any(Function))
+		expect(exec).toHaveBeenCalledWith("git rev-parse --git-dir", { cwd }, expect.any(Function))
+		expect(exec).toHaveBeenCalledWith("git rev-parse --abbrev-ref HEAD", { cwd }, expect.any(Function))
+	})
+
+	it("should return null when git is not installed", async () => {
+		exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+			if (command === "git --version") {
+				callback(new Error("git not found"))
+				return
+			}
+			callback(new Error("Unexpected command"))
+		})
+
+		const result = await getCurrentBranch(cwd)
+		expect(result).toBeNull()
+		expect(exec).toHaveBeenCalledWith("git --version", {}, expect.any(Function))
+	})
+
+	it("should return null when not in a git repository", async () => {
+		const responses = new Map([
+			["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+			["git rev-parse --git-dir", null], // null indicates error should be called
+		])
+
+		exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+			const response = responses.get(command)
+			if (response === null) {
+				callback(new Error("not a git repository"))
+			} else if (response) {
+				callback(null, response)
+			} else {
+				callback(new Error("Unexpected command"))
+			}
+		})
+
+		const result = await getCurrentBranch(cwd)
+		expect(result).toBeNull()
+		expect(exec).toHaveBeenCalledWith("git --version", {}, expect.any(Function))
+		expect(exec).toHaveBeenCalledWith("git rev-parse --git-dir", { cwd }, expect.any(Function))
+	})
+})
+
+describe("getRecentCommits", () => {
+	const mockCommitData = [
+		"abc123def456",
+		"abc123",
+		"fix: test commit",
+		"John Doe",
+		"2024-01-06",
+		"def456abc789",
+		"def456",
+		"feat: new feature",
+		"Jane Smith",
+		"2024-01-05",
+	].join("\n")
+
+	it("should return commits when git is installed and repo exists", async () => {
+		// Set up mock responses
+		const responses = new Map([
+			["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+			["git rev-parse --git-dir", { stdout: ".git", stderr: "" }],
+			['git log -n 10 --format="%H%n%h%n%s%n%an%n%ad" --date=short', { stdout: mockCommitData, stderr: "" }],
+		])
+
+		exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+			// Find matching response
+			for (const [cmd, response] of responses) {
+				if (command.startsWith(cmd)) {
+					callback(null, response)
+					return
+				}
+			}
+			callback(new Error(`Unexpected command: ${command}`))
+		})
+
+		const result = await getRecentCommits(cwd)
+
+		// First verify the result is correct
+		expect(result).toHaveLength(2)
+		expect(result[0]).toEqual({
+			hash: "abc123def456",
+			shortHash: "abc123",
+			subject: "fix: test commit",
+			author: "John Doe",
+			date: "2024-01-06",
+		})
+
+		// Then verify all commands were called correctly
+		expect(exec).toHaveBeenCalledWith("git --version", {}, expect.any(Function))
+		expect(exec).toHaveBeenCalledWith("git rev-parse --git-dir", { cwd }, expect.any(Function))
+		expect(exec).toHaveBeenCalledWith(
+			'git log -n 10 --format="%H%n%h%n%s%n%an%n%ad" --date=short',
+			{ cwd },
+			expect.any(Function),
+		)
+	})
+
+	it("should return empty array when git is not installed", async () => {
+		exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+			if (command === "git --version") {
+				callback(new Error("git not found"))
+				return
+			}
+			callback(new Error("Unexpected command"))
+		})
+
+		const result = await getRecentCommits(cwd)
+		expect(result).toEqual([])
+		expect(exec).toHaveBeenCalledWith("git --version", {}, expect.any(Function))
+	})
+
+	it("should return empty array when not in a git repository", async () => {
+		const responses = new Map([
+			["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+			["git rev-parse --git-dir", null], // null indicates error should be called
+		])
+
+		exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+			const response = responses.get(command)
+			if (response === null) {
+				callback(new Error("not a git repository"))
+			} else if (response) {
+				callback(null, response)
+			} else {
+				callback(new Error("Unexpected command"))
+			}
+		})
+
+		const result = await getRecentCommits(cwd)
+		expect(result).toEqual([])
+		expect(exec).toHaveBeenCalledWith("git --version", {}, expect.any(Function))
+		expect(exec).toHaveBeenCalledWith("git rev-parse --git-dir", { cwd }, expect.any(Function))
+	})
+
+	it("should respect the count parameter", async () => {
+		// Set up mock responses
+		const responses = new Map([
+			["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+			["git rev-parse --git-dir", { stdout: ".git", stderr: "" }],
+			['git log -n 5 --format="%H%n%h%n%s%n%an%n%ad" --date=short', { stdout: mockCommitData, stderr: "" }],
+		])
+
+		exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+			// Find matching response
+			for (const [cmd, response] of responses) {
+				if (command.startsWith(cmd)) {
+					callback(null, response)
+					return
+				}
+			}
+			callback(new Error(`Unexpected command: ${command}`))
+		})
+
+		await getRecentCommits(cwd, 5)
+
+		// Verify the command was called with the correct count
+		expect(exec).toHaveBeenCalledWith(
+			'git log -n 5 --format="%H%n%h%n%s%n%an%n%ad" --date=short',
+			{ cwd },
+			expect.any(Function),
+		)
+	})
+})
+```
+
+### File: src/core/environment/**tests**/getEnvironmentDetails.test.ts
+
+Add the following test case for the Git repository information section:
+
+```typescript
+// Add these imports at the top of the file with the other imports
+import * as git from "../../../utils/git"
+
+// Add this to the jest.mock section
+jest.mock("../../../utils/git")
+
+// Add this to the beforeEach function to set up the mocks
+;(git.getRepositoryName as jest.Mock).mockResolvedValue(null)
+;(git.getCurrentBranch as jest.Mock).mockResolvedValue(null)
+;(git.getRecentCommits as jest.Mock).mockResolvedValue([])
+
+// Add this test case
+it("should include git repository information when available", async () => {
+	const mockRepoName = "username/repo-name"
+	const mockBranch = "main"
+	const mockCommits = [
+		{
+			hash: "abc123def456",
+			shortHash: "abc123",
+			subject: "fix: test commit",
+			author: "John Doe",
+			date: "2024-01-06",
+		},
+		{
+			hash: "def456abc789",
+			shortHash: "def456",
+			subject: "feat: new feature",
+			author: "Jane Smith",
+			date: "2024-01-05",
+		},
+	]
+
+	// Set up the mocks to return git information
+	;(git.getRepositoryName as jest.Mock).mockResolvedValue(mockRepoName)
+	;(git.getCurrentBranch as jest.Mock).mockResolvedValue(mockBranch)
+	;(git.getRecentCommits as jest.Mock).mockResolvedValue(mockCommits)
+
+	const result = await getEnvironmentDetails(mockCline as Task)
+
+	// Verify the git information is included
+	expect(result).toContain("# Git Repository Information")
+	expect(result).toContain(`## Repository: ${mockRepoName}`)
+	expect(result).toContain(`## Current Branch: ${mockBranch}`)
+	expect(result).toContain("## Recent Commits")
+	expect(result).toContain("1. abc123 - fix: test commit (John Doe, 2024-01-06)")
+	expect(result).toContain("2. def456 - feat: new feature (Jane Smith, 2024-01-05)")
+
+	// Verify the git functions were called with the correct parameters
+	expect(git.getRepositoryName).toHaveBeenCalledWith(mockCwd)
+	expect(git.getCurrentBranch).toHaveBeenCalledWith(mockCwd)
+	expect(git.getRecentCommits).toHaveBeenCalledWith(mockCwd, 10)
+})
+
+it("should not include git repository information when not available", async () => {
+	// Set up the mocks to return no git information
+	;(git.getRepositoryName as jest.Mock).mockResolvedValue(null)
+	;(git.getCurrentBranch as jest.Mock).mockResolvedValue(null)
+	;(git.getRecentCommits as jest.Mock).mockResolvedValue([])
+
+	const result = await getEnvironmentDetails(mockCline as Task)
+
+	// Verify the git information section is not included
+	expect(result).not.toContain("# Git Repository Information")
+})
+
+it("should include partial git information when available", async () => {
+	// Set up the mocks to return partial git information
+	;(git.getRepositoryName as jest.Mock).mockResolvedValue(null)
+	;(git.getCurrentBranch as jest.Mock).mockResolvedValue("main")
+	;(git.getRecentCommits as jest.Mock).mockResolvedValue([])
+
+	const result = await getEnvironmentDetails(mockCline as Task)
+
+	// Verify only the available git information is included
+	expect(result).toContain("# Git Repository Information")
+	expect(result).not.toContain("## Repository:")
+	expect(result).toContain("## Current Branch: main")
+	expect(result).not.toContain("## Recent Commits")
+})
+```
+
+### Import Changes
+
+Make sure to update the imports in both test files to include the new functions:
+
+1. In `src/utils/__tests__/git.test.ts`, update the import statement:
+
+```typescript
+import {
+	searchCommits,
+	getCommitInfo,
+	getWorkingState,
+	getRepositoryName,
+	getCurrentBranch,
+	getRecentCommits,
+} from "../git"
+```
+
+2. In `src/core/environment/__tests__/getEnvironmentDetails.test.ts`, add the import for the Git utility functions:
+
+```typescript
+import * as git from "../../../utils/git"
+```
+
+These test mutations follow the existing patterns in the codebase and provide comprehensive coverage for the new functionality.
