@@ -1,6 +1,7 @@
 import os from "os"
 import osName from "os-name"
 
+import "../../../utils/path" // Necessary to have access to String.prototype.toPosix
 import { getShell } from "../../../utils/shell"
 
 export function getSystemInfoSection(cwd: string): string {
