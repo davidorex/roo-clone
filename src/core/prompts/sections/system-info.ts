@@ -31,5 +31,15 @@ The Current Workspace Directory is the active VS Code project directory, and is 
 `
 	}
 
+	// Add conditional block for git-commit-viewer directory
+	if (cwd.toPosix().toLowerCase().includes("git-commit-viewer")) {
+		details += `
+		dev-support-scripts/Output/api_contracts/___index.json
+		dev-support-scripts/Output/api_contracts/___analysis.json
+		dev-support-scripts/Output/dependency_graph/dependency_index.json
+		To discover all code analysis output file indexes and files read the contents of: dev-support-scripts/Output/
+		`
+	}
+
 	return details
 }
