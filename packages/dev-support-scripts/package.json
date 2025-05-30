@@ -9,6 +9,7 @@
 		"extract-docstrings": "node ./docstring_extractor.js",
 		"generate-docstrings": "node ./docstring_auto_generator.js",
 		"analyze-safe-mutations": "node ./safe_mutations_analyzer.js",
+		"analyze-all": "node ./orchestrate.js",
 		"test": "jest"
 	},
 	"dependencies": {
