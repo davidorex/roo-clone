@@ -58,6 +58,11 @@ const DEFAULT_EXCLUDE_DIRS = [
 	"generated_docstring_inventory",
 	"safe_mutations_analysis",
 	"Output",
+	"api_contracts/",
+	"dependency_graph/",
+	"docstring_inventory/",
+	"generated_docstring_inventory/",
+	"safe_mutations_analysis/",
 ]
 
 const DEFAULT_EXCLUDE_PATTERNS = [
