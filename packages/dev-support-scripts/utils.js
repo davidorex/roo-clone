@@ -329,8 +329,12 @@ function findTypeScriptFiles(
 			for (const item of items) {
 				const fullPath = path.join(dir, item.name)
 				if (item.isDirectory()) {
-					// Skip excluded directories - but only use directory-specific exclusions
-					if (excludeDirs.includes(item.name)) {
+					// Skip excluded directories - check full path against exclusion patterns
+					if (
+						excludeDirs.some(
+							(dir) => fullPath.includes(`/${dir}`) || fullPath.endsWith(`/${dir}`) || fullPath === dir,
+						)
+					) {
 						continue
 					}
 					traverseDir(fullPath)
