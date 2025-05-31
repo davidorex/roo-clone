@@ -140,7 +140,7 @@ export const TOOL_DISPLAY_NAMES: Record<ToolName, string> = {
 ```typescript
 export function getRespondToQuestionDescription(): string {
 	return `## respond_to_question
-Description: Provide a direct and relevant response to the user's question. This tool should be used when the user asks a direct question that requires analysis, explanation, or detailed information. The response will be presented to the user for acknowledgment before proceeding with any further actions.
+Description: Provide a direct and relevant response to the user's question. Use this tool when the user asks a question. Your answer will be presented to the user for consideration before proceeding with any further actions.
 Parameters:
 - question: (required) The user's question that needs to be answered
 - response: (required) A comprehensive, well-structured answer to the question
