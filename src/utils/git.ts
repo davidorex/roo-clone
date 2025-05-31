@@ -158,3 +158,129 @@ export async function getWorkingState(cwd: string): Promise<string> {
 		return `Failed to get working state: ${error instanceof Error ? error.message : String(error)}`
 	}
 }
+
+/**
+ * Gets the current repository name from the remote URL
+ * @param cwd Current working directory
+ * @returns Repository name or null if not available
+ */
+export async function getRepositoryName(cwd: string): Promise<string | null> {
+	try {
+		const isInstalled = await checkGitInstalled()
+		if (!isInstalled) {
+			return null
+		}
+
+		const isRepo = await checkGitRepo(cwd)
+		if (!isRepo) {
+			return null
+		}
+
+		// Get the remote URL and extract repo name
+		const { stdout } = await execAsync("git remote get-url origin", { cwd }).catch(() => ({ stdout: "" }))
+
+		if (!stdout.trim()) {
+			return null
+		}
+
+		// Extract repo name from URL
+		// Handle different URL formats: HTTPS or SSH
+		const url = stdout.trim()
+		let repoName = null
+
+		if (url.includes("github.com")) {
+			// Format: https://github.com/username/repo.git or git@github.com:username/repo.git
+			const match = url.match(/github\.com[\/:]([^\/]+)\/([^\/\.]+)/)
+			if (match && match.length >= 3) {
+				repoName = `${match[1]}/${match[2].replace(".git", "")}`
+			}
+		} else {
+			// Try to extract the last part of the URL as the repo name
+			const parts = url.split("/").filter(Boolean)
+			if (parts.length > 0) {
+				repoName = parts[parts.length - 1].replace(".git", "")
+			}
+		}
+
+		return repoName
+	} catch (error) {
+		console.error("Error getting repository name:", error)
+		return null
+	}
+}
+
+/**
+ * Gets the current branch name
+ * @param cwd Current working directory
+ * @returns Current branch name or null if not available
+ */
+export async function getCurrentBranch(cwd: string): Promise<string | null> {
+	try {
+		const isInstalled = await checkGitInstalled()
+		if (!isInstalled) {
+			return null
+		}
+
+		const isRepo = await checkGitRepo(cwd)
+		if (!isRepo) {
+			return null
+		}
+
+		// Get the current branch name
+		const { stdout } = await execAsync("git rev-parse --abbrev-ref HEAD", { cwd })
+		return stdout.trim() || null
+	} catch (error) {
+		console.error("Error getting current branch:", error)
+		return null
+	}
+}
+
+/**
+ * Gets the last N commits from the repository
+ * @param cwd Current working directory
+ * @param count Number of commits to retrieve (default: 10)
+ * @returns Array of GitCommit objects or empty array if not available
+ */
+export async function getRecentCommits(cwd: string, count: number = 10): Promise<GitCommit[]> {
+	try {
+		const isInstalled = await checkGitInstalled()
+		if (!isInstalled) {
+			return []
+		}
+
+		const isRepo = await checkGitRepo(cwd)
+		if (!isRepo) {
+			return []
+		}
+
+		// Get the last N commits
+		const { stdout } = await execAsync(`git log -n ${count} --format="%H%n%h%n%s%n%an%n%ad" --date=short`, { cwd })
+
+		if (!stdout.trim()) {
+			return []
+		}
+
+		const commits: GitCommit[] = []
+		const lines = stdout
+			.trim()
+			.split("\n")
+			.filter((line) => line !== "--")
+
+		for (let i = 0; i < lines.length; i += 5) {
+			if (i + 4 < lines.length) {
+				commits.push({
+					hash: lines[i],
+					shortHash: lines[i + 1],
+					subject: lines[i + 2],
+					author: lines[i + 3],
+					date: lines[i + 4],
+				})
+			}
+		}
+
+		return commits
+	} catch (error) {
+		console.error("Error getting recent commits:", error)
+		return []
+	}
+}
