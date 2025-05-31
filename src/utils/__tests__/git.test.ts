@@ -4,7 +4,14 @@ import { ExecException } from "child_process"
 
 import { jest } from "@jest/globals"
 
-import { searchCommits, getCommitInfo, getWorkingState } from "../git"
+import {
+	searchCommits,
+	getCommitInfo,
+	getWorkingState,
+	getRepositoryName,
+	getCurrentBranch,
+	getRecentCommits,
+} from "../git"
 
 type ExecFunction = (
 	command: string,
@@ -343,6 +350,308 @@ describe("git utils", () => {
 
 			const result = await getWorkingState(cwd)
 			expect(result).toBe("Not a git repository")
+		})
+		describe("getRepositoryName", () => {
+			it("should return GitHub repository name in owner/repo format", async () => {
+				const responses = new Map([
+					["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+					["git rev-parse --git-dir", { stdout: ".git", stderr: "" }],
+					["git remote get-url origin", { stdout: "https://github.com/user/repo.git", stderr: "" }],
+				])
+
+				exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+					for (const [cmd, response] of responses) {
+						if (command === cmd) {
+							callback(null, response)
+							return
+						}
+					}
+					callback(new Error("Unexpected command"))
+				})
+
+				const result = await getRepositoryName(cwd)
+				expect(result).toBe("user/repo")
+			})
+
+			it("should handle SSH GitHub URLs", async () => {
+				const responses = new Map([
+					["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+					["git rev-parse --git-dir", { stdout: ".git", stderr: "" }],
+					["git remote get-url origin", { stdout: "git@github.com:user/repo.git", stderr: "" }],
+				])
+
+				exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+					for (const [cmd, response] of responses) {
+						if (command === cmd) {
+							callback(null, response)
+							return
+						}
+					}
+					callback(new Error("Unexpected command"))
+				})
+
+				const result = await getRepositoryName(cwd)
+				expect(result).toBe("user/repo")
+			})
+
+			it("should handle non-GitHub URLs", async () => {
+				const responses = new Map([
+					["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+					["git rev-parse --git-dir", { stdout: ".git", stderr: "" }],
+					["git remote get-url origin", { stdout: "https://gitlab.com/user/repo.git", stderr: "" }],
+				])
+
+				exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+					for (const [cmd, response] of responses) {
+						if (command === cmd) {
+							callback(null, response)
+							return
+						}
+					}
+					callback(new Error("Unexpected command"))
+				})
+
+				const result = await getRepositoryName(cwd)
+				expect(result).toBe("repo")
+			})
+
+			it("should return null when git is not installed", async () => {
+				exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+					if (command === "git --version") {
+						callback(new Error("git not found"))
+						return
+					}
+					callback(new Error("Unexpected command"))
+				})
+
+				const result = await getRepositoryName(cwd)
+				expect(result).toBeNull()
+			})
+
+			it("should return null when not in a git repository", async () => {
+				const responses = new Map([
+					["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+					["git rev-parse --git-dir", null],
+				])
+
+				exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+					const response = responses.get(command)
+					if (response === null) {
+						callback(new Error("not a git repository"))
+					} else if (response) {
+						callback(null, response)
+					} else {
+						callback(new Error("Unexpected command"))
+					}
+				})
+
+				const result = await getRepositoryName(cwd)
+				expect(result).toBeNull()
+			})
+
+			it("should return null when no remote origin exists", async () => {
+				const responses = new Map([
+					["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+					["git rev-parse --git-dir", { stdout: ".git", stderr: "" }],
+					["git remote get-url origin", null],
+				])
+
+				exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+					const response = responses.get(command)
+					if (response === null) {
+						callback(new Error("no such remote"))
+					} else if (response) {
+						callback(null, response)
+					} else {
+						callback(new Error("Unexpected command"))
+					}
+				})
+
+				const result = await getRepositoryName(cwd)
+				expect(result).toBeNull()
+			})
+		})
+
+		describe("getCurrentBranch", () => {
+			it("should return current branch name", async () => {
+				const responses = new Map([
+					["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+					["git rev-parse --git-dir", { stdout: ".git", stderr: "" }],
+					["git rev-parse --abbrev-ref HEAD", { stdout: "main", stderr: "" }],
+				])
+
+				exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+					for (const [cmd, response] of responses) {
+						if (command === cmd) {
+							callback(null, response)
+							return
+						}
+					}
+					callback(new Error("Unexpected command"))
+				})
+
+				const result = await getCurrentBranch(cwd)
+				expect(result).toBe("main")
+			})
+
+			it("should return null when git is not installed", async () => {
+				exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+					if (command === "git --version") {
+						callback(new Error("git not found"))
+						return
+					}
+					callback(new Error("Unexpected command"))
+				})
+
+				const result = await getCurrentBranch(cwd)
+				expect(result).toBeNull()
+			})
+
+			it("should return null when not in a git repository", async () => {
+				const responses = new Map([
+					["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+					["git rev-parse --git-dir", null],
+				])
+
+				exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+					const response = responses.get(command)
+					if (response === null) {
+						callback(new Error("not a git repository"))
+					} else if (response) {
+						callback(null, response)
+					} else {
+						callback(new Error("Unexpected command"))
+					}
+				})
+
+				const result = await getCurrentBranch(cwd)
+				expect(result).toBeNull()
+			})
+		})
+
+		describe("getRecentCommits", () => {
+			const mockRecentCommits = [
+				"abc123def456",
+				"abc123",
+				"feat: add new feature",
+				"John Doe",
+				"2024-01-06",
+				"def456abc789",
+				"def456",
+				"fix: bug fix",
+				"Jane Smith",
+				"2024-01-05",
+			].join("\n")
+
+			it("should return recent commits with default count", async () => {
+				const responses = new Map([
+					["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+					["git rev-parse --git-dir", { stdout: ".git", stderr: "" }],
+					[
+						'git log -n 10 --format="%H%n%h%n%s%n%an%n%ad" --date=short',
+						{ stdout: mockRecentCommits, stderr: "" },
+					],
+				])
+
+				exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+					for (const [cmd, response] of responses) {
+						if (command === cmd) {
+							callback(null, response)
+							return
+						}
+					}
+					callback(new Error("Unexpected command"))
+				})
+
+				const result = await getRecentCommits(cwd)
+				expect(result).toHaveLength(2)
+				expect(result[0]).toEqual({
+					hash: "abc123def456",
+					shortHash: "abc123",
+					subject: "feat: add new feature",
+					author: "John Doe",
+					date: "2024-01-06",
+				})
+			})
+
+			it("should return recent commits with custom count", async () => {
+				const responses = new Map([
+					["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+					["git rev-parse --git-dir", { stdout: ".git", stderr: "" }],
+					[
+						'git log -n 5 --format="%H%n%h%n%s%n%an%n%ad" --date=short',
+						{ stdout: mockRecentCommits, stderr: "" },
+					],
+				])
+
+				exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+					for (const [cmd, response] of responses) {
+						if (command === cmd) {
+							callback(null, response)
+							return
+						}
+					}
+					callback(new Error("Unexpected command"))
+				})
+
+				const result = await getRecentCommits(cwd, 5)
+				expect(result).toHaveLength(2)
+			})
+
+			it("should return empty array when git is not installed", async () => {
+				exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+					if (command === "git --version") {
+						callback(new Error("git not found"))
+						return
+					}
+					callback(new Error("Unexpected command"))
+				})
+
+				const result = await getRecentCommits(cwd)
+				expect(result).toEqual([])
+			})
+
+			it("should return empty array when not in a git repository", async () => {
+				const responses = new Map([
+					["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+					["git rev-parse --git-dir", null],
+				])
+
+				exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+					const response = responses.get(command)
+					if (response === null) {
+						callback(new Error("not a git repository"))
+					} else if (response) {
+						callback(null, response)
+					} else {
+						callback(new Error("Unexpected command"))
+					}
+				})
+
+				const result = await getRecentCommits(cwd)
+				expect(result).toEqual([])
+			})
+
+			it("should return empty array when no commits exist", async () => {
+				const responses = new Map([
+					["git --version", { stdout: "git version 2.39.2", stderr: "" }],
+					["git rev-parse --git-dir", { stdout: ".git", stderr: "" }],
+					['git log -n 10 --format="%H%n%h%n%s%n%an%n%ad" --date=short', { stdout: "", stderr: "" }],
+				])
+
+				exec.mockImplementation((command: string, options: { cwd?: string }, callback: Function) => {
+					for (const [cmd, response] of responses) {
+						if (command === cmd) {
+							callback(null, response)
+							return
+						}
+					}
+					callback(new Error("Unexpected command"))
+				})
+
+				const result = await getRecentCommits(cwd)
+				expect(result).toEqual([])
+			})
 		})
 	})
 })
