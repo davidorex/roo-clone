@@ -1427,7 +1427,7 @@ async function main() {
 		const args = process.argv.slice(2)
 		const targetDir = args[0] || "."
 		const excludeDirsIndex = args.indexOf("--exclude")
-		const excludeDirs = excludeDirsIndex !== -1 ? args.slice(excludeDirsIndex + 1) : utils.DEFAULT_EXCLUDE_DIRS
+		const excludeDirs = utils.DEFAULT_EXCLUDE_DIRS
 
 		// Resolve the target directory
 		const absoluteTargetDir = path.resolve(utils.PROJECT_ROOT, targetDir)
