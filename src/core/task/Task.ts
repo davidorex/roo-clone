@@ -697,6 +697,8 @@ Assure before acting you are strictly adhering to the requisite operating patter
 
 Adhere to requisite adding and committing of changes after each file change with commit messages that meet the requisite given standards.
 
+You will be given your first directive after you report your firm intention always adhere to requisite operating patterns.
+
 </task>`,
 			},
 			...imageBlocks,
