@@ -13,7 +13,7 @@ export interface GitCommit {
 	date: string
 }
 
-async function checkGitRepo(cwd: string): Promise<boolean> {
+export async function checkGitRepo(cwd: string): Promise<boolean> {
 	try {
 		await execAsync("git rev-parse --git-dir", { cwd })
 		return true
@@ -22,7 +22,7 @@ async function checkGitRepo(cwd: string): Promise<boolean> {
 	}
 }
 
-async function checkGitInstalled(): Promise<boolean> {
+export async function checkGitInstalled(): Promise<boolean> {
 	try {
 		await execAsync("git --version")
 		return true
