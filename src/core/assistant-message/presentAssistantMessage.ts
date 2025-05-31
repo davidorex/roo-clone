@@ -23,6 +23,7 @@ import { executeCommandTool } from "../tools/executeCommandTool"
 import { useMcpToolTool } from "../tools/useMcpToolTool"
 import { accessMcpResourceTool } from "../tools/accessMcpResourceTool"
 import { askFollowupQuestionTool } from "../tools/askFollowupQuestionTool"
+import { respondToQuestionTool } from "../tools/respondToQuestionTool"
 import { switchModeTool } from "../tools/switchModeTool"
 import { attemptCompletionTool } from "../tools/attemptCompletionTool"
 import { newTaskTool } from "../tools/newTaskTool"
@@ -182,6 +183,8 @@ export async function presentAssistantMessage(cline: Task) {
 						return `[${block.name} for '${block.params.server_name}']`
 					case "ask_followup_question":
 						return `[${block.name} for '${block.params.question}']`
+					case "respond_to_question":
+						return `[${block.name} for '${block.params.question}']`
 					case "attempt_completion":
 						return `[${block.name}]`
 					case "switch_mode":
@@ -195,6 +198,7 @@ export async function presentAssistantMessage(cline: Task) {
 						return `[${block.name} in ${modeName} mode: '${message}']`
 					}
 				}
+				return `[${block.name}]` // Default case
 			}
 
 			if (cline.didRejectTool) {
@@ -442,6 +446,16 @@ export async function presentAssistantMessage(cline: Task) {
 					break
 				case "ask_followup_question":
 					await askFollowupQuestionTool(
+						cline,
+						block,
+						askApproval,
+						handleError,
+						pushToolResult,
+						removeClosingTag,
+					)
+					break
+				case "respond_to_question":
+					await respondToQuestionTool(
 						cline,
 						block,
 						askApproval,

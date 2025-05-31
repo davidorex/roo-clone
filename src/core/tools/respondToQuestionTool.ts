@@ -47,10 +47,14 @@ export async function respondToQuestionTool(
 		// Check for pause after productive operation
 		await cline.checkForPauseAfterProductiveOperation("respond_to_question")
 
-		// Provide tool result
-		pushToolResult(
-			formatResponse.toolResult(`Successfully provided structured markdown answer to question: "${question}"`),
-		)
+		// Provide tool result with the actual content
+		let resultContent = `<answer>\n${formattedResponse}`
+		if (reasoning) {
+			resultContent += `\n\n## Reasoning\n\n${reasoning}`
+		}
+		resultContent += `\n</answer>`
+
+		pushToolResult(formatResponse.toolResult(resultContent))
 	} catch (error) {
 		const errorMessage = error instanceof Error ? error.message : String(error)
 		await handleError("respond_to_question", new Error(`Failed to respond to question: ${errorMessage}`))
