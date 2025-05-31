@@ -277,8 +277,7 @@ async function main() {
 		const args = process.argv.slice(2)
 		const targetDir = args[0] || "."
 		const excludeDirsArgIndex = args.indexOf("--exclude")
-		const excludeDirs =
-			excludeDirsArgIndex !== -1 ? args.slice(excludeDirsArgIndex + 1) : utils.DEFAULT_EXCLUDE_DIRS
+		const excludeDirs = utils.DEFAULT_EXCLUDE_DIRS
 
 		const concurrencyArgIndex = args.indexOf("--concurrency")
 		const userMaxWorkers = concurrencyArgIndex !== -1 ? parseInt(args[concurrencyArgIndex + 1], 10) : null
