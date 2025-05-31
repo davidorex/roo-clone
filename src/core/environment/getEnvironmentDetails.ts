@@ -14,6 +14,7 @@ import { TerminalRegistry } from "../../integrations/terminal/TerminalRegistry"
 import { Terminal } from "../../integrations/terminal/Terminal"
 import { arePathsEqual } from "../../utils/path"
 import { formatResponse } from "../prompts/responses"
+import { getRepositoryName, getCurrentBranch, getRecentCommits } from "../../utils/git"
 
 import { Task } from "../task/Task"
 
@@ -262,6 +263,29 @@ export async function getEnvironmentDetails(cline: Task, includeFileDetails: boo
 			)
 
 			details += result
+		}
+		// Add Git repository information
+		const repoName = await getRepositoryName(cline.cwd)
+		const currentBranch = await getCurrentBranch(cline.cwd)
+		const recentCommits = await getRecentCommits(cline.cwd, 5)
+
+		if (repoName || currentBranch || recentCommits.length > 0) {
+			details += "\n\n# Git Repository Information"
+
+			if (repoName) {
+				details += `\nRepository: ${repoName}`
+			}
+
+			if (currentBranch) {
+				details += `\nCurrent Branch: ${currentBranch}`
+			}
+
+			if (recentCommits.length > 0) {
+				details += "\n\nRecent Commits:"
+				for (const commit of recentCommits) {
+					details += `\n- ${commit.shortHash}: ${commit.subject} (${commit.author}, ${commit.date})`
+				}
+			}
 		}
 	}
 
