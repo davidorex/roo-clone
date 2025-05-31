@@ -118,7 +118,16 @@ async function processModule(moduleName, moduleFilePath, circularDepsData) {
 			return null
 		}
 
-		const originalDocstrings = utils.readJsonFile(docstringPath)
+		// Gracefully handle missing docstring files
+		let originalDocstrings = null
+		try {
+			// Check if file exists before attempting to read
+			await fs.access(docstringPath) // This will throw if file doesn't exist
+			originalDocstrings = utils.readJsonFile(docstringPath)
+		} catch (e) {
+			// console.warn(`No docstring file for ${moduleName} at ${docstringPath}, assuming no docstrings.`);
+		}
+
 		// Gracefully handle missing generated_docstrings file
 		let generatedDocstrings = null
 		try {
