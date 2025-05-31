@@ -10,15 +10,28 @@ export async function respondToQuestionTool(
 	pushToolResult: PushToolResult,
 	removeClosingTag: RemoveClosingTag,
 ): Promise<void> {
-	const { question, response, reasoning } = toolUse.params
+	const question: string | undefined = toolUse.params.question
+	const response: string | undefined = toolUse.params.response
+	const reasoning: string | undefined = toolUse.params.reasoning
 
-	if (!question) {
-		await cline.sayAndCreateMissingParamError("respond_to_question", "question")
-		return
-	}
+	// Only validate parameters if this is a complete tool use
+	// This allows the LLM to finish typing the tool use without interruption
+	if (!toolUse.partial) {
+		if (!question) {
+			cline.consecutiveMistakeCount++
+			cline.recordToolError("respond_to_question")
+			pushToolResult(await cline.sayAndCreateMissingParamError("respond_to_question", "question"))
+			return
+		}
 
-	if (!response) {
-		await cline.sayAndCreateMissingParamError("respond_to_question", "response")
+		if (!response) {
+			cline.consecutiveMistakeCount++
+			cline.recordToolError("respond_to_question")
+			pushToolResult(await cline.sayAndCreateMissingParamError("respond_to_question", "response"))
+			return
+		}
+	} else {
+		// For partial tool uses, just return without executing
 		return
 	}
 
