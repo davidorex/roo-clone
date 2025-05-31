@@ -621,6 +621,7 @@ type RooCodeEvents = {
 			| "new_task"
 			| "fetch_instructions"
 			| "codebase_search"
+			| "respond_to_question"
 		),
 		string,
 	]

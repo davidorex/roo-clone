@@ -64,6 +64,8 @@ export const toolParamNames = [
 	"start_line",
 	"end_line",
 	"query",
+	"response",
+	"reasoning",
 ] as const
 
 export type ToolParamName = (typeof toolParamNames)[number]
@@ -188,6 +190,7 @@ export const TOOL_DISPLAY_NAMES: Record<ToolName, string> = {
 	insert_content: "insert content",
 	search_and_replace: "search and replace",
 	codebase_search: "codebase search",
+	respond_to_question: "answer questions",
 } as const
 
 export type { ToolGroup }
@@ -228,6 +231,7 @@ export const ALWAYS_AVAILABLE_TOOLS: ToolName[] = [
 	"attempt_completion",
 	"switch_mode",
 	"new_task",
+	"respond_to_question",
 ] as const
 
 export type DiffResult =
