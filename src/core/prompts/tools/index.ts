@@ -43,6 +43,7 @@ const toolDescriptionMap: Record<string, (args: ToolArgs) => string | undefined>
 	// new_task: (args) => getNewTaskDescription(args),
 	insert_content: (args) => getInsertContentDescription(args),
 	search_and_replace: (args) => getSearchAndReplaceDescription(args),
+	respond_to_question: () => getRespondToQuestionDescription(),
 	apply_diff: (args) =>
 		args.diffStrategy ? args.diffStrategy.getToolDescription({ cwd: args.cwd, toolOptions: args.toolOptions }) : "",
 }
@@ -136,4 +137,5 @@ export {
 	getInsertContentDescription,
 	getSearchAndReplaceDescription,
 	getCodebaseSearchDescription,
+	getRespondToQuestionDescription,
 }
