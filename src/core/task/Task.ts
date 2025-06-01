@@ -681,7 +681,7 @@ export class Task extends EventEmitter<ClineEvents> {
 		await this.initiateTaskLoop([
 			{
 				type: "text",
-				text: `<task>${getCoreOperatingPrinciplesText()}</task>`,
+				text: `<task>\\n${task}\\n${getCoreOperatingPrinciplesText()}</task>`,
 			},
 			...imageBlocks,
 		])
