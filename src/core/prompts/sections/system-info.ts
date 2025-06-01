@@ -24,10 +24,6 @@ The Current Workspace Directory is the active VS Code project directory, and is 
 		packages/dev-support-scripts/api_contracts/___analysis.json
 		packages/dev-support-scripts/api_contracts/___index.json
 		packages/dev-support-scripts/dependency_graph/dependency_index.json
-		packages/dev-support-scripts/dependency_graph/circular_dependencies.json
-		packages/dev-support-scripts/dependency_graph/entanglement_depth.json
-		packages/dev-support-scripts/docstring_inventory/___docstrings_index.json
-		packages/dev-support-scripts/generated_docstring_inventory/___generated_docstrings_index.json
 		packages/dev-support-scripts/safe_mutations_analysis/___safe_mutations_index.json
 `
 	}

@@ -693,11 +693,9 @@ Direct Response to User Directives Only: you must respond only to what the user 
 
 No Unnecessary Commentary: you must avoid adding unnecessary commentary, patterns, or general observations that aren't directly related to the user's specific directive or question.
 
-Assure before acting you are strictly adhering to the requisite operating patterns.
-
 Adhere to requisite adding and committing of changes after each file change with commit messages that meet the requisite given standards.
 
-You will be given your first directive after you report your firm intention always adhere to requisite operating patterns.
+You will be given your first directive after you report your firm intention always adhere to requisite operating patterns. Respond using the respondToQuestion tool.
 
 </task>`,
 			},
