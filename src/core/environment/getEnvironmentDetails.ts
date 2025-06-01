@@ -16,10 +16,16 @@ import { arePathsEqual } from "../../utils/path"
 import { formatResponse } from "../prompts/responses"
 import { getRepositoryName, getCurrentBranch, getRecentCommits } from "../../utils/git"
 
+import { getCoreOperatingPrinciplesText } from "../prompts/sections/coreOperatingPrinciples"
+
 import { Task } from "../task/Task"
 
 export async function getEnvironmentDetails(cline: Task, includeFileDetails: boolean = false) {
 	let details = ""
+
+	// Add Core Operating Principles
+	details += "\n\n# CORE OPERATING PRINCIPLES\n"
+	details += `<core_operating_principles>${getCoreOperatingPrinciplesText()}</core_operating_principles>`
 
 	const clineProvider = cline.providerRef.deref()
 	const state = await clineProvider?.getState()
