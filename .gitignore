@@ -49,3 +49,6 @@ packages/dev-support-scripts/dependency_graph/
 packages/dev-support-scripts/docstring_inventory/
 packages/dev-support-scripts/generated_docstring_inventory/
 packages/dev-support-scripts/safe_mutations_analysis/
+
+# Queries dir
+docs/queries/
