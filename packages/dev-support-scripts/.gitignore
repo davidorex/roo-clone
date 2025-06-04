@@ -1,0 +1,13 @@
+# Analysis output directories for all branches
+branches/*/api_contracts/
+branches/*/dependency_graph/
+branches/*/docstring_inventory/
+branches/*/generated_docstring_inventory/
+branches/*/safe_mutations_analysis/
+
+# Legacy output directories
+api_contracts/
+dependency_graph/
+docstring_inventory/
+generated_docstring_inventory/
+safe_mutations_analysis/
