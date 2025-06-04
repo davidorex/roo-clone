@@ -72,8 +72,9 @@ These branches diverged on May 24, 2025, and have since developed independently 
 
 The primary goal of merging these branches is to:
 
-1. **Incorporate Upstream Developments**: Take advantage of all the latest developments, bug fixes, and features from the upstream/main branch
-2. **Preserve Custom Features**: Retain all the custome features that have been developed in my-main
-3. **Maintain Compatibility**: Ensure that custom features continue to work with the latest upstream code. These will be specified in a subsequent investigation.
+1. **Incorporate Upstream Developments**: Evaluate and take advantage of latest developments, bug fixes, and features from the upstream/main branch as needed. Generally favor all.
+2. **Preserve Custom Features**: Retain all the custom features that have been developed in my-main. If necessary and the opportunity arises, evaluate refactoring possibities to adhere to all existing patterns in upstream so that custom implementations are in exact alignment
+3. **Maintain Compatibility**: Ensure that custom features continue to work with the latest upstream code.
+4. **Refine pre-merge preparatory steps**: envision a process of merging that reduces conflicts and maintains customizations. Consider a process of programmatic re-implementation of custom features into updated upstream rather than merge conflict resolution.
 
 This approach allows for staying current with the canonical codebase while preserving the value of custom development work.
