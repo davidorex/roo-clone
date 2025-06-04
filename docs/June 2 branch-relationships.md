@@ -77,4 +77,6 @@ The primary goal of merging these branches is to:
 3. **Maintain Compatibility**: Ensure that custom features continue to work with the latest upstream code.
 4. **Refine pre-merge preparatory steps**: envision a process of merging that reduces conflicts and maintains customizations. Consider a process of programmatic re-implementation of custom features into updated upstream rather than merge conflict resolution.
 
+-- Establish exact implementation knowledge for customizations. Then create mutation plans for re-implementing them.
+
 This approach allows for staying current with the canonical codebase while preserving the value of custom development work.
