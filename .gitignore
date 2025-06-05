@@ -42,13 +42,3 @@ logs
 # IntelliJ and Qodo plugin folders
 .idea/
 .qodo/
-
-# Dev-support-script output dirs
-packages/dev-support-scripts/api_contracts/
-packages/dev-support-scripts/dependency_graph/
-packages/dev-support-scripts/docstring_inventory/
-packages/dev-support-scripts/generated_docstring_inventory/
-packages/dev-support-scripts/safe_mutations_analysis/
-
-# Queries dir
-docs/queries/
