@@ -9,7 +9,9 @@
 		"extract-docstrings": "node ./docstring_extractor.js",
 		"generate-docstrings": "node ./docstring_auto_generator.js",
 		"analyze-safe-mutations": "node ./safe_mutations_analyzer.js",
-		"analyze-all": "node ./orchestrate.js",
+		"analyze-all": "echo 'Error: Branch must be specified. Use: npm run analyze-main or npm run analyze-my-main' && exit 1",
+		"analyze-main": "node ./orchestrate.js --branch main",
+		"analyze-my-main": "node ./orchestrate.js --branch my-main",
 		"test": "jest"
 	},
 	"dependencies": {

@@ -2,12 +2,17 @@
  * Utility functions for dev-support-scripts TypeScript implementation
  *
  * This module provides common functionality used across various analysis scripts:
- * - Path/directory management
+ * - Path/directory management with branch-specific output support
+ * - Branch management for analysis output segregation
  * - File I/O with error handling
  * - TypeScript AST parsing and traversal
  * - Timestamp handling (as headers rather than in filenames)
  * - Directory traversal with consistent exclusion patterns
  * - Tree-sitter integration
+ *
+ * The branch-specific directory functionality allows analysis scripts to output
+ * results to separate directories based on the git branch being analyzed, enabling
+ * side-by-side comparison of analysis results from different branches.
  *
  * These utilities help maintain consistent behavior across all analysis tools
  * while reducing code duplication and cognitive load.
@@ -26,9 +31,45 @@ const Parser = require("web-tree-sitter")
 // Path constants
 const PROJECT_ROOT = path.resolve(__dirname, "..", "..") // Resolves to the monorepo root
 const SCRIPT_DIR = __dirname
-const OUTPUT_DIR = path.join(SCRIPT_DIR, "Output")
-const API_CONTRACTS_DIR = path.join(SCRIPT_DIR, "api_contracts")
-const DEPENDENCY_GRAPH_DIR = path.join(SCRIPT_DIR, "dependency_graph")
+
+// Branch management
+let currentBranch = null
+
+/**
+ * Set the current branch for directory resolution
+ * @param {string} branchName - Name of the branch (e.g., 'main', 'my-main')
+ */
+function setBranch(branchName) {
+	if (!branchName) {
+		throw new Error("Branch name must be specified")
+	}
+	currentBranch = branchName
+}
+
+/**
+ * Get the current branch name
+ * @returns {string|null} Current branch name or null if not set
+ */
+function getCurrentBranch() {
+	return currentBranch
+}
+
+/**
+ * Get a branch-specific directory path
+ * @param {string} baseDir - Base directory name
+ * @returns {string} Path to the branch-specific directory
+ */
+function getBranchSpecificDir(baseDir) {
+	if (!currentBranch) {
+		throw new Error("Branch must be set before accessing branch-specific directories")
+	}
+	return path.join(SCRIPT_DIR, "branches", currentBranch, baseDir)
+}
+
+// Private backing variables for directory paths
+let _OUTPUT_DIR = path.join(SCRIPT_DIR, "Output")
+let _API_CONTRACTS_DIR = path.join(SCRIPT_DIR, "api_contracts")
+let _DEPENDENCY_GRAPH_DIR = path.join(SCRIPT_DIR, "dependency_graph")
 
 // Constants for directory exclusion
 const DEFAULT_EXCLUDE_DIRS = [
@@ -789,16 +830,37 @@ function createTypeScriptQuery(parser, queryString) {
 	}
 }
 
+// Define getters for directory constants
+Object.defineProperty(exports, "OUTPUT_DIR", {
+	get: function () {
+		return currentBranch ? getBranchSpecificDir("Output") : _OUTPUT_DIR
+	},
+})
+
+Object.defineProperty(exports, "API_CONTRACTS_DIR", {
+	get: function () {
+		return currentBranch ? getBranchSpecificDir("api_contracts") : _API_CONTRACTS_DIR
+	},
+})
+
+Object.defineProperty(exports, "DEPENDENCY_GRAPH_DIR", {
+	get: function () {
+		return currentBranch ? getBranchSpecificDir("dependency_graph") : _DEPENDENCY_GRAPH_DIR
+	},
+})
+
 // Export all functions and constants
 module.exports = {
 	// Constants
 	PROJECT_ROOT,
 	SCRIPT_DIR,
-	OUTPUT_DIR,
-	API_CONTRACTS_DIR,
-	DEPENDENCY_GRAPH_DIR,
 	DEFAULT_EXCLUDE_DIRS,
 	DEFAULT_EXCLUDE_PATTERNS,
+
+	// Branch Management
+	setBranch,
+	getCurrentBranch,
+	getBranchSpecificDir,
 
 	// Directory & Path Management
 	ensureDirExists,
