@@ -94,6 +94,7 @@ const DEFAULT_EXCLUDE_DIRS = [
 	".turbo", // Added for exclusion
 	"locales", // Added for exclusion
 	"packages", // Added to exclude the packages directory
+	"build", // Added to exclude build output directories
 	// Dev support script output directories to prevent recursive analysis:
 	"api_contracts",
 	"dependency_graph",
