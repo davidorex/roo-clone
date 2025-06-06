@@ -14,8 +14,7 @@ const utils = require("./utils") // Direct require for .js file
 const { Worker, isMainThread, parentPort, workerData } = require("worker_threads")
 const os = require("os")
 
-// Define the output directory for docstring inventories
-const DOCSTRING_INVENTORY_DIR = path.join(utils.SCRIPT_DIR, "docstring_inventory")
+// Output directory for docstring inventories is defined in utils.js
 
 // Interfaces would typically be in a .d.ts file or defined via JSDoc for a .js script
 // For clarity within this script, we'll describe the structure via JSDoc comments.
@@ -258,7 +257,7 @@ function generateIndexFile(results, targetDir) {
 		}
 		utils.writeJsonFile(
 			// writeJsonFile is from utils.js
-			path.join(DOCSTRING_INVENTORY_DIR, "___docstrings_index.json"),
+			path.join(utils.DOCSTRING_INVENTORY_DIR, "___docstrings_index.json"),
 			indexData,
 			2,
 			true,
@@ -283,7 +282,7 @@ async function main() {
 		const userMaxWorkers = concurrencyArgIndex !== -1 ? parseInt(args[concurrencyArgIndex + 1], 10) : null
 
 		const absoluteTargetDir = path.resolve(utils.PROJECT_ROOT, targetDir)
-		utils.ensureDirExists(DOCSTRING_INVENTORY_DIR) // ensureDirExists is from utils.js
+		utils.ensureDirExists(utils.DOCSTRING_INVENTORY_DIR) // ensureDirExists is from utils.js
 
 		const files = utils.findTypeScriptFiles(absoluteTargetDir, excludeDirs, utils.DEFAULT_EXCLUDE_PATTERNS) // findTypeScriptFiles is from utils.js
 		console.log(`Found ${files.length} TypeScript files to analyze for docstrings.`)
@@ -318,7 +317,7 @@ async function main() {
 			const filename = `${sanitizedName}_docstrings.json`
 			utils.writeJsonFile(
 				// writeJsonFile is from utils.js
-				path.join(DOCSTRING_INVENTORY_DIR, filename),
+				path.join(utils.DOCSTRING_INVENTORY_DIR, filename),
 				moduleInfo,
 				2,
 				true,
@@ -326,7 +325,7 @@ async function main() {
 		}
 
 		generateIndexFile(validResults, targetDir)
-		console.log(`Docstring extraction complete. Results in: ${DOCSTRING_INVENTORY_DIR}`)
+		console.log(`Docstring extraction complete. Results in: ${utils.DOCSTRING_INVENTORY_DIR}`)
 	} catch (error) {
 		console.error(`Fatal error in Docstring Extractor: ${error}`)
 		process.exit(1)
