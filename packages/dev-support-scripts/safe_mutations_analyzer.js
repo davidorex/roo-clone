@@ -14,11 +14,7 @@ const utils = require("./utils")
 const { Worker, isMainThread, parentPort, workerData } = require("worker_threads")
 const os = require("os")
 
-const API_CONTRACTS_DIR = path.join(utils.SCRIPT_DIR, "api_contracts")
-const DEPENDENCY_GRAPH_DIR = path.join(utils.SCRIPT_DIR, "dependency_graph")
-const DOCSTRING_INVENTORY_DIR = path.join(utils.SCRIPT_DIR, "docstring_inventory")
-const GENERATED_DOCSTRING_INVENTORY_DIR = path.join(utils.SCRIPT_DIR, "generated_docstring_inventory")
-const SAFE_MUTATIONS_OUTPUT_DIR = path.join(utils.SCRIPT_DIR, "safe_mutations_analysis")
+// Directory paths are defined in utils.js as branch-aware getters
 
 /**
  * @typedef {Object} ModuleCard
@@ -102,11 +98,11 @@ async function processModule(moduleName, moduleFilePath, circularDepsData) {
 	try {
 		const sanitizedModuleName = moduleName.replace(/\//g, "_").replace(/\./g, "_")
 
-		const apiContractPath = path.join(API_CONTRACTS_DIR, `${sanitizedModuleName}_contracts.json`)
-		const depGraphPath = path.join(DEPENDENCY_GRAPH_DIR, `${sanitizedModuleName}_dependencies.json`)
-		const docstringPath = path.join(DOCSTRING_INVENTORY_DIR, `${sanitizedModuleName}_docstrings.json`)
+		const apiContractPath = path.join(utils.API_CONTRACTS_DIR, `${sanitizedModuleName}_contracts.json`)
+		const depGraphPath = path.join(utils.DEPENDENCY_GRAPH_DIR, `${sanitizedModuleName}_dependencies.json`)
+		const docstringPath = path.join(utils.DOCSTRING_INVENTORY_DIR, `${sanitizedModuleName}_docstrings.json`)
 		const genDocstringPath = path.join(
-			GENERATED_DOCSTRING_INVENTORY_DIR,
+			utils.GENERATED_DOCSTRING_INVENTORY_DIR,
 			`${sanitizedModuleName}_generated_docstrings.json`,
 		)
 
@@ -287,10 +283,10 @@ async function main() {
 	}
 
 	try {
-		utils.ensureDirExists(SAFE_MUTATIONS_OUTPUT_DIR)
+		utils.ensureDirExists(utils.SAFE_MUTATIONS_ANALYSIS_DIR)
 
 		// Load main dependency index to get list of all modules
-		const depIndexFile = path.join(DEPENDENCY_GRAPH_DIR, "dependency_index.json")
+		const depIndexFile = path.join(utils.DEPENDENCY_GRAPH_DIR, "dependency_index.json")
 		const depIndex = utils.readJsonFile(depIndexFile)
 		if (!depIndex || !depIndex.modules) {
 			console.error("Could not read dependency_index.json or it's improperly formatted.")
@@ -298,7 +294,7 @@ async function main() {
 		}
 
 		// Load circular dependencies data once
-		const circularDepsFile = path.join(DEPENDENCY_GRAPH_DIR, "circular_dependencies.json")
+		const circularDepsFile = path.join(utils.DEPENDENCY_GRAPH_DIR, "circular_dependencies.json")
 		const circularDepsData = utils.readJsonFile(circularDepsFile)
 		if (!circularDepsData) {
 			console.error("Could not read circular_dependencies.json.")
@@ -349,15 +345,15 @@ async function main() {
 		for (const card of validResults) {
 			const sanitizedModuleName = card.module.replace(/\//g, "_").replace(/\./g, "_")
 			const cardFilename = `${sanitizedModuleName}_safe_mutation_card.json`
-			const cardFilePath = path.join(SAFE_MUTATIONS_OUTPUT_DIR, cardFilename)
+			const cardFilePath = path.join(utils.SAFE_MUTATIONS_ANALYSIS_DIR, cardFilename)
 			utils.writeJsonFile(cardFilePath, card, 2, true)
 		}
 
 		// Generate the index file
-		generateSafeMutationsIndexFile(validResults, SAFE_MUTATIONS_OUTPUT_DIR)
+		generateSafeMutationsIndexFile(validResults, utils.SAFE_MUTATIONS_ANALYSIS_DIR)
 
 		console.log(
-			`Safe mutations analysis complete. Individual reports and index file in: ${SAFE_MUTATIONS_OUTPUT_DIR}`,
+			`Safe mutations analysis complete. Individual reports and index file in: ${utils.SAFE_MUTATIONS_ANALYSIS_DIR}`,
 		)
 	} catch (error) {
 		console.error(`Fatal error in Safe Mutations Analyzer: ${error}`)
