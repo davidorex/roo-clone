@@ -849,6 +849,30 @@ Object.defineProperty(exports, "DEPENDENCY_GRAPH_DIR", {
 	},
 })
 
+Object.defineProperty(exports, "DOCSTRING_INVENTORY_DIR", {
+	get: function () {
+		return currentBranch
+			? getBranchSpecificDir("docstring_inventory")
+			: path.join(SCRIPT_DIR, "docstring_inventory")
+	},
+})
+
+Object.defineProperty(exports, "GENERATED_DOCSTRING_INVENTORY_DIR", {
+	get: function () {
+		return currentBranch
+			? getBranchSpecificDir("generated_docstring_inventory")
+			: path.join(SCRIPT_DIR, "generated_docstring_inventory")
+	},
+})
+
+Object.defineProperty(exports, "SAFE_MUTATIONS_ANALYSIS_DIR", {
+	get: function () {
+		return currentBranch
+			? getBranchSpecificDir("safe_mutations_analysis")
+			: path.join(SCRIPT_DIR, "safe_mutations_analysis")
+	},
+})
+
 // Export all functions and constants
 module.exports = {
 	// Constants
