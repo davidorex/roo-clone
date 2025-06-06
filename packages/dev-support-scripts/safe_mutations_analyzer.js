@@ -283,6 +283,11 @@ async function main() {
 	}
 
 	try {
+		// Set branch from environment variable if available
+		if (process.env.ANALYSIS_BRANCH) {
+			utils.setBranch(process.env.ANALYSIS_BRANCH)
+		}
+
 		utils.ensureDirExists(utils.SAFE_MUTATIONS_ANALYSIS_DIR)
 
 		// Load main dependency index to get list of all modules

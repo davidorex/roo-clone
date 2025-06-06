@@ -1423,6 +1423,11 @@ async function main() {
 	}
 
 	try {
+		// Set branch from environment variable if available
+		if (process.env.ANALYSIS_BRANCH) {
+			utils.setBranch(process.env.ANALYSIS_BRANCH)
+		}
+
 		// Parse command-line arguments
 		const args = process.argv.slice(2)
 		const targetDir = args[0] || "."

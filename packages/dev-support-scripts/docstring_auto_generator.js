@@ -597,6 +597,11 @@ async function main() {
 	}
 
 	try {
+		// Set branch from environment variable if available
+		if (process.env.ANALYSIS_BRANCH) {
+			utils.setBranch(process.env.ANALYSIS_BRANCH)
+		}
+
 		const args = process.argv.slice(2)
 		const targetDir = args[0] || "." // Not directly used for input paths, but for context in index file
 		// Exclusions are handled by the input from docstring_extractor which should already be filtered.
