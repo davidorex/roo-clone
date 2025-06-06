@@ -63,7 +63,9 @@ function getBranchSpecificDir(baseDir) {
 	if (!currentBranch) {
 		throw new Error("Branch must be set before accessing branch-specific directories")
 	}
-	return path.join(SCRIPT_DIR, "branches", currentBranch, baseDir)
+	const branchDir = path.join(SCRIPT_DIR, "branches", currentBranch, baseDir)
+	ensureDirExists(branchDir)
+	return branchDir
 }
 
 // Private backing variables for directory paths
