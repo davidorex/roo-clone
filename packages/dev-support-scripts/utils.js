@@ -927,4 +927,30 @@ module.exports = {
 	findTreeSitterWasmPath,
 	createTypeScriptParser,
 	createTypeScriptQuery,
+
+	// Directory Getters
+	get OUTPUT_DIR() {
+		return currentBranch ? getBranchSpecificDir("Output") : _OUTPUT_DIR
+	},
+	get API_CONTRACTS_DIR() {
+		return currentBranch ? getBranchSpecificDir("api_contracts") : _API_CONTRACTS_DIR
+	},
+	get DEPENDENCY_GRAPH_DIR() {
+		return currentBranch ? getBranchSpecificDir("dependency_graph") : _DEPENDENCY_GRAPH_DIR
+	},
+	get DOCSTRING_INVENTORY_DIR() {
+		return currentBranch
+			? getBranchSpecificDir("docstring_inventory")
+			: path.join(SCRIPT_DIR, "docstring_inventory")
+	},
+	get GENERATED_DOCSTRING_INVENTORY_DIR() {
+		return currentBranch
+			? getBranchSpecificDir("generated_docstring_inventory")
+			: path.join(SCRIPT_DIR, "generated_docstring_inventory")
+	},
+	get SAFE_MUTATIONS_ANALYSIS_DIR() {
+		return currentBranch
+			? getBranchSpecificDir("safe_mutations_analysis")
+			: path.join(SCRIPT_DIR, "safe_mutations_analysis")
+	},
 }
