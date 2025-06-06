@@ -15,9 +15,7 @@ const utils = require("./utils") // Assuming utils.js is in the same directory
 const { Worker, isMainThread, parentPort, workerData } = require("worker_threads")
 const os = require("os")
 
-const DOCSTRING_EXTRACTOR_OUTPUT_DIR = path.join(utils.SCRIPT_DIR, "docstring_inventory")
-const API_CONTRACTS_OUTPUT_DIR = path.join(utils.SCRIPT_DIR, "api_contracts")
-const GENERATED_DOCSTRING_OUTPUT_DIR = path.join(utils.SCRIPT_DIR, "generated_docstring_inventory")
+// Directory paths are defined in utils.js as branch-aware getters
 
 /**
  * @typedef {import('./docstring_extractor.js').DocstringElementInfo} OriginalDocstringElementInfo
@@ -583,7 +581,7 @@ function generateOutputIndexFile(results, targetDir) {
 			module_count: results.length,
 		}
 		utils.writeJsonFile(
-			path.join(GENERATED_DOCSTRING_OUTPUT_DIR, "___generated_docstrings_index.json"),
+			path.join(utils.GENERATED_DOCSTRING_INVENTORY_DIR, "___generated_docstrings_index.json"),
 			indexData,
 			2,
 			true,
@@ -606,10 +604,10 @@ async function main() {
 		const concurrencyArgIndex = args.indexOf("--concurrency")
 		const userMaxWorkers = concurrencyArgIndex !== -1 ? parseInt(args[concurrencyArgIndex + 1], 10) : null
 
-		utils.ensureDirExists(GENERATED_DOCSTRING_OUTPUT_DIR)
+		utils.ensureDirExists(utils.GENERATED_DOCSTRING_INVENTORY_DIR)
 
 		// Read the index from docstring_extractor to know which modules to process
-		const docstringsIndexFile = path.join(DOCSTRING_EXTRACTOR_OUTPUT_DIR, "___docstrings_index.json")
+		const docstringsIndexFile = path.join(utils.DOCSTRING_INVENTORY_DIR, "___docstrings_index.json")
 		const docstringsIndex = utils.readJsonFile(docstringsIndexFile)
 
 		if (!docstringsIndex || !docstringsIndex.modules) {
@@ -622,8 +620,8 @@ async function main() {
 		const modulePromises = docstringsIndex.modules.map(async (mod) => {
 			const baseFileName = mod.file.replace("_docstrings.json", "")
 			const fileTuple = {
-				docstringsFile: path.join(DOCSTRING_EXTRACTOR_OUTPUT_DIR, mod.file),
-				apiContractsFile: path.join(API_CONTRACTS_OUTPUT_DIR, `${baseFileName}_contracts.json`),
+				docstringsFile: path.join(utils.DOCSTRING_INVENTORY_DIR, mod.file),
+				apiContractsFile: path.join(utils.API_CONTRACTS_DIR, `${baseFileName}_contracts.json`),
 				dependenciesFile: path.join(utils.DEPENDENCY_GRAPH_DIR, `${baseFileName}_dependencies.json`),
 			}
 			try {
@@ -672,11 +670,11 @@ async function main() {
 		for (const moduleInfo of validResults) {
 			const sanitizedName = moduleInfo.module_name.replace(/\//g, "_").replace(/\./g, "_")
 			const filename = `${sanitizedName}_generated_docstrings.json`
-			utils.writeJsonFile(path.join(GENERATED_DOCSTRING_OUTPUT_DIR, filename), moduleInfo, 2, true)
+			utils.writeJsonFile(path.join(utils.GENERATED_DOCSTRING_INVENTORY_DIR, filename), moduleInfo, 2, true)
 		}
 
 		generateOutputIndexFile(validResults, targetDir)
-		console.log(`Auto-docstring generation complete. Results in: ${GENERATED_DOCSTRING_OUTPUT_DIR}`)
+		console.log(`Auto-docstring generation complete. Results in: ${utils.GENERATED_DOCSTRING_INVENTORY_DIR}`)
 	} catch (error) {
 		console.error(`Fatal error in Docstring Auto-Generator: ${error}`)
 		process.exit(1)
