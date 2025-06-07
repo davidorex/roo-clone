@@ -1,0 +1,22 @@
+The following files have merge conflicts between 'main' and 'my-main' branches:
+
+pnpm-lock.yaml
+src/core/prompts/sections/capabilities.ts
+src/core/prompts/sections/objective.ts
+src/core/prompts/sections/rules.ts
+
+src/core/tools/applyDiffTool.ts
+src/core/tools/insertContentTool.ts
+src/core/tools/searchAndReplaceTool.ts
+src/core/tools/writeToFileTool.ts
+src/core/webview/tests/ClineProvider.test.ts
+
+webview-ui/src/components/settings/ExperimentalSettings.tsx
+webview-ui/src/components/settings/SettingsView.tsx
+webview-ui/src/context/tests/ExtensionStateContext.test.tsx
+
+Additionally, there are three files that were deleted in 'main' but modified in 'my-main':
+
+src/exports/roo-code.d.ts
+src/exports/types.ts
+src/schemas/index.ts
