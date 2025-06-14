@@ -1,8 +1,8 @@
 # Establishing Development Context with Database Queries
 
-This guide outlines a productive sequence of SQL queries to run against the `git_commit_viewer` database. The goal is to rapidly establish a comprehensive understanding of recent development activity within a specific repository, providing exact forensic insight, particularly useful for developers or LLMs needing to get up to speed quickly.
+This guide outlines a productive sequence of SQL queries to run against the `Roo-Clone` database. The goal is to rapidly establish a comprehensive understanding of recent development activity within a specific repository, providing exact forensic insight, particularly useful for developers or LLMs needing to get up to speed quickly.
 
-We will use "Git-Commit-Viewer" as the example target repository. Remember to replace `'Git-Commit-Viewer'` with your actual target repository name if different.
+We will use "Roo-Clone" as the example target repository. Remember to replace `'Roo-Clone'` with your actual target repository name if different.
 
 ## The Query Sequence
 
@@ -13,7 +13,7 @@ We will use "Git-Commit-Viewer" as the example target repository. Remember to re
     ```sql
     SELECT id, name, path FROM viewer_repository;
     ```
-- **Insights:** This query lists all repositories currently tracked by the `git_commit_viewer` database. Note the `name` of the repository you want to investigate for use in subsequent steps.
+- **Insights:** This query lists all repositories currently tracked by the `Roo-Clone` database. Note the `name` of the repository you want to investigate for use in subsequent steps.
 
 ### Step 0b: Identify Target Branch
 
